@@ -1,0 +1,30 @@
+# Build output
+bin/
+obj/
+dist/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Local database files
+*.db
+*.db-shm
+*.db-wal
+
+# Editor and OS noise
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+*.user
+
+# Design studio local state
+.design-studio.json
+.design-studio/
+
+# Local notes, not published
+docs/product-notes.md
+docs/qa-log.md
+docs/test-plan.md
+docs/demo-script.md

@@ -1,0 +1,7010 @@
+[
+  {
+    "sourceId": "3_4_Sit-Up",
+    "nameEn": "3/4 Sit-Up",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "90_90_Hamstring",
+    "nameEn": "90/90 Hamstring",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Ab_Crunch_Machine",
+    "nameEn": "Ab Crunch Machine",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Ab_Roller",
+    "nameEn": "Ab Roller",
+    "nameCs": "Rollout s kolečkem",
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Adductor",
+    "nameEn": "Adductor",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Adductor_Groin",
+    "nameEn": "Adductor/Groin",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": null,
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Advanced_Kettlebell_Windmill",
+    "nameEn": "Advanced Kettlebell Windmill",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Air_Bike",
+    "nameEn": "Air Bike",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "All_Fours_Quad_Stretch",
+    "nameEn": "All Fours Quad Stretch",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Alternate_Hammer_Curl",
+    "nameEn": "Alternate Hammer Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Alternate_Heel_Touchers",
+    "nameEn": "Alternate Heel Touchers",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Alternate_Incline_Dumbbell_Curl",
+    "nameEn": "Alternate Incline Dumbbell Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Alternate_Leg_Diagonal_Bound",
+    "nameEn": "Alternate Leg Diagonal Bound",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Alternating_Cable_Shoulder_Press",
+    "nameEn": "Alternating Cable Shoulder Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Alternating_Deltoid_Raise",
+    "nameEn": "Alternating Deltoid Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Alternating_Floor_Press",
+    "nameEn": "Alternating Floor Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Alternating_Hang_Clean",
+    "nameEn": "Alternating Hang Clean",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Alternating_Kettlebell_Press",
+    "nameEn": "Alternating Kettlebell Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Alternating_Kettlebell_Row",
+    "nameEn": "Alternating Kettlebell Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Alternating_Renegade_Row",
+    "nameEn": "Alternating Renegade Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Ankle_Circles",
+    "nameEn": "Ankle Circles",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Ankle_On_The_Knee",
+    "nameEn": "Ankle On The Knee",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Anterior_Tibialis-SMR",
+    "nameEn": "Anterior Tibialis-SMR",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Anti-Gravity_Press",
+    "nameEn": "Anti-Gravity Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Arm_Circles",
+    "nameEn": "Arm Circles",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Arnold_Dumbbell_Press",
+    "nameEn": "Arnold Dumbbell Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Around_The_Worlds",
+    "nameEn": "Around The Worlds",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Atlas_Stone_Trainer",
+    "nameEn": "Atlas Stone Trainer",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Atlas_Stones",
+    "nameEn": "Atlas Stones",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Axle_Deadlift",
+    "nameEn": "Axle Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Back_Flyes_-_With_Bands",
+    "nameEn": "Back Flyes - With Bands",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Backward_Drag",
+    "nameEn": "Backward Drag",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Backward_Medicine_Ball_Throw",
+    "nameEn": "Backward Medicine Ball Throw",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Balance_Board",
+    "nameEn": "Balance Board",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Ball_Leg_Curl",
+    "nameEn": "Ball Leg Curl",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Band_Assisted_Pull-Up",
+    "nameEn": "Band Assisted Pull-Up",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Band_Good_Morning",
+    "nameEn": "Band Good Morning",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Band_Good_Morning_Pull_Through",
+    "nameEn": "Band Good Morning (Pull Through)",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Band_Hip_Adductions",
+    "nameEn": "Band Hip Adductions",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Band_Pull_Apart",
+    "nameEn": "Band Pull Apart",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Band_Skull_Crusher",
+    "nameEn": "Band Skull Crusher",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Ab_Rollout",
+    "nameEn": "Barbell Ab Rollout",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Barbell_Ab_Rollout_-_On_Knees",
+    "nameEn": "Barbell Ab Rollout - On Knees",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Barbell_Bench_Press_-_Medium_Grip",
+    "nameEn": "Barbell Bench Press - Medium Grip",
+    "nameCs": "Bench press na vodorovné lavici",
+    "primaryMuscle": "chest",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Curl",
+    "nameEn": "Barbell Curl",
+    "nameCs": "Bicepsový zdvih s osou ve stoje",
+    "primaryMuscle": "biceps",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Curls_Lying_Against_An_Incline",
+    "nameEn": "Barbell Curls Lying Against An Incline",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Deadlift",
+    "nameEn": "Barbell Deadlift",
+    "nameCs": "Klasický mrtvý tah",
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Barbell_Full_Squat",
+    "nameEn": "Barbell Full Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Barbell_Glute_Bridge",
+    "nameEn": "Barbell Glute Bridge",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Barbell_Guillotine_Bench_Press",
+    "nameEn": "Barbell Guillotine Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Barbell_Hack_Squat",
+    "nameEn": "Barbell Hack Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Barbell_Hip_Thrust",
+    "nameEn": "Barbell Hip Thrust",
+    "nameCs": "Hip thrust",
+    "primaryMuscle": "glutes",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Barbell_Incline_Bench_Press_-_Medium_Grip",
+    "nameEn": "Barbell Incline Bench Press - Medium Grip",
+    "nameCs": "Benchpress na šikmé lavici hlavou nahoru",
+    "primaryMuscle": "chest",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Incline_Shoulder_Raise",
+    "nameEn": "Barbell Incline Shoulder Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Lunge",
+    "nameEn": "Barbell Lunge",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Barbell_Rear_Delt_Row",
+    "nameEn": "Barbell Rear Delt Row",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Rollout_from_Bench",
+    "nameEn": "Barbell Rollout from Bench",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Barbell_Seated_Calf_Raise",
+    "nameEn": "Barbell Seated Calf Raise",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Shoulder_Press",
+    "nameEn": "Barbell Shoulder Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Barbell_Shrug",
+    "nameEn": "Barbell Shrug",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Shrug_Behind_The_Back",
+    "nameEn": "Barbell Shrug Behind The Back",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Side_Bend",
+    "nameEn": "Barbell Side Bend",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Side_Split_Squat",
+    "nameEn": "Barbell Side Split Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Squat",
+    "nameEn": "Barbell Squat",
+    "nameCs": "Dřep s osou za hlavou",
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Barbell_Squat_To_A_Bench",
+    "nameEn": "Barbell Squat To A Bench",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Barbell_Step_Ups",
+    "nameEn": "Barbell Step Ups",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Barbell_Walking_Lunge",
+    "nameEn": "Barbell Walking Lunge",
+    "nameCs": "Výpady v chůzi",
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Battling_Ropes",
+    "nameEn": "Battling Ropes",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bear_Crawl_Sled_Drags",
+    "nameEn": "Bear Crawl Sled Drags",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Behind_Head_Chest_Stretch",
+    "nameEn": "Behind Head Chest Stretch",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Bench_Dips",
+    "nameEn": "Bench Dips",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bench_Jump",
+    "nameEn": "Bench Jump",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Bench_Press_-_Powerlifting",
+    "nameEn": "Bench Press - Powerlifting",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Bench_Press_-_With_Bands",
+    "nameEn": "Bench Press - With Bands",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bench_Press_with_Chains",
+    "nameEn": "Bench Press with Chains",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Bench_Sprint",
+    "nameEn": "Bench Sprint",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bent_Over_Barbell_Row",
+    "nameEn": "Bent Over Barbell Row",
+    "nameCs": "Přítahy osy v předklonu",
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bent_Over_Dumbbell_Rear_Delt_Raise_With_Head_On_Bench",
+    "nameEn": "Bent Over Dumbbell Rear Delt Raise With Head On Bench",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bent_Over_Low-Pulley_Side_Lateral",
+    "nameEn": "Bent Over Low-Pulley Side Lateral",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bent_Over_One-Arm_Long_Bar_Row",
+    "nameEn": "Bent Over One-Arm Long Bar Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bent_Over_Two-Arm_Long_Bar_Row",
+    "nameEn": "Bent Over Two-Arm Long Bar Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Bent_Over_Two-Dumbbell_Row",
+    "nameEn": "Bent Over Two-Dumbbell Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bent_Over_Two-Dumbbell_Row_With_Palms_In",
+    "nameEn": "Bent Over Two-Dumbbell Row With Palms In",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bent_Press",
+    "nameEn": "Bent Press",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Bent-Arm_Barbell_Pullover",
+    "nameEn": "Bent-Arm Barbell Pullover",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Bent-Arm_Dumbbell_Pullover",
+    "nameEn": "Bent-Arm Dumbbell Pullover",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Bent-Knee_Hip_Raise",
+    "nameEn": "Bent-Knee Hip Raise",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bicycling",
+    "nameEn": "Bicycling",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bicycling_Stationary",
+    "nameEn": "Bicycling, Stationary",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Board_Press",
+    "nameEn": "Board Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Body_Tricep_Press",
+    "nameEn": "Body Tricep Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Body-Up",
+    "nameEn": "Body-Up",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Bodyweight_Flyes",
+    "nameEn": "Bodyweight Flyes",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "e-z curl bar",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Bodyweight_Mid_Row",
+    "nameEn": "Bodyweight Mid Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Bodyweight_Squat",
+    "nameEn": "Bodyweight Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bodyweight_Walking_Lunge",
+    "nameEn": "Bodyweight Walking Lunge",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bosu_Ball_Cable_Crunch_With_Side_Bends",
+    "nameEn": "Bosu Ball Cable Crunch With Side Bends",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bottoms_Up",
+    "nameEn": "Bottoms Up",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Bottoms-Up_Clean_From_The_Hang_Position",
+    "nameEn": "Bottoms-Up Clean From The Hang Position",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Box_Jump_Multiple_Response",
+    "nameEn": "Box Jump (Multiple Response)",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Box_Skip",
+    "nameEn": "Box Skip",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Box_Squat",
+    "nameEn": "Box Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Box_Squat_with_Bands",
+    "nameEn": "Box Squat with Bands",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Box_Squat_with_Chains",
+    "nameEn": "Box Squat with Chains",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Brachialis-SMR",
+    "nameEn": "Brachialis-SMR",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Bradford_Rocky_Presses",
+    "nameEn": "Bradford/Rocky Presses",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Butt_Lift_Bridge",
+    "nameEn": "Butt Lift (Bridge)",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Butt-Ups",
+    "nameEn": "Butt-Ups",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Butterfly",
+    "nameEn": "Butterfly",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Chest_Press",
+    "nameEn": "Cable Chest Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Crossover",
+    "nameEn": "Cable Crossover",
+    "nameCs": "Stahování protisměrných kladek",
+    "primaryMuscle": "chest",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Crunch",
+    "nameEn": "Cable Crunch",
+    "nameCs": "Zkracovačky na horní kladce",
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Deadlifts",
+    "nameEn": "Cable Deadlifts",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Hammer_Curls_-_Rope_Attachment",
+    "nameEn": "Cable Hammer Curls - Rope Attachment",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Hip_Adduction",
+    "nameEn": "Cable Hip Adduction",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Incline_Pushdown",
+    "nameEn": "Cable Incline Pushdown",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Incline_Triceps_Extension",
+    "nameEn": "Cable Incline Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Internal_Rotation",
+    "nameEn": "Cable Internal Rotation",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Iron_Cross",
+    "nameEn": "Cable Iron Cross",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Judo_Flip",
+    "nameEn": "Cable Judo Flip",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Lying_Triceps_Extension",
+    "nameEn": "Cable Lying Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_One_Arm_Tricep_Extension",
+    "nameEn": "Cable One Arm Tricep Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Preacher_Curl",
+    "nameEn": "Cable Preacher Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Rear_Delt_Fly",
+    "nameEn": "Cable Rear Delt Fly",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Reverse_Crunch",
+    "nameEn": "Cable Reverse Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Rope_Overhead_Triceps_Extension",
+    "nameEn": "Cable Rope Overhead Triceps Extension",
+    "nameCs": "Tricepsové stahování horní kladky s lanem přes hlavu",
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Rope_Rear-Delt_Rows",
+    "nameEn": "Cable Rope Rear-Delt Rows",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Russian_Twists",
+    "nameEn": "Cable Russian Twists",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Seated_Crunch",
+    "nameEn": "Cable Seated Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Seated_Lateral_Raise",
+    "nameEn": "Cable Seated Lateral Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Shoulder_Press",
+    "nameEn": "Cable Shoulder Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Shrugs",
+    "nameEn": "Cable Shrugs",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cable_Wrist_Curl",
+    "nameEn": "Cable Wrist Curl",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Calf_Press",
+    "nameEn": "Calf Press",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Calf_Press_On_The_Leg_Press_Machine",
+    "nameEn": "Calf Press On The Leg Press Machine",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Calf_Raise_On_A_Dumbbell",
+    "nameEn": "Calf Raise On A Dumbbell",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Calf_Raises_-_With_Bands",
+    "nameEn": "Calf Raises - With Bands",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Calf_Stretch_Elbows_Against_Wall",
+    "nameEn": "Calf Stretch Elbows Against Wall",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Calf_Stretch_Hands_Against_Wall",
+    "nameEn": "Calf Stretch Hands Against Wall",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Calf-Machine_Shoulder_Shrug",
+    "nameEn": "Calf-Machine Shoulder Shrug",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Calves-SMR",
+    "nameEn": "Calves-SMR",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Car_Deadlift",
+    "nameEn": "Car Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Car_Drivers",
+    "nameEn": "Car Drivers",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Carioca_Quick_Step",
+    "nameEn": "Carioca Quick Step",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cat_Stretch",
+    "nameEn": "Cat Stretch",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Catch_and_Overhead_Throw",
+    "nameEn": "Catch and Overhead Throw",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chain_Handle_Extension",
+    "nameEn": "Chain Handle Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Chain_Press",
+    "nameEn": "Chain Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Chair_Leg_Extended_Stretch",
+    "nameEn": "Chair Leg Extended Stretch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chair_Lower_Back_Stretch",
+    "nameEn": "Chair Lower Back Stretch",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chair_Squat",
+    "nameEn": "Chair Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chair_Upper_Body_Stretch",
+    "nameEn": "Chair Upper Body Stretch",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chest_And_Front_Of_Shoulder_Stretch",
+    "nameEn": "Chest And Front Of Shoulder Stretch",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chest_Push_from_3_point_stance",
+    "nameEn": "Chest Push from 3 point stance",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chest_Push_multiple_response",
+    "nameEn": "Chest Push (multiple response)",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chest_Push_single_response",
+    "nameEn": "Chest Push (single response)",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chest_Push_with_Run_Release",
+    "nameEn": "Chest Push with Run Release",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chest_Stretch_on_Stability_Ball",
+    "nameEn": "Chest Stretch on Stability Ball",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Childs_Pose",
+    "nameEn": "Child's Pose",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chin_To_Chest_Stretch",
+    "nameEn": "Chin To Chest Stretch",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Chin-Up",
+    "nameEn": "Chin-Up",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Circus_Bell",
+    "nameEn": "Circus Bell",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Clean",
+    "nameEn": "Clean",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Clean_and_Jerk",
+    "nameEn": "Clean and Jerk",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Clean_and_Press",
+    "nameEn": "Clean and Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Clean_Deadlift",
+    "nameEn": "Clean Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Clean_from_Blocks",
+    "nameEn": "Clean from Blocks",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Clean_Pull",
+    "nameEn": "Clean Pull",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Clean_Shrug",
+    "nameEn": "Clean Shrug",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Clock_Push-Up",
+    "nameEn": "Clock Push-Up",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Close-Grip_Barbell_Bench_Press",
+    "nameEn": "Close-Grip Barbell Bench Press",
+    "nameCs": "Benchpress na úzko",
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Close-Grip_Dumbbell_Press",
+    "nameEn": "Close-Grip Dumbbell Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Close-Grip_EZ_Bar_Curl",
+    "nameEn": "Close-Grip EZ Bar Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Close-Grip_EZ-Bar_Curl_with_Band",
+    "nameEn": "Close-Grip EZ-Bar Curl with Band",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "e-z curl bar",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Close-Grip_EZ-Bar_Press",
+    "nameEn": "Close-Grip EZ-Bar Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "e-z curl bar",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Close-Grip_Front_Lat_Pulldown",
+    "nameEn": "Close-Grip Front Lat Pulldown",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Close-Grip_Push-Up_off_of_a_Dumbbell",
+    "nameEn": "Close-Grip Push-Up off of a Dumbbell",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Close-Grip_Standing_Barbell_Curl",
+    "nameEn": "Close-Grip Standing Barbell Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cocoons",
+    "nameEn": "Cocoons",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Conans_Wheel",
+    "nameEn": "Conan's Wheel",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Concentration_Curls",
+    "nameEn": "Concentration Curls",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cross_Body_Hammer_Curl",
+    "nameEn": "Cross Body Hammer Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cross_Over_-_With_Bands",
+    "nameEn": "Cross Over - With Bands",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cross-Body_Crunch",
+    "nameEn": "Cross-Body Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Crossover_Reverse_Lunge",
+    "nameEn": "Crossover Reverse Lunge",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Crucifix",
+    "nameEn": "Crucifix",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Crunch_-_Hands_Overhead",
+    "nameEn": "Crunch - Hands Overhead",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Crunch_-_Legs_On_Exercise_Ball",
+    "nameEn": "Crunch - Legs On Exercise Ball",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Crunches",
+    "nameEn": "Crunches",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Cuban_Press",
+    "nameEn": "Cuban Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dancers_Stretch",
+    "nameEn": "Dancer's Stretch",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dead_Bug",
+    "nameEn": "Dead Bug",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Deadlift_with_Bands",
+    "nameEn": "Deadlift with Bands",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Deadlift_with_Chains",
+    "nameEn": "Deadlift with Chains",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Decline_Barbell_Bench_Press",
+    "nameEn": "Decline Barbell Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Decline_Close-Grip_Bench_To_Skull_Crusher",
+    "nameEn": "Decline Close-Grip Bench To Skull Crusher",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Decline_Crunch",
+    "nameEn": "Decline Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Decline_Dumbbell_Bench_Press",
+    "nameEn": "Decline Dumbbell Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Decline_Dumbbell_Flyes",
+    "nameEn": "Decline Dumbbell Flyes",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Decline_Dumbbell_Triceps_Extension",
+    "nameEn": "Decline Dumbbell Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Decline_EZ_Bar_Triceps_Extension",
+    "nameEn": "Decline EZ Bar Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Decline_Oblique_Crunch",
+    "nameEn": "Decline Oblique Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Decline_Push-Up",
+    "nameEn": "Decline Push-Up",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Decline_Reverse_Crunch",
+    "nameEn": "Decline Reverse Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Decline_Smith_Press",
+    "nameEn": "Decline Smith Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Deficit_Deadlift",
+    "nameEn": "Deficit Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Depth_Jump_Leap",
+    "nameEn": "Depth Jump Leap",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dip_Machine",
+    "nameEn": "Dip Machine",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dips_-_Chest_Version",
+    "nameEn": "Dips - Chest Version",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dips_-_Triceps_Version",
+    "nameEn": "Dips - Triceps Version",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Donkey_Calf_Raises",
+    "nameEn": "Donkey Calf Raises",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Double_Kettlebell_Alternating_Hang_Clean",
+    "nameEn": "Double Kettlebell Alternating Hang Clean",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Double_Kettlebell_Jerk",
+    "nameEn": "Double Kettlebell Jerk",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Double_Kettlebell_Push_Press",
+    "nameEn": "Double Kettlebell Push Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Double_Kettlebell_Snatch",
+    "nameEn": "Double Kettlebell Snatch",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Double_Kettlebell_Windmill",
+    "nameEn": "Double Kettlebell Windmill",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Double_Leg_Butt_Kick",
+    "nameEn": "Double Leg Butt Kick",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Downward_Facing_Balance",
+    "nameEn": "Downward Facing Balance",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Drag_Curl",
+    "nameEn": "Drag Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Drop_Push",
+    "nameEn": "Drop Push",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Alternate_Bicep_Curl",
+    "nameEn": "Dumbbell Alternate Bicep Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Bench_Press",
+    "nameEn": "Dumbbell Bench Press",
+    "nameCs": "Tlaky s jednoručkami na vodorovné lavici",
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Bench_Press_with_Neutral_Grip",
+    "nameEn": "Dumbbell Bench Press with Neutral Grip",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Bicep_Curl",
+    "nameEn": "Dumbbell Bicep Curl",
+    "nameCs": "Bicepsový zdvih s jednoručkami",
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Clean",
+    "nameEn": "Dumbbell Clean",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Floor_Press",
+    "nameEn": "Dumbbell Floor Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Flyes",
+    "nameEn": "Dumbbell Flyes",
+    "nameCs": "Rozpažky na vodorovné lavici",
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Incline_Row",
+    "nameEn": "Dumbbell Incline Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Incline_Shoulder_Raise",
+    "nameEn": "Dumbbell Incline Shoulder Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Lunges",
+    "nameEn": "Dumbbell Lunges",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Lying_One-Arm_Rear_Lateral_Raise",
+    "nameEn": "Dumbbell Lying One-Arm Rear Lateral Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Lying_Pronation",
+    "nameEn": "Dumbbell Lying Pronation",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Lying_Rear_Lateral_Raise",
+    "nameEn": "Dumbbell Lying Rear Lateral Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Lying_Supination",
+    "nameEn": "Dumbbell Lying Supination",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_One-Arm_Shoulder_Press",
+    "nameEn": "Dumbbell One-Arm Shoulder Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_One-Arm_Triceps_Extension",
+    "nameEn": "Dumbbell One-Arm Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_One-Arm_Upright_Row",
+    "nameEn": "Dumbbell One-Arm Upright Row",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Prone_Incline_Curl",
+    "nameEn": "Dumbbell Prone Incline Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Raise",
+    "nameEn": "Dumbbell Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Rear_Lunge",
+    "nameEn": "Dumbbell Rear Lunge",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Scaption",
+    "nameEn": "Dumbbell Scaption",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Seated_Box_Jump",
+    "nameEn": "Dumbbell Seated Box Jump",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Seated_One-Leg_Calf_Raise",
+    "nameEn": "Dumbbell Seated One-Leg Calf Raise",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Shoulder_Press",
+    "nameEn": "Dumbbell Shoulder Press",
+    "nameCs": "Tlaky s jednoručkami v sedě",
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Shrug",
+    "nameEn": "Dumbbell Shrug",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Side_Bend",
+    "nameEn": "Dumbbell Side Bend",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Squat",
+    "nameEn": "Dumbbell Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dumbbell_Squat_To_A_Bench",
+    "nameEn": "Dumbbell Squat To A Bench",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Step_Ups",
+    "nameEn": "Dumbbell Step Ups",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Dumbbell_Tricep_Extension_-Pronated_Grip",
+    "nameEn": "Dumbbell Tricep Extension -Pronated Grip",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dynamic_Back_Stretch",
+    "nameEn": "Dynamic Back Stretch",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Dynamic_Chest_Stretch",
+    "nameEn": "Dynamic Chest Stretch",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Elbow_Circles",
+    "nameEn": "Elbow Circles",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Elbow_to_Knee",
+    "nameEn": "Elbow to Knee",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Elbows_Back",
+    "nameEn": "Elbows Back",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Elevated_Back_Lunge",
+    "nameEn": "Elevated Back Lunge",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Elevated_Cable_Rows",
+    "nameEn": "Elevated Cable Rows",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Elliptical_Trainer",
+    "nameEn": "Elliptical Trainer",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Exercise_Ball_Crunch",
+    "nameEn": "Exercise Ball Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Exercise_Ball_Pull-In",
+    "nameEn": "Exercise Ball Pull-In",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Extended_Range_One-Arm_Kettlebell_Floor_Press",
+    "nameEn": "Extended Range One-Arm Kettlebell Floor Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "External_Rotation",
+    "nameEn": "External Rotation",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "External_Rotation_with_Band",
+    "nameEn": "External Rotation with Band",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "External_Rotation_with_Cable",
+    "nameEn": "External Rotation with Cable",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "EZ-Bar_Curl",
+    "nameEn": "EZ-Bar Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "e-z curl bar",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "EZ-Bar_Skullcrusher",
+    "nameEn": "EZ-Bar Skullcrusher",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "e-z curl bar",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Face_Pull",
+    "nameEn": "Face Pull",
+    "nameCs": "Face pull",
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Farmers_Walk",
+    "nameEn": "Farmer's Walk",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Fast_Skipping",
+    "nameEn": "Fast Skipping",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Finger_Curls",
+    "nameEn": "Finger Curls",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Flat_Bench_Cable_Flyes",
+    "nameEn": "Flat Bench Cable Flyes",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Flat_Bench_Leg_Pull-In",
+    "nameEn": "Flat Bench Leg Pull-In",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Flat_Bench_Lying_Leg_Raise",
+    "nameEn": "Flat Bench Lying Leg Raise",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Flexor_Incline_Dumbbell_Curls",
+    "nameEn": "Flexor Incline Dumbbell Curls",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Floor_Glute-Ham_Raise",
+    "nameEn": "Floor Glute-Ham Raise",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Floor_Press",
+    "nameEn": "Floor Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Floor_Press_with_Chains",
+    "nameEn": "Floor Press with Chains",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Flutter_Kicks",
+    "nameEn": "Flutter Kicks",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Foot-SMR",
+    "nameEn": "Foot-SMR",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Forward_Drag_with_Press",
+    "nameEn": "Forward Drag with Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Frankenstein_Squat",
+    "nameEn": "Frankenstein Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Freehand_Jump_Squat",
+    "nameEn": "Freehand Jump Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Frog_Hops",
+    "nameEn": "Frog Hops",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Frog_Sit-Ups",
+    "nameEn": "Frog Sit-Ups",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Front_Barbell_Squat",
+    "nameEn": "Front Barbell Squat",
+    "nameCs": "Dřep s činkou vpředu",
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Front_Barbell_Squat_To_A_Bench",
+    "nameEn": "Front Barbell Squat To A Bench",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Front_Box_Jump",
+    "nameEn": "Front Box Jump",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Front_Cable_Raise",
+    "nameEn": "Front Cable Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Front_Cone_Hops_or_hurdle_hops",
+    "nameEn": "Front Cone Hops (or hurdle hops)",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Front_Dumbbell_Raise",
+    "nameEn": "Front Dumbbell Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Front_Incline_Dumbbell_Raise",
+    "nameEn": "Front Incline Dumbbell Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Front_Leg_Raises",
+    "nameEn": "Front Leg Raises",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Front_Plate_Raise",
+    "nameEn": "Front Plate Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Front_Raise_And_Pullover",
+    "nameEn": "Front Raise And Pullover",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Front_Squat_Clean_Grip",
+    "nameEn": "Front Squat (Clean Grip)",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Front_Squats_With_Two_Kettlebells",
+    "nameEn": "Front Squats With Two Kettlebells",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Front_Two-Dumbbell_Raise",
+    "nameEn": "Front Two-Dumbbell Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Full_Range-Of-Motion_Lat_Pulldown",
+    "nameEn": "Full Range-Of-Motion Lat Pulldown",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Gironda_Sternum_Chins",
+    "nameEn": "Gironda Sternum Chins",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Glute_Ham_Raise",
+    "nameEn": "Glute Ham Raise",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Glute_Kickback",
+    "nameEn": "Glute Kickback",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Goblet_Squat",
+    "nameEn": "Goblet Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Good_Morning",
+    "nameEn": "Good Morning",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Good_Morning_off_Pins",
+    "nameEn": "Good Morning off Pins",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Gorilla_Chin_Crunch",
+    "nameEn": "Gorilla Chin/Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Groin_and_Back_Stretch",
+    "nameEn": "Groin and Back Stretch",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": null,
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Groiners",
+    "nameEn": "Groiners",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Hack_Squat",
+    "nameEn": "Hack Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hammer_Curls",
+    "nameEn": "Hammer Curls",
+    "nameCs": "Kladivový zdvih s jednoručkami",
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hammer_Grip_Incline_DB_Bench_Press",
+    "nameEn": "Hammer Grip Incline DB Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hamstring_Stretch",
+    "nameEn": "Hamstring Stretch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hamstring-SMR",
+    "nameEn": "Hamstring-SMR",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Handstand_Push-Ups",
+    "nameEn": "Handstand Push-Ups",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "body only",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Hang_Clean",
+    "nameEn": "Hang Clean",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Hang_Clean_-_Below_the_Knees",
+    "nameEn": "Hang Clean - Below the Knees",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Hang_Snatch",
+    "nameEn": "Hang Snatch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Hang_Snatch_-_Below_Knees",
+    "nameEn": "Hang Snatch - Below Knees",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Hanging_Bar_Good_Morning",
+    "nameEn": "Hanging Bar Good Morning",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Hanging_Leg_Raise",
+    "nameEn": "Hanging Leg Raise",
+    "nameCs": "Vznosy ve visu",
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Hanging_Pike",
+    "nameEn": "Hanging Pike",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Heaving_Snatch_Balance",
+    "nameEn": "Heaving Snatch Balance",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Heavy_Bag_Thrust",
+    "nameEn": "Heavy Bag Thrust",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "High_Cable_Curls",
+    "nameEn": "High Cable Curls",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Hip_Circles_prone",
+    "nameEn": "Hip Circles (prone)",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hip_Extension_with_Bands",
+    "nameEn": "Hip Extension with Bands",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hip_Flexion_with_Band",
+    "nameEn": "Hip Flexion with Band",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hip_Lift_with_Band",
+    "nameEn": "Hip Lift with Band",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hug_A_Ball",
+    "nameEn": "Hug A Ball",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hug_Knees_To_Chest",
+    "nameEn": "Hug Knees To Chest",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hurdle_Hops",
+    "nameEn": "Hurdle Hops",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hyperextensions_Back_Extensions",
+    "nameEn": "Hyperextensions (Back Extensions)",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Hyperextensions_With_No_Hyperextension_Bench",
+    "nameEn": "Hyperextensions With No Hyperextension Bench",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Iliotibial_Tract-SMR",
+    "nameEn": "Iliotibial Tract-SMR",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Inchworm",
+    "nameEn": "Inchworm",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Barbell_Triceps_Extension",
+    "nameEn": "Incline Barbell Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Incline_Bench_Pull",
+    "nameEn": "Incline Bench Pull",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Cable_Chest_Press",
+    "nameEn": "Incline Cable Chest Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Cable_Flye",
+    "nameEn": "Incline Cable Flye",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Incline_Dumbbell_Bench_With_Palms_Facing_In",
+    "nameEn": "Incline Dumbbell Bench With Palms Facing In",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Dumbbell_Curl",
+    "nameEn": "Incline Dumbbell Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Dumbbell_Flyes",
+    "nameEn": "Incline Dumbbell Flyes",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Dumbbell_Flyes_-_With_A_Twist",
+    "nameEn": "Incline Dumbbell Flyes - With A Twist",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Dumbbell_Press",
+    "nameEn": "Incline Dumbbell Press",
+    "nameCs": "Tlaky s jednoručkami v lehu na šikmé lavici",
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Hammer_Curls",
+    "nameEn": "Incline Hammer Curls",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Inner_Biceps_Curl",
+    "nameEn": "Incline Inner Biceps Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Push-Up",
+    "nameEn": "Incline Push-Up",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Push-Up_Close-Grip",
+    "nameEn": "Incline Push-Up Close-Grip",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Push-Up_Depth_Jump",
+    "nameEn": "Incline Push-Up Depth Jump",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Push-Up_Medium",
+    "nameEn": "Incline Push-Up Medium",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Push-Up_Reverse_Grip",
+    "nameEn": "Incline Push-Up Reverse Grip",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Incline_Push-Up_Wide",
+    "nameEn": "Incline Push-Up Wide",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Intermediate_Groin_Stretch",
+    "nameEn": "Intermediate Groin Stretch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Intermediate_Hip_Flexor_and_Quad_Stretch",
+    "nameEn": "Intermediate Hip Flexor and Quad Stretch",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Internal_Rotation_with_Band",
+    "nameEn": "Internal Rotation with Band",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Inverted_Row",
+    "nameEn": "Inverted Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Inverted_Row_with_Straps",
+    "nameEn": "Inverted Row with Straps",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Iron_Cross",
+    "nameEn": "Iron Cross",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Iron_Crosses_stretch",
+    "nameEn": "Iron Crosses (stretch)",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Isometric_Chest_Squeezes",
+    "nameEn": "Isometric Chest Squeezes",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Isometric_Neck_Exercise_-_Front_And_Back",
+    "nameEn": "Isometric Neck Exercise - Front And Back",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Isometric_Neck_Exercise_-_Sides",
+    "nameEn": "Isometric Neck Exercise - Sides",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Isometric_Wipers",
+    "nameEn": "Isometric Wipers",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "IT_Band_and_Glute_Stretch",
+    "nameEn": "IT Band and Glute Stretch",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Jackknife_Sit-Up",
+    "nameEn": "Jackknife Sit-Up",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Janda_Sit-Up",
+    "nameEn": "Janda Sit-Up",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Jefferson_Squats",
+    "nameEn": "Jefferson Squats",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Jerk_Balance",
+    "nameEn": "Jerk Balance",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Jerk_Dip_Squat",
+    "nameEn": "Jerk Dip Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "JM_Press",
+    "nameEn": "JM Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Jogging_Treadmill",
+    "nameEn": "Jogging, Treadmill",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Keg_Load",
+    "nameEn": "Keg Load",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Arnold_Press",
+    "nameEn": "Kettlebell Arnold Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Dead_Clean",
+    "nameEn": "Kettlebell Dead Clean",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Figure_8",
+    "nameEn": "Kettlebell Figure 8",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Halo",
+    "nameEn": "Kettlebell Halo",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Kettlebell_Halo_With_Overhead_Extension",
+    "nameEn": "Kettlebell Halo with Overhead Extension",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Hang_Clean",
+    "nameEn": "Kettlebell Hang Clean",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_One-Legged_Deadlift",
+    "nameEn": "Kettlebell One-Legged Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Overhead_Triceps_Extension",
+    "nameEn": "Kettlebell Overhead Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Kettlebell_Pass_Between_The_Legs",
+    "nameEn": "Kettlebell Pass Between The Legs",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Pirate_Ships",
+    "nameEn": "Kettlebell Pirate Ships",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Kettlebell_Pistol_Squat",
+    "nameEn": "Kettlebell Pistol Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Kettlebell_Seated_Press",
+    "nameEn": "Kettlebell Seated Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Seesaw_Press",
+    "nameEn": "Kettlebell Seesaw Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Sumo_High_Pull",
+    "nameEn": "Kettlebell Sumo High Pull",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Thruster",
+    "nameEn": "Kettlebell Thruster",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Turkish_Get-Up_Lunge_style",
+    "nameEn": "Kettlebell Turkish Get-Up (Lunge style)",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Turkish_Get-Up_Squat_style",
+    "nameEn": "Kettlebell Turkish Get-Up (Squat style)",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kettlebell_Windmill",
+    "nameEn": "Kettlebell Windmill",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kipping_Muscle_Up",
+    "nameEn": "Kipping Muscle Up",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Knee_Across_The_Body",
+    "nameEn": "Knee Across The Body",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Knee_Circles",
+    "nameEn": "Knee Circles",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Knee_Hip_Raise_On_Parallel_Bars",
+    "nameEn": "Knee/Hip Raise On Parallel Bars",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Knee_Tuck_Jump",
+    "nameEn": "Knee Tuck Jump",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Kneeling_Arm_Drill",
+    "nameEn": "Kneeling Arm Drill",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Kneeling_Cable_Crunch_With_Alternating_Oblique_Twists",
+    "nameEn": "Kneeling Cable Crunch With Alternating Oblique Twists",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Kneeling_Cable_Triceps_Extension",
+    "nameEn": "Kneeling Cable Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Kneeling_Forearm_Stretch",
+    "nameEn": "Kneeling Forearm Stretch",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Kneeling_High_Pulley_Row",
+    "nameEn": "Kneeling High Pulley Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Kneeling_Hip_Flexor",
+    "nameEn": "Kneeling Hip Flexor",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Kneeling_Jump_Squat",
+    "nameEn": "Kneeling Jump Squat",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Kneeling_Single-Arm_High_Pulley_Row",
+    "nameEn": "Kneeling Single-Arm High Pulley Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Kneeling_Squat",
+    "nameEn": "Kneeling Squat",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Landmine_180s",
+    "nameEn": "Landmine 180's",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Landmine_Linear_Jammer",
+    "nameEn": "Landmine Linear Jammer",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lateral_Bound",
+    "nameEn": "Lateral Bound",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Lateral_Box_Jump",
+    "nameEn": "Lateral Box Jump",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Lateral_Cone_Hops",
+    "nameEn": "Lateral Cone Hops",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Lateral_Raise_-_With_Bands",
+    "nameEn": "Lateral Raise - With Bands",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Latissimus_Dorsi-SMR",
+    "nameEn": "Latissimus Dorsi-SMR",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leg_Extensions",
+    "nameEn": "Leg Extensions",
+    "nameCs": "Předkopávání",
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leg_Lift",
+    "nameEn": "Leg Lift",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leg_Press",
+    "nameEn": "Leg Press",
+    "nameCs": "Legpress na šikmé lavici",
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leg_Pull-In",
+    "nameEn": "Leg Pull-In",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leg-Over_Floor_Press",
+    "nameEn": "Leg-Over Floor Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Leg-Up_Hamstring_Stretch",
+    "nameEn": "Leg-Up Hamstring Stretch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leverage_Chest_Press",
+    "nameEn": "Leverage Chest Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leverage_Deadlift",
+    "nameEn": "Leverage Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leverage_Decline_Chest_Press",
+    "nameEn": "Leverage Decline Chest Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leverage_High_Row",
+    "nameEn": "Leverage High Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leverage_Incline_Chest_Press",
+    "nameEn": "Leverage Incline Chest Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leverage_Iso_Row",
+    "nameEn": "Leverage Iso Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leverage_Shoulder_Press",
+    "nameEn": "Leverage Shoulder Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Leverage_Shrug",
+    "nameEn": "Leverage Shrug",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Linear_3-Part_Start_Technique",
+    "nameEn": "Linear 3-Part Start Technique",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Linear_Acceleration_Wall_Drill",
+    "nameEn": "Linear Acceleration Wall Drill",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Linear_Depth_Jump",
+    "nameEn": "Linear Depth Jump",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Log_Lift",
+    "nameEn": "Log Lift",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "London_Bridges",
+    "nameEn": "London Bridges",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Looking_At_Ceiling",
+    "nameEn": "Looking At Ceiling",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Low_Cable_Crossover",
+    "nameEn": "Low Cable Crossover",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Low_Cable_Triceps_Extension",
+    "nameEn": "Low Cable Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Low_Pulley_Row_To_Neck",
+    "nameEn": "Low Pulley Row To Neck",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Lower_Back_Curl",
+    "nameEn": "Lower Back Curl",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Lower_Back-SMR",
+    "nameEn": "Lower Back-SMR",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Lunge_Pass_Through",
+    "nameEn": "Lunge Pass Through",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lunge_Sprint",
+    "nameEn": "Lunge Sprint",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_Bent_Leg_Groin",
+    "nameEn": "Lying Bent Leg Groin",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Lying_Cable_Curl",
+    "nameEn": "Lying Cable Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_Cambered_Barbell_Row",
+    "nameEn": "Lying Cambered Barbell Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Lying_Close-Grip_Bar_Curl_On_High_Pulley",
+    "nameEn": "Lying Close-Grip Bar Curl On High Pulley",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Lying_Close-Grip_Barbell_Triceps_Extension_Behind_The_Head",
+    "nameEn": "Lying Close-Grip Barbell Triceps Extension Behind The Head",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_Close-Grip_Barbell_Triceps_Press_To_Chin",
+    "nameEn": "Lying Close-Grip Barbell Triceps Press To Chin",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "e-z curl bar",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_Crossover",
+    "nameEn": "Lying Crossover",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Lying_Dumbbell_Tricep_Extension",
+    "nameEn": "Lying Dumbbell Tricep Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_Face_Down_Plate_Neck_Resistance",
+    "nameEn": "Lying Face Down Plate Neck Resistance",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_Face_Up_Plate_Neck_Resistance",
+    "nameEn": "Lying Face Up Plate Neck Resistance",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_Glute",
+    "nameEn": "Lying Glute",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Lying_Hamstring",
+    "nameEn": "Lying Hamstring",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Lying_High_Bench_Barbell_Curl",
+    "nameEn": "Lying High Bench Barbell Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_Leg_Curls",
+    "nameEn": "Lying Leg Curls",
+    "nameCs": "Zakopávání v leže",
+    "primaryMuscle": "hamstrings",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Lying_Machine_Squat",
+    "nameEn": "Lying Machine Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_One-Arm_Lateral_Raise",
+    "nameEn": "Lying One-Arm Lateral Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_Prone_Quadriceps",
+    "nameEn": "Lying Prone Quadriceps",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Lying_Rear_Delt_Raise",
+    "nameEn": "Lying Rear Delt Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_Supine_Dumbbell_Curl",
+    "nameEn": "Lying Supine Dumbbell Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Lying_T-Bar_Row",
+    "nameEn": "Lying T-Bar Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Lying_Triceps_Press",
+    "nameEn": "Lying Triceps Press",
+    "nameCs": "Tricepsový zdvih osy v lehu",
+    "primaryMuscle": "triceps",
+    "equipment": "e-z curl bar",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Machine_Bench_Press",
+    "nameEn": "Machine Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Machine_Bicep_Curl",
+    "nameEn": "Machine Bicep Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Machine_Preacher_Curls",
+    "nameEn": "Machine Preacher Curls",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Machine_Shoulder_Military_Press",
+    "nameEn": "Machine Shoulder (Military) Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Machine_Triceps_Extension",
+    "nameEn": "Machine Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Medicine_Ball_Chest_Pass",
+    "nameEn": "Medicine Ball Chest Pass",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Medicine_Ball_Full_Twist",
+    "nameEn": "Medicine Ball Full Twist",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Medicine_Ball_Scoop_Throw",
+    "nameEn": "Medicine Ball Scoop Throw",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Middle_Back_Shrug",
+    "nameEn": "Middle Back Shrug",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Middle_Back_Stretch",
+    "nameEn": "Middle Back Stretch",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Mixed_Grip_Chin",
+    "nameEn": "Mixed Grip Chin",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Monster_Walk",
+    "nameEn": "Monster Walk",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Mountain_Climbers",
+    "nameEn": "Mountain Climbers",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Moving_Claw_Series",
+    "nameEn": "Moving Claw Series",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Muscle_Snatch",
+    "nameEn": "Muscle Snatch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Muscle_Up",
+    "nameEn": "Muscle Up",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Narrow_Stance_Hack_Squats",
+    "nameEn": "Narrow Stance Hack Squats",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Narrow_Stance_Leg_Press",
+    "nameEn": "Narrow Stance Leg Press",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Narrow_Stance_Squats",
+    "nameEn": "Narrow Stance Squats",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Natural_Glute_Ham_Raise",
+    "nameEn": "Natural Glute Ham Raise",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Neck_Press",
+    "nameEn": "Neck Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Neck-SMR",
+    "nameEn": "Neck-SMR",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Oblique_Crunches",
+    "nameEn": "Oblique Crunches",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Oblique_Crunches_-_On_The_Floor",
+    "nameEn": "Oblique Crunches - On The Floor",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Olympic_Squat",
+    "nameEn": "Olympic Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "On_Your_Side_Quad_Stretch",
+    "nameEn": "On Your Side Quad Stretch",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "On-Your-Back_Quad_Stretch",
+    "nameEn": "On-Your-Back Quad Stretch",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One_Arm_Against_Wall",
+    "nameEn": "One Arm Against Wall",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One_Arm_Chin-Up",
+    "nameEn": "One Arm Chin-Up",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "One_Arm_Dumbbell_Bench_Press",
+    "nameEn": "One Arm Dumbbell Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One_Arm_Dumbbell_Preacher_Curl",
+    "nameEn": "One Arm Dumbbell Preacher Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One_Arm_Floor_Press",
+    "nameEn": "One Arm Floor Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One_Arm_Lat_Pulldown",
+    "nameEn": "One Arm Lat Pulldown",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One_Arm_Pronated_Dumbbell_Triceps_Extension",
+    "nameEn": "One Arm Pronated Dumbbell Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One_Arm_Supinated_Dumbbell_Triceps_Extension",
+    "nameEn": "One Arm Supinated Dumbbell Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One_Half_Locust",
+    "nameEn": "One Half Locust",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One_Handed_Hang",
+    "nameEn": "One Handed Hang",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One_Knee_To_Chest",
+    "nameEn": "One Knee To Chest",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One_Leg_Barbell_Squat",
+    "nameEn": "One Leg Barbell Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "One-Arm_Dumbbell_Row",
+    "nameEn": "One-Arm Dumbbell Row",
+    "nameCs": "Přítahy jednoručky v předklonu",
+    "primaryMuscle": "back",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One-Arm_Flat_Bench_Dumbbell_Flye",
+    "nameEn": "One-Arm Flat Bench Dumbbell Flye",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One-Arm_High-Pulley_Cable_Side_Bends",
+    "nameEn": "One-Arm High-Pulley Cable Side Bends",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One-Arm_Incline_Lateral_Raise",
+    "nameEn": "One-Arm Incline Lateral Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Clean",
+    "nameEn": "One-Arm Kettlebell Clean",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Clean_and_Jerk",
+    "nameEn": "One-Arm Kettlebell Clean and Jerk",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Floor_Press",
+    "nameEn": "One-Arm Kettlebell Floor Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Jerk",
+    "nameEn": "One-Arm Kettlebell Jerk",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Military_Press_To_The_Side",
+    "nameEn": "One-Arm Kettlebell Military Press To The Side",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Para_Press",
+    "nameEn": "One-Arm Kettlebell Para Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Push_Press",
+    "nameEn": "One-Arm Kettlebell Push Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Row",
+    "nameEn": "One-Arm Kettlebell Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Snatch",
+    "nameEn": "One-Arm Kettlebell Snatch",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Split_Jerk",
+    "nameEn": "One-Arm Kettlebell Split Jerk",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Split_Snatch",
+    "nameEn": "One-Arm Kettlebell Split Snatch",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "One-Arm_Kettlebell_Swings",
+    "nameEn": "One-Arm Kettlebell Swings",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One-Arm_Long_Bar_Row",
+    "nameEn": "One-Arm Long Bar Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One-Arm_Medicine_Ball_Slam",
+    "nameEn": "One-Arm Medicine Ball Slam",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One-Arm_Open_Palm_Kettlebell_Clean",
+    "nameEn": "One-Arm Open Palm Kettlebell Clean",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "One-Arm_Overhead_Kettlebell_Squats",
+    "nameEn": "One-Arm Overhead Kettlebell Squats",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "One-Arm_Side_Deadlift",
+    "nameEn": "One-Arm Side Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "One-Arm_Side_Laterals",
+    "nameEn": "One-Arm Side Laterals",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "One-Legged_Cable_Kickback",
+    "nameEn": "One-Legged Cable Kickback",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Open_Palm_Kettlebell_Clean",
+    "nameEn": "Open Palm Kettlebell Clean",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Otis-Up",
+    "nameEn": "Otis-Up",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Overhead_Cable_Curl",
+    "nameEn": "Overhead Cable Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Overhead_Lat",
+    "nameEn": "Overhead Lat",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Overhead_Slam",
+    "nameEn": "Overhead Slam",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Overhead_Squat",
+    "nameEn": "Overhead Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Overhead_Stretch",
+    "nameEn": "Overhead Stretch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Overhead_Triceps",
+    "nameEn": "Overhead Triceps",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "body only",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Pallof_Press",
+    "nameEn": "Pallof Press",
+    "nameCs": "Pallof press",
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Pallof_Press_With_Rotation",
+    "nameEn": "Pallof Press With Rotation",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Palms-Down_Dumbbell_Wrist_Curl_Over_A_Bench",
+    "nameEn": "Palms-Down Dumbbell Wrist Curl Over A Bench",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Palms-Down_Wrist_Curl_Over_A_Bench",
+    "nameEn": "Palms-Down Wrist Curl Over A Bench",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Palms-Up_Barbell_Wrist_Curl_Over_A_Bench",
+    "nameEn": "Palms-Up Barbell Wrist Curl Over A Bench",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Palms-Up_Dumbbell_Wrist_Curl_Over_A_Bench",
+    "nameEn": "Palms-Up Dumbbell Wrist Curl Over A Bench",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Parallel_Bar_Dip",
+    "nameEn": "Parallel Bar Dip",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Pelvic_Tilt_Into_Bridge",
+    "nameEn": "Pelvic Tilt Into Bridge",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Peroneals_Stretch",
+    "nameEn": "Peroneals Stretch",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Peroneals-SMR",
+    "nameEn": "Peroneals-SMR",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Physioball_Hip_Bridge",
+    "nameEn": "Physioball Hip Bridge",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Pin_Presses",
+    "nameEn": "Pin Presses",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Piriformis-SMR",
+    "nameEn": "Piriformis-SMR",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Plank",
+    "nameEn": "Plank",
+    "nameCs": "Plank",
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Plate_Pinch",
+    "nameEn": "Plate Pinch",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Plate_Twist",
+    "nameEn": "Plate Twist",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Platform_Hamstring_Slides",
+    "nameEn": "Platform Hamstring Slides",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Plie_Dumbbell_Squat",
+    "nameEn": "Plie Dumbbell Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Plyo_Kettlebell_Pushups",
+    "nameEn": "Plyo Kettlebell Pushups",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Plyo_Push-up",
+    "nameEn": "Plyo Push-up",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Posterior_Tibialis_Stretch",
+    "nameEn": "Posterior Tibialis Stretch",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Power_Clean",
+    "nameEn": "Power Clean",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Power_Clean_from_Blocks",
+    "nameEn": "Power Clean from Blocks",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Power_Jerk",
+    "nameEn": "Power Jerk",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Power_Partials",
+    "nameEn": "Power Partials",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Power_Snatch",
+    "nameEn": "Power Snatch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Power_Snatch_from_Blocks",
+    "nameEn": "Power Snatch from Blocks",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Power_Stairs",
+    "nameEn": "Power Stairs",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Preacher_Curl",
+    "nameEn": "Preacher Curl",
+    "nameCs": "Bicepsový zdvih na Scottově lavici",
+    "primaryMuscle": "biceps",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Preacher_Hammer_Dumbbell_Curl",
+    "nameEn": "Preacher Hammer Dumbbell Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Press_Sit-Up",
+    "nameEn": "Press Sit-Up",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Prone_Manual_Hamstring",
+    "nameEn": "Prone Manual Hamstring",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Prowler_Sprint",
+    "nameEn": "Prowler Sprint",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Pull_Through",
+    "nameEn": "Pull Through",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Pullups",
+    "nameEn": "Pullups",
+    "nameCs": "Shyby nadhmatem",
+    "primaryMuscle": "back",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Push_Press",
+    "nameEn": "Push Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Push_Press_-_Behind_the_Neck",
+    "nameEn": "Push Press - Behind the Neck",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Push_Up_to_Side_Plank",
+    "nameEn": "Push Up to Side Plank",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Push-Up_Wide",
+    "nameEn": "Push-Up Wide",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Push-Ups_-_Close_Triceps_Position",
+    "nameEn": "Push-Ups - Close Triceps Position",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Push-Ups_With_Feet_Elevated",
+    "nameEn": "Push-Ups With Feet Elevated",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Push-Ups_With_Feet_On_An_Exercise_Ball",
+    "nameEn": "Push-Ups With Feet On An Exercise Ball",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Pushups",
+    "nameEn": "Pushups",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Pushups_Close_and_Wide_Hand_Positions",
+    "nameEn": "Pushups (Close and Wide Hand Positions)",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Pyramid",
+    "nameEn": "Pyramid",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Quad_Stretch",
+    "nameEn": "Quad Stretch",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Quadriceps-SMR",
+    "nameEn": "Quadriceps-SMR",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Quick_Leap",
+    "nameEn": "Quick Leap",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Rack_Delivery",
+    "nameEn": "Rack Delivery",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Rack_Pull_with_Bands",
+    "nameEn": "Rack Pull with Bands",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Rack_Pulls",
+    "nameEn": "Rack Pulls",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Rear_Leg_Raises",
+    "nameEn": "Rear Leg Raises",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Recumbent_Bike",
+    "nameEn": "Recumbent Bike",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Return_Push_from_Stance",
+    "nameEn": "Return Push from Stance",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Reverse_Band_Bench_Press",
+    "nameEn": "Reverse Band Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Reverse_Band_Box_Squat",
+    "nameEn": "Reverse Band Box Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Reverse_Band_Deadlift",
+    "nameEn": "Reverse Band Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Reverse_Band_Power_Squat",
+    "nameEn": "Reverse Band Power Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Reverse_Band_Sumo_Deadlift",
+    "nameEn": "Reverse Band Sumo Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Reverse_Barbell_Curl",
+    "nameEn": "Reverse Barbell Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Reverse_Barbell_Preacher_Curls",
+    "nameEn": "Reverse Barbell Preacher Curls",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "e-z curl bar",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Reverse_Cable_Curl",
+    "nameEn": "Reverse Cable Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Reverse_Crunch",
+    "nameEn": "Reverse Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Reverse_Flyes",
+    "nameEn": "Reverse Flyes",
+    "nameCs": "Upažování s jednoručkami v předklonu",
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Reverse_Flyes_With_External_Rotation",
+    "nameEn": "Reverse Flyes With External Rotation",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Reverse_Grip_Bent-Over_Rows",
+    "nameEn": "Reverse Grip Bent-Over Rows",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Reverse_Grip_Triceps_Pushdown",
+    "nameEn": "Reverse Grip Triceps Pushdown",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Reverse_Hyperextension",
+    "nameEn": "Reverse Hyperextension",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Reverse_Machine_Flyes",
+    "nameEn": "Reverse Machine Flyes",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Reverse_Plate_Curls",
+    "nameEn": "Reverse Plate Curls",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Reverse_Triceps_Bench_Press",
+    "nameEn": "Reverse Triceps Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Rhomboids-SMR",
+    "nameEn": "Rhomboids-SMR",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Rickshaw_Carry",
+    "nameEn": "Rickshaw Carry",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Rickshaw_Deadlift",
+    "nameEn": "Rickshaw Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Ring_Dips",
+    "nameEn": "Ring Dips",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Rocket_Jump",
+    "nameEn": "Rocket Jump",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Rocking_Standing_Calf_Raise",
+    "nameEn": "Rocking Standing Calf Raise",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Rocky_Pull-Ups_Pulldowns",
+    "nameEn": "Rocky Pull-Ups/Pulldowns",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Romanian_Deadlift",
+    "nameEn": "Romanian Deadlift",
+    "nameCs": "Rumunský mrtvý tah",
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Romanian_Deadlift_from_Deficit",
+    "nameEn": "Romanian Deadlift from Deficit",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Rope_Climb",
+    "nameEn": "Rope Climb",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Rope_Crunch",
+    "nameEn": "Rope Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Rope_Jumping",
+    "nameEn": "Rope Jumping",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Rope_Straight-Arm_Pulldown",
+    "nameEn": "Rope Straight-Arm Pulldown",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Round_The_World_Shoulder_Stretch",
+    "nameEn": "Round The World Shoulder Stretch",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Rowing_Stationary",
+    "nameEn": "Rowing, Stationary",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Runners_Stretch",
+    "nameEn": "Runner's Stretch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Running_Treadmill",
+    "nameEn": "Running, Treadmill",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Russian_Twist",
+    "nameEn": "Russian Twist",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Sandbag_Load",
+    "nameEn": "Sandbag Load",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Scapular_Pull-Up",
+    "nameEn": "Scapular Pull-Up",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Scissor_Kick",
+    "nameEn": "Scissor Kick",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Scissors_Jump",
+    "nameEn": "Scissors Jump",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Band_Hamstring_Curl",
+    "nameEn": "Seated Band Hamstring Curl",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Barbell_Military_Press",
+    "nameEn": "Seated Barbell Military Press",
+    "nameCs": "Tlaky s osou v sedě",
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Seated_Barbell_Twist",
+    "nameEn": "Seated Barbell Twist",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Bent-Over_One-Arm_Dumbbell_Triceps_Extension",
+    "nameEn": "Seated Bent-Over One-Arm Dumbbell Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Bent-Over_Rear_Delt_Raise",
+    "nameEn": "Seated Bent-Over Rear Delt Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Seated_Bent-Over_Two-Arm_Dumbbell_Triceps_Extension",
+    "nameEn": "Seated Bent-Over Two-Arm Dumbbell Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Seated_Biceps",
+    "nameEn": "Seated Biceps",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "body only",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Seated_Cable_Rows",
+    "nameEn": "Seated Cable Rows",
+    "nameCs": "Přítahy spodní kladky",
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Cable_Shoulder_Press",
+    "nameEn": "Seated Cable Shoulder Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Calf_Raise",
+    "nameEn": "Seated Calf Raise",
+    "nameCs": "Výpony na lýtka v sedě",
+    "primaryMuscle": "calves",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Calf_Stretch",
+    "nameEn": "Seated Calf Stretch",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Close-Grip_Concentration_Barbell_Curl",
+    "nameEn": "Seated Close-Grip Concentration Barbell Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Seated_Dumbbell_Curl",
+    "nameEn": "Seated Dumbbell Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Dumbbell_Inner_Biceps_Curl",
+    "nameEn": "Seated Dumbbell Inner Biceps Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Dumbbell_Palms-Down_Wrist_Curl",
+    "nameEn": "Seated Dumbbell Palms-Down Wrist Curl",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Dumbbell_Palms-Up_Wrist_Curl",
+    "nameEn": "Seated Dumbbell Palms-Up Wrist Curl",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Dumbbell_Press",
+    "nameEn": "Seated Dumbbell Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Flat_Bench_Leg_Pull-In",
+    "nameEn": "Seated Flat Bench Leg Pull-In",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Floor_Hamstring_Stretch",
+    "nameEn": "Seated Floor Hamstring Stretch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Front_Deltoid",
+    "nameEn": "Seated Front Deltoid",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "body only",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Seated_Glute",
+    "nameEn": "Seated Glute",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Seated_Good_Mornings",
+    "nameEn": "Seated Good Mornings",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Seated_Hamstring",
+    "nameEn": "Seated Hamstring",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "expert"
+  },
+  {
+    "sourceId": "Seated_Hamstring_and_Calf_Stretch",
+    "nameEn": "Seated Hamstring and Calf Stretch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Seated_Head_Harness_Neck_Resistance",
+    "nameEn": "Seated Head Harness Neck Resistance",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Seated_Leg_Curl",
+    "nameEn": "Seated Leg Curl",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Leg_Tucks",
+    "nameEn": "Seated Leg Tucks",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_One-arm_Cable_Pulley_Rows",
+    "nameEn": "Seated One-arm Cable Pulley Rows",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Seated_One-Arm_Dumbbell_Palms-Down_Wrist_Curl",
+    "nameEn": "Seated One-Arm Dumbbell Palms-Down Wrist Curl",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Seated_One-Arm_Dumbbell_Palms-Up_Wrist_Curl",
+    "nameEn": "Seated One-Arm Dumbbell Palms-Up Wrist Curl",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Overhead_Stretch",
+    "nameEn": "Seated Overhead Stretch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Palm-Up_Barbell_Wrist_Curl",
+    "nameEn": "Seated Palm-Up Barbell Wrist Curl",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Palms-Down_Barbell_Wrist_Curl",
+    "nameEn": "Seated Palms-Down Barbell Wrist Curl",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Side_Lateral_Raise",
+    "nameEn": "Seated Side Lateral Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Triceps_Press",
+    "nameEn": "Seated Triceps Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Seated_Two-Arm_Palms-Up_Low-Pulley_Wrist_Curl",
+    "nameEn": "Seated Two-Arm Palms-Up Low-Pulley Wrist Curl",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "See-Saw_Press_Alternating_Side_Press",
+    "nameEn": "See-Saw Press (Alternating Side Press)",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Shotgun_Row",
+    "nameEn": "Shotgun Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Shoulder_Circles",
+    "nameEn": "Shoulder Circles",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Shoulder_Press_-_With_Bands",
+    "nameEn": "Shoulder Press - With Bands",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Shoulder_Raise",
+    "nameEn": "Shoulder Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Shoulder_Stretch",
+    "nameEn": "Shoulder Stretch",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side_Bridge",
+    "nameEn": "Side Bridge",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side_Hop-Sprint",
+    "nameEn": "Side Hop-Sprint",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side_Jackknife",
+    "nameEn": "Side Jackknife",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side_Lateral_Raise",
+    "nameEn": "Side Lateral Raise",
+    "nameCs": "Upažování s jednoručkami",
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side_Laterals_to_Front_Raise",
+    "nameEn": "Side Laterals to Front Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side_Leg_Raises",
+    "nameEn": "Side Leg Raises",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side_Lying_Groin_Stretch",
+    "nameEn": "Side Lying Groin Stretch",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side_Neck_Stretch",
+    "nameEn": "Side Neck Stretch",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side_Standing_Long_Jump",
+    "nameEn": "Side Standing Long Jump",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side_to_Side_Box_Shuffle",
+    "nameEn": "Side to Side Box Shuffle",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side_To_Side_Chins",
+    "nameEn": "Side To Side Chins",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Side_Wrist_Pull",
+    "nameEn": "Side Wrist Pull",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Side-Lying_Floor_Stretch",
+    "nameEn": "Side-Lying Floor Stretch",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Single_Dumbbell_Raise",
+    "nameEn": "Single Dumbbell Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Single_Leg_Butt_Kick",
+    "nameEn": "Single Leg Butt Kick",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Single_Leg_Glute_Bridge",
+    "nameEn": "Single Leg Glute Bridge",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Single_Leg_Push-off",
+    "nameEn": "Single Leg Push-off",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Single-Arm_Cable_Crossover",
+    "nameEn": "Single-Arm Cable Crossover",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Single-Arm_Linear_Jammer",
+    "nameEn": "Single-Arm Linear Jammer",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Single-Arm_Push-Up",
+    "nameEn": "Single-Arm Push-Up",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Single-Cone_Sprint_Drill",
+    "nameEn": "Single-Cone Sprint Drill",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Single-Leg_High_Box_Squat",
+    "nameEn": "Single-Leg High Box Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Single-Leg_Hop_Progression",
+    "nameEn": "Single-Leg Hop Progression",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Single-Leg_Lateral_Hop",
+    "nameEn": "Single-Leg Lateral Hop",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Single-Leg_Leg_Extension",
+    "nameEn": "Single-Leg Leg Extension",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Single-Leg_Stride_Jump",
+    "nameEn": "Single-Leg Stride Jump",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Sit_Squats",
+    "nameEn": "Sit Squats",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Sit-Up",
+    "nameEn": "Sit-Up",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Skating",
+    "nameEn": "Skating",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Sled_Drag_-_Harness",
+    "nameEn": "Sled Drag - Harness",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Sled_Overhead_Backward_Walk",
+    "nameEn": "Sled Overhead Backward Walk",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Sled_Overhead_Triceps_Extension",
+    "nameEn": "Sled Overhead Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Sled_Push",
+    "nameEn": "Sled Push",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Sled_Reverse_Flye",
+    "nameEn": "Sled Reverse Flye",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Sled_Row",
+    "nameEn": "Sled Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Sledgehammer_Swings",
+    "nameEn": "Sledgehammer Swings",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Incline_Shoulder_Raise",
+    "nameEn": "Smith Incline Shoulder Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Behind_the_Back_Shrug",
+    "nameEn": "Smith Machine Behind the Back Shrug",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Bench_Press",
+    "nameEn": "Smith Machine Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Bent_Over_Row",
+    "nameEn": "Smith Machine Bent Over Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Calf_Raise",
+    "nameEn": "Smith Machine Calf Raise",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Close-Grip_Bench_Press",
+    "nameEn": "Smith Machine Close-Grip Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Decline_Press",
+    "nameEn": "Smith Machine Decline Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Hang_Power_Clean",
+    "nameEn": "Smith Machine Hang Power Clean",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Smith_Machine_Hip_Raise",
+    "nameEn": "Smith Machine Hip Raise",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Incline_Bench_Press",
+    "nameEn": "Smith Machine Incline Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Leg_Press",
+    "nameEn": "Smith Machine Leg Press",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Smith_Machine_One-Arm_Upright_Row",
+    "nameEn": "Smith Machine One-Arm Upright Row",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Overhead_Shoulder_Press",
+    "nameEn": "Smith Machine Overhead Shoulder Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Pistol_Squat",
+    "nameEn": "Smith Machine Pistol Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Smith_Machine_Reverse_Calf_Raises",
+    "nameEn": "Smith Machine Reverse Calf Raises",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Squat",
+    "nameEn": "Smith Machine Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Stiff-Legged_Deadlift",
+    "nameEn": "Smith Machine Stiff-Legged Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Machine_Upright_Row",
+    "nameEn": "Smith Machine Upright Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Smith_Single-Leg_Split_Squat",
+    "nameEn": "Smith Single-Leg Split Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Snatch",
+    "nameEn": "Snatch",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Snatch_Balance",
+    "nameEn": "Snatch Balance",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Snatch_Deadlift",
+    "nameEn": "Snatch Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Snatch_from_Blocks",
+    "nameEn": "Snatch from Blocks",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Snatch_Pull",
+    "nameEn": "Snatch Pull",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Snatch_Shrug",
+    "nameEn": "Snatch Shrug",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Speed_Band_Overhead_Triceps",
+    "nameEn": "Speed Band Overhead Triceps",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Speed_Box_Squat",
+    "nameEn": "Speed Box Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Speed_Squats",
+    "nameEn": "Speed Squats",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Spell_Caster",
+    "nameEn": "Spell Caster",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Spider_Crawl",
+    "nameEn": "Spider Crawl",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Spider_Curl",
+    "nameEn": "Spider Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "e-z curl bar",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Spinal_Stretch",
+    "nameEn": "Spinal Stretch",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Split_Clean",
+    "nameEn": "Split Clean",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Split_Jerk",
+    "nameEn": "Split Jerk",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Split_Jump",
+    "nameEn": "Split Jump",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Split_Snatch",
+    "nameEn": "Split Snatch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Split_Squat_with_Dumbbells",
+    "nameEn": "Split Squat with Dumbbells",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Split_Squats",
+    "nameEn": "Split Squats",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Squat_Jerk",
+    "nameEn": "Squat Jerk",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Squat_with_Bands",
+    "nameEn": "Squat with Bands",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Squat_with_Chains",
+    "nameEn": "Squat with Chains",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Squat_with_Plate_Movers",
+    "nameEn": "Squat with Plate Movers",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Squats_-_With_Bands",
+    "nameEn": "Squats - With Bands",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Stairmaster",
+    "nameEn": "Stairmaster",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Standing_Alternating_Dumbbell_Press",
+    "nameEn": "Standing Alternating Dumbbell Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Barbell_Calf_Raise",
+    "nameEn": "Standing Barbell Calf Raise",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Barbell_Press_Behind_Neck",
+    "nameEn": "Standing Barbell Press Behind Neck",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Standing_Bent-Over_One-Arm_Dumbbell_Triceps_Extension",
+    "nameEn": "Standing Bent-Over One-Arm Dumbbell Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Bent-Over_Two-Arm_Dumbbell_Triceps_Extension",
+    "nameEn": "Standing Bent-Over Two-Arm Dumbbell Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Biceps_Cable_Curl",
+    "nameEn": "Standing Biceps Cable Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Biceps_Stretch",
+    "nameEn": "Standing Biceps Stretch",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Bradford_Press",
+    "nameEn": "Standing Bradford Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Cable_Chest_Press",
+    "nameEn": "Standing Cable Chest Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Cable_Lift",
+    "nameEn": "Standing Cable Lift",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Cable_Wood_Chop",
+    "nameEn": "Standing Cable Wood Chop",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Calf_Raises",
+    "nameEn": "Standing Calf Raises",
+    "nameCs": "Výpony na lýtka ve stoje",
+    "primaryMuscle": "calves",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Concentration_Curl",
+    "nameEn": "Standing Concentration Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Dumbbell_Calf_Raise",
+    "nameEn": "Standing Dumbbell Calf Raise",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Standing_Dumbbell_Press",
+    "nameEn": "Standing Dumbbell Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Dumbbell_Reverse_Curl",
+    "nameEn": "Standing Dumbbell Reverse Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Standing_Dumbbell_Straight-Arm_Front_Delt_Raise_Above_Head",
+    "nameEn": "Standing Dumbbell Straight-Arm Front Delt Raise Above Head",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Standing_Dumbbell_Triceps_Extension",
+    "nameEn": "Standing Dumbbell Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Dumbbell_Upright_Row",
+    "nameEn": "Standing Dumbbell Upright Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Elevated_Quad_Stretch",
+    "nameEn": "Standing Elevated Quad Stretch",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Front_Barbell_Raise_Over_Head",
+    "nameEn": "Standing Front Barbell Raise Over Head",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Standing_Gastrocnemius_Calf_Stretch",
+    "nameEn": "Standing Gastrocnemius Calf Stretch",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Hamstring_and_Calf_Stretch",
+    "nameEn": "Standing Hamstring and Calf Stretch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Hip_Circles",
+    "nameEn": "Standing Hip Circles",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Hip_Flexors",
+    "nameEn": "Standing Hip Flexors",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Inner-Biceps_Curl",
+    "nameEn": "Standing Inner-Biceps Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Standing_Lateral_Stretch",
+    "nameEn": "Standing Lateral Stretch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Leg_Curl",
+    "nameEn": "Standing Leg Curl",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Long_Jump",
+    "nameEn": "Standing Long Jump",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Low-Pulley_Deltoid_Raise",
+    "nameEn": "Standing Low-Pulley Deltoid Raise",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Low-Pulley_One-Arm_Triceps_Extension",
+    "nameEn": "Standing Low-Pulley One-Arm Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Standing_Military_Press",
+    "nameEn": "Standing Military Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Olympic_Plate_Hand_Squeeze",
+    "nameEn": "Standing Olympic Plate Hand Squeeze",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_One-Arm_Cable_Curl",
+    "nameEn": "Standing One-Arm Cable Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Standing_One-Arm_Dumbbell_Curl_Over_Incline_Bench",
+    "nameEn": "Standing One-Arm Dumbbell Curl Over Incline Bench",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_One-Arm_Dumbbell_Triceps_Extension",
+    "nameEn": "Standing One-Arm Dumbbell Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Overhead_Barbell_Triceps_Extension",
+    "nameEn": "Standing Overhead Barbell Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Palm-In_One-Arm_Dumbbell_Press",
+    "nameEn": "Standing Palm-In One-Arm Dumbbell Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Palms-In_Dumbbell_Press",
+    "nameEn": "Standing Palms-In Dumbbell Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Standing_Palms-Up_Barbell_Behind_The_Back_Wrist_Curl",
+    "nameEn": "Standing Palms-Up Barbell Behind The Back Wrist Curl",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Pelvic_Tilt",
+    "nameEn": "Standing Pelvic Tilt",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Rope_Crunch",
+    "nameEn": "Standing Rope Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Soleus_And_Achilles_Stretch",
+    "nameEn": "Standing Soleus And Achilles Stretch",
+    "nameCs": null,
+    "primaryMuscle": "calves",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Toe_Touches",
+    "nameEn": "Standing Toe Touches",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Towel_Triceps_Extension",
+    "nameEn": "Standing Towel Triceps Extension",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Standing_Two-Arm_Overhead_Throw",
+    "nameEn": "Standing Two-Arm Overhead Throw",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Star_Jump",
+    "nameEn": "Star Jump",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Step_Mill",
+    "nameEn": "Step Mill",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Step-up_with_Knee_Raise",
+    "nameEn": "Step-up with Knee Raise",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Stiff_Leg_Barbell_Good_Morning",
+    "nameEn": "Stiff Leg Barbell Good Morning",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Stiff-Legged_Barbell_Deadlift",
+    "nameEn": "Stiff-Legged Barbell Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Stiff-Legged_Dumbbell_Deadlift",
+    "nameEn": "Stiff-Legged Dumbbell Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Stomach_Vacuum",
+    "nameEn": "Stomach Vacuum",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Straight_Bar_Bench_Mid_Rows",
+    "nameEn": "Straight Bar Bench Mid Rows",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Straight_Raises_on_Incline_Bench",
+    "nameEn": "Straight Raises on Incline Bench",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Straight-Arm_Dumbbell_Pullover",
+    "nameEn": "Straight-Arm Dumbbell Pullover",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Straight-Arm_Pulldown",
+    "nameEn": "Straight-Arm Pulldown",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Stride_Jump_Crossover",
+    "nameEn": "Stride Jump Crossover",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Sumo_Deadlift",
+    "nameEn": "Sumo Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Sumo_Deadlift_with_Bands",
+    "nameEn": "Sumo Deadlift with Bands",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Sumo_Deadlift_with_Chains",
+    "nameEn": "Sumo Deadlift with Chains",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Superman",
+    "nameEn": "Superman",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Supine_Chest_Throw",
+    "nameEn": "Supine Chest Throw",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Supine_One-Arm_Overhead_Throw",
+    "nameEn": "Supine One-Arm Overhead Throw",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Supine_Two-Arm_Overhead_Throw",
+    "nameEn": "Supine Two-Arm Overhead Throw",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Suspended_Fallout",
+    "nameEn": "Suspended Fallout",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Suspended_Push-Up",
+    "nameEn": "Suspended Push-Up",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Suspended_Reverse_Crunch",
+    "nameEn": "Suspended Reverse Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Suspended_Row",
+    "nameEn": "Suspended Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Suspended_Split_Squat",
+    "nameEn": "Suspended Split Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Svend_Press",
+    "nameEn": "Svend Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "T-Bar_Row_with_Handle",
+    "nameEn": "T-Bar Row with Handle",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Tate_Press",
+    "nameEn": "Tate Press",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "The_Straddle",
+    "nameEn": "The Straddle",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Thigh_Abductor",
+    "nameEn": "Thigh Abductor",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Thigh_Adductor",
+    "nameEn": "Thigh Adductor",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Tire_Flip",
+    "nameEn": "Tire Flip",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Toe_Touchers",
+    "nameEn": "Toe Touchers",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Torso_Rotation",
+    "nameEn": "Torso Rotation",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Trail_Running_Walking",
+    "nameEn": "Trail Running/Walking",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Trap_Bar_Deadlift",
+    "nameEn": "Trap Bar Deadlift",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Tricep_Dumbbell_Kickback",
+    "nameEn": "Tricep Dumbbell Kickback",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Tricep_Side_Stretch",
+    "nameEn": "Tricep Side Stretch",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Triceps_Overhead_Extension_with_Rope",
+    "nameEn": "Triceps Overhead Extension with Rope",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Triceps_Pushdown",
+    "nameEn": "Triceps Pushdown",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Triceps_Pushdown_-_Rope_Attachment",
+    "nameEn": "Triceps Pushdown - Rope Attachment",
+    "nameCs": "Stahování lana na triceps",
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Triceps_Pushdown_-_V-Bar_Attachment",
+    "nameEn": "Triceps Pushdown - V-Bar Attachment",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Triceps_Stretch",
+    "nameEn": "Triceps Stretch",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Tuck_Crunch",
+    "nameEn": "Tuck Crunch",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Two-Arm_Dumbbell_Preacher_Curl",
+    "nameEn": "Two-Arm Dumbbell Preacher Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Two-Arm_Kettlebell_Clean",
+    "nameEn": "Two-Arm Kettlebell Clean",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Two-Arm_Kettlebell_Jerk",
+    "nameEn": "Two-Arm Kettlebell Jerk",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Two-Arm_Kettlebell_Military_Press",
+    "nameEn": "Two-Arm Kettlebell Military Press",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Two-Arm_Kettlebell_Row",
+    "nameEn": "Two-Arm Kettlebell Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Underhand_Cable_Pulldowns",
+    "nameEn": "Underhand Cable Pulldowns",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Upper_Back_Stretch",
+    "nameEn": "Upper Back Stretch",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Upper_Back-Leg_Grab",
+    "nameEn": "Upper Back-Leg Grab",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Upright_Barbell_Row",
+    "nameEn": "Upright Barbell Row",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Upright_Cable_Row",
+    "nameEn": "Upright Cable Row",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Upright_Row_-_With_Bands",
+    "nameEn": "Upright Row - With Bands",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Upward_Stretch",
+    "nameEn": "Upward Stretch",
+    "nameCs": null,
+    "primaryMuscle": "shoulders",
+    "equipment": null,
+    "level": "beginner"
+  },
+  {
+    "sourceId": "V-Bar_Pulldown",
+    "nameEn": "V-Bar Pulldown",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "V-Bar_Pullup",
+    "nameEn": "V-Bar Pullup",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Vertical_Swing",
+    "nameEn": "Vertical Swing",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "dumbbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Walking_Treadmill",
+    "nameEn": "Walking, Treadmill",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "machine",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Weighted_Ball_Hyperextension",
+    "nameEn": "Weighted Ball Hyperextension",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Weighted_Ball_Side_Bend",
+    "nameEn": "Weighted Ball Side Bend",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Weighted_Bench_Dip",
+    "nameEn": "Weighted Bench Dip",
+    "nameCs": null,
+    "primaryMuscle": "triceps",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Weighted_Crunches",
+    "nameEn": "Weighted Crunches",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Weighted_Jump_Squat",
+    "nameEn": "Weighted Jump Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Weighted_Pull_Ups",
+    "nameEn": "Weighted Pull Ups",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Weighted_Sissy_Squat",
+    "nameEn": "Weighted Sissy Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Weighted_Sit-Ups_-_With_Bands",
+    "nameEn": "Weighted Sit-Ups - With Bands",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Weighted_Squat",
+    "nameEn": "Weighted Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Wide_Stance_Barbell_Squat",
+    "nameEn": "Wide Stance Barbell Squat",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Wide_Stance_Stiff_Legs",
+    "nameEn": "Wide Stance Stiff Legs",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Wide-Grip_Barbell_Bench_Press",
+    "nameEn": "Wide-Grip Barbell Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Wide-Grip_Decline_Barbell_Bench_Press",
+    "nameEn": "Wide-Grip Decline Barbell Bench Press",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Wide-Grip_Decline_Barbell_Pullover",
+    "nameEn": "Wide-Grip Decline Barbell Pullover",
+    "nameCs": null,
+    "primaryMuscle": "chest",
+    "equipment": "barbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Wide-Grip_Lat_Pulldown",
+    "nameEn": "Wide-Grip Lat Pulldown",
+    "nameCs": "Stahování horní kladky",
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Wide-Grip_Pulldown_Behind_The_Neck",
+    "nameEn": "Wide-Grip Pulldown Behind The Neck",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "cable",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Wide-Grip_Rear_Pull-Up",
+    "nameEn": "Wide-Grip Rear Pull-Up",
+    "nameCs": null,
+    "primaryMuscle": "back",
+    "equipment": "body only",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Wide-Grip_Standing_Barbell_Curl",
+    "nameEn": "Wide-Grip Standing Barbell Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Wind_Sprints",
+    "nameEn": "Wind Sprints",
+    "nameCs": null,
+    "primaryMuscle": "core",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Windmills",
+    "nameEn": "Windmills",
+    "nameCs": null,
+    "primaryMuscle": "glutes",
+    "equipment": null,
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Worlds_Greatest_Stretch",
+    "nameEn": "World's Greatest Stretch",
+    "nameCs": null,
+    "primaryMuscle": "hamstrings",
+    "equipment": null,
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Wrist_Circles",
+    "nameEn": "Wrist Circles",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "body only",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Wrist_Roller",
+    "nameEn": "Wrist Roller",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "other",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Wrist_Rotations_with_Straight_Bar",
+    "nameEn": "Wrist Rotations with Straight Bar",
+    "nameCs": null,
+    "primaryMuscle": "grip",
+    "equipment": "barbell",
+    "level": "beginner"
+  },
+  {
+    "sourceId": "Yoke_Walk",
+    "nameEn": "Yoke Walk",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "other",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Zercher_Squats",
+    "nameEn": "Zercher Squats",
+    "nameCs": null,
+    "primaryMuscle": "quads",
+    "equipment": "barbell",
+    "level": "expert"
+  },
+  {
+    "sourceId": "Zottman_Curl",
+    "nameEn": "Zottman Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  },
+  {
+    "sourceId": "Zottman_Preacher_Curl",
+    "nameEn": "Zottman Preacher Curl",
+    "nameCs": null,
+    "primaryMuscle": "biceps",
+    "equipment": "dumbbell",
+    "level": "intermediate"
+  }
+]

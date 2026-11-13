@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/api/">
+    <Project Path="api/Cvikarna.Api.csproj" />
+  </Folder>
+  <Folder Name="/api/tests/">
+    <Project Path="api/tests/Cvikarna.Api.Tests/Cvikarna.Api.Tests.csproj" />
+  </Folder>
+</Solution>

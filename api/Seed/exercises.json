@@ -1,0 +1,1902 @@
+[
+  {
+    "id": 1,
+    "slug": "barbell-bench-press",
+    "sourceId": "Barbell_Bench_Press_-_Medium_Grip",
+    "nameEn": "Barbell Bench Press",
+    "nameCs": "Bench press na vodorovné lavici",
+    "aliasesEn": [
+      "flat bench press",
+      "bench press"
+    ],
+    "aliasesCs": [
+      "bench press",
+      "tlaky na lavičce"
+    ],
+    "primaryMuscle": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "barbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Lie on a flat bench with your eyes under the bar and both feet planted on the floor.",
+      "Grip the bar slightly wider than shoulder width and pull your shoulder blades down and back.",
+      "Unrack the bar, then lower it under control until it touches the middle of your chest.",
+      "Press the bar up until the elbows lock, keeping the wrists stacked over the elbows."
+    ],
+    "instructionsCs": [
+      "Lehněte si na rovnou lavici tak, aby oči byly pod osou, a chodidla opřete o zem.",
+      "Uchopte osu o něco širší než na šířku ramen a stáhněte lopatky dolů a k sobě.",
+      "Vyjměte osu ze stojanu a spouštějte ji kontrolovaně, až se dotkne středu hrudníku.",
+      "Tlačte osu nahoru až do narovnání loktů a držte zápěstí nad lokty."
+    ],
+    "cuesEn": [
+      "Keep the shoulder blades pinched for the whole set.",
+      "Touch the chest, do not bounce off it.",
+      "Drive your feet into the floor to stay tight."
+    ],
+    "cuesCs": [
+      "Lopatky držte stažené po celou sérii.",
+      "Dotkněte se hrudníku, ale neodrážejte osu.",
+      "Tlačte chodidly do země, tělo zůstane pevné."
+    ],
+    "images": [
+      "/exercises/barbell-bench-press/0.jpg",
+      "/exercises/barbell-bench-press/1.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "incline-barbell-bench-press",
+    "sourceId": "Barbell_Incline_Bench_Press_-_Medium_Grip",
+    "nameEn": "Incline Barbell Bench Press",
+    "nameCs": "Benchpress na šikmé lavici hlavou nahoru",
+    "aliasesEn": [
+      "incline bench press",
+      "incline press"
+    ],
+    "aliasesCs": [
+      "tlaky na šikmé lavičce",
+      "incline bench press"
+    ],
+    "primaryMuscle": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "barbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Set the bench to roughly 30 degrees and lie back with the feet flat.",
+      "Take a grip slightly wider than shoulder width and unrack the bar over the upper chest.",
+      "Lower the bar to the upper part of the chest, just below the collarbone.",
+      "Press back up and slightly back, finishing over the shoulders."
+    ],
+    "instructionsCs": [
+      "Nastavte lavici na zhruba 30 stupňů a lehněte si s chodidly na zemi.",
+      "Uchopte osu o něco širší než na šířku ramen a vyjměte ji nad horní část hrudníku.",
+      "Spouštějte osu k horní části hrudníku, těsně pod klíční kost.",
+      "Tlačte zpět nahoru a mírně dozadu, dokončete pohyb nad rameny."
+    ],
+    "cuesEn": [
+      "Do not let the bench angle turn this into a shoulder press.",
+      "Keep the elbows under the bar, not flared behind it.",
+      "Stop the set if the lower back lifts off the pad."
+    ],
+    "cuesCs": [
+      "Nenechte sklon lavice udělat z cviku tlak nad hlavou.",
+      "Držte lokty pod osou, ne vzadu za ní.",
+      "Sérii ukončete, pokud se bedra zvednou z opěrky."
+    ],
+    "images": [
+      "/exercises/incline-barbell-bench-press/0.jpg",
+      "/exercises/incline-barbell-bench-press/1.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "dumbbell-bench-press",
+    "sourceId": "Dumbbell_Bench_Press",
+    "nameEn": "Dumbbell Bench Press",
+    "nameCs": "Tlaky s jednoručkami na vodorovné lavici",
+    "aliasesEn": [
+      "dumbbell press",
+      "db bench"
+    ],
+    "aliasesCs": [
+      "tlaky s jednoručkami",
+      "dumbbell bench press"
+    ],
+    "primaryMuscle": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Sit on the end of a flat bench with the dumbbells resting on your thighs.",
+      "Lie back and bring the dumbbells to chest height, palms facing forward.",
+      "Press the dumbbells up until they almost touch above the chest.",
+      "Lower them slowly until you feel a stretch across the chest, then repeat."
+    ],
+    "instructionsCs": [
+      "Sedněte si na konec rovné lavice s jednoručkami položenými na stehnech.",
+      "Lehněte si a přeneste jednoručky do výšky hrudníku, dlaněmi vpřed.",
+      "Tlačte jednoručky nahoru, až se nad hrudníkem téměř dotknou.",
+      "Spouštějte je pomalu, dokud neucítíte protažení prsních svalů, a opakujte."
+    ],
+    "cuesEn": [
+      "Dumbbells travel in a slight arc, not straight up.",
+      "Keep the wrists neutral instead of bending them back.",
+      "Let the chest do the work, not the shoulders."
+    ],
+    "cuesCs": [
+      "Jednoručky jdou v mírném oblouku, ne rovně vzhůru.",
+      "Držte zápěstí v neutrální poloze, neprohýbejte je dozadu.",
+      "Pracovat mají prsa, ne ramena."
+    ],
+    "images": [
+      "/exercises/dumbbell-bench-press/0.jpg",
+      "/exercises/dumbbell-bench-press/1.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "incline-dumbbell-press",
+    "sourceId": "Incline_Dumbbell_Press",
+    "nameEn": "Incline Dumbbell Press",
+    "nameCs": "Tlaky s jednoručkami v lehu na šikmé lavici",
+    "aliasesEn": [
+      "incline dumbbell press",
+      "incline db press"
+    ],
+    "aliasesCs": [
+      "tlaky s jednoručkami na šikmé lavici",
+      "incline dumbbell press"
+    ],
+    "primaryMuscle": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Set the bench to 30 to 45 degrees and sit down with a dumbbell on each thigh.",
+      "Lie back and hold the dumbbells at the sides of the upper chest.",
+      "Press both dumbbells up and slightly inward until the arms are almost straight.",
+      "Lower them with control to the starting position."
+    ],
+    "instructionsCs": [
+      "Nastavte lavici na 30 až 45 stupňů a sedněte si s jednoručkou na každém stehně.",
+      "Lehněte si a držte jednoručky po stranách horní části hrudníku.",
+      "Tlačte obě jednoručky nahoru a mírně dovnitř, až jsou paže téměř napnuté.",
+      "Kontrolovaně je spusťte zpět do výchozí polohy."
+    ],
+    "cuesEn": [
+      "Keep the elbows at about 45 degrees from the torso.",
+      "Do not clank the dumbbells together at the top.",
+      "Lower until the upper arms are level with the torso."
+    ],
+    "cuesCs": [
+      "Držte lokty zhruba 45 stupňů od trupu.",
+      "Neťukejte jednoručkami o sebe v horní poloze.",
+      "Spouštějte, dokud nejsou paže v rovině s trupem."
+    ],
+    "images": [
+      "/exercises/incline-dumbbell-press/0.jpg",
+      "/exercises/incline-dumbbell-press/1.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "cable-crossover",
+    "sourceId": "Cable_Crossover",
+    "nameEn": "Cable Crossover",
+    "nameCs": "Stahování protisměrných kladek",
+    "aliasesEn": [
+      "cable fly",
+      "crossover"
+    ],
+    "aliasesCs": [
+      "cable crossover",
+      "stahování kladek"
+    ],
+    "primaryMuscle": "chest",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "cable",
+    "level": "beginner",
+    "instructionsEn": [
+      "Set both pulleys at chest height and take one handle in each hand.",
+      "Step forward with one foot so the cables are under tension.",
+      "Bring the handles together in front of the chest with slightly bent elbows.",
+      "Open the arms slowly until the chest stretches, then repeat."
+    ],
+    "instructionsCs": [
+      "Nastavte obě kladky do výšky hrudníku a uchopte do každé ruky jedno madlo.",
+      "Vyjděte krok vpřed, aby byla lana v tahu.",
+      "Přibližujte madla před hrudníkem s mírně pokrčenými lokty.",
+      "Pomalu rozevírejte paže, dokud se prsa protáhnou, a opakujte."
+    ],
+    "cuesEn": [
+      "Think about hugging a tree, not pressing.",
+      "Keep a fixed slight bend in the elbows.",
+      "Stop the stretch before the shoulders roll forward."
+    ],
+    "cuesCs": [
+      "Představte si, že objímáte strom, netlačíte.",
+      "Lokty držte stále mírně pokrčené.",
+      "Protažení ukončete dřív, než se ramena stočí dopředu."
+    ],
+    "images": [
+      "/exercises/cable-crossover/0.jpg",
+      "/exercises/cable-crossover/1.jpg"
+    ]
+  },
+  {
+    "id": 6,
+    "slug": "dumbbell-fly",
+    "sourceId": "Dumbbell_Flyes",
+    "nameEn": "Dumbbell Fly",
+    "nameCs": "Rozpažky na vodorovné lavici",
+    "aliasesEn": [
+      "dumbbell flyes",
+      "chest fly"
+    ],
+    "aliasesCs": [
+      "rozpažky s jednoručkami",
+      "flyes"
+    ],
+    "primaryMuscle": "chest",
+    "secondaryMuscles": [],
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Lie on a flat bench holding a dumbbell in each hand above the chest, palms facing each other.",
+      "Keep a small bend in the elbows and open the arms out to the sides.",
+      "Lower until you feel a strong stretch across the chest, with the upper arms level with the torso.",
+      "Bring the dumbbells back together over the chest without pressing them."
+    ],
+    "instructionsCs": [
+      "Lehněte si na rovnou lavici s jednoručkami nad hrudníkem, dlaněmi k sobě.",
+      "Držte mírně pokrčené lokty a rozevírejte paže do stran.",
+      "Spouštějte, dokud neucítíte výrazné protažení prsou a paže nejsou v rovině s trupem.",
+      "Přibližujte jednoručky zpět nad hrudník, aniž byste je tlačili."
+    ],
+    "cuesEn": [
+      "This is a stretch, not a press, keep the elbow angle fixed.",
+      "Do not go deeper than the shoulder can control.",
+      "Move slowly on the way down."
+    ],
+    "cuesCs": [
+      "Tohle je protažení, ne tlak, úhel loktů držte stejný.",
+      "Nechoďte hlouběji, než rameno udrží.",
+      "Dolů jděte pomalu."
+    ],
+    "images": [
+      "/exercises/dumbbell-fly/0.jpg",
+      "/exercises/dumbbell-fly/1.jpg"
+    ]
+  },
+  {
+    "id": 7,
+    "slug": "barbell-deadlift",
+    "coverIndex": 1,
+    "sourceId": "Barbell_Deadlift",
+    "nameEn": "Barbell Deadlift",
+    "nameCs": "Klasický mrtvý tah",
+    "aliasesEn": [
+      "deadlift",
+      "conventional deadlift"
+    ],
+    "aliasesCs": [
+      "mrtvý tah",
+      "deadlift"
+    ],
+    "primaryMuscle": "back",
+    "secondaryMuscles": [
+      "hamstrings",
+      "glutes",
+      "calves",
+      "grip"
+    ],
+    "equipment": "barbell",
+    "level": "intermediate",
+    "instructionsEn": [
+      "Stand with the bar over the middle of your feet and set your hips back to grip it.",
+      "Brace the trunk, pull the slack out of the bar and set your back flat.",
+      "Push the floor away and stand up, keeping the bar close to the legs.",
+      "Lock out at the hips, then lower the bar along the same path."
+    ],
+    "instructionsCs": [
+      "Postavte se tak, aby osa byla nad středem chodidel, a posaďte boky dozadu do úchopu.",
+      "Zpevněte trup, odstraňte vůli z osy a narovnejte záda.",
+      "Tlačte do země a postavte se, osu držte blízko nohou.",
+      "Dokončete pohyb v bocích a spouštějte osu po stejné dráze."
+    ],
+    "cuesEn": [
+      "The bar stays in contact with the legs the whole way up.",
+      "Do not jerk the bar off the floor, build tension first.",
+      "Finish with the hips, not by leaning back."
+    ],
+    "cuesCs": [
+      "Osa zůstává po celou dobu ve styku s nohama.",
+      "Netrhejte osou ze země, nejdřív vytvořte tah.",
+      "Pohyb dokončete boky, ne zakloněním trupu."
+    ],
+    "images": [
+      "/exercises/barbell-deadlift/0.jpg",
+      "/exercises/barbell-deadlift/1.jpg"
+    ]
+  },
+  {
+    "id": 8,
+    "slug": "bent-over-barbell-row",
+    "coverIndex": 1,
+    "sourceId": "Bent_Over_Barbell_Row",
+    "nameEn": "Bent-Over Barbell Row",
+    "nameCs": "Přítahy osy v předklonu",
+    "aliasesEn": [
+      "barbell row",
+      "bent-over row"
+    ],
+    "aliasesCs": [
+      "přítah osy v předklonu",
+      "barbell row"
+    ],
+    "primaryMuscle": "back",
+    "secondaryMuscles": [
+      "biceps",
+      "shoulders"
+    ],
+    "equipment": "barbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Stand with feet hip width and grip the bar just outside the knees.",
+      "Hinge at the hips until the torso is close to 45 degrees, back flat.",
+      "Pull the bar to the lower ribs, driving the elbows behind you.",
+      "Lower the bar under control until the arms are straight."
+    ],
+    "instructionsCs": [
+      "Postavte se na šířku boků a uchopte osu těsně za koleny.",
+      "Předkloňte se v bocích, dokud není trup zhruba 45 stupňů a záda rovná.",
+      "Přitahujte osu ke spodním žebrům a veďte lokty za tělo.",
+      "Spouštějte osu kontrolovaně, až jsou paže napnuté."
+    ],
+    "cuesEn": [
+      "Pull with the elbows, not the hands.",
+      "Keep the torso still, no rocking for momentum.",
+      "Squeeze the shoulder blades at the top."
+    ],
+    "cuesCs": [
+      "Táhněte lokty, ne rukama.",
+      "Trup držte v klidu, nehoupejte se pro pohyb.",
+      "V horní poloze stáhněte lopatky k sobě."
+    ],
+    "images": [
+      "/exercises/bent-over-barbell-row/0.jpg",
+      "/exercises/bent-over-barbell-row/1.jpg"
+    ]
+  },
+  {
+    "id": 9,
+    "slug": "pull-up",
+    "coverIndex": 1,
+    "sourceId": "Pullups",
+    "nameEn": "Pull-Up",
+    "nameCs": "Shyby nadhmatem",
+    "aliasesEn": [
+      "pullup",
+      "overhand pull-up"
+    ],
+    "aliasesCs": [
+      "shyby",
+      "pull up"
+    ],
+    "primaryMuscle": "back",
+    "secondaryMuscles": [
+      "biceps"
+    ],
+    "equipment": "body only",
+    "level": "beginner",
+    "instructionsEn": [
+      "Hang from a bar with an overhand grip slightly wider than the shoulders.",
+      "Depress the shoulder blades first, then pull the chest toward the bar.",
+      "Keep the elbows driving down and back until the chin clears the bar.",
+      "Lower yourself slowly to a full hang and repeat."
+    ],
+    "instructionsCs": [
+      "Zavěste se na hrazdu nadhmatem o něco širším, než je šířka ramen.",
+      "Nejdřív stáhněte lopatky dolů, potom táhněte hrudník k hrazdě.",
+      "Veďte lokty dolů a dozadu, až se brada dostane nad hrazdu.",
+      "Pomalu se spouštějte až do plného visu a opakujte."
+    ],
+    "cuesEn": [
+      "Start the pull from the shoulder blades, not the arms.",
+      "No kipping or swinging on a strict set.",
+      "Lower all the way, a partial rep is a partial rep."
+    ],
+    "cuesCs": [
+      "Začínejte tahem lopatek, ne paží.",
+      "Ve striktní sérii nekopněte a nehýbejte se.",
+      "Spouštějte se až do konce, částečné opakování je částečné."
+    ],
+    "images": [
+      "/exercises/pull-up/0.jpg",
+      "/exercises/pull-up/1.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "slug": "lat-pulldown",
+    "coverIndex": 1,
+    "sourceId": "Wide-Grip_Lat_Pulldown",
+    "nameEn": "Wide-Grip Lat Pulldown",
+    "nameCs": "Stahování horní kladky",
+    "aliasesEn": [
+      "lat pulldown",
+      "pulldown"
+    ],
+    "aliasesCs": [
+      "stahování kladky",
+      "lat pulldown"
+    ],
+    "primaryMuscle": "back",
+    "secondaryMuscles": [
+      "biceps",
+      "shoulders"
+    ],
+    "equipment": "cable",
+    "level": "beginner",
+    "instructionsEn": [
+      "Sit at the pulldown station and secure the thighs under the pad.",
+      "Take a wide overhand grip and sit tall with a slight lean back.",
+      "Pull the bar to the upper chest, driving the elbows down.",
+      "Let the bar travel back up under control until the arms are straight."
+    ],
+    "instructionsCs": [
+      "Posaďte se ke kladce a zajistěte stehna pod polštářem.",
+      "Uchopte široký nadhmat a sedněte si vzpřímeně s mírným záklonem.",
+      "Stahujte osu k horní části hrudníku a veďte lokty dolů.",
+      "Nechte osu kontrolovaně stoupat, až jsou paže napnuté."
+    ],
+    "cuesEn": [
+      "Aim the chest up to meet the bar.",
+      "Do not pull the bar behind your neck.",
+      "Let the shoulder blades rise at the top, then pull them down again."
+    ],
+    "cuesCs": [
+      "Vysuňte hrudník vstříc ose.",
+      "Netahajte osu za krk.",
+      "V horní poloze nechte lopatky vyjet nahoru a znovu je stáhněte."
+    ],
+    "images": [
+      "/exercises/lat-pulldown/0.jpg",
+      "/exercises/lat-pulldown/1.jpg"
+    ]
+  },
+  {
+    "id": 11,
+    "slug": "seated-cable-row",
+    "coverIndex": 1,
+    "sourceId": "Seated_Cable_Rows",
+    "nameEn": "Seated Cable Row",
+    "nameCs": "Přítahy spodní kladky",
+    "aliasesEn": [
+      "seated row",
+      "cable row"
+    ],
+    "aliasesCs": [
+      "veslování na spodní kladce",
+      "seated row"
+    ],
+    "primaryMuscle": "back",
+    "secondaryMuscles": [
+      "biceps",
+      "shoulders"
+    ],
+    "equipment": "cable",
+    "level": "beginner",
+    "instructionsEn": [
+      "Sit with the feet on the platform and take the handle with both hands.",
+      "Sit tall with a slight forward lean and let the arms extend.",
+      "Pull the handle to the belly, driving the elbows past the torso.",
+      "Return slowly until the shoulder blades open, then repeat."
+    ],
+    "instructionsCs": [
+      "Posaďte se s chodidly na stupátku a uchopte madlo oběma rukama.",
+      "Sedněte si vzpřímeně s mírným předklonem a nechte paže napnuté.",
+      "Přitahujte madlo k břichu a veďte lokty za trup.",
+      "Pomalu se vracejte, až se lopatky rozevřou, a opakujte."
+    ],
+    "cuesEn": [
+      "Keep the torso upright, do not row with the lower back.",
+      "Pause for a moment with the handle at the belly.",
+      "Let the shoulder blades travel, do not lock them in place."
+    ],
+    "cuesCs": [
+      "Trup držte vzpřímený, netahejte bedry.",
+      "U břicha se na chvíli zastavte.",
+      "Nechte lopatky pohybovat, neuzamkněte je."
+    ],
+    "images": [
+      "/exercises/seated-cable-row/0.jpg",
+      "/exercises/seated-cable-row/1.jpg"
+    ]
+  },
+  {
+    "id": 12,
+    "slug": "one-arm-dumbbell-row",
+    "coverIndex": 1,
+    "sourceId": "One-Arm_Dumbbell_Row",
+    "nameEn": "One-Arm Dumbbell Row",
+    "nameCs": "Přítahy jednoručky v předklonu",
+    "aliasesEn": [
+      "dumbbell row",
+      "single-arm row"
+    ],
+    "aliasesCs": [
+      "přítahy jednoručky",
+      "one arm row"
+    ],
+    "primaryMuscle": "back",
+    "secondaryMuscles": [
+      "biceps",
+      "shoulders"
+    ],
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Place one knee and the same-side hand on a bench, the other foot on the floor.",
+      "Hold a dumbbell in the free hand with a flat back and still hips.",
+      "Pull the dumbbell to the hip, keeping the elbow close to the body.",
+      "Lower it until the arm is straight, then repeat for the same number of reps."
+    ],
+    "instructionsCs": [
+      "Opřete jedno koleno a stejnostrannou ruku o lavici, druhou nohu opřete o zem.",
+      "Držte jednoručku ve volné ruce, záda rovná a boky v klidu.",
+      "Přitahujte jednoručku k boku a držte loket blízko těla.",
+      "Spouštějte, až je paže napnutá, a udělejte stejný počet opakování."
+    ],
+    "cuesEn": [
+      "Do not rotate the torso to lift the weight.",
+      "Let the shoulder blade reach forward at the bottom.",
+      "Pull the elbow toward the back pocket."
+    ],
+    "cuesCs": [
+      "Nerotujte trupem, abyste zvedli váhu.",
+      "V dolní poloze nechte lopatku vyjet dopředu.",
+      "Táhněte loket směrem k zadní kapse."
+    ],
+    "images": [
+      "/exercises/one-arm-dumbbell-row/0.jpg",
+      "/exercises/one-arm-dumbbell-row/1.jpg"
+    ]
+  },
+  {
+    "id": 13,
+    "slug": "seated-barbell-press",
+    "sourceId": "Seated_Barbell_Military_Press",
+    "nameEn": "Seated Barbell Press",
+    "nameCs": "Tlaky s osou v sedě",
+    "aliasesEn": [
+      "military press",
+      "overhead press"
+    ],
+    "aliasesCs": [
+      "tlaky nad hlavou",
+      "military press"
+    ],
+    "primaryMuscle": "shoulders",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "barbell",
+    "level": "intermediate",
+    "instructionsEn": [
+      "Sit on a bench with back support and grip the bar just outside the shoulders.",
+      "Unrack the bar at chin height with the wrists stacked over the elbows.",
+      "Press the bar overhead until the arms are straight, moving the head slightly back.",
+      "Lower the bar under control to the collarbone."
+    ],
+    "instructionsCs": [
+      "Posaďte se na lavici s opěrkou a uchopte osu těsně za rameny.",
+      "Vyjměte osu ve výši brady se zápěstími nad lokty.",
+      "Tlačte osu nad hlavu až do napnutých paží a hlavu mírně zakloňte.",
+      "Spouštějte osu kontrolovaně ke klíční kosti."
+    ],
+    "cuesEn": [
+      "Keep the ribs down, do not arch to finish the press.",
+      "The bar path is a straight line over the midfoot.",
+      "Lock the elbows, then lower slowly."
+    ],
+    "cuesCs": [
+      "Držte žebra dole, nedoprohýbejte se do záklonu.",
+      "Osa jde po přímce nad střed chodidel.",
+      "Narovnejte lokty a pak spouštějte pomalu."
+    ],
+    "images": [
+      "/exercises/seated-barbell-press/0.jpg",
+      "/exercises/seated-barbell-press/1.jpg"
+    ]
+  },
+  {
+    "id": 14,
+    "slug": "dumbbell-shoulder-press",
+    "sourceId": "Dumbbell_Shoulder_Press",
+    "nameEn": "Dumbbell Shoulder Press",
+    "nameCs": "Tlaky s jednoručkami v sedě",
+    "aliasesEn": [
+      "seated dumbbell press",
+      "shoulder press"
+    ],
+    "aliasesCs": [
+      "tlaky s jednoručkami nad hlavou",
+      "shoulder press"
+    ],
+    "primaryMuscle": "shoulders",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "dumbbell",
+    "level": "intermediate",
+    "instructionsEn": [
+      "Sit on a bench with back support and bring the dumbbells to shoulder height.",
+      "Turn the palms forward and brace the trunk.",
+      "Press both dumbbells overhead until the arms are straight.",
+      "Lower them to ear height and repeat."
+    ],
+    "instructionsCs": [
+      "Posaďte se na lavici s opěrkou a přeneste jednoručky do výšky ramen.",
+      "Otočte dlaně vpřed a zpevněte trup.",
+      "Tlačte obě jednoručky nad hlavu, až jsou paže napnuté.",
+      "Spouštějte je do výšky uší a opakujte."
+    ],
+    "cuesEn": [
+      "Keep the elbows slightly in front of the shoulders.",
+      "Do not let the dumbbells drift forward of the ears.",
+      "Stop the set when the lower back starts to arch."
+    ],
+    "cuesCs": [
+      "Držte lokty mírně před rameny.",
+      "Nenechte jednoručky utéct vpřed před uši.",
+      "Sérii ukončete, když se začnou prohýbat bedra."
+    ],
+    "images": [
+      "/exercises/dumbbell-shoulder-press/0.jpg",
+      "/exercises/dumbbell-shoulder-press/1.jpg"
+    ]
+  },
+  {
+    "id": 15,
+    "slug": "lateral-raise",
+    "coverIndex": 1,
+    "sourceId": "Side_Lateral_Raise",
+    "nameEn": "Side Lateral Raise",
+    "nameCs": "Upažování s jednoručkami",
+    "aliasesEn": [
+      "lateral raise",
+      "side raise"
+    ],
+    "aliasesCs": [
+      "upažování",
+      "lateral raise"
+    ],
+    "primaryMuscle": "shoulders",
+    "secondaryMuscles": [],
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Stand tall with a dumbbell in each hand at the sides of the body.",
+      "Keep a slight bend in the elbows and brace the trunk.",
+      "Raise the arms out to the sides until they reach shoulder height.",
+      "Lower them slowly back to the starting position."
+    ],
+    "instructionsCs": [
+      "Stůjte vzpřímeně s jednoručkami podél těla.",
+      "Držte mírně pokrčené lokty a zpevněte trup.",
+      "Upažujte do stran, až se paže dostanou do výšky ramen.",
+      "Pomalu je spouštějte zpět do výchozí polohy."
+    ],
+    "cuesEn": [
+      "Lead with the elbows, not the hands.",
+      "Do not shrug the shoulders to lift the weight.",
+      "Stop at shoulder height, higher is not better."
+    ],
+    "cuesCs": [
+      "Veďte pohyb lokty, ne rukama.",
+      "Nezvedejte ramena, abyste váhu vytlačili.",
+      "Skončete ve výšce ramen, výš není líp."
+    ],
+    "images": [
+      "/exercises/lateral-raise/0.jpg",
+      "/exercises/lateral-raise/1.jpg"
+    ]
+  },
+  {
+    "id": 16,
+    "slug": "reverse-fly",
+    "coverIndex": 1,
+    "sourceId": "Reverse_Flyes",
+    "nameEn": "Reverse Fly",
+    "nameCs": "Upažování s jednoručkami v předklonu",
+    "aliasesEn": [
+      "reverse pec deck",
+      "rear delt fly",
+      "reverse flyes"
+    ],
+    "aliasesCs": [
+      "reverse fly",
+      "zadní ramena"
+    ],
+    "primaryMuscle": "shoulders",
+    "secondaryMuscles": [],
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Hinge forward at the hips until the torso is almost parallel with the floor.",
+      "Let the dumbbells hang below the chest with slightly bent elbows.",
+      "Raise the arms out to the sides until they are level with the torso.",
+      "Lower them under control and repeat."
+    ],
+    "instructionsCs": [
+      "Předkloňte se v bocích, až je trup téměř rovnoběžně se zemí.",
+      "Nechte jednoručky viset pod hrudníkem s mírně pokrčenými lokty.",
+      "Upažujte do stran, až jsou paže v rovině s trupem.",
+      "Kontrolovaně je spouštějte a opakujte."
+    ],
+    "cuesEn": [
+      "Think about squeezing the shoulder blades together.",
+      "Use light weight, the rear delts are small.",
+      "Do not stand up as you get tired.",
+      "No bench: hinge at the hips and do it standing with slightly bent elbows."
+    ],
+    "cuesCs": [
+      "Soustřeďte se na stahování lopatek k sobě.",
+      "Používejte lehkou váhu, zadní delty jsou malé.",
+      "Nenarovujte se, když začnete unavovat.",
+      "Bez lavice: předkloňte se v bocích a cvičte ve stoje s mírně pokrčenými lokty."
+    ],
+    "images": [
+      "/exercises/reverse-fly/0.jpg",
+      "/exercises/reverse-fly/1.jpg"
+    ]
+  },
+  {
+    "id": 17,
+    "slug": "face-pull",
+    "sourceId": "Face_Pull",
+    "nameEn": "Face Pull",
+    "nameCs": "Face pull",
+    "aliasesEn": [
+      "rope face pull",
+      "rear delt pull"
+    ],
+    "aliasesCs": [
+      "face pull",
+      "přítahy k obličeji"
+    ],
+    "primaryMuscle": "shoulders",
+    "secondaryMuscles": [
+      "back"
+    ],
+    "equipment": "cable",
+    "level": "intermediate",
+    "instructionsEn": [
+      "Attach a rope to a pulley at roughly eye height.",
+      "Take the ends with both hands and step back until the cable is tight.",
+      "Pull the rope toward the face, spreading the hands apart at the end.",
+      "Return slowly until the arms are straight."
+    ],
+    "instructionsCs": [
+      "Připevněte lano na kladku zhruba do výšky očí.",
+      "Uchopte oba konce a couvněte, dokud není lano v tahu.",
+      "Přitahujte lano k obličeji a na konci roztáhněte ruce od sebe.",
+      "Pomalu se vracejte, až jsou paže napnuté."
+    ],
+    "cuesEn": [
+      "Finish with the hands beside the ears and the elbows high.",
+      "Keep the torso still, no leaning back.",
+      "External rotation at the end is the whole point."
+    ],
+    "cuesCs": [
+      "Skončete s rukama u uší a lokty vysoko.",
+      "Trup držte v klidu, nezaklánějte se.",
+      "Zevní rotace na konci je celý smysl cviku."
+    ],
+    "images": [
+      "/exercises/face-pull/0.jpg",
+      "/exercises/face-pull/1.jpg"
+    ]
+  },
+  {
+    "id": 18,
+    "slug": "barbell-curl",
+    "sourceId": "Barbell_Curl",
+    "nameEn": "Barbell Curl",
+    "nameCs": "Bicepsový zdvih s osou ve stoje",
+    "aliasesEn": [
+      "standing barbell curl",
+      "bicep curl"
+    ],
+    "aliasesCs": [
+      "bicepsový zdvih",
+      "zdvihy s osou"
+    ],
+    "primaryMuscle": "biceps",
+    "secondaryMuscles": [
+      "grip"
+    ],
+    "equipment": "barbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Stand tall holding the bar with an underhand grip at shoulder width.",
+      "Keep the elbows close to the ribs and the trunk braced.",
+      "Curl the bar up until the forearms are close to vertical.",
+      "Lower it slowly to a full stretch and repeat."
+    ],
+    "instructionsCs": [
+      "Stůjte vzpřímeně a držte osu podhmatem na šířku ramen.",
+      "Lokty držte u žeber a trup zpevněný.",
+      "Zvedejte osu, až jsou předloktí téměř ve svislé poloze.",
+      "Pomalu spouštějte do plného protažení a opakujte."
+    ],
+    "cuesEn": [
+      "The elbows stay still, only the forearms move.",
+      "Do not swing the hips to start the rep.",
+      "Lower all the way, the stretch builds the muscle."
+    ],
+    "cuesCs": [
+      "Lokty zůstávají v klidu, hýbou se jen předloktí.",
+      "Nerozhoupávejte boky do začátku opakování.",
+      "Spouštějte až do konce, protažení buduje sval."
+    ],
+    "images": [
+      "/exercises/barbell-curl/0.jpg",
+      "/exercises/barbell-curl/1.jpg"
+    ]
+  },
+  {
+    "id": 19,
+    "slug": "dumbbell-curl",
+    "sourceId": "Dumbbell_Bicep_Curl",
+    "nameEn": "Dumbbell Curl",
+    "nameCs": "Bicepsový zdvih s jednoručkami",
+    "aliasesEn": [
+      "dumbbell bicep curl",
+      "alternating curl"
+    ],
+    "aliasesCs": [
+      "bicepsové zdvihy s jednoručkami",
+      "zdvihy s jednoručkami"
+    ],
+    "primaryMuscle": "biceps",
+    "secondaryMuscles": [
+      "grip"
+    ],
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Stand with a dumbbell in each hand, palms facing forward.",
+      "Keep the elbows pinned to the sides and the shoulders relaxed.",
+      "Curl one dumbbell up while the other stays down, then switch.",
+      "Lower each dumbbell slowly to full extension."
+    ],
+    "instructionsCs": [
+      "Stůjte s jednoručkou v každé ruce, dlaněmi vpřed.",
+      "Lokty držte u těla a ramena uvolněná.",
+      "Zvedněte jednu jednoručku, druhá zůstává dole, pak vystřídejte.",
+      "Každou jednoručku spouštějte pomalu do plného napnutí."
+    ],
+    "cuesEn": [
+      "Rotating the wrist slightly outward adds a squeeze.",
+      "Do not let the elbow travel forward.",
+      "Pause for a second at the top of each rep."
+    ],
+    "cuesCs": [
+      "Mírná zevní rotace zápěstí přidá stažení.",
+      "Nenechte loket cestovat dopředu.",
+      "V horní poloze se na chvíli zastavte."
+    ],
+    "images": [
+      "/exercises/dumbbell-curl/0.jpg",
+      "/exercises/dumbbell-curl/1.jpg"
+    ]
+  },
+  {
+    "id": 20,
+    "slug": "hammer-curl",
+    "sourceId": "Hammer_Curls",
+    "nameEn": "Hammer Curl",
+    "nameCs": "Kladivový zdvih s jednoručkami",
+    "aliasesEn": [
+      "hammer curls",
+      "neutral-grip curl"
+    ],
+    "aliasesCs": [
+      "kladivové zdvihy",
+      "hammer curl"
+    ],
+    "primaryMuscle": "biceps",
+    "secondaryMuscles": [
+      "grip"
+    ],
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Stand with a dumbbell in each hand, palms facing the body.",
+      "Keep the elbows at the sides and the wrists neutral.",
+      "Curl both dumbbells up without rotating the wrists.",
+      "Lower them slowly to the starting position."
+    ],
+    "instructionsCs": [
+      "Stůjte s jednoručkou v každé ruce, dlaněmi k tělu.",
+      "Lokty držte u těla a zápěstí v neutrální poloze.",
+      "Zvedejte obě jednoručky bez rotace zápěstí.",
+      "Pomalu je spouštějte do výchozí polohy."
+    ],
+    "cuesEn": [
+      "The thumbs point up the whole time.",
+      "Do not turn this into a normal curl.",
+      "Keep the tension, do not drop the weight."
+    ],
+    "cuesCs": [
+      "Palce míří celou dobu nahoru.",
+      "Nedělejte z toho klasický bicepsový zdvih.",
+      "Udržte napětí, nenechte váhu spadnout."
+    ],
+    "images": [
+      "/exercises/hammer-curl/0.jpg",
+      "/exercises/hammer-curl/1.jpg"
+    ]
+  },
+  {
+    "id": 21,
+    "slug": "preacher-curl",
+    "sourceId": "Preacher_Curl",
+    "nameEn": "Preacher Curl",
+    "nameCs": "Bicepsový zdvih na Scottově lavici",
+    "aliasesEn": [
+      "preacher curl",
+      "scott curl"
+    ],
+    "aliasesCs": [
+      "Scottova lavice",
+      "preacher curl"
+    ],
+    "primaryMuscle": "biceps",
+    "secondaryMuscles": [],
+    "equipment": "barbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Set the seat so that the armpits rest on top of the preacher pad.",
+      "Hold the bar with an underhand grip and let the arms extend fully.",
+      "Curl the bar up until the forearms are close to vertical.",
+      "Lower it slowly until the arms are straight again."
+    ],
+    "instructionsCs": [
+      "Nastavte sedátko tak, aby podpaží spočívalo na horní hraně opěrky.",
+      "Uchopte osu podhmatem a nechte paže plně napnuté.",
+      "Zvedejte osu, až jsou předloktí téměř ve svislé poloze.",
+      "Pomalu ji spouštějte, až jsou paže znovu napnuté."
+    ],
+    "cuesEn": [
+      "The pad does the cheating prevention for you, use it.",
+      "Do not lift the elbows off the pad at the top.",
+      "Control the lowering, this is where the muscle works."
+    ],
+    "cuesCs": [
+      "Opěrka za vás hlídá podvádění, využijte to.",
+      "V horní poloze nezvedejte lokty z opěrky.",
+      "Kontrolujte spouštění, tam sval pracuje."
+    ],
+    "images": [
+      "/exercises/preacher-curl/0.jpg",
+      "/exercises/preacher-curl/1.jpg"
+    ]
+  },
+  {
+    "id": 22,
+    "slug": "close-grip-bench-press",
+    "sourceId": "Close-Grip_Barbell_Bench_Press",
+    "nameEn": "Close-Grip Bench Press",
+    "nameCs": "Benchpress na úzko",
+    "aliasesEn": [
+      "close grip bench",
+      "narrow bench press"
+    ],
+    "aliasesCs": [
+      "úzké tlaky na lavici",
+      "close grip bench"
+    ],
+    "primaryMuscle": "triceps",
+    "secondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "equipment": "barbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Lie on a flat bench and grip the bar at shoulder width or slightly narrower.",
+      "Unrack the bar and lower it to the lower part of the chest with the elbows close to the body.",
+      "Press the bar up until the elbows lock.",
+      "Lower under control and repeat."
+    ],
+    "instructionsCs": [
+      "Lehněte si na rovnou lavici a uchopte osu na šířku ramen nebo o něco úžeji.",
+      "Vyjměte osu a spouštějte ji k dolní části hrudníku s lokty u těla.",
+      "Tlačte osu nahoru až do narovnání loktů.",
+      "Kontrolovaně spouštějte a opakujte."
+    ],
+    "cuesEn": [
+      "The wrists stay over the elbows, no flaring out.",
+      "Do not grip so narrow that the wrists bend.",
+      "Keep the triceps loaded, do not rest on the chest."
+    ],
+    "cuesCs": [
+      "Zápěstí zůstávají nad lokty, neuhýbejte do stran.",
+      "Neuchopujte tak úzko, aby se prohýbala zápěstí.",
+      "Triceps držte v napětí, neodpočívejte na hrudníku."
+    ],
+    "images": [
+      "/exercises/close-grip-bench-press/0.jpg",
+      "/exercises/close-grip-bench-press/1.jpg"
+    ]
+  },
+  {
+    "id": 23,
+    "slug": "lying-triceps-extension",
+    "sourceId": "Lying_Triceps_Press",
+    "nameEn": "Lying Triceps Extension",
+    "nameCs": "Tricepsový zdvih osy v lehu",
+    "aliasesEn": [
+      "skullcrusher",
+      "french press"
+    ],
+    "aliasesCs": [
+      "francouzský tlak",
+      "skullcrusher"
+    ],
+    "primaryMuscle": "triceps",
+    "secondaryMuscles": [],
+    "equipment": "e-z curl bar",
+    "level": "intermediate",
+    "instructionsEn": [
+      "Lie on a flat bench and press an EZ bar to arms length above the chest.",
+      "Keep the upper arms still and bend the elbows to lower the bar toward the forehead.",
+      "Stop just above the head, keeping the elbows pointing up.",
+      "Extend the elbows to press the bar back up."
+    ],
+    "instructionsCs": [
+      "Lehněte si na rovnou lavici a vytlačte EZ osu do napnutých paží nad hrudník.",
+      "Držte paže v klidu a pokrčte lokty, až se osa přiblíží k čelu.",
+      "Zastavte těsně nad hlavou a držte lokty namířené vzhůru.",
+      "Narovnáním loktů vytlačte osu zpět nahoru."
+    ],
+    "cuesEn": [
+      "Only the forearms move.",
+      "Keep the elbows pointing at the ceiling, not at your feet.",
+      "If the elbows hurt, lower the weight."
+    ],
+    "cuesCs": [
+      "Pohybují se jen předloktí.",
+      "Lokty míří ke stropu, ne k nohám.",
+      "Pokud lokty bolí, snižte váhu."
+    ],
+    "images": [
+      "/exercises/lying-triceps-extension/0.jpg",
+      "/exercises/lying-triceps-extension/1.jpg"
+    ]
+  },
+  {
+    "id": 24,
+    "slug": "rope-triceps-pushdown",
+    "sourceId": "Triceps_Pushdown_-_Rope_Attachment",
+    "nameEn": "Rope Triceps Pushdown",
+    "nameCs": "Stahování lana na triceps",
+    "aliasesEn": [
+      "triceps pushdown",
+      "rope pushdown"
+    ],
+    "aliasesCs": [
+      "triceps pushdown",
+      "stahování kladky na triceps"
+    ],
+    "primaryMuscle": "triceps",
+    "secondaryMuscles": [],
+    "equipment": "cable",
+    "level": "beginner",
+    "instructionsEn": [
+      "Attach a rope to a high pulley and stand close to the machine.",
+      "Grip the rope with both hands and keep the elbows at the sides.",
+      "Push the rope down until the arms are straight and the hands split apart.",
+      "Let the rope rise under control to chest height."
+    ],
+    "instructionsCs": [
+      "Připevněte lano na horní kladku a stoupněte si blízko ke stroji.",
+      "Uchopte lano oběma rukama a držte lokty u těla.",
+      "Tlačte lano dolů, až jsou paže napnuté a ruce se od sebe rozejdou.",
+      "Nechte lano kontrolovaně stoupat do výšky hrudníku."
+    ],
+    "cuesEn": [
+      "Keep the elbows glued to the sides.",
+      "Spread the rope at the bottom for a harder squeeze.",
+      "Do not lean over the cable to add body weight."
+    ],
+    "cuesCs": [
+      "Lokty držte přilepené k tělu.",
+      "V dolní poloze roztáhněte lano pro silnější stažení.",
+      "Nenaklánějte se přes kladku, abyste přidali váhu těla."
+    ],
+    "images": [
+      "/exercises/rope-triceps-pushdown/0.jpg",
+      "/exercises/rope-triceps-pushdown/1.jpg"
+    ]
+  },
+  {
+    "id": 25,
+    "slug": "overhead-cable-triceps-extension",
+    "sourceId": "Cable_Rope_Overhead_Triceps_Extension",
+    "nameEn": "Overhead Cable Triceps Extension",
+    "nameCs": "Tricepsové stahování horní kladky s lanem přes hlavu",
+    "aliasesEn": [
+      "overhead rope extension",
+      "cable french press"
+    ],
+    "aliasesCs": [
+      "triceps přes hlavu",
+      "overhead extension"
+    ],
+    "primaryMuscle": "triceps",
+    "secondaryMuscles": [],
+    "equipment": "cable",
+    "level": "beginner",
+    "instructionsEn": [
+      "Attach a rope to a high pulley and face away from the machine.",
+      "Take the rope overhead with the elbows pointing forward and the torso upright.",
+      "Extend the elbows until the arms are straight in front of you.",
+      "Bend the elbows to let the rope go back behind the head."
+    ],
+    "instructionsCs": [
+      "Připevněte lano na horní kladku a postavte se zády ke stroji.",
+      "Vezměte lano nad hlavu, lokty míří vpřed a trup je vzpřímený.",
+      "Narovnávejte lokty, až jsou paže napnuté před vámi.",
+      "Pokrčte lokty a nechte lano zajet za hlavu."
+    ],
+    "cuesEn": [
+      "Keep the upper arms beside the head, not moving.",
+      "A staggered stance helps keep the back neutral.",
+      "Stretch the triceps fully at the bottom."
+    ],
+    "cuesCs": [
+      "Držte paže u hlavy, nehýbejte s nimi.",
+      "Střídavý postoj pomůže udržet záda v neutrálu.",
+      "V dolní poloze triceps plně protáhněte."
+    ],
+    "images": [
+      "/exercises/overhead-cable-triceps-extension/0.jpg",
+      "/exercises/overhead-cable-triceps-extension/1.jpg"
+    ]
+  },
+  {
+    "id": 26,
+    "slug": "barbell-back-squat",
+    "sourceId": "Barbell_Squat",
+    "nameEn": "Barbell Back Squat",
+    "nameCs": "Dřep s osou za hlavou",
+    "aliasesEn": [
+      "back squat",
+      "barbell squat"
+    ],
+    "aliasesCs": [
+      "dřep s činkou",
+      "back squat"
+    ],
+    "primaryMuscle": "quads",
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "back"
+    ],
+    "equipment": "barbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Set the bar on the upper back and stand with feet about shoulder width.",
+      "Brace the trunk and take a breath before the descent.",
+      "Sit the hips down and back until the thighs are at least parallel to the floor.",
+      "Drive through the whole foot to stand back up."
+    ],
+    "instructionsCs": [
+      "Položte osu na horní část zad a stůjte na šířku ramen.",
+      "Zpevněte trup a před spuštěním se nadechněte.",
+      "Posaďte boky dolů a dozadu, až jsou stehna alespoň rovnoběžně se zemí.",
+      "Tlačte celou nohou do země a postavte se."
+    ],
+    "cuesEn": [
+      "Knees track over the toes.",
+      "Keep the chest up, but do not over-arch.",
+      "Depth first, weight second."
+    ],
+    "cuesCs": [
+      "Kolena jdou ve směru špiček.",
+      "Hrudník držte nahoře, ale nepřehýbejte se do záklonu.",
+      "Nejdřív hloubka, potom váha."
+    ],
+    "images": [
+      "/exercises/barbell-back-squat/0.jpg",
+      "/exercises/barbell-back-squat/1.jpg"
+    ]
+  },
+  {
+    "id": 27,
+    "slug": "front-squat",
+    "sourceId": "Front_Barbell_Squat",
+    "nameEn": "Front Squat",
+    "nameCs": "Dřep s činkou vpředu",
+    "aliasesEn": [
+      "front squat",
+      "barbell front squat"
+    ],
+    "aliasesCs": [
+      "přední dřep",
+      "front squat"
+    ],
+    "primaryMuscle": "quads",
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "core"
+    ],
+    "equipment": "barbell",
+    "level": "expert",
+    "instructionsEn": [
+      "Rest the bar on the front of the shoulders with the elbows high.",
+      "Keep the torso as upright as possible and brace the trunk.",
+      "Descend until the thighs are at least parallel to the floor.",
+      "Stand up by driving the elbows up and pushing through the feet."
+    ],
+    "instructionsCs": [
+      "Položte osu na přední část ramen a držte lokty vysoko.",
+      "Trup držte co nejvzpřímeněji a zpevněte střed těla.",
+      "Spouštějte se, až jsou stehna alespoň rovnoběžně se zemí.",
+      "Stoupejte tak, že tlačíte lokty vzhůru a nohama do země."
+    ],
+    "cuesEn": [
+      "If the elbows drop, the bar drops.",
+      "The upright torso is what makes this a front squat.",
+      "Use a lighter weight than your back squat."
+    ],
+    "cuesCs": [
+      "Když spadnou lokty, spadne i osa.",
+      "Vzpřímený trup dělá z cviku přední dřep.",
+      "Použijte lehčí váhu než u zadního dřepu."
+    ],
+    "images": [
+      "/exercises/front-squat/0.jpg",
+      "/exercises/front-squat/1.jpg"
+    ]
+  },
+  {
+    "id": 28,
+    "slug": "leg-press",
+    "sourceId": "Leg_Press",
+    "nameEn": "Leg Press",
+    "nameCs": "Legpress na šikmé lavici",
+    "aliasesEn": [
+      "leg press",
+      "45 degree leg press"
+    ],
+    "aliasesCs": [
+      "leg press",
+      "tlaky nohama"
+    ],
+    "primaryMuscle": "quads",
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves"
+    ],
+    "equipment": "machine",
+    "level": "beginner",
+    "instructionsEn": [
+      "Sit in the machine with the back and hips against the pad.",
+      "Place the feet shoulder width on the platform, toes slightly out.",
+      "Lower the platform until the knees reach about 90 degrees.",
+      "Push it back up without locking the knees hard."
+    ],
+    "instructionsCs": [
+      "Posaďte se do stroje zády a boky na opěrce.",
+      "Položte chodidla na desku na šířku ramen, špičky mírně ven.",
+      "Spouštějte desku, až se kolena dostanou zhruba do 90 stupňů.",
+      "Tlačte ji zpět nahoru, ale nedorovnávejte kolena do tvrdého zámku."
+    ],
+    "cuesEn": [
+      "Do not let the lower back round off the pad.",
+      "Keep the heels flat on the platform.",
+      "Stop the descent before the pelvis tucks."
+    ],
+    "cuesCs": [
+      "Nenechte bedra odlepit od opěrky.",
+      "Držte paty na desce.",
+      "Spouštění ukončete dřív, než se pánev podsadí."
+    ],
+    "images": [
+      "/exercises/leg-press/0.jpg",
+      "/exercises/leg-press/1.jpg"
+    ]
+  },
+  {
+    "id": 29,
+    "slug": "romanian-deadlift",
+    "sourceId": "Romanian_Deadlift",
+    "nameEn": "Romanian Deadlift",
+    "nameCs": "Rumunský mrtvý tah",
+    "aliasesEn": [
+      "RDL",
+      "stiff-leg deadlift"
+    ],
+    "aliasesCs": [
+      "rumunský tah",
+      "RDL"
+    ],
+    "primaryMuscle": "hamstrings",
+    "secondaryMuscles": [
+      "glutes",
+      "back",
+      "grip"
+    ],
+    "equipment": "barbell",
+    "level": "intermediate",
+    "instructionsEn": [
+      "Stand with the bar at hip height and grip it at shoulder width.",
+      "Brace the trunk and keep a small bend in the knees.",
+      "Push the hips back and lower the bar along the legs until you feel a hamstring stretch.",
+      "Drive the hips forward to stand up straight."
+    ],
+    "instructionsCs": [
+      "Stůjte s osou ve výšce boků a uchopte ji na šířku ramen.",
+      "Zpevněte trup a nechte kolena mírně pokrčená.",
+      "Tlačte boky dozadu a spouštějte osu podél nohou, dokud neucítíte protažení hamstringů.",
+      "Tlačte boky vpřed a narovnejte se."
+    ],
+    "cuesEn": [
+      "The bar stays in contact with the thighs.",
+      "Hips travel back, not down.",
+      "Stop where the back would round, that is your range."
+    ],
+    "cuesCs": [
+      "Osa zůstává ve styku se stehny.",
+      "Boky jdou dozadu, ne dolů.",
+      "Skončete tam, kde by se začala zaoblovat záda, to je váš rozsah."
+    ],
+    "images": [
+      "/exercises/romanian-deadlift/0.jpg",
+      "/exercises/romanian-deadlift/1.jpg"
+    ]
+  },
+  {
+    "id": 30,
+    "slug": "leg-extension",
+    "sourceId": "Leg_Extensions",
+    "nameEn": "Leg Extension",
+    "nameCs": "Předkopávání",
+    "aliasesEn": [
+      "leg extensions",
+      "knee extension"
+    ],
+    "aliasesCs": [
+      "předkopávání na stroji",
+      "leg extension"
+    ],
+    "primaryMuscle": "quads",
+    "secondaryMuscles": [],
+    "equipment": "machine",
+    "level": "beginner",
+    "instructionsEn": [
+      "Sit in the machine with the knees aligned with the pivot point.",
+      "Place the shins behind the pad and hold the handles.",
+      "Extend the knees until the legs are almost straight.",
+      "Lower the pad under control to about 90 degrees."
+    ],
+    "instructionsCs": [
+      "Posaďte se do stroje tak, aby kolena byla v ose otáčení.",
+      "Opřete holeně o polštář a uchopte madla.",
+      "Narovnávejte kolena, až jsou nohy téměř napnuté.",
+      "Kontrolovaně spouštějte polštář zhruba do 90 stupňů."
+    ],
+    "cuesEn": [
+      "Squeeze the quads at the top for a second.",
+      "Do not kick the weight up with momentum.",
+      "Keep the hips down in the seat."
+    ],
+    "cuesCs": [
+      "V horní poloze na chvíli stiskněte kvadricepsy.",
+      "Nevykopávejte váhu švihem.",
+      "Boky držte v sedátku."
+    ],
+    "images": [
+      "/exercises/leg-extension/0.jpg",
+      "/exercises/leg-extension/1.jpg"
+    ]
+  },
+  {
+    "id": 31,
+    "slug": "lying-leg-curl",
+    "sourceId": "Lying_Leg_Curls",
+    "nameEn": "Lying Leg Curl",
+    "nameCs": "Zakopávání v leže",
+    "aliasesEn": [
+      "leg curls",
+      "hamstring curl"
+    ],
+    "aliasesCs": [
+      "zakopávání",
+      "leg curl"
+    ],
+    "primaryMuscle": "hamstrings",
+    "secondaryMuscles": [],
+    "equipment": "machine",
+    "level": "beginner",
+    "instructionsEn": [
+      "Lie face down on the machine with the knees just off the pad edge.",
+      "Hook the ankles under the roller and hold the handles.",
+      "Curl the heels toward the glutes as far as the machine allows.",
+      "Lower the roller slowly until the legs are almost straight."
+    ],
+    "instructionsCs": [
+      "Lehněte si na stroj obličejem dolů a kolena nechte těsně za hranou opěrky.",
+      "Zahákněte kotníky pod válec a uchopte madla.",
+      "Zakopávejte patami k hýždím, jak daleko stroj dovolí.",
+      "Pomalu spouštějte válec, až jsou nohy téměř napnuté."
+    ],
+    "cuesEn": [
+      "Keep the hips on the pad, do not lift them.",
+      "Point the toes toward the shins to keep the hamstring loaded.",
+      "The lowering phase is half the exercise."
+    ],
+    "cuesCs": [
+      "Boky držte na opěrce, nezvedejte je.",
+      "Přitáhněte špičky k holením, hamstring zůstane v napětí.",
+      "Spouštění je polovina cviku."
+    ],
+    "images": [
+      "/exercises/lying-leg-curl/0.jpg",
+      "/exercises/lying-leg-curl/1.jpg"
+    ]
+  },
+  {
+    "id": 32,
+    "slug": "hip-thrust",
+    "coverIndex": 1,
+    "sourceId": "Barbell_Hip_Thrust",
+    "nameEn": "Barbell Hip Thrust",
+    "nameCs": "Hip thrust",
+    "aliasesEn": [
+      "hip thrust",
+      "barbell glute bridge"
+    ],
+    "aliasesCs": [
+      "hip thrust",
+      "most na zádech"
+    ],
+    "primaryMuscle": "glutes",
+    "secondaryMuscles": [
+      "hamstrings",
+      "calves"
+    ],
+    "equipment": "barbell",
+    "level": "intermediate",
+    "instructionsEn": [
+      "Sit on the floor with the upper back against a bench and the bar over the hips.",
+      "Plant the feet shoulder width, knees bent about 90 degrees.",
+      "Drive the hips up until the torso and thighs form a straight line.",
+      "Lower the hips under control until they almost touch the floor."
+    ],
+    "instructionsCs": [
+      "Posaďte se na zem s horní částí zad o lavici a osou nad boky.",
+      "Chodidla na šířku ramen, kolena pokrčená zhruba do 90 stupňů.",
+      "Tlačte boky nahoru, až trup a stehna vytvoří přímku.",
+      "Spouštějte boky kontrolovaně, až se téměř dotknou země."
+    ],
+    "cuesEn": [
+      "Tuck the chin and keep the ribs down at the top.",
+      "Push through the heels, not the toes.",
+      "Squeeze the glutes, do not hyperextend the back."
+    ],
+    "cuesCs": [
+      "V horní poloze přitáhněte bradu a držte žebra dole.",
+      "Tlačte přes paty, ne přes špičky.",
+      "Stiskněte hýždě, neprohýbejte bedra."
+    ],
+    "images": [
+      "/exercises/hip-thrust/0.jpg",
+      "/exercises/hip-thrust/1.jpg"
+    ]
+  },
+  {
+    "id": 33,
+    "slug": "walking-lunge",
+    "coverIndex": 1,
+    "sourceId": "Barbell_Walking_Lunge",
+    "nameEn": "Walking Lunge",
+    "nameCs": "Výpady v chůzi",
+    "aliasesEn": [
+      "walking lunges",
+      "barbell lunge"
+    ],
+    "aliasesCs": [
+      "výpady",
+      "lunges"
+    ],
+    "primaryMuscle": "quads",
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves"
+    ],
+    "equipment": "barbell",
+    "level": "beginner",
+    "instructionsEn": [
+      "Stand tall with the bar on the upper back and feet hip width.",
+      "Step forward into a lunge until the front thigh is parallel to the floor.",
+      "Push through the front foot and bring the back leg forward into the next lunge.",
+      "Continue alternating legs for the planned number of steps."
+    ],
+    "instructionsCs": [
+      "Stůjte vzpřímeně s osou na horní části zad a chodidly na šířku boků.",
+      "Vyšlápněte vpřed do výpadu, až je přední stehno rovnoběžně se zemí.",
+      "Tlačte přes přední chodidlo a přeneste zadní nohu vpřed do dalšího výpadu.",
+      "Střídejte nohy po plánovaný počet kroků."
+    ],
+    "cuesEn": [
+      "The front knee stays over the foot.",
+      "Keep the torso upright, no leaning forward.",
+      "Take a long enough step, a short step hurts the knee."
+    ],
+    "cuesCs": [
+      "Přední koleno zůstává nad chodidlem.",
+      "Trup držte vzpřímený, nepředklánějte se.",
+      "Udělejte dost dlouhý krok, krátký krok bolí koleno."
+    ],
+    "images": [
+      "/exercises/walking-lunge/0.jpg",
+      "/exercises/walking-lunge/1.jpg"
+    ]
+  },
+  {
+    "id": 34,
+    "slug": "standing-calf-raise",
+    "sourceId": "Standing_Calf_Raises",
+    "nameEn": "Standing Calf Raise",
+    "nameCs": "Výpony na lýtka ve stoje",
+    "aliasesEn": [
+      "calf raises",
+      "standing calf press"
+    ],
+    "aliasesCs": [
+      "výpony ve stoji",
+      "calf raise"
+    ],
+    "primaryMuscle": "calves",
+    "secondaryMuscles": [],
+    "equipment": "machine",
+    "level": "beginner",
+    "instructionsEn": [
+      "Stand with the balls of the feet on the platform and the shoulders under the pads.",
+      "Let the heels drop below the platform for a full stretch.",
+      "Rise up onto the toes as high as possible.",
+      "Lower the heels slowly back to the stretch."
+    ],
+    "instructionsCs": [
+      "Postavte se špičkami na desku a rameny pod polštáři.",
+      "Nechte paty klesnout pod úroveň desky do plného protažení.",
+      "Vytlačte se na špičky co nejvýš.",
+      "Pomalu spouštějte paty zpět do protažení."
+    ],
+    "cuesEn": [
+      "Full range, from deep stretch to full contraction.",
+      "Pause for a second at the top.",
+      "Do not bounce at the bottom."
+    ],
+    "cuesCs": [
+      "Plný rozsah, od hlubokého protažení po plné stažení.",
+      "V horní poloze se na chvíli zastavte.",
+      "V dolní poloze neodrážejte."
+    ],
+    "images": [
+      "/exercises/standing-calf-raise/0.jpg",
+      "/exercises/standing-calf-raise/1.jpg"
+    ]
+  },
+  {
+    "id": 35,
+    "slug": "seated-calf-raise",
+    "sourceId": "Seated_Calf_Raise",
+    "nameEn": "Seated Calf Raise",
+    "nameCs": "Výpony na lýtka v sedě",
+    "aliasesEn": [
+      "seated calf raise",
+      "calf press seated"
+    ],
+    "aliasesCs": [
+      "výpony v sedě",
+      "seated calf raise"
+    ],
+    "primaryMuscle": "calves",
+    "secondaryMuscles": [],
+    "equipment": "machine",
+    "level": "beginner",
+    "instructionsEn": [
+      "Sit in the machine and place the balls of the feet on the platform.",
+      "Lower the thighs under the pad and release the safety.",
+      "Let the heels drop for a full stretch.",
+      "Push up onto the toes and lower slowly."
+    ],
+    "instructionsCs": [
+      "Posaďte se do stroje a položte špičky na desku.",
+      "Zajistěte stehna pod polštářem a uvolněte pojistku.",
+      "Nechte paty klesnout do plného protažení.",
+      "Vytlačte se na špičky a pomalu spouštějte."
+    ],
+    "cuesEn": [
+      "The bent knee targets the soleus, that is intended.",
+      "Keep the weight on the big toe side.",
+      "Slow reps beat heavy bouncing."
+    ],
+    "cuesCs": [
+      "Pokrčené koleno cílí na soleus, tak to má být.",
+      "Váhu držte na straně palce.",
+      "Pomalá opakování porazí těžké odrážení."
+    ],
+    "images": [
+      "/exercises/seated-calf-raise/0.jpg",
+      "/exercises/seated-calf-raise/1.jpg"
+    ]
+  },
+  {
+    "id": 36,
+    "slug": "plank",
+    "coverIndex": 1,
+    "sourceId": "Plank",
+    "nameEn": "Plank",
+    "nameCs": "Plank",
+    "aliasesEn": [
+      "front plank",
+      "forearm plank"
+    ],
+    "aliasesCs": [
+      "plank",
+      "prkno"
+    ],
+    "primaryMuscle": "core",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "body only",
+    "level": "beginner",
+    "instructionsEn": [
+      "Get into a push-up position and rest on the forearms.",
+      "Set the elbows under the shoulders and extend the legs behind you.",
+      "Squeeze the glutes and brace the trunk so the body forms a straight line.",
+      "Hold the position without letting the hips sag or rise."
+    ],
+    "instructionsCs": [
+      "Zaujměte pozici kliku a opřete se o předloktí.",
+      "Lokty umístěte pod ramena a nohy natáhněte za sebe.",
+      "Stiskněte hýždě a zpevněte trup tak, aby tělo tvořilo přímku.",
+      "Výdrž udržte, aniž by boky klesly nebo se zvedly."
+    ],
+    "cuesEn": [
+      "Pull the belly button toward the spine.",
+      "Push the forearms into the floor.",
+      "Stop when the hips start to sag, not when the timer ends."
+    ],
+    "cuesCs": [
+      "Přitahujte pupek k páteři.",
+      "Tlačte předloktí do země.",
+      "Skončete, když začnou klesat boky, ne až doběhne časovač."
+    ],
+    "images": [
+      "/exercises/plank/0.jpg",
+      "/exercises/plank/1.jpg"
+    ]
+  },
+  {
+    "id": 37,
+    "slug": "hanging-leg-raise",
+    "coverIndex": 1,
+    "sourceId": "Hanging_Leg_Raise",
+    "nameEn": "Hanging Leg Raise",
+    "nameCs": "Vznosy ve visu",
+    "aliasesEn": [
+      "hanging leg raises",
+      "leg raise"
+    ],
+    "aliasesCs": [
+      "přednožování ve visu",
+      "hanging leg raise"
+    ],
+    "primaryMuscle": "core",
+    "secondaryMuscles": [
+      "grip"
+    ],
+    "equipment": "body only",
+    "level": "expert",
+    "instructionsEn": [
+      "Hang from a bar with an overhand grip and straight arms.",
+      "Brace the trunk and stop any swinging before the first rep.",
+      "Raise the legs together until the hips are bent to about 90 degrees.",
+      "Lower them slowly back to the hang."
+    ],
+    "instructionsCs": [
+      "Zavěste se na hrazdu nadhmatem s napnutými pažemi.",
+      "Zpevněte trup a před prvním opakováním zastavte houpání.",
+      "Zvedejte nohy společně, až se boky pokrčí zhruba do 90 stupňů.",
+      "Pomalu je spouštějte zpět do visu."
+    ],
+    "cuesEn": [
+      "Curl the pelvis up, do not just lift the legs.",
+      "Keep the shoulders active, not hanging loose.",
+      "Bend the knees if straight legs cause swinging."
+    ],
+    "cuesCs": [
+      "Podsazujte pánev, nezvedejte jen nohy.",
+      "Ramena držte aktivní, ne volně pověšená.",
+      "Pokrčte kolena, pokud rovné nohy rozhoupou tělo."
+    ],
+    "images": [
+      "/exercises/hanging-leg-raise/0.jpg",
+      "/exercises/hanging-leg-raise/1.jpg"
+    ]
+  },
+  {
+    "id": 38,
+    "slug": "cable-crunch",
+    "coverIndex": 1,
+    "sourceId": "Cable_Crunch",
+    "nameEn": "Cable Crunch",
+    "nameCs": "Zkracovačky na horní kladce",
+    "aliasesEn": [
+      "rope crunch",
+      "kneeling cable crunch"
+    ],
+    "aliasesCs": [
+      "zkracovačky na kladce",
+      "rope crunch"
+    ],
+    "primaryMuscle": "core",
+    "secondaryMuscles": [],
+    "equipment": "cable",
+    "level": "beginner",
+    "instructionsEn": [
+      "Kneel in front of a high pulley and hold the rope beside your head.",
+      "Set the hips slightly back and brace the trunk.",
+      "Curl the ribs toward the pelvis, rounding the upper back.",
+      "Return slowly until the torso is upright again."
+    ],
+    "instructionsCs": [
+      "Klekněte si před horní kladku a uchopte lano vedle hlavy.",
+      "Boky mírně posaďte dozadu a zpevněte trup.",
+      "Zkracujte trup tahem žeber k pánvi a zaoblujte horní část zad.",
+      "Pomalu se vracejte, až je trup znovu vzpřímený."
+    ],
+    "cuesEn": [
+      "Crunch the ribs down, do not pull with the arms.",
+      "Keep the hips still, they are not part of the movement.",
+      "Exhale hard at the bottom."
+    ],
+    "cuesCs": [
+      "Zkracujte žebra dolů, netahejte rukama.",
+      "Boky držte v klidu, nejsou součástí pohybu.",
+      "V dolní poloze silně vydechněte."
+    ],
+    "images": [
+      "/exercises/cable-crunch/0.jpg",
+      "/exercises/cable-crunch/1.jpg"
+    ]
+  },
+  {
+    "id": 39,
+    "slug": "ab-roller",
+    "coverIndex": 1,
+    "sourceId": "Ab_Roller",
+    "nameEn": "Ab Roller Rollout",
+    "nameCs": "Rollout s kolečkem",
+    "aliasesEn": [
+      "ab wheel rollout",
+      "rollout"
+    ],
+    "aliasesCs": [
+      "rollout",
+      "kolečko na břicho"
+    ],
+    "primaryMuscle": "core",
+    "secondaryMuscles": [
+      "shoulders",
+      "back"
+    ],
+    "equipment": "other",
+    "level": "intermediate",
+    "instructionsEn": [
+      "Kneel on a mat holding the handles of the wheel in front of you.",
+      "Brace the trunk and tuck the pelvis slightly.",
+      "Roll the wheel forward until the arms are extended and the body is long.",
+      "Pull the wheel back toward the knees without letting the hips sag."
+    ],
+    "instructionsCs": [
+      "Klekněte si na podložku a držte madla kolečka před sebou.",
+      "Zpevněte trup a mírně podsazte pánev.",
+      "Vyvalte kolečko vpřed, až jsou paže napnuté a tělo dlouhé.",
+      "Přitáhněte kolečko zpět ke kolenům, aniž by klesly boky."
+    ],
+    "cuesEn": [
+      "Go only as far as you can keep the ribs down.",
+      "The lower back must not arch at the bottom.",
+      "Short range now, full range later."
+    ],
+    "cuesCs": [
+      "Jděte jen tak daleko, dokud udržíte žebra dole.",
+      "V dolní poloze se nesmí prohnout bedra.",
+      "Teď kratší rozsah, později plný."
+    ],
+    "images": [
+      "/exercises/ab-roller/0.jpg",
+      "/exercises/ab-roller/1.jpg"
+    ]
+  },
+  {
+    "id": 40,
+    "slug": "pallof-press",
+    "coverIndex": 1,
+    "sourceId": "Pallof_Press",
+    "nameEn": "Pallof Press",
+    "nameCs": "Pallof press",
+    "aliasesEn": [
+      "anti-rotation press",
+      "pallof"
+    ],
+    "aliasesCs": [
+      "pallof press",
+      "anti-rotace"
+    ],
+    "primaryMuscle": "core",
+    "secondaryMuscles": [
+      "chest",
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "cable",
+    "level": "beginner",
+    "instructionsEn": [
+      "Set a cable at chest height and stand side-on to the machine.",
+      "Hold the handle with both hands at the chest and step away until the cable is tight.",
+      "Press the handle straight out in front of the chest.",
+      "Hold for a moment, then bring it back to the chest without rotating."
+    ],
+    "instructionsCs": [
+      "Nastavte kladku do výšky hrudníku a postavte se bokem ke stroji.",
+      "Držte madlo oběma rukama u hrudníku a odstupte, dokud není lano v tahu.",
+      "Vytlačte madlo přímo před hrudník.",
+      "Chvíli ho podržte a vraťte zpět k hrudníku bez rotace."
+    ],
+    "cuesEn": [
+      "Resist the pull, do not let the torso twist.",
+      "Feet shoulder width, knees slightly bent.",
+      "Exhale as you press out."
+    ],
+    "cuesCs": [
+      "Odolávejte tahu, nenechte trup rotovat.",
+      "Chodidla na šířku ramen, kolena mírně pokrčená.",
+      "Při vytlačení vydechněte."
+    ],
+    "images": [
+      "/exercises/pallof-press/0.jpg",
+      "/exercises/pallof-press/1.jpg"
+    ]
+  }
+]
