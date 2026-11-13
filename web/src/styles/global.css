@@ -717,8 +717,10 @@ select {
   height: 20px;
 }
 
+/* Focus-within would keep the arrows on screen after a mouse click, because the
+   clicked button keeps focus. Only keyboard focus should reveal them. */
 .stage__frame:hover .stage__arrow,
-.stage__frame:focus-within .stage__arrow {
+.stage__arrow:focus-visible {
   opacity: 1;
   pointer-events: auto;
 }

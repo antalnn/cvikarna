@@ -16,8 +16,8 @@ function prefersReducedMotion(): boolean {
 /**
  * Two stacked photos with an opacity crossfade and the controls on the image
  * itself: arrows on the edges for stepping, one round button for play and
- * pause. The arrows stay out of the way until the pointer or keyboard focus
- * reaches the frame, and reduced motion starts paused.
+ * pause. The arrows stay out of the way until the pointer is over the image or
+ * the keyboard focus reaches an arrow, and reduced motion starts paused.
  */
 export function PhotoStage({ images, name }: PhotoStageProps) {
   const { t } = useLanguage();
