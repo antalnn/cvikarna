@@ -1,0 +1,347 @@
+import type { Equipment, Level, Muscle, MuscleGroup } from "../api/types";
+
+export type Language = "cs" | "en";
+
+export interface Dictionary {
+  skipToContent: string;
+  brandName: string;
+  brandSub: string;
+  navLabel: string;
+  navLibrary: string;
+  navTracker: string;
+  navGuides: string;
+  languageLabel: string;
+  heroEyebrow: string;
+  heroTitle: string;
+  heroLede: string;
+  searchLabel: string;
+  searchPlaceholder: string;
+  searchClear: string;
+  muscleFilterLabel: string;
+  muscleAll: string;
+  equipmentLabel: string;
+  equipmentAll: string;
+  results: (shown: number, total: number) => string;
+  loading: string;
+  errorTitle: string;
+  errorText: string;
+  retry: string;
+  emptyTitle: string;
+  emptyText: string;
+  clearFilters: string;
+  notFoundTitle: string;
+  notFoundText: string;
+  backToLibrary: string;
+  play: string;
+  pause: string;
+  prevPhoto: string;
+  nextPhoto: string;
+  photoStart: string;
+  photoEnd: string;
+  sectionInstructions: string;
+  sectionCues: string;
+  aliasesLabel: string;
+  levelLabel: string;
+  secondaryLabel: string;
+  footerDataset: string;
+  footerNote: string;
+  trackerEyebrow: string;
+  trackerTitle: string;
+  trackerLede: string;
+  trackerErrorTitle: string;
+  addExercise: string;
+  noExercisesTitle: string;
+  noExercisesText: string;
+  removeExercise: string;
+  setNumber: string;
+  weightLabel: string;
+  repsLabel: string;
+  rpeLabel: string;
+  notesLabel: string;
+  notesPlaceholder: string;
+  addSet: string;
+  saving: string;
+  weightError: string;
+  repsError: string;
+  rpeError: string;
+  saveError: string;
+  removeSet: string;
+  noSets: string;
+  pickerTitle: string;
+  pickerSearchLabel: string;
+  pickerSearchPlaceholder: string;
+  pickerResults: (shown: number, total: number) => string;
+  pickerPage: (page: number, totalPages: number) => string;
+  prevPage: string;
+  nextPage: string;
+  pickerEmpty: string;
+  close: string;
+  add: string;
+  detailLink: string;
+  recentSetsTitle: string;
+  recentSetsEmpty: string;
+  dateLabel: string;
+  statsTitle: string;
+  statsVolume: string;
+  statsBestE1rm: string;
+  statsBestWeight: string;
+  statsBestSet: string;
+  statsWeekly: string;
+  noStats: string;
+  muscle: Record<MuscleGroup, string>;
+  muscleFine: Record<Muscle, string>;
+  equipment: Record<Equipment, string>;
+  level: Record<Level, string>;
+}
+
+const cs: Dictionary = {
+  skipToContent: "Přejít na obsah",
+  brandName: "Cvikárna",
+  brandSub: "Technika a trénink",
+  navLabel: "Hlavní navigace",
+  navLibrary: "Knihovna",
+  navTracker: "Trénink",
+  navGuides: "Průvodce",
+  languageLabel: "Jazyk",
+  heroEyebrow: "Od prvního tréninku dál",
+  heroTitle: "Všechny cviky, které ti pomůžou nabrat svaly a sílu.",
+  heroLede:
+    "Od prvního cviku po hotový plán. Zjisti, co a proč dělat, a poskládej si trénink podle vybavení, které máš.",
+  searchLabel: "Hledat cvik",
+  searchPlaceholder: "Hledej cvik, sval nebo přezdívku…",
+  searchClear: "Vymazat hledání",
+  muscleFilterLabel: "Svalová skupina",
+  muscleAll: "Všechny svaly",
+  equipmentLabel: "Nářadí",
+  equipmentAll: "Všechno nářadí",
+  results: (shown, total) => `${shown} z ${total} cviků`,
+  loading: "Načítám knihovnu…",
+  errorTitle: "Knihovna se nenačetla",
+  errorText: "Zkuste to znovu. Když to nepomůže, obnovte stránku.",
+  retry: "Zkusit znovu",
+  emptyTitle: "Nic nenalezeno",
+  emptyText: "Zkuste jiný výraz nebo zrušte filtry.",
+  clearFilters: "Zrušit filtry",
+  notFoundTitle: "Cvik nenalezen",
+  notFoundText: "Tenhle cvik v knihovně není. Odkaz může být špatný.",
+  backToLibrary: "Zpět do knihovny",
+  play: "Přehrát",
+  pause: "Pauza",
+  prevPhoto: "Předchozí fotka",
+  nextPhoto: "Další fotka",
+  photoStart: "Výchozí poloha",
+  photoEnd: "Koncová poloha",
+  sectionInstructions: "Provedení",
+  sectionCues: "Na co si dát pozor",
+  aliasesLabel: "Také známo jako",
+  levelLabel: "Náročnost",
+  secondaryLabel: "Zapojuje také",
+  footerDataset: "Fotografie a výchozí popisy: free-exercise-db, licence Unlicense.",
+  footerNote: "Cvikárna. Technika a trénink.",
+  trackerEyebrow: "Dnes",
+  trackerTitle: "Dnešní trénink",
+  trackerLede: "Přidej cviky a zapisuj série. Váha 0 znamená vlastní váhu.",
+  trackerErrorTitle: "Trénink se nenačetl",
+  addExercise: "Přidat cvik",
+  noExercisesTitle: "Zatím žádný trénink",
+  noExercisesText: "Přidej první cvik a začni zapisovat série.",
+  removeExercise: "Odebrat cvik",
+  setNumber: "#",
+  weightLabel: "Váha (kg)",
+  repsLabel: "Opakování",
+  rpeLabel: "RPE",
+  notesLabel: "Poznámka",
+  notesPlaceholder: "Nepovinné",
+  addSet: "Zapsat sérii",
+  saving: "Ukládám…",
+  weightError: "Váha musí být 0 nebo víc.",
+  repsError: "Opakování musí být 1 až 100.",
+  rpeError: "RPE musí být 1 až 10.",
+  saveError: "Nepodařilo se uložit. Zkuste to znovu.",
+  removeSet: "Odebrat sérii",
+  noSets: "Zatím žádné série.",
+  pickerTitle: "Přidat cvik",
+  pickerSearchLabel: "Hledat cvik",
+  pickerSearchPlaceholder: "Hledej cvik nebo sval…",
+  pickerResults: (shown, total) => `${shown} z ${total} cviků`,
+  pickerPage: (page, totalPages) => `Strana ${page} z ${totalPages}`,
+  prevPage: "Předchozí",
+  nextPage: "Další",
+  pickerEmpty: "Nic nenalezeno",
+  close: "Zavřít",
+  add: "Přidat",
+  detailLink: "Detail",
+  recentSetsTitle: "Poslední série",
+  recentSetsEmpty: "Zatím žádná data.",
+  dateLabel: "Datum",
+  statsTitle: "Statistiky",
+  statsVolume: "Objem",
+  statsBestE1rm: "Odhad 1RM",
+  statsBestWeight: "Nejvyšší váha",
+  statsBestSet: "Nejlepší série",
+  statsWeekly: "Série tento týden",
+  noStats: "Zatím žádná data.",
+  muscle: {
+    chest: "Prsa",
+    back: "Záda",
+    shoulders: "Ramena",
+    biceps: "Biceps",
+    triceps: "Triceps",
+    legs: "Nohy",
+    core: "Core",
+  },
+  muscleFine: {
+    chest: "prsa",
+    back: "záda",
+    shoulders: "ramena",
+    biceps: "biceps",
+    triceps: "triceps",
+    quads: "kvadricepsy",
+    hamstrings: "hamstringy",
+    glutes: "hýždě",
+    calves: "lýtka",
+    core: "core",
+    grip: "úchop",
+  },
+  equipment: {
+    barbell: "Velká činka",
+    dumbbell: "Jednoručky",
+    cable: "Kladka",
+    machine: "Stroj",
+    "body only": "Vlastní váha",
+    "e-z curl bar": "EZ tyč",
+    other: "Pomůcka",
+  },
+  level: {
+    beginner: "Začátečník",
+    intermediate: "Pokročilý",
+    expert: "Expert",
+  },
+};
+
+const en: Dictionary = {
+  skipToContent: "Skip to content",
+  brandName: "Cvikárna",
+  brandSub: "Technique & training",
+  navLabel: "Main navigation",
+  navLibrary: "Library",
+  navTracker: "Train",
+  navGuides: "Guides",
+  languageLabel: "Language",
+  heroEyebrow: "From your first session on",
+  heroTitle: "Every movement you need to build muscle and get strong.",
+  heroLede:
+    "From your first movement to a finished plan. Learn what to do and why, and build a workout around the equipment you have.",
+  searchLabel: "Search movements",
+  searchPlaceholder: "Search a movement, muscle or nickname…",
+  searchClear: "Clear search",
+  muscleFilterLabel: "Muscle group",
+  muscleAll: "All muscles",
+  equipmentLabel: "Equipment",
+  equipmentAll: "All equipment",
+  results: (shown, total) => `${shown} of ${total} movements`,
+  loading: "Loading the library…",
+  errorTitle: "The library did not load",
+  errorText: "Try again. If that does not help, reload the page.",
+  retry: "Try again",
+  emptyTitle: "Nothing found",
+  emptyText: "Try another term or clear the filters.",
+  clearFilters: "Clear filters",
+  notFoundTitle: "Movement not found",
+  notFoundText: "That movement is not in the library. The link may be wrong.",
+  backToLibrary: "Back to the library",
+  play: "Play",
+  pause: "Pause",
+  prevPhoto: "Previous photo",
+  nextPhoto: "Next photo",
+  photoStart: "Start position",
+  photoEnd: "End position",
+  sectionInstructions: "How to do it",
+  sectionCues: "What to watch for",
+  aliasesLabel: "Also known as",
+  levelLabel: "Level",
+  secondaryLabel: "Also works",
+  footerDataset: "Photos and base descriptions: free-exercise-db, Unlicense.",
+  footerNote: "Cvikárna. Technique & training.",
+  trackerEyebrow: "Today",
+  trackerTitle: "Today's workout",
+  trackerLede: "Add movements and log your sets. Weight 0 means bodyweight.",
+  trackerErrorTitle: "The workout did not load",
+  addExercise: "Add movement",
+  noExercisesTitle: "No workout yet",
+  noExercisesText: "Add the first movement and start logging sets.",
+  removeExercise: "Remove movement",
+  setNumber: "#",
+  weightLabel: "Weight (kg)",
+  repsLabel: "Reps",
+  rpeLabel: "RPE",
+  notesLabel: "Note",
+  notesPlaceholder: "Optional",
+  addSet: "Log set",
+  saving: "Saving…",
+  weightError: "Weight must be 0 or more.",
+  repsError: "Reps must be 1 to 100.",
+  rpeError: "RPE must be 1 to 10.",
+  saveError: "Could not save. Try again.",
+  removeSet: "Remove set",
+  noSets: "No sets yet.",
+  pickerTitle: "Add movement",
+  pickerSearchLabel: "Search movements",
+  pickerSearchPlaceholder: "Search a movement or muscle…",
+  pickerResults: (shown, total) => `${shown} of ${total} movements`,
+  pickerPage: (page, totalPages) => `Page ${page} of ${totalPages}`,
+  prevPage: "Previous",
+  nextPage: "Next",
+  pickerEmpty: "Nothing found",
+  close: "Close",
+  add: "Add",
+  detailLink: "Details",
+  recentSetsTitle: "Recent sets",
+  recentSetsEmpty: "No data yet.",
+  dateLabel: "Date",
+  statsTitle: "Stats",
+  statsVolume: "Volume",
+  statsBestE1rm: "Estimated 1RM",
+  statsBestWeight: "Best weight",
+  statsBestSet: "Best set",
+  statsWeekly: "Sets this week",
+  noStats: "No data yet.",
+  muscle: {
+    chest: "Chest",
+    back: "Back",
+    shoulders: "Shoulders",
+    biceps: "Biceps",
+    triceps: "Triceps",
+    legs: "Legs",
+    core: "Core",
+  },
+  muscleFine: {
+    chest: "chest",
+    back: "back",
+    shoulders: "shoulders",
+    biceps: "biceps",
+    triceps: "triceps",
+    quads: "quads",
+    hamstrings: "hamstrings",
+    glutes: "glutes",
+    calves: "calves",
+    core: "core",
+    grip: "grip",
+  },
+  equipment: {
+    barbell: "Barbell",
+    dumbbell: "Dumbbells",
+    cable: "Cable",
+    machine: "Machine",
+    "body only": "Bodyweight",
+    "e-z curl bar": "EZ bar",
+    other: "Accessory",
+  },
+  level: {
+    beginner: "Beginner",
+    intermediate: "Intermediate",
+    expert: "Expert",
+  },
+};
+
+export const dictionaries: Record<Language, Dictionary> = { cs, en };
