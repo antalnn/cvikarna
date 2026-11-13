@@ -1,8 +1,19 @@
 import { deleteJson, getJson, postJson } from "./client";
-import type { ExerciseStats, LoggedSet, RecentSet, Workout, WorkoutExercise } from "./types";
+import type { ExerciseStats, LoggedSet, RecentSet, Workout, WorkoutExercise, WorkoutSummary } from "./types";
 
 export function openTodayWorkout(): Promise<Workout> {
   return postJson<Workout>("/api/workouts");
+}
+
+/** Month is yyyy-MM. Without it the API returns every workout, newest first. */
+export function fetchWorkoutSummaries(month?: string): Promise<WorkoutSummary[]> {
+  const query = month ? `?month=${encodeURIComponent(month)}` : "";
+  return getJson<WorkoutSummary[]>(`/api/workouts${query}`);
+}
+
+/** Throws NotFoundError when no workout was logged on that day. */
+export function fetchWorkoutByDate(date: string): Promise<Workout> {
+  return getJson<Workout>(`/api/workouts/by-date/${encodeURIComponent(date)}`);
 }
 
 export function addWorkoutExercise(workoutId: number, exerciseId: number): Promise<WorkoutExercise> {

@@ -30,6 +30,7 @@ export function Header() {
             {t.navLibrary}
           </Link>
           <NavLink to="/tracker">{t.navTracker}</NavLink>
+          <NavLink to="/history">{t.navHistory}</NavLink>
           <NavLink to="/guides">{t.navGuides}</NavLink>
         </nav>
 

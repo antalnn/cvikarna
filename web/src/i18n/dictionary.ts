@@ -9,6 +9,7 @@ export interface Dictionary {
   navLabel: string;
   navLibrary: string;
   navTracker: string;
+  navHistory: string;
   navGuides: string;
   languageLabel: string;
   heroEyebrow: string;
@@ -88,6 +89,25 @@ export interface Dictionary {
   statsBestSet: string;
   statsWeekly: string;
   noStats: string;
+  historyEyebrow: string;
+  historyTitle: string;
+  historyLede: string;
+  historyLoading: string;
+  historyErrorTitle: string;
+  historyPreviewEyebrow: string;
+  today: string;
+  prevMonth: string;
+  nextMonth: string;
+  calendarLabel: string;
+  calendarWorkoutMark: string;
+  monthWorkoutsTitle: string;
+  monthEmptyTitle: string;
+  monthEmptyText: string;
+  noWorkoutOnDay: string;
+  openToday: string;
+  pickDay: string;
+  exerciseCount: (count: number) => string;
+  setCount: (count: number) => string;
   muscle: Record<MuscleGroup, string>;
   muscleFine: Record<Muscle, string>;
   equipment: Record<Equipment, string>;
@@ -101,6 +121,7 @@ const cs: Dictionary = {
   navLabel: "Hlavní navigace",
   navLibrary: "Knihovna",
   navTracker: "Trénink",
+  navHistory: "Historie",
   navGuides: "Průvodce",
   languageLabel: "Jazyk",
   heroEyebrow: "Od prvního tréninku dál",
@@ -181,6 +202,26 @@ const cs: Dictionary = {
   statsBestSet: "Nejlepší série",
   statsWeekly: "Série tento týden",
   noStats: "Zatím žádná data.",
+  historyEyebrow: "Deník",
+  historyTitle: "Historie tréninků",
+  historyLede: "Prohlédni si, co jsi zvedl v každém týdnu. Minulé tréninky jsou jen ke čtení.",
+  historyLoading: "Načítám historii…",
+  historyErrorTitle: "Historie se nenačetla",
+  historyPreviewEyebrow: "Vybraný trénink",
+  today: "Dnes",
+  prevMonth: "Předchozí měsíc",
+  nextMonth: "Další měsíc",
+  calendarLabel: "Kalendář tréninků",
+  calendarWorkoutMark: "trénink",
+  monthWorkoutsTitle: "Tréninky v měsíci",
+  monthEmptyTitle: "Žádné tréninky",
+  monthEmptyText: "V tomto měsíci zatím žádný trénink není.",
+  noWorkoutOnDay: "V tento den žádný trénink.",
+  openToday: "Otevřít dnešní trénink",
+  pickDay: "Vyber den v kalendáři.",
+  exerciseCount: (count) =>
+    `${count} ${count === 1 ? "cvik" : count >= 2 && count <= 4 ? "cviky" : "cviků"}`,
+  setCount: (count) => `${count} ${count >= 1 && count <= 4 ? "série" : "sérií"}`,
   muscle: {
     chest: "Prsa",
     back: "Záda",
@@ -226,6 +267,7 @@ const en: Dictionary = {
   navLabel: "Main navigation",
   navLibrary: "Library",
   navTracker: "Train",
+  navHistory: "History",
   navGuides: "Guides",
   languageLabel: "Language",
   heroEyebrow: "From your first session on",
@@ -306,6 +348,25 @@ const en: Dictionary = {
   statsBestSet: "Best set",
   statsWeekly: "Sets this week",
   noStats: "No data yet.",
+  historyEyebrow: "Log",
+  historyTitle: "Workout history",
+  historyLede: "See what you lifted each week. Past workouts are read-only.",
+  historyLoading: "Loading the history…",
+  historyErrorTitle: "The history did not load",
+  historyPreviewEyebrow: "Selected workout",
+  today: "Today",
+  prevMonth: "Previous month",
+  nextMonth: "Next month",
+  calendarLabel: "Workout calendar",
+  calendarWorkoutMark: "workout",
+  monthWorkoutsTitle: "Workouts this month",
+  monthEmptyTitle: "No workouts",
+  monthEmptyText: "No workouts in this month yet.",
+  noWorkoutOnDay: "No workout on this day.",
+  openToday: "Open today's workout",
+  pickDay: "Pick a day in the calendar.",
+  exerciseCount: (count) => `${count} ${count === 1 ? "exercise" : "exercises"}`,
+  setCount: (count) => `${count} ${count === 1 ? "set" : "sets"}`,
   muscle: {
     chest: "Chest",
     back: "Back",

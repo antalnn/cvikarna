@@ -109,6 +109,15 @@ export interface Workout {
   exercises: WorkoutExercise[];
 }
 
+/** One row in the history calendar and the month list. */
+export interface WorkoutSummary {
+  id: number;
+  performedOn: string;
+  exerciseCount: number;
+  setCount: number;
+  totalVolumeKg: number;
+}
+
 export interface RecentSet extends LoggedSet {
   exerciseId: number;
   nameEn: string;

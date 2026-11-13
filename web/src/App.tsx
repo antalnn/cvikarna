@@ -6,6 +6,7 @@ import { NotFoundPage } from "./features/exercises/NotFoundPage";
 import { ExerciseDetailPage } from "./features/exercises/ExerciseDetailPage";
 import { ExerciseGridPage } from "./features/exercises/ExerciseGridPage";
 import { GuidesPage } from "./features/guides/GuidesPage";
+import { HistoryPage } from "./features/history/HistoryPage";
 import { TrackerPage } from "./features/tracker/TrackerPage";
 import { LanguageProvider } from "./i18n/LanguageContext";
 
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/" element={<ExerciseGridPage />} />
             <Route path="/exercise/:id" element={<ExerciseDetailPage />} />
             <Route path="/tracker" element={<TrackerPage />} />
+            <Route path="/history" element={<HistoryPage />} />
             <Route path="/guides" element={<GuidesPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

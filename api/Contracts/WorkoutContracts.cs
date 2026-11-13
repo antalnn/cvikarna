@@ -19,6 +19,14 @@ public sealed record WorkoutDto(
             .ToList());
 }
 
+/// <summary>One calendar row: enough for the history list without loading every set.</summary>
+public sealed record WorkoutSummaryDto(
+    int Id,
+    string PerformedOn,
+    int ExerciseCount,
+    int SetCount,
+    decimal TotalVolumeKg);
+
 public sealed record WorkoutExerciseDto(
     int Id,
     int ExerciseId,

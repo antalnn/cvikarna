@@ -43,6 +43,97 @@ public static class WorkoutEndpoints
             .Produces<WorkoutDto>(StatusCodes.Status200OK)
             .Produces<WorkoutDto>(StatusCodes.Status201Created);
 
+        group.MapGet("/workouts", async (
+                AppDbContext db,
+                string? month,
+                CancellationToken cancellationToken) =>
+            {
+                var query = db.Workouts.AsNoTracking();
+                var ascending = false;
+
+                if (!string.IsNullOrWhiteSpace(month))
+                {
+                    if (!DateOnly.TryParseExact(
+                            $"{month}-01",
+                            "yyyy-MM-dd",
+                            CultureInfo.InvariantCulture,
+                            DateTimeStyles.None,
+                            out var first))
+                    {
+                        return Results.ValidationProblem(new Dictionary<string, string[]>
+                        {
+                            ["month"] = ["Month must use yyyy-MM."],
+                        });
+                    }
+
+                    var next = first.AddMonths(1);
+                    query = query.Where(workout => workout.PerformedOn >= first && workout.PerformedOn < next);
+                    ascending = true;
+                }
+
+                var ordered = ascending
+                    ? query.OrderBy(workout => workout.PerformedOn)
+                    : query.OrderByDescending(workout => workout.PerformedOn);
+
+                // Volume is decimal math, and SQLite has no decimal type. The sets
+                // come out of the database and the sum happens in C# so the number
+                // is the same one the stats service computes.
+                var rows = await ordered
+                    .Select(workout => new
+                    {
+                        workout.Id,
+                        workout.PerformedOn,
+                        ExerciseCount = workout.Exercises.Count,
+                        Sets = workout.Exercises
+                            .SelectMany(item => item.Sets)
+                            .Select(set => new { set.WeightKg, set.Reps })
+                            .ToList(),
+                    })
+                    .ToListAsync(cancellationToken);
+
+                var summaries = rows
+                    .Select(row => new WorkoutSummaryDto(
+                        row.Id,
+                        row.PerformedOn.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+                        row.ExerciseCount,
+                        row.Sets.Count,
+                        row.Sets.Sum(set => set.WeightKg * set.Reps)))
+                    .ToList();
+
+                return Results.Ok(summaries);
+            })
+            .WithName("ListWorkouts")
+            .Produces<IReadOnlyList<WorkoutSummaryDto>>()
+            .ProducesValidationProblem();
+
+        group.MapGet("/workouts/by-date/{date}", async (
+                string date,
+                AppDbContext db,
+                CancellationToken cancellationToken) =>
+            {
+                if (!DateOnly.TryParseExact(
+                        date,
+                        "yyyy-MM-dd",
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.None,
+                        out var performedOn))
+                {
+                    return Results.ValidationProblem(new Dictionary<string, string[]>
+                    {
+                        ["date"] = ["Date must use yyyy-MM-dd."],
+                    });
+                }
+
+                var workout = await LoadWorkout(db, performedOn, cancellationToken);
+                return workout is null
+                    ? NotFound("Workout not found", $"No workout was logged on {date}.")
+                    : Results.Ok(WorkoutDto.From(workout));
+            })
+            .WithName("GetWorkoutByDate")
+            .Produces<WorkoutDto>()
+            .ProducesValidationProblem()
+            .ProducesProblem(StatusCodes.Status404NotFound);
+
         group.MapGet("/workouts/{id:int}", async (int id, AppDbContext db, CancellationToken cancellationToken) =>
             {
                 var workout = await LoadWorkout(db, id, cancellationToken);

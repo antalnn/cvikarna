@@ -251,6 +251,131 @@ public class WorkoutApiTests
         Assert.Equal(HttpStatusCode.NotFound, missingWorkout.StatusCode);
     }
 
+    [Fact]
+    public async Task Month_list_returns_only_that_month_in_date_order()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        await SeedHistoryAsync(factory);
+
+        var summaries = await client.GetFromJsonAsync<List<WorkoutSummaryDto>>("/api/workouts?month=2026-05", Json);
+
+        Assert.NotNull(summaries);
+        Assert.Equal(
+            ["2026-05-04", "2026-05-12", "2026-05-20"],
+            summaries.Select(row => row.PerformedOn).ToArray());
+    }
+
+    [Fact]
+    public async Task All_workouts_list_is_newest_first()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        await SeedHistoryAsync(factory);
+
+        var summaries = await client.GetFromJsonAsync<List<WorkoutSummaryDto>>("/api/workouts", Json);
+
+        Assert.NotNull(summaries);
+        Assert.Equal(
+            ["2026-06-02", "2026-05-20", "2026-05-12", "2026-05-04", "2026-04-30"],
+            summaries.Select(row => row.PerformedOn).ToArray());
+    }
+
+    [Fact]
+    public async Task A_summary_counts_exercises_sets_and_volume()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        await SeedHistoryAsync(factory);
+
+        var summaries = await client.GetFromJsonAsync<List<WorkoutSummaryDto>>("/api/workouts?month=2026-05", Json);
+        Assert.NotNull(summaries);
+
+        var may4 = Assert.Single(summaries, row => row.PerformedOn == "2026-05-04");
+        Assert.Equal(2, may4.ExerciseCount);
+        Assert.Equal(3, may4.SetCount);
+        Assert.Equal(812.5m, may4.TotalVolumeKg);
+
+        var may12 = Assert.Single(summaries, row => row.PerformedOn == "2026-05-12");
+        Assert.Equal(1, may12.ExerciseCount);
+        Assert.Equal(0, may12.SetCount);
+        Assert.Equal(0m, may12.TotalVolumeKg);
+    }
+
+    [Fact]
+    public async Task By_date_returns_the_full_workout()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        await SeedHistoryAsync(factory);
+
+        var workout = await client.GetFromJsonAsync<WorkoutDto>("/api/workouts/by-date/2026-05-04", Json);
+
+        Assert.NotNull(workout);
+        Assert.Equal("2026-05-04", workout.PerformedOn);
+        Assert.Equal(2, workout.Exercises.Count);
+        Assert.Equal("Barbell Bench Press", workout.Exercises[0].NameEn);
+        Assert.Equal(2, workout.Exercises[0].Sets.Count);
+        Assert.Equal(80m, workout.Exercises[0].Sets[0].WeightKg);
+        Assert.Equal(0m, workout.Exercises[1].Sets[0].WeightKg);
+    }
+
+    [Fact]
+    public async Task By_date_answers_404_for_a_day_without_a_workout()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        await SeedHistoryAsync(factory);
+
+        var response = await client.GetAsync("/api/workouts/by-date/2026-05-05");
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        Assert.Equal("application/problem+json", response.Content.Headers.ContentType?.MediaType);
+    }
+
+    [Fact]
+    public async Task A_bad_month_and_a_bad_date_name_the_field()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+
+        var badMonth = await client.GetAsync("/api/workouts?month=2026-5");
+        Assert.Equal(HttpStatusCode.BadRequest, badMonth.StatusCode);
+        var monthProblem = await badMonth.Content.ReadFromJsonAsync<HttpValidationProblemDetails>(Json);
+        Assert.NotNull(monthProblem);
+        Assert.True(monthProblem.Errors.ContainsKey("month"));
+
+        var badDate = await client.GetAsync("/api/workouts/by-date/2026-13-01");
+        Assert.Equal(HttpStatusCode.BadRequest, badDate.StatusCode);
+        var dateProblem = await badDate.Content.ReadFromJsonAsync<HttpValidationProblemDetails>(Json);
+        Assert.NotNull(dateProblem);
+        Assert.True(dateProblem.Errors.ContainsKey("date"));
+    }
+
+    private static async Task SeedHistoryAsync(ApiFactory factory)
+    {
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+        var april = new Workout { PerformedOn = new DateOnly(2026, 4, 30) };
+        var may4 = new Workout { PerformedOn = new DateOnly(2026, 5, 4) };
+        var may12 = new Workout { PerformedOn = new DateOnly(2026, 5, 12) };
+        var may20 = new Workout { PerformedOn = new DateOnly(2026, 5, 20) };
+        var june = new Workout { PerformedOn = new DateOnly(2026, 6, 2) };
+        db.Workouts.AddRange(april, may4, may12, may20, june);
+        await db.SaveChangesAsync();
+
+        var bench = new WorkoutExercise { WorkoutId = may4.Id, ExerciseId = 1, Position = 1 };
+        bench.Sets.Add(new LoggedSet { WeightKg = 80m, Reps = 5 });
+        bench.Sets.Add(new LoggedSet { WeightKg = 82.5m, Reps = 5 });
+        var fly = new WorkoutExercise { WorkoutId = may4.Id, ExerciseId = 6, Position = 2 };
+        fly.Sets.Add(new LoggedSet { WeightKg = 0m, Reps = 12 });
+        db.WorkoutExercises.AddRange(bench, fly);
+        db.WorkoutExercises.Add(new WorkoutExercise { WorkoutId = may12.Id, ExerciseId = 1, Position = 1 });
+
+        await db.SaveChangesAsync();
+    }
+
     private static async Task<WorkoutDto> OpenWorkoutAsync(HttpClient client)
     {
         var response = await client.PostAsync("/api/workouts", null);
