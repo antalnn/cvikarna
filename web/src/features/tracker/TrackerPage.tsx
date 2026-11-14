@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import {
   openTodayWorkout,
@@ -25,6 +25,28 @@ interface DragState {
   starts: number[];
 }
 
+interface SettleState {
+  /** Extra translate per item, in px, so the reorder starts where the drop ended. */
+  deltas: Map<number, number>;
+}
+
+/** Where a row at index lands once the row at from moves to to. */
+function slotAfterMove(index: number, from: number, to: number): number {
+  if (index === from) {
+    return to;
+  }
+
+  if (from < to && index > from && index <= to) {
+    return index - 1;
+  }
+
+  if (to < from && index >= to && index < from) {
+    return index + 1;
+  }
+
+  return index;
+}
+
 export function TrackerPage() {
   const { language, t } = useLanguage();
   const [workout, setWorkout] = useState<Workout | null>(null);
@@ -35,6 +57,8 @@ export function TrackerPage() {
   const [drag, setDrag] = useState<DragState | null>(null);
   const dragRef = useRef<DragState | null>(null);
   const listRef = useRef<HTMLOListElement>(null);
+  const [settle, setSettle] = useState<SettleState | null>(null);
+  const settleTops = useRef<Map<number, number> | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
@@ -76,8 +100,35 @@ export function TrackerPage() {
     [reload, t.saveError, workout],
   );
 
+  const captureRowTops = useCallback(() => {
+    const list = listRef.current;
+
+    if (!list || !workout) {
+      return null;
+    }
+
+    const rows = Array.from(list.querySelectorAll<HTMLElement>(".workout-item"));
+
+    if (rows.length !== workout.exercises.length) {
+      return null;
+    }
+
+    const tops = new Map<number, number>();
+    rows.forEach((row, index) => {
+      const item = workout.exercises[index];
+
+      if (item) {
+        // getBoundingClientRect includes the drag transforms, so this is the
+        // position the user currently sees, not the resting layout position.
+        tops.set(item.id, row.getBoundingClientRect().top);
+      }
+    });
+
+    return tops;
+  }, [workout]);
+
   const commitOrder = useCallback(
-    async (ids: number[]) => {
+    async (ids: number[], tops?: Map<number, number>) => {
       if (!workout) {
         return;
       }
@@ -91,6 +142,8 @@ export function TrackerPage() {
         return;
       }
 
+      settleTops.current = tops ?? captureRowTops();
+      setSettle(null);
       setWorkout({ ...workout, exercises: next });
       setOrdering(true);
       setActionError(null);
@@ -105,8 +158,78 @@ export function TrackerPage() {
         setOrdering(false);
       }
     },
-    [workout, reload, t.saveError],
+    [workout, reload, captureRowTops, t.saveError],
   );
+
+  // FLIP settle: after the order changes, offset every row by the distance its
+  // resting position moved, so it stays where the user saw it. The next frame
+  // releases the offset and the existing 180 ms transform transition glides the
+  // row the last few pixels into its slot instead of snapping.
+  useLayoutEffect(() => {
+    const tops = settleTops.current;
+    settleTops.current = null;
+
+    if (!tops || !workout) {
+      return;
+    }
+
+    const list = listRef.current;
+
+    if (!list) {
+      return;
+    }
+
+    const rows = Array.from(list.querySelectorAll<HTMLElement>(".workout-item"));
+    const deltas = new Map<number, number>();
+
+    // Every row gets an entry, including the displaced rows that end at delta 0.
+    // Their drag transform is removed in this same commit, and the instant
+    // transition-none frame stops that removal from animating the wrong way.
+    workout.exercises.forEach((item) => deltas.set(item.id, 0));
+
+    // Removing the drag styles starts a transform transition. Cancel it before
+    // measuring, or the rect still reads the mid-flight drag offset and the
+    // settle offsets the row a second time.
+    rows.forEach((row) => {
+      row.style.transition = "none";
+    });
+
+    const newTops = rows.map((row) => row.getBoundingClientRect().top);
+
+    rows.forEach((row) => {
+      row.style.transition = "";
+    });
+
+    rows.forEach((_, index) => {
+      const item = workout.exercises[index];
+      const previous = item ? tops.get(item.id) : undefined;
+      const nextTop = newTops[index];
+
+      if (item === undefined || previous === undefined || nextTop === undefined) {
+        return;
+      }
+
+      deltas.set(item.id, previous - nextTop);
+    });
+
+    setSettle({ deltas });
+  }, [workout]);
+
+  useEffect(() => {
+    if (!settle) {
+      return;
+    }
+
+    // The instant frame is on screen. Removing the offset now lets the existing
+    // 180 ms transition animate from the release position to the slot.
+    const frame = requestAnimationFrame(() => setSettle(null));
+    const timer = window.setTimeout(() => setSettle(null), 250);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+    };
+  }, [settle]);
 
   const handleReorder = useCallback(
     (itemId: number, targetId: number) => {
@@ -141,6 +264,10 @@ export function TrackerPage() {
       if (!list || fromIndex < 0) {
         return;
       }
+
+      // A new grab wins over a settle that is still gliding.
+      settleTops.current = null;
+      setSettle(null);
 
       const rows = Array.from(list.querySelectorAll<HTMLElement>(".workout-item"));
 
@@ -207,6 +334,10 @@ export function TrackerPage() {
 
     const drop = () => {
       const current = dragRef.current;
+
+      // Measure before the drag styles come off: getBoundingClientRect then
+      // includes the transforms, so the settle starts from what the user sees.
+      const tops = current && workout && current.fromIndex !== current.toIndex ? captureRowTops() : null;
       dragRef.current = null;
       setDrag(null);
 
@@ -222,7 +353,7 @@ export function TrackerPage() {
       }
 
       ids.splice(current.toIndex, 0, moved);
-      void commitOrder(ids);
+      void commitOrder(ids, tops ?? undefined);
     };
 
     window.addEventListener("pointermove", move);
@@ -241,9 +372,9 @@ export function TrackerPage() {
       return { className: "" };
     }
 
-    const height = drag.heights[drag.fromIndex];
+    const start = drag.starts[index];
 
-    if (height === undefined) {
+    if (start === undefined) {
       return { className: "" };
     }
 
@@ -254,42 +385,23 @@ export function TrackerPage() {
       };
     }
 
-    if (drag.fromIndex < drag.toIndex && index > drag.fromIndex && index <= drag.toIndex) {
-      return {
-        style: { transform: `translateY(${-height}px)` },
-        className: "is-shifted",
-      };
+    // Shift by the real distance between this row's old and new slot. Using the
+    // measured starts keeps the 8 px list gap and multi-slot crossings exact.
+    const slot = slotAfterMove(index, drag.fromIndex, drag.toIndex);
+    const target = drag.starts[slot];
+
+    if (slot === index || target === undefined) {
+      return { className: "" };
     }
 
-    if (drag.toIndex < drag.fromIndex && index >= drag.toIndex && index < drag.fromIndex) {
-      return {
-        style: { transform: `translateY(${height}px)` },
-        className: "is-shifted",
-      };
-    }
-
-    return { className: "" };
+    return {
+      style: { transform: `translateY(${target - start}px)` },
+      className: "is-shifted",
+    };
   };
 
-  const previewIndex = (index: number) => {
-    if (!drag) {
-      return index;
-    }
-
-    if (index === drag.fromIndex) {
-      return drag.toIndex;
-    }
-
-    if (drag.fromIndex < drag.toIndex && index > drag.fromIndex && index <= drag.toIndex) {
-      return index - 1;
-    }
-
-    if (drag.toIndex < drag.fromIndex && index >= drag.toIndex && index < drag.fromIndex) {
-      return index + 1;
-    }
-
-    return index;
-  };
+  const previewIndex = (index: number) =>
+    drag ? slotAfterMove(index, drag.fromIndex, drag.toIndex) : index;
 
   if (status === "loading") {
     return (
@@ -382,6 +494,14 @@ export function TrackerPage() {
         <ol className="workout-list" ref={listRef}>
           {workout.exercises.map((item, index) => {
             const visual = dragVisual(index);
+            const settleDelta = settle?.deltas.get(item.id);
+            const settleStyle: CSSProperties | undefined =
+              settleDelta === undefined
+                ? undefined
+                : {
+                    transform: `translateY(${settleDelta}px)`,
+                    transition: "none",
+                  };
 
             return (
               <WorkoutItem
@@ -392,7 +512,7 @@ export function TrackerPage() {
                 orderedIds={workout.exercises.map((row) => row.id)}
                 onReorder={handleReorder}
                 onDragStart={beginDrag}
-                dragStyle={visual.style}
+                dragStyle={visual.style ?? settleStyle}
                 dragClass={visual.className}
                 onChanged={reload}
                 onRemove={handleRemoveExercise}
