@@ -64,6 +64,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         modelBuilder.Entity<LoggedSet>(entity =>
         {
+            entity.HasIndex(s => new { s.WorkoutExerciseId, s.Position });
+
             entity
                 .HasOne(s => s.WorkoutExercise)
                 .WithMany(e => e.Sets)

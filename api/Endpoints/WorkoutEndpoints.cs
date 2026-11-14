@@ -48,7 +48,9 @@ public static class WorkoutEndpoints
                 string? month,
                 CancellationToken cancellationToken) =>
             {
-                var query = db.Workouts.AsNoTracking();
+                var query = db.Workouts
+                    .AsNoTracking()
+                    .Where(workout => workout.Exercises.Any());
                 var ascending = false;
 
                 if (!string.IsNullOrWhiteSpace(month))
@@ -125,7 +127,7 @@ public static class WorkoutEndpoints
                 }
 
                 var workout = await LoadWorkout(db, performedOn, cancellationToken);
-                return workout is null
+                return workout is null || workout.Exercises.Count == 0
                     ? NotFound("Workout not found", $"No workout was logged on {date}.")
                     : Results.Ok(WorkoutDto.From(workout));
             })
@@ -195,6 +197,50 @@ public static class WorkoutEndpoints
             .ProducesValidationProblem()
             .ProducesProblem(StatusCodes.Status404NotFound);
 
+        group.MapPut("/workouts/{id:int}/exercises/order", async (
+                int id,
+                ReorderWorkoutExercisesRequest request,
+                AppDbContext db,
+                CancellationToken cancellationToken) =>
+            {
+                var workoutExists = await db.Workouts.AnyAsync(row => row.Id == id, cancellationToken);
+                if (!workoutExists)
+                {
+                    return NotFound("Workout not found", $"No workout has id {id}.");
+                }
+
+                var items = await db.WorkoutExercises
+                    .Where(item => item.WorkoutId == id)
+                    .ToListAsync(cancellationToken);
+
+                // The list must be exactly this workout's exercises: no gaps, no
+                // foreign ids, no duplicates. Sorted comparison ignores the order sent.
+                var expected = items.Select(item => item.Id).OrderBy(value => value).ToArray();
+                var requested = request.ItemIds?.ToArray() ?? [];
+
+                if (requested.Length != expected.Length
+                    || !requested.OrderBy(value => value).SequenceEqual(expected))
+                {
+                    return Results.ValidationProblem(new Dictionary<string, string[]>
+                    {
+                        ["itemIds"] = ["itemIds must list every exercise of this workout exactly once."],
+                    });
+                }
+
+                var byId = items.ToDictionary(item => item.Id);
+                for (var index = 0; index < requested.Length; index++)
+                {
+                    byId[requested[index]].Position = index + 1;
+                }
+
+                await db.SaveChangesAsync(cancellationToken);
+                return Results.NoContent();
+            })
+            .WithName("ReorderWorkoutExercises")
+            .Produces(StatusCodes.Status204NoContent)
+            .ProducesValidationProblem()
+            .ProducesProblem(StatusCodes.Status404NotFound);
+
         group.MapDelete("/workouts/{id:int}/exercises/{itemId:int}", async (
                 int id,
                 int itemId,
@@ -241,6 +287,7 @@ public static class WorkoutEndpoints
                 var set = new LoggedSet
                 {
                     WorkoutExerciseId = item.Id,
+                    Position = await NextSetPositionAsync(db, item.Id, cancellationToken),
                     WeightKg = request.WeightKg,
                     Reps = request.Reps,
                     Rpe = request.Rpe,
@@ -254,6 +301,53 @@ public static class WorkoutEndpoints
             })
             .WithName("AddSet")
             .Produces<LoggedSetDto>(StatusCodes.Status201Created)
+            .ProducesValidationProblem()
+            .ProducesProblem(StatusCodes.Status404NotFound);
+
+        group.MapPut("/workouts/{id:int}/exercises/{itemId:int}/sets/order", async (
+                int id,
+                int itemId,
+                ReorderSetsRequest request,
+                AppDbContext db,
+                CancellationToken cancellationToken) =>
+            {
+                var item = await db.WorkoutExercises
+                    .FirstOrDefaultAsync(row => row.Id == itemId && row.WorkoutId == id, cancellationToken);
+
+                if (item is null)
+                {
+                    return NotFound("Workout exercise not found", $"No item {itemId} belongs to workout {id}.");
+                }
+
+                var sets = await db.LoggedSets
+                    .Where(set => set.WorkoutExerciseId == item.Id)
+                    .ToListAsync(cancellationToken);
+
+                // The list must be exactly this exercise's sets: no gaps, no foreign
+                // ids, no duplicates. Sorted comparison ignores the order sent.
+                var expected = sets.Select(set => set.Id).OrderBy(value => value).ToArray();
+                var requested = request.SetIds?.ToArray() ?? [];
+
+                if (requested.Length != expected.Length
+                    || !requested.OrderBy(value => value).SequenceEqual(expected))
+                {
+                    return Results.ValidationProblem(new Dictionary<string, string[]>
+                    {
+                        ["setIds"] = ["setIds must list every set of this exercise exactly once."],
+                    });
+                }
+
+                var byId = sets.ToDictionary(set => set.Id);
+                for (var index = 0; index < requested.Length; index++)
+                {
+                    byId[requested[index]].Position = index + 1;
+                }
+
+                await db.SaveChangesAsync(cancellationToken);
+                return Results.NoContent();
+            })
+            .WithName("ReorderSets")
+            .Produces(StatusCodes.Status204NoContent)
             .ProducesValidationProblem()
             .ProducesProblem(StatusCodes.Status404NotFound);
 
@@ -321,6 +415,15 @@ public static class WorkoutEndpoints
 
         return app;
     }
+
+    private static async Task<int> NextSetPositionAsync(
+        AppDbContext db,
+        int itemId,
+        CancellationToken cancellationToken) =>
+        (await db.LoggedSets
+            .Where(set => set.WorkoutExerciseId == itemId)
+            .Select(set => (int?)set.Position)
+            .MaxAsync(cancellationToken) ?? 0) + 1;
 
     private static Dictionary<string, string[]> ValidateSet(AddSetRequest request)
     {

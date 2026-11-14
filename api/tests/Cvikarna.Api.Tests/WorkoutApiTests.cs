@@ -334,6 +334,35 @@ public class WorkoutApiTests
     }
 
     [Fact]
+    public async Task A_workout_with_no_exercises_is_not_listed_or_served_by_date()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var empty = await OpenWorkoutAsync(client);
+
+        var all = await client.GetFromJsonAsync<List<WorkoutSummaryDto>>("/api/workouts", Json);
+        Assert.NotNull(all);
+        Assert.Empty(all);
+
+        var month = await client.GetFromJsonAsync<List<WorkoutSummaryDto>>(
+            $"/api/workouts?month={DateTime.Now.ToString("yyyy-MM", CultureInfo.InvariantCulture)}",
+            Json);
+        Assert.NotNull(month);
+        Assert.Empty(month);
+
+        var byDate = await client.GetAsync($"/api/workouts/by-date/{empty.PerformedOn}");
+        Assert.Equal(HttpStatusCode.NotFound, byDate.StatusCode);
+
+        // Adding one movement makes the same row count again.
+        await AddExerciseAsync(client, empty.Id, 1);
+        var after = await client.GetFromJsonAsync<List<WorkoutSummaryDto>>("/api/workouts", Json);
+        Assert.NotNull(after);
+        var listed = Assert.Single(after);
+        Assert.Equal(empty.PerformedOn, listed.PerformedOn);
+        Assert.Equal(1, listed.ExerciseCount);
+    }
+
+    [Fact]
     public async Task A_bad_month_and_a_bad_date_name_the_field()
     {
         await using var factory = new ApiFactory();
@@ -350,6 +379,197 @@ public class WorkoutApiTests
         var dateProblem = await badDate.Content.ReadFromJsonAsync<HttpValidationProblemDetails>(Json);
         Assert.NotNull(dateProblem);
         Assert.True(dateProblem.Errors.ContainsKey("date"));
+    }
+
+    [Fact]
+    public async Task Sets_can_be_reordered_and_the_order_survives_a_reload()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var workout = await OpenWorkoutAsync(client);
+        var item = await AddExerciseAsync(client, workout.Id, 1);
+
+        var first = await AddSetAsync(client, workout.Id, item.Id, 80m, 5, 8m);
+        var second = await AddSetAsync(client, workout.Id, item.Id, 82.5m, 5, 9m);
+
+        var response = await client.PutAsJsonAsync(
+            $"/api/workouts/{workout.Id}/exercises/{item.Id}/sets/order",
+            new { setIds = new[] { second.Id, first.Id } });
+
+        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+
+        var detail = await client.GetFromJsonAsync<WorkoutDto>($"/api/workouts/{workout.Id}", Json);
+        Assert.NotNull(detail);
+        var sets = detail.Exercises.Single().Sets;
+        Assert.Equal([second.Id, first.Id], sets.Select(set => set.Id).ToArray());
+        Assert.Equal(82.5m, sets[0].WeightKg);
+    }
+
+    [Fact]
+    public async Task Reordering_every_set_rewrites_positions_to_one_to_n()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var workout = await OpenWorkoutAsync(client);
+        var item = await AddExerciseAsync(client, workout.Id, 1);
+
+        var first = await AddSetAsync(client, workout.Id, item.Id, 70m, 8, null);
+        var second = await AddSetAsync(client, workout.Id, item.Id, 75m, 6, null);
+        var third = await AddSetAsync(client, workout.Id, item.Id, 80m, 4, null);
+
+        var response = await client.PutAsJsonAsync(
+            $"/api/workouts/{workout.Id}/exercises/{item.Id}/sets/order",
+            new { setIds = new[] { third.Id, first.Id, second.Id } });
+
+        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var positions = await db.LoggedSets
+            .Where(set => set.WorkoutExerciseId == item.Id)
+            .OrderBy(set => set.Position)
+            .Select(set => new { set.Id, set.Position })
+            .ToListAsync();
+
+        Assert.Equal([1, 2, 3], positions.Select(row => row.Position).ToArray());
+        Assert.Equal([third.Id, first.Id, second.Id], positions.Select(row => row.Id).ToArray());
+
+        var detail = await client.GetFromJsonAsync<WorkoutDto>($"/api/workouts/{workout.Id}", Json);
+        Assert.NotNull(detail);
+        Assert.Equal(
+            [third.Id, first.Id, second.Id],
+            detail.Exercises.Single().Sets.Select(set => set.Id).ToArray());
+    }
+
+    [Fact]
+    public async Task Reorder_rejects_a_foreign_set_id()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var workout = await OpenWorkoutAsync(client);
+        var bench = await AddExerciseAsync(client, workout.Id, 1);
+        var row = await AddExerciseAsync(client, workout.Id, 11);
+
+        var benchFirst = await AddSetAsync(client, workout.Id, bench.Id, 80m, 5, null);
+        var benchSecond = await AddSetAsync(client, workout.Id, bench.Id, 82.5m, 5, null);
+        var foreign = await AddSetAsync(client, workout.Id, row.Id, 30m, 10, null);
+
+        var response = await client.PutAsJsonAsync(
+            $"/api/workouts/{workout.Id}/exercises/{bench.Id}/sets/order",
+            new { setIds = new[] { benchSecond.Id, foreign.Id } });
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        var problem = await response.Content.ReadFromJsonAsync<HttpValidationProblemDetails>(Json);
+        Assert.NotNull(problem);
+        Assert.True(problem.Errors.ContainsKey("setIds"));
+
+        // The rejected call changed nothing.
+        var detail = await client.GetFromJsonAsync<WorkoutDto>($"/api/workouts/{workout.Id}", Json);
+        Assert.NotNull(detail);
+        Assert.Equal(
+            [benchFirst.Id, benchSecond.Id],
+            detail.Exercises[0].Sets.Select(set => set.Id).ToArray());
+    }
+
+    [Fact]
+    public async Task Reorder_rejects_a_partial_list()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var workout = await OpenWorkoutAsync(client);
+        var item = await AddExerciseAsync(client, workout.Id, 1);
+
+        var first = await AddSetAsync(client, workout.Id, item.Id, 80m, 5, null);
+        await AddSetAsync(client, workout.Id, item.Id, 82.5m, 5, null);
+
+        var response = await client.PutAsJsonAsync(
+            $"/api/workouts/{workout.Id}/exercises/{item.Id}/sets/order",
+            new { setIds = new[] { first.Id } });
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task Reorder_answers_404_for_a_wrong_item_or_workout()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var workout = await OpenWorkoutAsync(client);
+        var item = await AddExerciseAsync(client, workout.Id, 1);
+        await AddSetAsync(client, workout.Id, item.Id, 80m, 5, null);
+
+        var wrongWorkout = await client.PutAsJsonAsync(
+            $"/api/workouts/999999/exercises/{item.Id}/sets/order",
+            new { setIds = Array.Empty<int>() });
+        Assert.Equal(HttpStatusCode.NotFound, wrongWorkout.StatusCode);
+
+        var wrongItem = await client.PutAsJsonAsync(
+            $"/api/workouts/{workout.Id}/exercises/999999/sets/order",
+            new { setIds = Array.Empty<int>() });
+        Assert.Equal(HttpStatusCode.NotFound, wrongItem.StatusCode);
+        Assert.Equal("application/problem+json", wrongItem.Content.Headers.ContentType?.MediaType);
+    }
+
+    [Fact]
+    public async Task Workout_exercises_can_be_reordered_and_the_order_survives_a_reload()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var workout = await OpenWorkoutAsync(client);
+        var bench = await AddExerciseAsync(client, workout.Id, 1);
+        var fly = await AddExerciseAsync(client, workout.Id, 6);
+        var row = await AddExerciseAsync(client, workout.Id, 11);
+
+        var response = await client.PutAsJsonAsync(
+            $"/api/workouts/{workout.Id}/exercises/order",
+            new { itemIds = new[] { row.Id, bench.Id, fly.Id } });
+
+        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+
+        var detail = await client.GetFromJsonAsync<WorkoutDto>($"/api/workouts/{workout.Id}", Json);
+        Assert.NotNull(detail);
+        Assert.Equal(
+            ["Seated Cable Row", "Barbell Bench Press", "Dumbbell Fly"],
+            detail.Exercises.Select(item => item.NameEn).ToArray());
+        Assert.Equal([1, 2, 3], detail.Exercises.Select(item => item.Position).ToArray());
+
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var positions = await db.WorkoutExercises
+            .Where(item => item.WorkoutId == workout.Id)
+            .OrderBy(item => item.Position)
+            .Select(item => item.Position)
+            .ToListAsync();
+        Assert.Equal([1, 2, 3], positions);
+    }
+
+    [Fact]
+    public async Task Exercise_reorder_rejects_a_partial_or_foreign_list()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var workout = await OpenWorkoutAsync(client);
+        var bench = await AddExerciseAsync(client, workout.Id, 1);
+        var fly = await AddExerciseAsync(client, workout.Id, 6);
+
+        var partial = await client.PutAsJsonAsync(
+            $"/api/workouts/{workout.Id}/exercises/order",
+            new { itemIds = new[] { bench.Id } });
+        Assert.Equal(HttpStatusCode.BadRequest, partial.StatusCode);
+        var partialProblem = await partial.Content.ReadFromJsonAsync<HttpValidationProblemDetails>(Json);
+        Assert.NotNull(partialProblem);
+        Assert.True(partialProblem.Errors.ContainsKey("itemIds"));
+
+        var foreign = await client.PutAsJsonAsync(
+            $"/api/workouts/{workout.Id}/exercises/order",
+            new { itemIds = new[] { bench.Id, 999999 } });
+        Assert.Equal(HttpStatusCode.BadRequest, foreign.StatusCode);
+
+        var missingWorkout = await client.PutAsJsonAsync(
+            "/api/workouts/999999/exercises/order",
+            new { itemIds = new[] { bench.Id, fly.Id } });
+        Assert.Equal(HttpStatusCode.NotFound, missingWorkout.StatusCode);
+        Assert.Equal("application/problem+json", missingWorkout.Content.Headers.ContentType?.MediaType);
     }
 
     private static async Task SeedHistoryAsync(ApiFactory factory)
@@ -372,6 +592,10 @@ public class WorkoutApiTests
         fly.Sets.Add(new LoggedSet { WeightKg = 0m, Reps = 12 });
         db.WorkoutExercises.AddRange(bench, fly);
         db.WorkoutExercises.Add(new WorkoutExercise { WorkoutId = may12.Id, ExerciseId = 1, Position = 1 });
+        db.WorkoutExercises.AddRange(
+            new WorkoutExercise { WorkoutId = april.Id, ExerciseId = 1, Position = 1 },
+            new WorkoutExercise { WorkoutId = may20.Id, ExerciseId = 1, Position = 1 },
+            new WorkoutExercise { WorkoutId = june.Id, ExerciseId = 1, Position = 1 });
 
         await db.SaveChangesAsync();
     }

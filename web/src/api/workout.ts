@@ -1,4 +1,4 @@
-import { deleteJson, getJson, postJson } from "./client";
+import { deleteJson, getJson, postJson, putJson } from "./client";
 import type { ExerciseStats, LoggedSet, RecentSet, Workout, WorkoutExercise, WorkoutSummary } from "./types";
 
 export function openTodayWorkout(): Promise<Workout> {
@@ -24,6 +24,11 @@ export function removeWorkoutExercise(workoutId: number, itemId: number): Promis
   return deleteJson(`/api/workouts/${workoutId}/exercises/${itemId}`);
 }
 
+/** Rewrites the exercise order inside one workout. Ids must be every item, exactly once. */
+export function reorderWorkoutExercises(workoutId: number, itemIds: number[]): Promise<void> {
+  return putJson(`/api/workouts/${workoutId}/exercises/order`, { itemIds });
+}
+
 export interface NewSet {
   weightKg: number;
   reps: number;
@@ -37,6 +42,11 @@ export function addSet(workoutId: number, itemId: number, input: NewSet): Promis
 
 export function removeSet(id: number): Promise<void> {
   return deleteJson(`/api/sets/${id}`);
+}
+
+/** Rewrites the set order inside one exercise. Ids must be every set, exactly once. */
+export function reorderSets(workoutId: number, itemId: number, setIds: number[]): Promise<void> {
+  return putJson(`/api/workouts/${workoutId}/exercises/${itemId}/sets/order`, { setIds });
 }
 
 export function fetchRecentSets(exerciseId: number, take = 5): Promise<RecentSet[]> {

@@ -216,11 +216,6 @@ export function PickerSheet({ workoutId, onClose, onAdded }: PickerSheetProps) {
                         <p className="picker-row__title">
                           {pick(language, row.nameCs ?? row.nameEn, row.nameEn)}
                         </p>
-                        {row.nameCs ? (
-                          <p className="picker-row__alt" lang="en">
-                            {row.nameEn}
-                          </p>
-                        ) : null}
                         <div className="picker-row__tags">
                           <span className="tag">{t.muscle[muscleGroupOf(row.primaryMuscle)]}</span>
                           {row.equipment ? <span className="tag">{t.equipment[row.equipment]}</span> : null}

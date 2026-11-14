@@ -31,6 +31,7 @@ export function HistoryPage() {
 
   const [month, setMonth] = useState(currentMonth);
   const [selected, setSelected] = useState<string | null>(todayKey);
+  const [newestFirst, setNewestFirst] = useState(true);
   const [preview, setPreview] = useState<PreviewState>({ status: "loading" });
   const [previewAttempt, setPreviewAttempt] = useState(0);
   // The Today button is the one action that opens the tracker when the day is
@@ -49,6 +50,18 @@ export function HistoryPage() {
     }
     return map;
   }, [monthState]);
+
+  const monthSummaries = useMemo(() => {
+    if (monthState.status !== "success") {
+      return [];
+    }
+
+    return [...monthState.data].sort((left, right) =>
+      newestFirst
+        ? right.performedOn.localeCompare(left.performedOn)
+        : left.performedOn.localeCompare(right.performedOn),
+    );
+  }, [monthState, newestFirst]);
 
   useEffect(() => {
     if (!selected) {
@@ -132,54 +145,86 @@ export function HistoryPage() {
           onSelect={selectDay}
         />
 
-        <section className="month-panel" aria-labelledby="month-workouts-title">
-          <h2 className="panel-heading" id="month-workouts-title">
-            {t.monthWorkoutsTitle}
-          </h2>
+        <div className="month-panel-slot">
+          <section className="month-panel" aria-labelledby="month-workouts-title">
+            <div className="month-panel__head">
+              <h2 className="panel-heading" id="month-workouts-title">
+                {t.monthWorkoutsTitle}
+              </h2>
 
-          {monthState.status === "loading" ? (
-            <p className="month-panel__state" role="status">
-              {t.historyLoading}
-            </p>
-          ) : null}
-
-          {monthState.status === "error" ? (
-            <div className="month-panel__state" role="alert">
-              <p>{t.historyErrorTitle}</p>
-              <button className="button button--small" type="button" onClick={monthState.retry}>
-                {t.retry}
-              </button>
-            </div>
-          ) : null}
-
-          {monthState.status === "success" && monthState.data.length === 0 ? (
-            <div className="month-empty">
-              <p className="month-empty__title">{t.monthEmptyTitle}</p>
-              <p>{t.monthEmptyText}</p>
-            </div>
-          ) : null}
-
-          {monthState.status === "success" && monthState.data.length > 0 ? (
-            <ol className="month-list">
-              {monthState.data.map((summary) => (
-                <li key={summary.id}>
-                  <button
-                    className="month-row"
-                    type="button"
-                    aria-pressed={selected === summary.performedOn}
-                    onClick={() => selectDay(summary.performedOn)}
+              {monthSummaries.length > 1 ? (
+                <button
+                  className="month-sort"
+                  type="button"
+                  aria-label={t.sortOrderLabel}
+                  onClick={() => setNewestFirst((value) => !value)}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    aria-hidden="true"
                   >
-                    <span className="month-row__date">{formatShortDate(summary.performedOn, language)}</span>
-                    <span className="month-row__volume">{formatNumber(summary.totalVolumeKg, language)} kg</span>
-                    <span className="month-row__meta">
-                      {t.exerciseCount(summary.exerciseCount)} · {t.setCount(summary.setCount)}
-                    </span>
+                    {newestFirst ? (
+                      <path d="M12 5v14m0 0 5-5m-5 5-5-5" strokeLinecap="round" strokeLinejoin="round" />
+                    ) : (
+                      <path d="M12 19V5m0 0 5 5m-5-5-5 5" strokeLinecap="round" strokeLinejoin="round" />
+                    )}
+                  </svg>
+                  {newestFirst ? t.sortNewest : t.sortOldest}
+                </button>
+              ) : null}
+            </div>
+
+            <div className="month-panel__scroll">
+              {monthState.status === "loading" ? (
+                <p className="month-panel__state" role="status">
+                  {t.historyLoading}
+                </p>
+              ) : null}
+
+              {monthState.status === "error" ? (
+                <div className="month-panel__state" role="alert">
+                  <p>{t.historyErrorTitle}</p>
+                  <button className="button button--small" type="button" onClick={monthState.retry}>
+                    {t.retry}
                   </button>
-                </li>
-              ))}
-            </ol>
-          ) : null}
-        </section>
+                </div>
+              ) : null}
+
+              {monthState.status === "success" && monthSummaries.length === 0 ? (
+                <div className="month-empty">
+                  <p className="month-empty__title">{t.monthEmptyTitle}</p>
+                  <p>{t.monthEmptyText}</p>
+                </div>
+              ) : null}
+
+              {monthState.status === "success" && monthSummaries.length > 0 ? (
+                <ol className="month-list">
+                  {monthSummaries.map((summary) => (
+                    <li key={summary.id}>
+                      <button
+                        className="month-row"
+                        type="button"
+                        aria-pressed={selected === summary.performedOn}
+                        onClick={() => selectDay(summary.performedOn)}
+                      >
+                        <span className="month-row__date">{formatShortDate(summary.performedOn, language)}</span>
+                        <span className="month-row__meta">
+                          {t.exerciseCount(summary.exerciseCount)} · {t.setCount(summary.setCount)}
+                        </span>
+                        <span className="month-row__volume">
+                          {formatNumber(summary.totalVolumeKg, language)} kg
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ol>
+              ) : null}
+            </div>
+          </section>
+        </div>
       </div>
 
       <section className="history-preview">

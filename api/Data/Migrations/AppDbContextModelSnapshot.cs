@@ -110,6 +110,9 @@ namespace Cvikarna.Api.Data.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Position")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Reps")
                         .HasColumnType("INTEGER");
 
@@ -124,7 +127,7 @@ namespace Cvikarna.Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WorkoutExerciseId");
+                    b.HasIndex("WorkoutExerciseId", "Position");
 
                     b.ToTable("LoggedSets");
                 });

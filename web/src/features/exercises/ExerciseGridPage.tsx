@@ -108,25 +108,24 @@ export function ExerciseGridPage() {
         </div>
       </section>
 
+      <p className="results-meta" aria-live="polite">
+        {state.status === "success" ? <span>{t.results(state.data.length, TOTAL_EXERCISES)}</span> : null}
+      </p>
+
       {state.status === "loading" ? <SkeletonGrid /> : null}
 
       {state.status === "error" ? <ErrorState onRetry={state.retry} /> : null}
 
       {state.status === "success" ? (
-        <>
-          <p className="results-meta">
-            <span>{t.results(state.data.length, TOTAL_EXERCISES)}</span>
-          </p>
-          {state.data.length === 0 ? (
-            <EmptyState onClear={clearFilters} />
-          ) : (
-            <ul className="grid">
-              {state.data.map((exercise) => (
-                <ExerciseCard key={exercise.id} exercise={exercise} />
-              ))}
-            </ul>
-          )}
-        </>
+        state.data.length === 0 ? (
+          <EmptyState onClear={clearFilters} />
+        ) : (
+          <ul className="grid">
+            {state.data.map((exercise) => (
+              <ExerciseCard key={exercise.id} exercise={exercise} />
+            ))}
+          </ul>
+        )
       ) : null}
     </>
   );

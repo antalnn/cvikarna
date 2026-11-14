@@ -41,6 +41,7 @@ export interface Dictionary {
   photoEnd: string;
   sectionInstructions: string;
   sectionCues: string;
+  sectionSimilar: string;
   aliasesLabel: string;
   levelLabel: string;
   secondaryLabel: string;
@@ -58,6 +59,8 @@ export interface Dictionary {
   weightLabel: string;
   repsLabel: string;
   rpeLabel: string;
+  rpeInfo: string;
+  rpeInfoLabel: string;
   notesLabel: string;
   notesPlaceholder: string;
   addSet: string;
@@ -67,7 +70,14 @@ export interface Dictionary {
   rpeError: string;
   saveError: string;
   removeSet: string;
+  reorderSet: string;
+  reorderExercise: string;
   noSets: string;
+  noSetsShort: string;
+  expand: string;
+  collapse: string;
+  expandAll: string;
+  collapseAll: string;
   pickerTitle: string;
   pickerSearchLabel: string;
   pickerSearchPlaceholder: string;
@@ -101,6 +111,9 @@ export interface Dictionary {
   calendarLabel: string;
   calendarWorkoutMark: string;
   monthWorkoutsTitle: string;
+  sortNewest: string;
+  sortOldest: string;
+  sortOrderLabel: string;
   monthEmptyTitle: string;
   monthEmptyText: string;
   noWorkoutOnDay: string;
@@ -125,7 +138,7 @@ const cs: Dictionary = {
   navGuides: "Průvodce",
   languageLabel: "Jazyk",
   heroEyebrow: "Od prvního tréninku dál",
-  heroTitle: "Všechny cviky, které ti pomůžou nabrat svaly a sílu.",
+  heroTitle: "Všechny cviky, které ti pomůžou nabrat svaly a sílu",
   heroLede:
     "Od prvního cviku po hotový plán. Zjisti, co a proč dělat, a poskládej si trénink podle vybavení, které máš.",
   searchLabel: "Hledat cvik",
@@ -154,6 +167,7 @@ const cs: Dictionary = {
   photoEnd: "Koncová poloha",
   sectionInstructions: "Provedení",
   sectionCues: "Na co si dát pozor",
+  sectionSimilar: "Podobné cviky",
   aliasesLabel: "Také známo jako",
   levelLabel: "Náročnost",
   secondaryLabel: "Zapojuje také",
@@ -171,6 +185,9 @@ const cs: Dictionary = {
   weightLabel: "Váha (kg)",
   repsLabel: "Opakování",
   rpeLabel: "RPE",
+  rpeInfo:
+    "RPE říká, jak těžká série byla. 1 je velmi lehká, 10 znamená, že už bys nedal další opakování. Většina pracovních sérií je 7 až 9.",
+  rpeInfoLabel: "Co je RPE?",
   notesLabel: "Poznámka",
   notesPlaceholder: "Nepovinné",
   addSet: "Zapsat sérii",
@@ -180,7 +197,14 @@ const cs: Dictionary = {
   rpeError: "RPE musí být 1 až 10.",
   saveError: "Nepodařilo se uložit. Zkuste to znovu.",
   removeSet: "Odebrat sérii",
+  reorderSet: "Přesunout sérii. Táhni myší, nebo stiskni šipku nahoru a dolů.",
+  reorderExercise: "Přesunout cvik. Táhni myší, nebo stiskni šipku nahoru a dolů.",
   noSets: "Zatím žádné série.",
+  noSetsShort: "Bez sérií",
+  expand: "Rozbalit",
+  collapse: "Sbalit",
+  expandAll: "Rozbalit vše",
+  collapseAll: "Sbalit vše",
   pickerTitle: "Přidat cvik",
   pickerSearchLabel: "Hledat cvik",
   pickerSearchPlaceholder: "Hledej cvik nebo sval…",
@@ -214,6 +238,9 @@ const cs: Dictionary = {
   calendarLabel: "Kalendář tréninků",
   calendarWorkoutMark: "trénink",
   monthWorkoutsTitle: "Tréninky v měsíci",
+  sortNewest: "Nejnovější první",
+  sortOldest: "Nejstarší první",
+  sortOrderLabel: "Změnit pořadí tréninků",
   monthEmptyTitle: "Žádné tréninky",
   monthEmptyText: "V tomto měsíci zatím žádný trénink není.",
   noWorkoutOnDay: "V tento den žádný trénink.",
@@ -271,7 +298,7 @@ const en: Dictionary = {
   navGuides: "Guides",
   languageLabel: "Language",
   heroEyebrow: "From your first session on",
-  heroTitle: "Every movement you need to build muscle and get strong.",
+  heroTitle: "Every movement you need to build muscle and get strong",
   heroLede:
     "From your first movement to a finished plan. Learn what to do and why, and build a workout around the equipment you have.",
   searchLabel: "Search movements",
@@ -300,6 +327,7 @@ const en: Dictionary = {
   photoEnd: "End position",
   sectionInstructions: "How to do it",
   sectionCues: "What to watch for",
+  sectionSimilar: "Similar exercises",
   aliasesLabel: "Also known as",
   levelLabel: "Level",
   secondaryLabel: "Also works",
@@ -317,6 +345,9 @@ const en: Dictionary = {
   weightLabel: "Weight (kg)",
   repsLabel: "Reps",
   rpeLabel: "RPE",
+  rpeInfo:
+    "RPE says how hard a set was. 1 is very easy, 10 means no more reps were possible. Most working sets land at 7 to 9.",
+  rpeInfoLabel: "What is RPE?",
   notesLabel: "Note",
   notesPlaceholder: "Optional",
   addSet: "Log set",
@@ -326,7 +357,14 @@ const en: Dictionary = {
   rpeError: "RPE must be 1 to 10.",
   saveError: "Could not save. Try again.",
   removeSet: "Remove set",
+  reorderSet: "Reorder set. Drag it, or press Arrow Up or Arrow Down.",
+  reorderExercise: "Reorder exercise. Drag it, or press Arrow Up or Arrow Down.",
   noSets: "No sets yet.",
+  noSetsShort: "No sets",
+  expand: "Expand",
+  collapse: "Collapse",
+  expandAll: "Expand all",
+  collapseAll: "Collapse all",
   pickerTitle: "Add movement",
   pickerSearchLabel: "Search movements",
   pickerSearchPlaceholder: "Search a movement or muscle…",
@@ -360,6 +398,9 @@ const en: Dictionary = {
   calendarLabel: "Workout calendar",
   calendarWorkoutMark: "workout",
   monthWorkoutsTitle: "Workouts this month",
+  sortNewest: "Newest first",
+  sortOldest: "Oldest first",
+  sortOrderLabel: "Change workout order",
   monthEmptyTitle: "No workouts",
   monthEmptyText: "No workouts in this month yet.",
   noWorkoutOnDay: "No workout on this day.",

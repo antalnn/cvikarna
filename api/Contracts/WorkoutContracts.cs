@@ -49,7 +49,7 @@ public sealed record WorkoutExerciseDto(
         item.Exercise.PrimaryMuscle,
         item.Exercise.Equipment,
         item.Exercise.Level,
-        item.Sets.OrderBy(set => set.Id).Select(LoggedSetDto.From).ToList());
+        item.Sets.OrderBy(set => set.Position).ThenBy(set => set.Id).Select(LoggedSetDto.From).ToList());
 }
 
 public sealed record LoggedSetDto(int Id, decimal WeightKg, int Reps, decimal? Rpe, string? Notes)
@@ -76,3 +76,9 @@ public sealed record RecentSetDto(
 public sealed record AddExerciseRequest(int ExerciseId);
 
 public sealed record AddSetRequest(decimal WeightKg, int Reps, decimal? Rpe, string? Notes);
+
+/// <summary>Ordered ids of every set in one workout exercise, first to last.</summary>
+public sealed record ReorderSetsRequest(IReadOnlyList<int> SetIds);
+
+/// <summary>Ordered ids of every exercise in one workout, first to last.</summary>
+public sealed record ReorderWorkoutExercisesRequest(IReadOnlyList<int> ItemIds);

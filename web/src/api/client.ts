@@ -92,3 +92,13 @@ export function postJson<T>(path: string, body?: unknown): Promise<T> {
 export function deleteJson(path: string): Promise<void> {
   return request<void>(path, { method: "DELETE" });
 }
+
+export function putJson<T>(path: string, body?: unknown): Promise<T> {
+  const init: RequestInit = { method: "PUT" };
+
+  if (body !== undefined) {
+    init.body = JSON.stringify(body);
+  }
+
+  return request<T>(path, init);
+}

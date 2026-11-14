@@ -6,7 +6,6 @@ import { pick, useLanguage } from "../i18n/useLanguage";
 export function ExerciseCard({ exercise }: { exercise: Exercise }) {
   const { language, t } = useLanguage();
   const name = pick(language, exercise.nameCs, exercise.nameEn);
-  const alt = pick(language, exercise.nameEn, exercise.nameCs);
   const photo = exercise.images[exercise.coverIndex ?? 0];
 
   return (
@@ -18,9 +17,6 @@ export function ExerciseCard({ exercise }: { exercise: Exercise }) {
         </div>
         <div className="card__body">
           <h3 className="card__title">{name}</h3>
-          <p className="card__alt" lang={pick(language, "en", "cs")}>
-            {alt}
-          </p>
           <div className="card__tags">
             <span className="tag">{t.equipment[exercise.equipment]}</span>
             <span className="tag">{t.level[exercise.level]}</span>
