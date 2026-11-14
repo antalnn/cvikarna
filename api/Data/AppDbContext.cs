@@ -43,6 +43,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         {
             // One open workout per date; opening the tracker twice returns the same row.
             entity.HasIndex(w => w.PerformedOn).IsUnique();
+            entity.Property(w => w.Name).HasMaxLength(80);
         });
 
         modelBuilder.Entity<WorkoutExercise>(entity =>

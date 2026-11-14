@@ -572,6 +572,252 @@ public class WorkoutApiTests
         Assert.Equal("application/problem+json", missingWorkout.Content.Headers.ContentType?.MediaType);
     }
 
+    [Fact]
+    public async Task Workout_name_is_set_renamed_and_cleared()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var workout = await OpenWorkoutAsync(client);
+        var item = await AddExerciseAsync(client, workout.Id, 1);
+        await AddSetAsync(client, workout.Id, item.Id, 80m, 5, 8m);
+
+        Assert.Null(workout.Name);
+
+        var set = await client.PatchAsJsonAsync(
+            $"/api/workouts/{workout.Id}",
+            new { name = "  Push day  " });
+        Assert.Equal(HttpStatusCode.OK, set.StatusCode);
+        var named = await set.Content.ReadFromJsonAsync<WorkoutDto>(Json);
+        Assert.NotNull(named);
+        Assert.Equal("Push day", named.Name);
+
+        var renamed = await client.PatchAsJsonAsync(
+            $"/api/workouts/{workout.Id}",
+            new { name = "Pull day" });
+        Assert.Equal(HttpStatusCode.OK, renamed.StatusCode);
+        var afterRename = await renamed.Content.ReadFromJsonAsync<WorkoutDto>(Json);
+        Assert.NotNull(afterRename);
+        Assert.Equal("Pull day", afterRename.Name);
+
+        // The full workout and the calendar summary read the same name.
+        var byDate = await client.GetFromJsonAsync<WorkoutDto>($"/api/workouts/by-date/{workout.PerformedOn}", Json);
+        Assert.NotNull(byDate);
+        Assert.Equal("Pull day", byDate.Name);
+
+        var summaries = await client.GetFromJsonAsync<List<WorkoutSummaryDto>>("/api/workouts", Json);
+        Assert.NotNull(summaries);
+        Assert.Equal("Pull day", Assert.Single(summaries).Name);
+
+        var tooLong = await client.PatchAsJsonAsync(
+            $"/api/workouts/{workout.Id}",
+            new { name = new string('x', 81) });
+        Assert.Equal(HttpStatusCode.BadRequest, tooLong.StatusCode);
+        var problem = await tooLong.Content.ReadFromJsonAsync<HttpValidationProblemDetails>(Json);
+        Assert.NotNull(problem);
+        Assert.True(problem.Errors.ContainsKey("name"));
+
+        var cleared = await client.PatchAsJsonAsync(
+            $"/api/workouts/{workout.Id}",
+            new { name = "   " });
+        Assert.Equal(HttpStatusCode.OK, cleared.StatusCode);
+        var afterClear = await cleared.Content.ReadFromJsonAsync<WorkoutDto>(Json);
+        Assert.NotNull(afterClear);
+        Assert.Null(afterClear.Name);
+
+        var missing = await client.PatchAsJsonAsync(
+            "/api/workouts/999999",
+            new { name = "Nowhere" });
+        Assert.Equal(HttpStatusCode.NotFound, missing.StatusCode);
+        Assert.Equal("application/problem+json", missing.Content.Headers.ContentType?.MediaType);
+    }
+
+    [Fact]
+    public async Task Copying_a_workout_copies_exercises_sets_and_order()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var sourceId = await SeedCopySourceAsync(factory);
+        var target = await OpenWorkoutAsync(client);
+
+        var response = await client.PostAsJsonAsync(
+            $"/api/workouts/{target.Id}/copy",
+            new { sourceWorkoutId = sourceId });
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        var copied = await response.Content.ReadFromJsonAsync<WorkoutDto>(Json);
+        Assert.NotNull(copied);
+        Assert.Equal("Leg day", copied.Name);
+        Assert.Equal([1, 2], copied.Exercises.Select(item => item.Position).ToArray());
+        Assert.Equal([1, 11], copied.Exercises.Select(item => item.ExerciseId).ToArray());
+
+        var squat = copied.Exercises[0];
+        Assert.Equal(2, squat.Sets.Count);
+        Assert.Equal([100m, 110m], squat.Sets.Select(set => set.WeightKg).ToArray());
+        Assert.Equal([5, 3], squat.Sets.Select(set => set.Reps).ToArray());
+        Assert.Equal([8m, 9m], squat.Sets.Select(set => set.Rpe).ToArray());
+        Assert.Equal("belt on", squat.Sets[0].Notes);
+        Assert.Null(squat.Sets[1].Notes);
+
+        var press = copied.Exercises[1];
+        Assert.Single(press.Sets);
+        Assert.Equal(60m, press.Sets[0].WeightKg);
+    }
+
+    [Fact]
+    public async Task A_second_copy_appends_and_never_overwrites_the_target_name()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var sourceId = await SeedCopySourceAsync(factory);
+        var target = await OpenWorkoutAsync(client);
+
+        await client.PatchAsJsonAsync($"/api/workouts/{target.Id}", new { name = "Morning" });
+
+        var first = await client.PostAsJsonAsync(
+            $"/api/workouts/{target.Id}/copy",
+            new { sourceWorkoutId = sourceId });
+        Assert.Equal(HttpStatusCode.OK, first.StatusCode);
+        var once = await first.Content.ReadFromJsonAsync<WorkoutDto>(Json);
+        Assert.NotNull(once);
+        Assert.Equal("Morning", once.Name);
+
+        var second = await client.PostAsJsonAsync(
+            $"/api/workouts/{target.Id}/copy",
+            new { sourceWorkoutId = sourceId });
+        Assert.Equal(HttpStatusCode.OK, second.StatusCode);
+        var twice = await second.Content.ReadFromJsonAsync<WorkoutDto>(Json);
+        Assert.NotNull(twice);
+        Assert.Equal("Morning", twice.Name);
+        Assert.Equal(4, twice.Exercises.Count);
+        Assert.Equal([1, 2, 3, 4], twice.Exercises.Select(item => item.Position).ToArray());
+        Assert.Equal([1, 11, 1, 11], twice.Exercises.Select(item => item.ExerciseId).ToArray());
+        Assert.Equal(6, twice.Exercises.Sum(item => item.Sets.Count));
+    }
+
+    [Fact]
+    public async Task Copy_rejects_self_an_empty_or_missing_source_and_a_missing_target()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var target = await OpenWorkoutAsync(client);
+        var emptySourceId = await SeedEmptyWorkoutAsync(factory, new DateOnly(2026, 3, 1));
+
+        var self = await client.PostAsJsonAsync(
+            $"/api/workouts/{target.Id}/copy",
+            new { sourceWorkoutId = target.Id });
+        Assert.Equal(HttpStatusCode.BadRequest, self.StatusCode);
+        var selfProblem = await self.Content.ReadFromJsonAsync<HttpValidationProblemDetails>(Json);
+        Assert.NotNull(selfProblem);
+        Assert.True(selfProblem.Errors.ContainsKey("sourceWorkoutId"));
+
+        var empty = await client.PostAsJsonAsync(
+            $"/api/workouts/{target.Id}/copy",
+            new { sourceWorkoutId = emptySourceId });
+        Assert.Equal(HttpStatusCode.BadRequest, empty.StatusCode);
+        var emptyProblem = await empty.Content.ReadFromJsonAsync<HttpValidationProblemDetails>(Json);
+        Assert.NotNull(emptyProblem);
+        Assert.True(emptyProblem.Errors.ContainsKey("sourceWorkoutId"));
+
+        var missingSource = await client.PostAsJsonAsync(
+            $"/api/workouts/{target.Id}/copy",
+            new { sourceWorkoutId = 999999 });
+        Assert.Equal(HttpStatusCode.NotFound, missingSource.StatusCode);
+
+        var missingTarget = await client.PostAsJsonAsync(
+            "/api/workouts/999999/copy",
+            new { sourceWorkoutId = emptySourceId });
+        Assert.Equal(HttpStatusCode.NotFound, missingTarget.StatusCode);
+        Assert.Equal("application/problem+json", missingTarget.Content.Headers.ContentType?.MediaType);
+    }
+
+    [Fact]
+    public async Task Workout_list_take_and_exclude_filter_the_newest_rows()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        await SeedHistoryAsync(factory);
+
+        int juneId;
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            juneId = await db.Workouts
+                .Where(workout => workout.PerformedOn == new DateOnly(2026, 6, 2))
+                .Select(workout => workout.Id)
+                .SingleAsync();
+        }
+
+        var newestTwo = await client.GetFromJsonAsync<List<WorkoutSummaryDto>>("/api/workouts?take=2", Json);
+        Assert.NotNull(newestTwo);
+        Assert.Equal(["2026-06-02", "2026-05-20"], newestTwo.Select(row => row.PerformedOn).ToArray());
+
+        // Today's empty row is excluded, and the newest row drops out too.
+        var skipped = await client.GetFromJsonAsync<List<WorkoutSummaryDto>>(
+            $"/api/workouts?take=2&excludeId={juneId}",
+            Json);
+        Assert.NotNull(skipped);
+        Assert.Equal(["2026-05-20", "2026-05-12"], skipped.Select(row => row.PerformedOn).ToArray());
+
+        // An oversized take is clamped instead of failing.
+        var clamped = await client.GetFromJsonAsync<List<WorkoutSummaryDto>>("/api/workouts?take=999", Json);
+        Assert.NotNull(clamped);
+        Assert.Equal(5, clamped.Count);
+    }
+
+    private static async Task<int> SeedCopySourceAsync(ApiFactory factory)
+    {
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+        var source = new Workout
+        {
+            PerformedOn = new DateOnly(2026, 3, 2),
+            Name = "Leg day",
+        };
+
+        var squat = new WorkoutExercise { ExerciseId = 1, Position = 1 };
+        squat.Sets.Add(new LoggedSet
+        {
+            Position = 1,
+            WeightKg = 100m,
+            Reps = 5,
+            Rpe = 8m,
+            Notes = "belt on",
+        });
+        squat.Sets.Add(new LoggedSet
+        {
+            Position = 2,
+            WeightKg = 110m,
+            Reps = 3,
+            Rpe = 9m,
+        });
+
+        var press = new WorkoutExercise { ExerciseId = 11, Position = 2 };
+        press.Sets.Add(new LoggedSet
+        {
+            Position = 1,
+            WeightKg = 60m,
+            Reps = 10,
+            Rpe = 7m,
+        });
+
+        source.Exercises.Add(squat);
+        source.Exercises.Add(press);
+        db.Workouts.Add(source);
+        await db.SaveChangesAsync();
+        return source.Id;
+    }
+
+    private static async Task<int> SeedEmptyWorkoutAsync(ApiFactory factory, DateOnly performedOn)
+    {
+        using var scope = factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var workout = new Workout { PerformedOn = performedOn };
+        db.Workouts.Add(workout);
+        await db.SaveChangesAsync();
+        return workout.Id;
+    }
+
     private static async Task SeedHistoryAsync(ApiFactory factory)
     {
         using var scope = factory.Services.CreateScope();

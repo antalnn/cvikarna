@@ -46,12 +46,19 @@ public static class WorkoutEndpoints
         group.MapGet("/workouts", async (
                 AppDbContext db,
                 string? month,
+                int? take,
+                int? excludeId,
                 CancellationToken cancellationToken) =>
             {
                 var query = db.Workouts
                     .AsNoTracking()
                     .Where(workout => workout.Exercises.Any());
                 var ascending = false;
+
+                if (excludeId is not null)
+                {
+                    query = query.Where(workout => workout.Id != excludeId);
+                }
 
                 if (!string.IsNullOrWhiteSpace(month))
                 {
@@ -73,9 +80,17 @@ public static class WorkoutEndpoints
                     ascending = true;
                 }
 
-                var ordered = ascending
+                IQueryable<Workout> ordered = ascending
                     ? query.OrderBy(workout => workout.PerformedOn)
                     : query.OrderByDescending(workout => workout.PerformedOn);
+
+                // A missing take keeps the whole list, which the history month view
+                // still relies on. A given take is clamped so a client cannot ask
+                // for an unbounded page.
+                if (take is not null)
+                {
+                    ordered = ordered.Take(Math.Clamp(take.Value, 1, 50));
+                }
 
                 // Volume is decimal math, and SQLite has no decimal type. The sets
                 // come out of the database and the sum happens in C# so the number
@@ -85,6 +100,7 @@ public static class WorkoutEndpoints
                     {
                         workout.Id,
                         workout.PerformedOn,
+                        workout.Name,
                         ExerciseCount = workout.Exercises.Count,
                         Sets = workout.Exercises
                             .SelectMany(item => item.Sets)
@@ -97,6 +113,7 @@ public static class WorkoutEndpoints
                     .Select(row => new WorkoutSummaryDto(
                         row.Id,
                         row.PerformedOn.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+                        row.Name,
                         row.ExerciseCount,
                         row.Sets.Count,
                         row.Sets.Sum(set => set.WeightKg * set.Reps)))
@@ -145,6 +162,149 @@ public static class WorkoutEndpoints
             })
             .WithName("GetWorkout")
             .Produces<WorkoutDto>()
+            .ProducesProblem(StatusCodes.Status404NotFound);
+
+        group.MapPatch("/workouts/{id:int}", async (
+                int id,
+                UpdateWorkoutRequest request,
+                AppDbContext db,
+                CancellationToken cancellationToken) =>
+            {
+                var workout = await LoadWorkout(db, id, cancellationToken);
+                if (workout is null)
+                {
+                    return NotFound("Workout not found", $"No workout has id {id}.");
+                }
+
+                // A missing name and an empty one both clear it. The trim happens
+                // before the length check so 80 spaces do not count as a name.
+                var name = request.Name?.Trim();
+
+                if (name is { Length: > 80 })
+                {
+                    return Results.ValidationProblem(new Dictionary<string, string[]>
+                    {
+                        ["name"] = ["Name must be 80 characters or fewer."],
+                    });
+                }
+
+                var stored = string.IsNullOrEmpty(name) ? null : name;
+                var row = await db.Workouts.FirstAsync(workoutRow => workoutRow.Id == id, cancellationToken);
+                row.Name = stored;
+                await db.SaveChangesAsync(cancellationToken);
+
+                workout.Name = stored;
+                return Results.Ok(WorkoutDto.From(workout));
+            })
+            .WithName("UpdateWorkout")
+            .Produces<WorkoutDto>()
+            .ProducesValidationProblem()
+            .ProducesProblem(StatusCodes.Status404NotFound);
+
+        group.MapPost("/workouts/{id:int}/copy", async (
+                int id,
+                CopyWorkoutRequest request,
+                AppDbContext db,
+                CancellationToken cancellationToken) =>
+            {
+                if (request.SourceWorkoutId == id)
+                {
+                    return Results.ValidationProblem(new Dictionary<string, string[]>
+                    {
+                        ["sourceWorkoutId"] = ["A workout cannot be copied into itself."],
+                    });
+                }
+
+                var target = await db.Workouts
+                    .Include(workout => workout.Exercises)
+                    .FirstOrDefaultAsync(workout => workout.Id == id, cancellationToken);
+
+                if (target is null)
+                {
+                    return NotFound("Workout not found", $"No workout has id {id}.");
+                }
+
+                var source = await db.Workouts
+                    .AsNoTracking()
+                    .AsSplitQuery()
+                    .Include(workout => workout.Exercises)
+                    .ThenInclude(item => item.Sets)
+                    .FirstOrDefaultAsync(
+                        workout => workout.Id == request.SourceWorkoutId,
+                        cancellationToken);
+
+                if (source is null)
+                {
+                    return NotFound(
+                        "Source workout not found",
+                        $"No workout has id {request.SourceWorkoutId}.");
+                }
+
+                if (source.Exercises.Count == 0)
+                {
+                    return Results.ValidationProblem(new Dictionary<string, string[]>
+                    {
+                        ["sourceWorkoutId"] = ["The source workout has no exercises to copy."],
+                    });
+                }
+
+                // One transaction: a failure halfway through leaves both workouts as
+                // they were, so a copy is all or nothing.
+                await using var transaction = await db.Database.BeginTransactionAsync(cancellationToken);
+
+                var lastPosition = target.Exercises.Count == 0
+                    ? 0
+                    : target.Exercises.Max(item => item.Position);
+
+                foreach (var sourceItem in source.Exercises
+                             .OrderBy(item => item.Position)
+                             .ThenBy(item => item.Id))
+                {
+                    lastPosition += 1;
+                    var item = new WorkoutExercise
+                    {
+                        WorkoutId = target.Id,
+                        ExerciseId = sourceItem.ExerciseId,
+                        Position = lastPosition,
+                    };
+
+                    var setPosition = 0;
+                    foreach (var sourceSet in sourceItem.Sets
+                                 .OrderBy(set => set.Position)
+                                 .ThenBy(set => set.Id))
+                    {
+                        setPosition += 1;
+                        item.Sets.Add(new LoggedSet
+                        {
+                            Position = setPosition,
+                            WeightKg = sourceSet.WeightKg,
+                            Reps = sourceSet.Reps,
+                            Rpe = sourceSet.Rpe,
+                            Notes = sourceSet.Notes,
+                        });
+                    }
+
+                    target.Exercises.Add(item);
+                }
+
+                // The name travels only into an unnamed target; a rename is never
+                // overwritten by a copy.
+                if (string.IsNullOrWhiteSpace(target.Name) && !string.IsNullOrWhiteSpace(source.Name))
+                {
+                    target.Name = source.Name;
+                }
+
+                await db.SaveChangesAsync(cancellationToken);
+                await transaction.CommitAsync(cancellationToken);
+
+                var copied = await LoadWorkout(db, id, cancellationToken);
+                return copied is null
+                    ? NotFound("Workout not found", $"No workout has id {id}.")
+                    : Results.Ok(WorkoutDto.From(copied));
+            })
+            .WithName("CopyWorkout")
+            .Produces<WorkoutDto>()
+            .ProducesValidationProblem()
             .ProducesProblem(StatusCodes.Status404NotFound);
 
         group.MapPost("/workouts/{id:int}/exercises", async (

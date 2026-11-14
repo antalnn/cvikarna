@@ -210,6 +210,7 @@ export function HistoryPage() {
                         aria-pressed={selected === summary.performedOn}
                         onClick={() => selectDay(summary.performedOn)}
                       >
+                        {summary.name ? <span className="month-row__name">{summary.name}</span> : null}
                         <span className="month-row__date">{formatShortDate(summary.performedOn, language)}</span>
                         <span className="month-row__meta">
                           {t.exerciseCount(summary.exerciseCount)} · {t.setCount(summary.setCount)}
@@ -258,7 +259,15 @@ export function HistoryPage() {
           </div>
         ) : null}
 
-        {preview.status === "ready" ? <WorkoutPreview workout={preview.workout} /> : null}
+        {preview.status === "ready" ? (
+          <WorkoutPreview
+            workout={preview.workout}
+            onRenamed={(workout) => {
+              setPreview({ status: "ready", workout });
+              monthState.retry();
+            }}
+          />
+        ) : null}
       </section>
     </>
   );

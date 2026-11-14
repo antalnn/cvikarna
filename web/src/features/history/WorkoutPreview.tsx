@@ -2,16 +2,19 @@ import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import { muscleGroupOf } from "../../api/types";
 import type { Workout } from "../../api/types";
+import { renameWorkout } from "../../api/workout";
 import { InfoTip } from "../../components/InfoTip";
+import { WorkoutNameEditor } from "../../components/WorkoutNameEditor";
 import { pick, useLanguage } from "../../i18n/useLanguage";
 import { formatLongDate, formatNumber } from "../../lib/dates";
 
 interface WorkoutPreviewProps {
   workout: Workout;
+  onRenamed: (workout: Workout) => void;
 }
 
 /** A saved workout as it was logged: no forms, no delete buttons, no set edits. */
-export function WorkoutPreview({ workout }: WorkoutPreviewProps) {
+export function WorkoutPreview({ workout, onRenamed }: WorkoutPreviewProps) {
   const { language, t } = useLanguage();
   const [openIds, setOpenIds] = useState<Set<number>>(() => new Set());
   const baseId = useId();
@@ -47,7 +50,18 @@ export function WorkoutPreview({ workout }: WorkoutPreviewProps) {
       <header className="history-workout__head">
         <div>
           <p className="eyebrow">{t.historyPreviewEyebrow}</p>
-          <h2 className="history-workout__title">{formatLongDate(workout.performedOn, language)}</h2>
+          <WorkoutNameEditor
+            key={workout.id}
+            name={workout.name}
+            fallback={formatLongDate(workout.performedOn, language)}
+            level={2}
+            titleClassName={workout.name?.trim() ? "history-workout__name" : "history-workout__title"}
+            onSave={(name) => renameWorkout(workout.id, name)}
+            onSaved={onRenamed}
+          />
+          {workout.name?.trim() ? (
+            <p className="history-workout__date">{formatLongDate(workout.performedOn, language)}</p>
+          ) : null}
           <p className="history-workout__meta">
             {t.exerciseCount(workout.exercises.length)} · {t.setCount(totalSets)} · {t.statsVolume}:{" "}
             {formatNumber(totalVolume, language)} kg

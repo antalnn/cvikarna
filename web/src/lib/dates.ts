@@ -74,6 +74,15 @@ export function formatShortDate(dateKey: string, language: Language): string {
   }).format(parseDateKey(dateKey));
 }
 
+/** Date with the year, for lists that can cross a year boundary. */
+export function formatCompactDate(dateKey: string, language: Language): string {
+  return new Intl.DateTimeFormat(localeOf(language), {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(parseDateKey(dateKey));
+}
+
 export function formatMonth(month: Date, language: Language): string {
   return new Intl.DateTimeFormat(localeOf(language), { month: "long", year: "numeric" }).format(month);
 }

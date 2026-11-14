@@ -105,6 +105,7 @@ export interface WorkoutExercise {
 export interface Workout {
   id: number;
   performedOn: string;
+  name: string | null;
   notes: string | null;
   exercises: WorkoutExercise[];
 }
@@ -113,6 +114,7 @@ export interface Workout {
 export interface WorkoutSummary {
   id: number;
   performedOn: string;
+  name: string | null;
   exerciseCount: number;
   setCount: number;
   totalVolumeKg: number;

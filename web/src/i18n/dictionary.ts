@@ -51,6 +51,18 @@ export interface Dictionary {
   trackerTitle: string;
   trackerLede: string;
   trackerErrorTitle: string;
+  workoutNamePlaceholder: string;
+  renameWorkout: string;
+  saveName: string;
+  cancelEdit: string;
+  nameError: string;
+  copyWorkout: string;
+  copyTitle: string;
+  copyLede: string;
+  copyEmpty: string;
+  copyRowLabel: (date: string) => string;
+  copyAction: string;
+  copying: string;
   addExercise: string;
   noExercisesTitle: string;
   noExercisesText: string;
@@ -177,6 +189,18 @@ const cs: Dictionary = {
   trackerTitle: "Dnešní trénink",
   trackerLede: "Přidej cviky a zapisuj série. Váha 0 znamená vlastní váhu.",
   trackerErrorTitle: "Trénink se nenačetl",
+  workoutNamePlaceholder: "Název tréninku",
+  renameWorkout: "Přejmenovat trénink",
+  saveName: "Uložit název",
+  cancelEdit: "Zrušit úpravu",
+  nameError: "Název může mít nejvýš 80 znaků.",
+  copyWorkout: "Zkopírovat trénink",
+  copyTitle: "Zkopírovat minulý trénink",
+  copyLede: "Vyber trénink, který chceš zopakovat. Cviky a série se přidají do dnešního tréninku.",
+  copyEmpty: "Zatím žádný minulý trénink. Až nějaký zapíšeš, objeví se tady.",
+  copyRowLabel: (date) => `Zkopírovat trénink z ${date}`,
+  copyAction: "Zkopírovat",
+  copying: "Kopíruji…",
   addExercise: "Přidat cvik",
   noExercisesTitle: "Zatím žádný trénink",
   noExercisesText: "Přidej první cvik a začni zapisovat série.",
@@ -337,6 +361,18 @@ const en: Dictionary = {
   trackerTitle: "Today's workout",
   trackerLede: "Add movements and log your sets. Weight 0 means bodyweight.",
   trackerErrorTitle: "The workout did not load",
+  workoutNamePlaceholder: "Workout name",
+  renameWorkout: "Rename workout",
+  saveName: "Save name",
+  cancelEdit: "Cancel editing",
+  nameError: "A name can be at most 80 characters.",
+  copyWorkout: "Copy a workout",
+  copyTitle: "Copy a past workout",
+  copyLede: "Pick a workout to repeat. Its exercises and sets are added to today's session.",
+  copyEmpty: "No past workouts yet. They show up here once you log one.",
+  copyRowLabel: (date) => `Copy the workout from ${date}`,
+  copyAction: "Copy",
+  copying: "Copying…",
   addExercise: "Add movement",
   noExercisesTitle: "No workout yet",
   noExercisesText: "Add the first movement and start logging sets.",

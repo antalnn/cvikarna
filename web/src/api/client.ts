@@ -102,3 +102,13 @@ export function putJson<T>(path: string, body?: unknown): Promise<T> {
 
   return request<T>(path, init);
 }
+
+export function patchJson<T>(path: string, body?: unknown): Promise<T> {
+  const init: RequestInit = { method: "PATCH" };
+
+  if (body !== undefined) {
+    init.body = JSON.stringify(body);
+  }
+
+  return request<T>(path, init);
+}

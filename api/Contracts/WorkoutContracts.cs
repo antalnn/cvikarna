@@ -6,12 +6,14 @@ namespace Cvikarna.Api.Contracts;
 public sealed record WorkoutDto(
     int Id,
     string PerformedOn,
+    string? Name,
     string? Notes,
     IReadOnlyList<WorkoutExerciseDto> Exercises)
 {
     public static WorkoutDto From(Workout workout) => new(
         workout.Id,
         workout.PerformedOn.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+        workout.Name,
         workout.Notes,
         workout.Exercises
             .OrderBy(item => item.Position)
@@ -23,6 +25,7 @@ public sealed record WorkoutDto(
 public sealed record WorkoutSummaryDto(
     int Id,
     string PerformedOn,
+    string? Name,
     int ExerciseCount,
     int SetCount,
     decimal TotalVolumeKg);
@@ -82,3 +85,9 @@ public sealed record ReorderSetsRequest(IReadOnlyList<int> SetIds);
 
 /// <summary>Ordered ids of every exercise in one workout, first to last.</summary>
 public sealed record ReorderWorkoutExercisesRequest(IReadOnlyList<int> ItemIds);
+
+/// <summary>A new name for one workout. Null or an empty string clears it.</summary>
+public sealed record UpdateWorkoutRequest(string? Name);
+
+/// <summary>The workout whose exercises and sets are copied into the target workout.</summary>
+public sealed record CopyWorkoutRequest(int SourceWorkoutId);

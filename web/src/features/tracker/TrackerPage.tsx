@@ -3,11 +3,14 @@ import type { CSSProperties } from "react";
 import {
   openTodayWorkout,
   removeWorkoutExercise,
+  renameWorkout,
   reorderWorkoutExercises,
 } from "../../api/workout";
 import type { Workout, WorkoutExercise } from "../../api/types";
+import { WorkoutNameEditor } from "../../components/WorkoutNameEditor";
 import { useLanguage } from "../../i18n/useLanguage";
 import { formatNumber } from "../../lib/dates";
+import { CopySheet } from "./CopySheet";
 import { PickerSheet } from "./PickerSheet";
 import { WorkoutItem } from "./WorkoutItem";
 
@@ -27,6 +30,7 @@ export function TrackerPage() {
   const [workout, setWorkout] = useState<Workout | null>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [copyOpen, setCopyOpen] = useState(false);
   const [ordering, setOrdering] = useState(false);
   const [drag, setDrag] = useState<DragState | null>(null);
   const dragRef = useRef<DragState | null>(null);
@@ -326,7 +330,15 @@ export function TrackerPage() {
       <section className="tracker-head">
         <div>
           <p className="eyebrow">{t.trackerEyebrow}</p>
-          <h1 className="tracker-title">{t.trackerTitle}</h1>
+          <WorkoutNameEditor
+            key={workout.id}
+            name={workout.name}
+            fallback={t.trackerTitle}
+            level={1}
+            titleClassName="tracker-title"
+            onSave={(name) => renameWorkout(workout.id, name)}
+            onSaved={setWorkout}
+          />
           <p className="tracker-meta">
             <span className="tracker-date">{dateLabel}</span>
             <span>{t.exerciseCount(workout.exercises.length)}</span>
@@ -337,9 +349,14 @@ export function TrackerPage() {
           </p>
           <p className="tracker-lede">{t.trackerLede}</p>
         </div>
-        <button className="button button--accent" type="button" onClick={() => setPickerOpen(true)}>
-          {t.addExercise}
-        </button>
+        <div className="tracker-actions">
+          <button className="button" type="button" onClick={() => setCopyOpen(true)}>
+            {t.copyWorkout}
+          </button>
+          <button className="button button--accent" type="button" onClick={() => setPickerOpen(true)}>
+            {t.addExercise}
+          </button>
+        </div>
       </section>
 
       {actionError ? (
@@ -352,9 +369,14 @@ export function TrackerPage() {
         <div className="state">
           <p className="state__title">{t.noExercisesTitle}</p>
           <p className="state__text">{t.noExercisesText}</p>
-          <button className="button" type="button" onClick={() => setPickerOpen(true)}>
-            {t.addExercise}
-          </button>
+          <div className="state__actions">
+            <button className="button" type="button" onClick={() => setCopyOpen(true)}>
+              {t.copyWorkout}
+            </button>
+            <button className="button button--accent" type="button" onClick={() => setPickerOpen(true)}>
+              {t.addExercise}
+            </button>
+          </div>
         </div>
       ) : (
         <ol className="workout-list" ref={listRef}>
@@ -388,6 +410,13 @@ export function TrackerPage() {
         />
       ) : null}
 
+      {copyOpen ? (
+        <CopySheet
+          workoutId={workout.id}
+          onClose={() => setCopyOpen(false)}
+          onCopied={reload}
+        />
+      ) : null}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { deleteJson, getJson, postJson, putJson } from "./client";
+import { deleteJson, getJson, patchJson, postJson, putJson } from "./client";
 import type { ExerciseStats, LoggedSet, RecentSet, Workout, WorkoutExercise, WorkoutSummary } from "./types";
 
 export function openTodayWorkout(): Promise<Workout> {
@@ -9,6 +9,27 @@ export function openTodayWorkout(): Promise<Workout> {
 export function fetchWorkoutSummaries(month?: string): Promise<WorkoutSummary[]> {
   const query = month ? `?month=${encodeURIComponent(month)}` : "";
   return getJson<WorkoutSummary[]>(`/api/workouts${query}`);
+}
+
+/** The newest workouts for the copy sheet, without the one being filled in. */
+export function fetchRecentWorkouts(take = 10, excludeId?: number): Promise<WorkoutSummary[]> {
+  const params = new URLSearchParams({ take: String(take) });
+
+  if (excludeId !== undefined) {
+    params.set("excludeId", String(excludeId));
+  }
+
+  return getJson<WorkoutSummary[]>(`/api/workouts?${params.toString()}`);
+}
+
+/** Sets or clears the name. Null or an empty string clears it on the server. */
+export function renameWorkout(id: number, name: string | null): Promise<Workout> {
+  return patchJson<Workout>(`/api/workouts/${id}`, { name });
+}
+
+/** Copies every exercise and set of the source into the target workout. */
+export function copyWorkout(targetId: number, sourceWorkoutId: number): Promise<Workout> {
+  return postJson<Workout>(`/api/workouts/${targetId}/copy`, { sourceWorkoutId });
 }
 
 /** Throws NotFoundError when no workout was logged on that day. */
