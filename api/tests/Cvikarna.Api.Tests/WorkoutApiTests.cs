@@ -664,13 +664,17 @@ public class WorkoutApiTests
     }
 
     [Fact]
-    public async Task A_second_copy_appends_and_never_overwrites_the_target_name()
+    public async Task A_copy_replaces_a_non_empty_target_and_takes_the_source_name()
     {
         await using var factory = new ApiFactory();
         using var client = factory.CreateClient();
         var sourceId = await SeedCopySourceAsync(factory);
         var target = await OpenWorkoutAsync(client);
 
+        // A session with its own work in it, so a replace is visible.
+        var extra = await AddExerciseAsync(client, target.Id, 2);
+        await AddSetAsync(client, target.Id, extra.Id, 40m, 8, 7m);
+        await AddExerciseAsync(client, target.Id, 6);
         await client.PatchAsJsonAsync($"/api/workouts/{target.Id}", new { name = "Morning" });
 
         var first = await client.PostAsJsonAsync(
@@ -679,7 +683,10 @@ public class WorkoutApiTests
         Assert.Equal(HttpStatusCode.OK, first.StatusCode);
         var once = await first.Content.ReadFromJsonAsync<WorkoutDto>(Json);
         Assert.NotNull(once);
-        Assert.Equal("Morning", once.Name);
+        Assert.Equal("Leg day", once.Name);
+        Assert.Equal([1, 11], once.Exercises.Select(item => item.ExerciseId).ToArray());
+        Assert.Equal([1, 2], once.Exercises.Select(item => item.Position).ToArray());
+        Assert.Equal(3, once.Exercises.Sum(item => item.Sets.Count));
 
         var second = await client.PostAsJsonAsync(
             $"/api/workouts/{target.Id}/copy",
@@ -687,11 +694,33 @@ public class WorkoutApiTests
         Assert.Equal(HttpStatusCode.OK, second.StatusCode);
         var twice = await second.Content.ReadFromJsonAsync<WorkoutDto>(Json);
         Assert.NotNull(twice);
-        Assert.Equal("Morning", twice.Name);
-        Assert.Equal(4, twice.Exercises.Count);
-        Assert.Equal([1, 2, 3, 4], twice.Exercises.Select(item => item.Position).ToArray());
-        Assert.Equal([1, 11, 1, 11], twice.Exercises.Select(item => item.ExerciseId).ToArray());
-        Assert.Equal(6, twice.Exercises.Sum(item => item.Sets.Count));
+        Assert.Equal("Leg day", twice.Name);
+        Assert.Equal(
+            [1, 11],
+            twice.Exercises.Select(item => item.ExerciseId).ToArray());
+        Assert.Equal([1, 2], twice.Exercises.Select(item => item.Position).ToArray());
+        Assert.Equal(3, twice.Exercises.Sum(item => item.Sets.Count));
+    }
+
+    [Fact]
+    public async Task Copying_an_unnamed_source_clears_the_target_name()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+        var sourceId = await SeedCopySourceAsync(factory);
+        var target = await OpenWorkoutAsync(client);
+
+        await client.PatchAsJsonAsync($"/api/workouts/{target.Id}", new { name = "Morning" });
+        await client.PatchAsJsonAsync($"/api/workouts/{sourceId}", new { name = (string?)null });
+
+        var response = await client.PostAsJsonAsync(
+            $"/api/workouts/{target.Id}/copy",
+            new { sourceWorkoutId = sourceId });
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        var copied = await response.Content.ReadFromJsonAsync<WorkoutDto>(Json);
+        Assert.NotNull(copied);
+        Assert.Null(copied.Name);
+        Assert.Equal(2, copied.Exercises.Count);
     }
 
     [Fact]

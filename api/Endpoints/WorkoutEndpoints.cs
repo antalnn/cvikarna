@@ -216,7 +216,6 @@ public static class WorkoutEndpoints
                 }
 
                 var target = await db.Workouts
-                    .Include(workout => workout.Exercises)
                     .FirstOrDefaultAsync(workout => workout.Id == id, cancellationToken);
 
                 if (target is null)
@@ -249,23 +248,26 @@ public static class WorkoutEndpoints
                 }
 
                 // One transaction: a failure halfway through leaves both workouts as
-                // they were, so a copy is all or nothing.
+                // they were, so a copy is all or nothing. The copy replaces the
+                // session, so a second copy is identical to the first.
                 await using var transaction = await db.Database.BeginTransactionAsync(cancellationToken);
 
-                var lastPosition = target.Exercises.Count == 0
-                    ? 0
-                    : target.Exercises.Max(item => item.Position);
+                await db.WorkoutExercises
+                    .Where(item => item.WorkoutId == id)
+                    .ExecuteDeleteAsync(cancellationToken);
+
+                var position = 0;
 
                 foreach (var sourceItem in source.Exercises
                              .OrderBy(item => item.Position)
                              .ThenBy(item => item.Id))
                 {
-                    lastPosition += 1;
+                    position += 1;
                     var item = new WorkoutExercise
                     {
                         WorkoutId = target.Id,
                         ExerciseId = sourceItem.ExerciseId,
-                        Position = lastPosition,
+                        Position = position,
                     };
 
                     var setPosition = 0;
@@ -284,15 +286,12 @@ public static class WorkoutEndpoints
                         });
                     }
 
-                    target.Exercises.Add(item);
+                    db.WorkoutExercises.Add(item);
                 }
 
-                // The name travels only into an unnamed target; a rename is never
-                // overwritten by a copy.
-                if (string.IsNullOrWhiteSpace(target.Name) && !string.IsNullOrWhiteSpace(source.Name))
-                {
-                    target.Name = source.Name;
-                }
+                // The copied session takes the source name, including a cleared one,
+                // so today looks like the workout that was copied.
+                target.Name = string.IsNullOrWhiteSpace(source.Name) ? null : source.Name;
 
                 await db.SaveChangesAsync(cancellationToken);
                 await transaction.CommitAsync(cancellationToken);
