@@ -102,7 +102,7 @@ Check: `review only`, every cell asserted by hand at 1440 and 375 in both langua
 - Navigating is a link. Changing state is a button. Opening a panel is a toggle. A toggle header
   never navigates, and a link never sits inside the toggle. Check: `review only`.
 - Destructive actions name what they replace. Copy says it replaces today's session.
-  Check: `review only`, and the copy wording test in the API suite.
+  Check: `A_copy_replaces_a_non_empty_target_and_takes_the_source_name`.
 - Every pointer-only interaction has a keyboard path: reorder responds to ArrowUp and ArrowDown
   on the focused handle. Check: `Sets_can_be_reordered_and_the_order_survives_a_reload`,
   `Workout_exercises_can_be_reordered_and_the_order_survives_a_reload`.
