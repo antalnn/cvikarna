@@ -34,6 +34,8 @@ export function HistoryPage() {
   const [newestFirst, setNewestFirst] = useState(true);
   const [preview, setPreview] = useState<PreviewState>({ status: "loading" });
   const [previewAttempt, setPreviewAttempt] = useState(0);
+  const [canScrollMonths, setCanScrollMonths] = useState(false);
+  const monthScrollRef = useRef<HTMLDivElement>(null);
   // The Today button is the one action that opens the tracker when the day is
   // empty; clicking an empty calendar day only shows the empty state.
   const todayRequested = useRef(false);
@@ -51,17 +53,46 @@ export function HistoryPage() {
     return map;
   }, [monthState]);
 
+  const monthRows = monthState.status === "success" ? monthState.data : null;
+
   const monthSummaries = useMemo(() => {
-    if (monthState.status !== "success") {
+    if (monthRows === null) {
       return [];
     }
 
-    return [...monthState.data].sort((left, right) =>
+    return [...monthRows].sort((left, right) =>
       newestFirst
         ? right.performedOn.localeCompare(left.performedOn)
         : left.performedOn.localeCompare(right.performedOn),
     );
-  }, [monthState, newestFirst]);
+  }, [monthRows, newestFirst]);
+
+  const updateScrollCue = useCallback(() => {
+    const panel = monthScrollRef.current;
+
+    // Eight pixels of tolerance keeps sub-pixel rounding from showing the cue
+    // when the list is already at the bottom.
+    setCanScrollMonths(panel ? panel.scrollHeight - panel.scrollTop - panel.clientHeight > 8 : false);
+  }, []);
+
+  useEffect(() => {
+    const panel = monthScrollRef.current;
+
+    if (!panel) {
+      return;
+    }
+
+    const observer = new ResizeObserver(updateScrollCue);
+    observer.observe(panel);
+    panel.addEventListener("scroll", updateScrollCue, { passive: true });
+    const frame = requestAnimationFrame(updateScrollCue);
+
+    return () => {
+      observer.disconnect();
+      panel.removeEventListener("scroll", updateScrollCue);
+      cancelAnimationFrame(frame);
+    };
+  }, [updateScrollCue, monthSummaries]);
 
   useEffect(() => {
     if (!selected) {
@@ -177,7 +208,7 @@ export function HistoryPage() {
               ) : null}
             </div>
 
-            <div className="month-panel__scroll">
+            <div className="month-panel__scroll" ref={monthScrollRef}>
               {monthState.status === "loading" ? (
                 <p className="month-panel__state" role="status">
                   {t.historyLoading}
@@ -224,6 +255,34 @@ export function HistoryPage() {
                 </ol>
               ) : null}
             </div>
+
+            {canScrollMonths ? (
+              <button
+                className="month-scroll-cue"
+                type="button"
+                aria-label={t.monthScrollCue}
+                title={t.monthScrollCue}
+                onClick={() => {
+                  const panel = monthScrollRef.current;
+
+                  if (!panel) {
+                    return;
+                  }
+
+                  panel.scrollBy(0, Math.max(120, panel.clientHeight * 0.75));
+                }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  aria-hidden="true"
+                >
+                  <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            ) : null}
           </section>
         </div>
       </div>
