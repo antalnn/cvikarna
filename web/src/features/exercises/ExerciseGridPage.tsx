@@ -1,30 +1,40 @@
-import { useCallback, useState } from "react";
-import { fetchExercises, TOTAL_EXERCISES } from "../../api/library";
-import { EQUIPMENT, MUSCLE_GROUPS } from "../../api/types";
-import type { Equipment, MuscleGroup } from "../../api/types";
+import { useCallback, useEffect, useState } from "react";
+import { fetchExercises } from "../../api/library";
+import { EQUIPMENT, LEVELS, MUSCLE_GROUPS } from "../../api/types";
+import type { Equipment, Level, MuscleGroup } from "../../api/types";
 import { ExerciseCard } from "../../components/ExerciseCard";
 import { EmptyState, ErrorState, SkeletonGrid } from "../../components/StateViews";
 import { useLanguage } from "../../i18n/useLanguage";
 import { useAsync } from "../../lib/useAsync";
 import { useDebouncedValue } from "../../lib/useDebouncedValue";
 
+const BATCH_SIZE = 20;
+
 export function ExerciseGridPage() {
   const { t } = useLanguage();
   const [query, setQuery] = useState("");
   const [muscle, setMuscle] = useState<MuscleGroup | "all">("all");
   const [equipment, setEquipment] = useState<Equipment | "all">("all");
+  const [level, setLevel] = useState<Level | "all">("all");
+  const [visible, setVisible] = useState(BATCH_SIZE);
 
   const debouncedQuery = useDebouncedValue(query);
   const load = useCallback(
-    () => fetchExercises({ muscle, equipment, q: debouncedQuery }),
-    [muscle, equipment, debouncedQuery],
+    () => fetchExercises({ muscle, equipment, level, q: debouncedQuery }),
+    [muscle, equipment, level, debouncedQuery],
   );
   const state = useAsync(load);
+
+  // Any filter or search change starts again from the first batch.
+  useEffect(() => {
+    setVisible(BATCH_SIZE);
+  }, [muscle, equipment, level, debouncedQuery]);
 
   const clearFilters = useCallback(() => {
     setQuery("");
     setMuscle("all");
     setEquipment("all");
+    setLevel("all");
   }, []);
 
   return (
@@ -106,10 +116,34 @@ export function ExerciseGridPage() {
             </button>
           ))}
         </div>
+
+        <div className="filters" role="group" aria-label={t.levelFilterLabel}>
+          <button
+            className="chip"
+            type="button"
+            aria-pressed={level === "all"}
+            onClick={() => setLevel("all")}
+          >
+            {t.levelAll}
+          </button>
+          {LEVELS.map((option) => (
+            <button
+              key={option}
+              className="chip"
+              type="button"
+              aria-pressed={level === option}
+              onClick={() => setLevel(option)}
+            >
+              {t.level[option]}
+            </button>
+          ))}
+        </div>
       </section>
 
       <p className="results-meta" aria-live="polite">
-        {state.status === "success" ? <span>{t.results(state.data.length, TOTAL_EXERCISES)}</span> : null}
+        {state.status === "success" ? (
+          <span>{t.results(Math.min(visible, state.data.length), state.data.length)}</span>
+        ) : null}
       </p>
 
       {state.status === "loading" ? <SkeletonGrid /> : null}
@@ -120,11 +154,25 @@ export function ExerciseGridPage() {
         state.data.length === 0 ? (
           <EmptyState onClear={clearFilters} />
         ) : (
-          <ul className="grid">
-            {state.data.map((exercise) => (
-              <ExerciseCard key={exercise.id} exercise={exercise} />
-            ))}
-          </ul>
+          <>
+            <ul className="grid">
+              {state.data.slice(0, visible).map((exercise) => (
+                <ExerciseCard key={exercise.id} exercise={exercise} />
+              ))}
+            </ul>
+
+            {visible < state.data.length ? (
+              <div className="show-more">
+                <button
+                  className="button button--accent"
+                  type="button"
+                  onClick={() => setVisible((value) => value + BATCH_SIZE)}
+                >
+                  {t.showMore}
+                </button>
+              </div>
+            ) : null}
+          </>
         )
       ) : null}
     </>

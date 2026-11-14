@@ -45,7 +45,7 @@ public static class DatabaseInitializer
 
         await db.SaveChangesAsync(cancellationToken);
 
-        // The 40 library rows are already in the table and keep their rich data;
+        // The curated rows are already in the table and keep their rich data;
         // the catalogue only adds the movements the library does not curate.
         foreach (var row in catalogue.OrderBy(row => row.SourceId, StringComparer.Ordinal))
         {

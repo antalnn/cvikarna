@@ -5,7 +5,7 @@
  *
  * Without a path it downloads the dataset from GitHub. The output is the thin
  * catalogue: four display fields per movement, plus the verified Czech name
- * where the movement is also one of the curated 40. Muscle and equipment names
+ * where the movement is also one of the curated rows in exercises.json. Muscle and equipment names
  * are mapped onto this project's vocabulary, and an unknown value fails loudly
  * instead of quietly turning into "other".
  */

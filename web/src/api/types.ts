@@ -50,6 +50,7 @@ export interface Exercise {
 export interface ExerciseFilters {
   muscle: MuscleGroup | "all";
   equipment: Equipment | "all";
+  level: Level | "all";
   q: string;
 }
 
@@ -75,6 +76,7 @@ export interface CataloguePage {
 export interface CatalogueFilters {
   muscle: MuscleGroup | "all";
   equipment: Equipment | "all";
+  level: Level | "all";
   q: string;
   page: number;
   pageSize?: number;
@@ -164,6 +166,8 @@ export const EQUIPMENT: readonly Equipment[] = [
   "other",
 ];
 
+export const LEVELS: readonly Level[] = ["beginner", "intermediate", "expert"];
+
 const LEG_MUSCLES: readonly Muscle[] = ["quads", "hamstrings", "glutes", "calves"];
 
 /** Maps a fine-grained primary muscle to the coarse chip it belongs to. */
@@ -177,4 +181,4 @@ export function muscleGroupOf(muscle: Muscle): MuscleGroup {
   return muscle as MuscleGroup;
 }
 
-export const emptyFilters: ExerciseFilters = { muscle: "all", equipment: "all", q: "" };
+export const emptyFilters: ExerciseFilters = { muscle: "all", equipment: "all", level: "all", q: "" };

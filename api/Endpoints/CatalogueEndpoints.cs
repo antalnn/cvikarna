@@ -20,6 +20,7 @@ public static class CatalogueEndpoints
                 AppDbContext db,
                 string? muscle,
                 string? equipment,
+                string? level,
                 string? q,
                 int? page,
                 int? pageSize,
@@ -37,6 +38,7 @@ public static class CatalogueEndpoints
                 var filtered = rows
                     .Where(exercise => MatchesMuscle(exercise, muscle))
                     .Where(exercise => MatchesEquipment(exercise, equipment))
+                    .Where(exercise => MatchesLevel(exercise, level))
                     .Where(exercise => ExerciseSearch.Matches(
                         exercise.NameEn,
                         exercise.NameCs,
@@ -96,5 +98,15 @@ public static class CatalogueEndpoints
         }
 
         return string.Equals(exercise.Equipment, equipment, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool MatchesLevel(Exercise exercise, string? level)
+    {
+        if (string.IsNullOrWhiteSpace(level) || level == "all")
+        {
+            return true;
+        }
+
+        return string.Equals(exercise.Level, level, StringComparison.OrdinalIgnoreCase);
     }
 }

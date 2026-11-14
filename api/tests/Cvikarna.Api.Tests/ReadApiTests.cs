@@ -19,12 +19,12 @@ public class ReadApiTests : IClassFixture<ApiFactory>
     }
 
     [Fact]
-    public async Task Library_returns_the_40_rich_rows_in_both_languages()
+    public async Task Library_returns_the_120_rich_rows_in_both_languages()
     {
         var rows = await _client.GetFromJsonAsync<List<ExerciseDetailDto>>("/api/exercises", Json);
 
         Assert.NotNull(rows);
-        Assert.Equal(40, rows.Count);
+        Assert.Equal(120, rows.Count);
         Assert.All(rows, row =>
         {
             Assert.False(string.IsNullOrWhiteSpace(row.NameCs));
@@ -123,10 +123,11 @@ public class ReadApiTests : IClassFixture<ApiFactory>
         Assert.Equal(20, page2.Items.Count);
         Assert.Empty(page1.Items.Select(row => row.Id).Intersect(page2.Items.Select(row => row.Id)));
 
+        // Search also reads aliases, so a match may not carry the word in NameEn.
         var bench = await _client.GetFromJsonAsync<CataloguePageDto>("/api/catalogue?q=bench", Json);
         Assert.NotNull(bench);
         Assert.True(bench.Total > 0);
-        Assert.All(bench.Items, row => Assert.Contains("bench", row.NameEn, StringComparison.OrdinalIgnoreCase));
+        Assert.Contains(bench.Items, row => row.NameEn.Contains("Bench", StringComparison.OrdinalIgnoreCase));
 
         var clamped = await _client.GetFromJsonAsync<CataloguePageDto>("/api/catalogue?pageSize=500", Json);
         Assert.NotNull(clamped);
@@ -143,6 +144,40 @@ public class ReadApiTests : IClassFixture<ApiFactory>
             Assert.Equal("chest", MuscleGroups.Of(row.PrimaryMuscle));
             Assert.Equal("barbell", row.Equipment);
         });
+    }
+
+    [Fact]
+    public async Task Library_and_catalogue_filter_by_level()
+    {
+        var beginner = await _client.GetFromJsonAsync<List<ExerciseDetailDto>>("/api/exercises?level=beginner", Json);
+        Assert.NotNull(beginner);
+        Assert.NotEmpty(beginner);
+        Assert.All(beginner, row => Assert.Equal("beginner", row.Level));
+        Assert.DoesNotContain(beginner, row => row.Level == "expert");
+
+        var experts = await _client.GetFromJsonAsync<List<ExerciseDetailDto>>("/api/exercises?level=expert", Json);
+        Assert.NotNull(experts);
+        Assert.NotEmpty(experts);
+        Assert.All(experts, row => Assert.Equal("expert", row.Level));
+
+        var all = await _client.GetFromJsonAsync<List<ExerciseDetailDto>>("/api/exercises?level=all", Json);
+        Assert.NotNull(all);
+        Assert.Equal(120, all.Count);
+
+        var combined = await _client.GetFromJsonAsync<List<ExerciseDetailDto>>(
+            "/api/exercises?level=beginner&muscle=chest&equipment=barbell", Json);
+        Assert.NotNull(combined);
+        Assert.All(combined, row =>
+        {
+            Assert.Equal("beginner", row.Level);
+            Assert.Equal("chest", MuscleGroups.Of(row.PrimaryMuscle));
+            Assert.Equal("barbell", row.Equipment);
+        });
+
+        var catalogue = await _client.GetFromJsonAsync<CataloguePageDto>("/api/catalogue?level=expert", Json);
+        Assert.NotNull(catalogue);
+        Assert.True(catalogue.Total > 0);
+        Assert.All(catalogue.Items, row => Assert.Equal("expert", row.Level));
     }
 
     [Fact]

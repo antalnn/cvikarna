@@ -22,6 +22,9 @@ export interface Dictionary {
   muscleAll: string;
   equipmentLabel: string;
   equipmentAll: string;
+  levelFilterLabel: string;
+  levelAll: string;
+  showMore: string;
   results: (shown: number, total: number) => string;
   loading: string;
   errorTitle: string;
@@ -47,6 +50,7 @@ export interface Dictionary {
   secondaryLabel: string;
   footerDataset: string;
   footerNote: string;
+  backToTop: string;
   trackerEyebrow: string;
   trackerTitle: string;
   trackerLede: string;
@@ -126,6 +130,7 @@ export interface Dictionary {
   sortNewest: string;
   sortOldest: string;
   sortOrderLabel: string;
+  monthScrollCue: string;
   monthEmptyTitle: string;
   monthEmptyText: string;
   noWorkoutOnDay: string;
@@ -160,6 +165,9 @@ const cs: Dictionary = {
   muscleAll: "Všechny svaly",
   equipmentLabel: "Nářadí",
   equipmentAll: "Všechno nářadí",
+  levelFilterLabel: "Náročnost",
+  levelAll: "Všechny úrovně",
+  showMore: "Zobrazit dalších 20",
   results: (shown, total) => `${shown} z ${total} cviků`,
   loading: "Načítám knihovnu…",
   errorTitle: "Knihovna se nenačetla",
@@ -185,6 +193,7 @@ const cs: Dictionary = {
   secondaryLabel: "Zapojuje také",
   footerDataset: "Fotografie a výchozí popisy: free-exercise-db, licence Unlicense.",
   footerNote: "Cvikárna. Technika a trénink.",
+  backToTop: "Zpět nahoru",
   trackerEyebrow: "Dnes",
   trackerTitle: "Dnešní trénink",
   trackerLede: "Přidej cviky a zapisuj série. Váha 0 znamená vlastní váhu.",
@@ -196,7 +205,7 @@ const cs: Dictionary = {
   nameError: "Název může mít nejvýš 80 znaků.",
   copyWorkout: "Zkopírovat trénink",
   copyTitle: "Zkopírovat minulý trénink",
-  copyLede: "Vyber trénink, který chceš zopakovat. Cviky a série se přidají do dnešního tréninku.",
+  copyLede: "Vyber trénink, který chceš zopakovat. Cviky a série nahradí dnešní trénink.",
   copyEmpty: "Zatím žádný minulý trénink. Až nějaký zapíšeš, objeví se tady.",
   copyRowLabel: (date) => `Zkopírovat trénink z ${date}`,
   copyAction: "Zkopírovat",
@@ -265,6 +274,7 @@ const cs: Dictionary = {
   sortNewest: "Nejnovější první",
   sortOldest: "Nejstarší první",
   sortOrderLabel: "Změnit pořadí tréninků",
+  monthScrollCue: "Posunout seznam tréninků dolů",
   monthEmptyTitle: "Žádné tréninky",
   monthEmptyText: "V tomto měsíci zatím žádný trénink není.",
   noWorkoutOnDay: "V tento den žádný trénink.",
@@ -332,6 +342,9 @@ const en: Dictionary = {
   muscleAll: "All muscles",
   equipmentLabel: "Equipment",
   equipmentAll: "All equipment",
+  levelFilterLabel: "Level",
+  levelAll: "All levels",
+  showMore: "Show 20 more",
   results: (shown, total) => `${shown} of ${total} movements`,
   loading: "Loading the library…",
   errorTitle: "The library did not load",
@@ -357,6 +370,7 @@ const en: Dictionary = {
   secondaryLabel: "Also works",
   footerDataset: "Photos and base descriptions: free-exercise-db, Unlicense.",
   footerNote: "Cvikárna. Technique & training.",
+  backToTop: "Back to top",
   trackerEyebrow: "Today",
   trackerTitle: "Today's workout",
   trackerLede: "Add movements and log your sets. Weight 0 means bodyweight.",
@@ -368,7 +382,7 @@ const en: Dictionary = {
   nameError: "A name can be at most 80 characters.",
   copyWorkout: "Copy a workout",
   copyTitle: "Copy a past workout",
-  copyLede: "Pick a workout to repeat. Its exercises and sets are added to today's session.",
+  copyLede: "Pick a workout to repeat. Its exercises and sets replace today's session.",
   copyEmpty: "No past workouts yet. They show up here once you log one.",
   copyRowLabel: (date) => `Copy the workout from ${date}`,
   copyAction: "Copy",
@@ -437,6 +451,7 @@ const en: Dictionary = {
   sortNewest: "Newest first",
   sortOldest: "Oldest first",
   sortOrderLabel: "Change workout order",
+  monthScrollCue: "Scroll the workout list down",
   monthEmptyTitle: "No workouts",
   monthEmptyText: "No workouts in this month yet.",
   noWorkoutOnDay: "No workout on this day.",

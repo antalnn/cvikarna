@@ -66,8 +66,8 @@ async function validateLibrary() {
     return 0;
   }
 
-  if (rows.length !== 40) {
-    problems.push(`library: expected 40 rows, found ${rows.length}`);
+  if (rows.length !== 120) {
+    problems.push(`library: expected 120 rows, found ${rows.length}`);
   }
 
   const ids = new Set();

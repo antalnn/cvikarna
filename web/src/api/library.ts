@@ -3,9 +3,6 @@ import type { CatalogueFilters, CataloguePage, Exercise, ExerciseFilters } from 
 
 export { NotFoundError } from "./client";
 
-/** The library endpoint is unpaged at 40, so the count is part of the contract. */
-export const TOTAL_EXERCISES = 40;
-
 function toQuery(filters: ExerciseFilters): string {
   const query = new URLSearchParams();
 
@@ -14,6 +11,9 @@ function toQuery(filters: ExerciseFilters): string {
   }
   if (filters.equipment !== "all") {
     query.set("equipment", filters.equipment);
+  }
+  if (filters.level !== "all") {
+    query.set("level", filters.level);
   }
   if (filters.q.trim() !== "") {
     query.set("q", filters.q.trim());
@@ -42,6 +42,9 @@ export async function fetchCatalogue(filters: CatalogueFilters): Promise<Catalog
   }
   if (filters.equipment !== "all") {
     query.set("equipment", filters.equipment);
+  }
+  if (filters.level !== "all") {
+    query.set("level", filters.level);
   }
   if (filters.q.trim() !== "") {
     query.set("q", filters.q.trim());

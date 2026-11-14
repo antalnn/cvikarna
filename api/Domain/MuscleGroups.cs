@@ -14,6 +14,12 @@ public static class MuscleGroups
 
     public static int OrderOf(string group) => Array.IndexOf(All, group);
 
+    private static readonly string[] Fine =
+        ["chest", "back", "shoulders", "biceps", "triceps", "quads", "hamstrings", "glutes", "calves", "core", "grip"];
+
+    /// <summary>The order the library grid uses: coarse groups, with legs in their four parts.</summary>
+    public static int FineOrderOf(string muscle) => Array.IndexOf(Fine, muscle);
+
     public static string Of(string muscle)
     {
         if (muscle == "grip")

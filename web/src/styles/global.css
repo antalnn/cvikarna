@@ -415,6 +415,36 @@ select {
   color: var(--accent);
 }
 
+/* Level tags: one tinted chip per level, same size as .tag, no saturated fill. */
+.level-tag {
+  padding: 1px 5px;
+  border: 1px solid var(--level-line);
+  border-radius: 5px;
+  background: var(--level-bg);
+  color: var(--level-fg);
+  font-size: 0.68rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.level-tag--beginner {
+  --level-bg: rgba(122, 176, 255, 0.1);
+  --level-fg: #a9cbff;
+  --level-line: rgba(122, 176, 255, 0.24);
+}
+
+.level-tag--intermediate {
+  --level-bg: rgba(240, 196, 119, 0.1);
+  --level-fg: #f0c477;
+  --level-line: rgba(240, 196, 119, 0.24);
+}
+
+.level-tag--expert {
+  --level-bg: rgba(255, 133, 133, 0.09);
+  --level-fg: #ffa3a3;
+  --level-line: rgba(255, 133, 133, 0.26);
+}
+
 .chip {
   padding: 6px 12px;
   border: 0;
@@ -592,6 +622,13 @@ select {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.show-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  padding-bottom: 8px;
 }
 
 .card {
@@ -1642,6 +1679,10 @@ select {
   gap: 16px;
 }
 
+.month-panel-slot {
+  position: relative;
+}
+
 @media (min-width: 860px) {
   .history-layout {
     grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
@@ -1835,6 +1876,127 @@ select {
 .month-sort svg {
   width: 13px;
   height: 13px;
+}
+
+/* Floats over the bottom of the month list while rows remain below it. */
+.month-scroll-cue {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface-3);
+  color: var(--accent);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transform: translateX(-50%);
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.month-scroll-cue:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.month-scroll-cue:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.month-scroll-cue svg {
+  width: 16px;
+  height: 16px;
+  animation: month-cue-bob 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.month-scroll-cue:hover svg,
+.month-scroll-cue:focus-visible svg {
+  animation-play-state: paused;
+}
+
+@keyframes month-cue-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(2px);
+  }
+}
+
+/* One floating way back to the top, shown after the page has scrolled. */
+.back-to-top {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface-3);
+  color: var(--accent);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.back-to-top:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.back-to-top:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.back-to-top svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transform: none;
+    transition: none;
+  }
+
+  .back-to-top svg {
+    animation: none;
+  }
 }
 
 .panel-heading {
@@ -2573,7 +2735,7 @@ select {
 }
 
 .guide-section__body {
-  padding: 0 0 24px 38px;
+  padding: 16px 0 24px 38px;
 }
 
 .guide-takeaways {
@@ -2820,6 +2982,11 @@ select {
     grid-template-columns: 1fr;
     gap: 8px;
     padding-top: 12px;
+  }
+
+  /* Keep the floating control clear of the footer text on a phone. */
+  .site-footer__inner {
+    padding-right: 64px;
   }
 
   .workout-item__toggle {

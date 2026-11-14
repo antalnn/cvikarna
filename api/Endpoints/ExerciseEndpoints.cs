@@ -4,6 +4,7 @@ using Cvikarna.Api.Domain;
 using Cvikarna.Api.Models;
 using Cvikarna.Api.Search;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace Cvikarna.Api.Endpoints;
 
@@ -17,18 +18,26 @@ public static class ExerciseEndpoints
                 AppDbContext db,
                 string? muscle,
                 string? equipment,
+                string? level,
                 string? q,
                 CancellationToken cancellationToken) =>
             {
                 var rows = await db.Exercises
                     .AsNoTracking()
                     .Where(exercise => exercise.IsLibrary)
-                    .OrderBy(exercise => exercise.Id)
                     .ToListAsync(cancellationToken);
 
-                var filtered = rows
+                // Curated rows are grouped by muscle, then by the Czech name the app
+                // shows by default. The order does not depend on catalogue hash ids.
+                var czech = StringComparer.Create(CultureInfo.GetCultureInfo("cs-CZ"), true);
+                var ordered = rows
+                    .OrderBy(exercise => MuscleGroups.FineOrderOf(exercise.PrimaryMuscle))
+                    .ThenBy(exercise => exercise.NameCs ?? exercise.NameEn, czech);
+
+                var filtered = ordered
                     .Where(exercise => MatchesMuscle(exercise, muscle))
                     .Where(exercise => MatchesEquipment(exercise, equipment))
+                    .Where(exercise => MatchesLevel(exercise, level))
                     .Where(exercise => ExerciseSearch.Matches(
                         exercise.NameEn,
                         exercise.NameCs,
@@ -101,5 +110,15 @@ public static class ExerciseEndpoints
         }
 
         return string.Equals(exercise.Equipment, equipment, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool MatchesLevel(Exercise exercise, string? level)
+    {
+        if (string.IsNullOrWhiteSpace(level) || level == "all")
+        {
+            return true;
+        }
+
+        return string.Equals(exercise.Level, level, StringComparison.OrdinalIgnoreCase);
     }
 }

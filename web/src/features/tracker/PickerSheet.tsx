@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchCatalogue } from "../../api/library";
-import { muscleGroupOf, EQUIPMENT, MUSCLE_GROUPS } from "../../api/types";
-import type { Equipment, MuscleGroup } from "../../api/types";
+import { muscleGroupOf, EQUIPMENT, LEVELS, MUSCLE_GROUPS } from "../../api/types";
+import type { Equipment, Level, MuscleGroup } from "../../api/types";
 import { addWorkoutExercise } from "../../api/workout";
 import { pick, useLanguage } from "../../i18n/useLanguage";
 import { useAsync } from "../../lib/useAsync";
@@ -19,6 +19,7 @@ export function PickerSheet({ workoutId, onClose, onAdded }: PickerSheetProps) {
   const [query, setQuery] = useState("");
   const [muscle, setMuscle] = useState<MuscleGroup | "all">("all");
   const [equipment, setEquipment] = useState<Equipment | "all">("all");
+  const [level, setLevel] = useState<Level | "all">("all");
   const [page, setPage] = useState(1);
   const [addingId, setAddingId] = useState<number | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
@@ -26,8 +27,8 @@ export function PickerSheet({ workoutId, onClose, onAdded }: PickerSheetProps) {
   const debouncedQuery = useDebouncedValue(query);
 
   const load = useCallback(
-    () => fetchCatalogue({ muscle, equipment, q: debouncedQuery, page }),
-    [muscle, equipment, debouncedQuery, page],
+    () => fetchCatalogue({ muscle, equipment, level, q: debouncedQuery, page }),
+    [muscle, equipment, level, debouncedQuery, page],
   );
   const state = useAsync(load);
 
@@ -183,6 +184,34 @@ export function PickerSheet({ workoutId, onClose, onAdded }: PickerSheetProps) {
               </button>
             ))}
           </div>
+
+          <div className="filters" role="group" aria-label={t.levelFilterLabel}>
+            <button
+              className="chip"
+              type="button"
+              aria-pressed={level === "all"}
+              onClick={() => {
+                setLevel("all");
+                setPage(1);
+              }}
+            >
+              {t.levelAll}
+            </button>
+            {LEVELS.map((option) => (
+              <button
+                key={option}
+                className="chip"
+                type="button"
+                aria-pressed={level === option}
+                onClick={() => {
+                  setLevel(option);
+                  setPage(1);
+                }}
+              >
+                {t.level[option]}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="sheet__body">
@@ -219,7 +248,7 @@ export function PickerSheet({ workoutId, onClose, onAdded }: PickerSheetProps) {
                         <div className="picker-row__tags">
                           <span className="tag">{t.muscle[muscleGroupOf(row.primaryMuscle)]}</span>
                           {row.equipment ? <span className="tag">{t.equipment[row.equipment]}</span> : null}
-                          <span className="tag">{t.level[row.level]}</span>
+                          <span className={`level-tag level-tag--${row.level}`}>{t.level[row.level]}</span>
                           {row.isLibrary ? <span className="tag tag--accent">{t.navLibrary}</span> : null}
                         </div>
                       </div>

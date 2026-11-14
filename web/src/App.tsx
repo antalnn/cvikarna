@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BackToTop } from "./components/BackToTop";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { SkipLink } from "./components/SkipLink";
@@ -27,6 +28,7 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
+        <BackToTop />
       </BrowserRouter>
     </LanguageProvider>
   );

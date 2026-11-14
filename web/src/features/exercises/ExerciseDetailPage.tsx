@@ -27,6 +27,7 @@ export function ExerciseDetailPage() {
     return fetchExercises({
       muscle: muscleGroupOf(loaded.primaryMuscle),
       equipment: "all",
+      level: "all",
       q: "",
     });
   }, [loaded]);
@@ -93,7 +94,7 @@ export function ExerciseDetailPage() {
                 {t.muscle[muscleGroupOf(exercise.primaryMuscle)]}
               </span>
               <span className="badge badge--muted">{t.equipment[exercise.equipment]}</span>
-              <span className="badge badge--muted">{t.level[exercise.level]}</span>
+              <span className={`level-tag level-tag--${exercise.level}`}>{t.level[exercise.level]}</span>
             </div>
 
             <h1 className="detail__title">{name}</h1>
