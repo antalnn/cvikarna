@@ -8,7 +8,9 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:ui": "node scripts/lint-ui.mjs",
+    "lint:ui:update": "node scripts/lint-ui.mjs --update"
   },
   "dependencies": {
     "react": "^19.2.0",
