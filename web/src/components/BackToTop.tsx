@@ -1,19 +1,48 @@
 import { useEffect, useState } from "react";
+import type { CSSProperties } from "react";
 import { useLanguage } from "../i18n/useLanguage";
 
 const SHOW_AFTER = 400;
 
-/** One floating way back to the top, shown once the page has scrolled. */
+/**
+ * One floating way back to the top. The footer is the floor: the button lifts
+ * as the footer scrolls in, so it never sits on top of the footer text.
+ */
 export function BackToTop() {
   const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
+  const [lift, setLift] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > SHOW_AFTER);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    const footer = document.querySelector<HTMLElement>(".site-footer");
 
-    return () => window.removeEventListener("scroll", onScroll);
+    const update = () => {
+      setVisible(window.scrollY > SHOW_AFTER);
+
+      if (!footer) {
+        return;
+      }
+
+      // The button stays on screen even if a very tall footer scrolls in.
+      const limit = Math.max(0, window.innerHeight - 88);
+      const overlap = window.innerHeight - footer.getBoundingClientRect().top;
+      setLift(Math.max(0, Math.min(overlap, limit)));
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+
+    const observer = footer ? new ResizeObserver(update) : null;
+    if (footer && observer) {
+      observer.observe(footer);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      observer?.disconnect();
+    };
   }, []);
 
   return (
@@ -24,6 +53,7 @@ export function BackToTop() {
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
       title={t.backToTop}
+      style={{ "--lift": `${lift}px` } as CSSProperties}
       onClick={() => {
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });

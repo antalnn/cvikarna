@@ -1897,9 +1897,9 @@ select {
   cursor: pointer;
   transform: translateX(-50%);
   transition:
-    background 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease;
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease;
 }
 
 .month-scroll-cue:hover {
@@ -1939,8 +1939,8 @@ select {
 /* One floating way back to the top, shown after the page has scrolled. */
 .back-to-top {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  right: clamp(24px, 2.4vw, 36px);
+  bottom: calc(24px + var(--lift, 0px));
   z-index: 20;
   display: grid;
   place-items: center;
@@ -1957,12 +1957,12 @@ select {
   visibility: hidden;
   transform: translateY(8px);
   transition:
-    opacity 180ms ease,
+    opacity 140ms ease,
     transform 180ms ease,
-    visibility 180ms ease,
-    background 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease;
+    visibility 140ms ease,
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease;
 }
 
 .back-to-top.is-visible {
@@ -2982,11 +2982,6 @@ select {
     grid-template-columns: 1fr;
     gap: 8px;
     padding-top: 12px;
-  }
-
-  /* Keep the floating control clear of the footer text on a phone. */
-  .site-footer__inner {
-    padding-right: 64px;
   }
 
   .workout-item__toggle {
