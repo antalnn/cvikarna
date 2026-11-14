@@ -16,8 +16,8 @@ Colour comes from `:root` in `web/src/styles/global.css`. Tokens: `--bg`, `--sur
 `--accent`, `--accent-ink`, `--accent-soft`, `--accent-line`, `--danger`, `--danger-soft`.
 Dark theme only. No hex outside `:root`. Check: `npm run lint:ui`.
 
-Spacing is a 4px grid: `4, 8, 12, 16, 20, 24, 32, 40, 48, 64`, and nothing else. The
-`--space-1` to `--space-7` tokens are the same scale. Check: `npm run lint:ui`.
+Spacing is a 4px grid: any multiple of 4 from 0 to 96. The values in use are 4, 8, 12, 16, 20,
+24, 32, 40, 48, 64, and `--space-1` to `--space-7` cover the small end. Check: `npm run lint:ui`.
 
 Type scale, in rem: `0.68` micro label, `0.8` small, `0.9` data and secondary, `1` body,
 `1.15` lead, `1.4` h3, `1.75` h2, `2.2` h1. Display headings may use `clamp()` on that scale.
@@ -31,11 +31,15 @@ Check: `review only`.
 ## Layout shell
 
 - Content is capped at `--max` (1180px) with the section padding used by `.section`.
+  Check: `review only`.
 - Breakpoints in use: 1440, 1280, 960, 860, 640, 375. Verify the two ends, 1440 and 375.
-- Every screen is single column under 800px.
+  Check: `review only`.
+- Every screen is single column under 800px. Check: `review only`.
 - Never place variable-length content beside other content. Stack it instead.
+  Check: `review only`.
 - Every exercise detail uses one order: header, demonstration image beside the numbered steps,
   then cues and facts. Long instructions may change row height, never the order or the column.
+  Check: `review only`.
 - The approved reference screen for a page pattern is the one Anthony last accepted; new screens
   match its skeleton before they get a style of their own. Check: `review only`, screenshots at
   1440 and 375 in both languages.
@@ -81,6 +85,8 @@ Every screen carries every state, not only the happy path.
 | History | calendar and list placeholders | "no workouts this month" | error panel, month stays | month list scrolls with a cue | calendar above, list below |
 | Guide | section skeletons | not applicable | section-level message | sections collapse, never truncate | one section per screen |
 
+Check: `review only`, every cell asserted by hand at 1440 and 375 in both languages.
+
 ## Motion
 
 - `140ms ease` for colour, background and opacity on controls.
@@ -89,6 +95,7 @@ Every screen carries every state, not only the happy path.
 - Nothing else animates. No animation on load except the photo crossfade and the sheet.
 - Every animation honours `prefers-reduced-motion`. Check: `review only`.
 - Known debt: 130, 150 and 160 ms values exist and are not linted yet.
+- Check: `review only`; no test covers motion.
 
 ## Interaction rules
 
@@ -109,9 +116,11 @@ Every screen carries every state, not only the happy path.
 - One exercise name per view, in the active language. The other language stays in the data and
   the API. Check: `review only`.
 - Sentence case for headings, labels and buttons. No trailing period on a title or a heading.
+  Check: `review only`.
 - Czech is the default; English is the second. Both dictionaries live in
-  `web/src/i18n/dictionary.ts` and must gain a key together.
+  `web/src/i18n/dictionary.ts` and must gain a key together. Check: `review only`.
 - Dates and numbers are formatted on the client from `DateOnly`, never pre-formatted by the API.
+  Check: `review only`.
 - Errors name the field and the fix. Check: `A_set_with_bad_fields_names_each_field`.
 
 ## Forbidden
@@ -125,3 +134,6 @@ Every screen carries every state, not only the happy path.
 - A new front-end dependency without Anthony's word.
 - `!important`, except inside the reduced-motion block.
 - A new class in `global.css` without an inventory row. Check: `npm run lint:ui`.
+
+Everything else in this list is `review only`: a reviewer reads it before approving a change, and
+the reason beside each row is what makes the call possible.
