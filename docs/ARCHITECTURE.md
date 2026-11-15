@@ -43,7 +43,7 @@ Folder map, one line each:
 - `web/src/i18n` — hand-rolled dictionary, `useLanguage`, `localStorage`.
 - `web/src/lib` — `useAsync`, `useDebouncedValue`, `dates`.
 - `web/src/styles/global.css` — tokens and every component style, one file by design.
-- `web/scripts/lint-ui.mjs` — spacing grid, token colour and class inventory gate.
+- `web/scripts/lint-ui.mjs` — spacing grid, token colour, class inventory, focus ring, motion duration, shadow token and breakpoint gate.
 
 ## How it is built
 
@@ -73,11 +73,11 @@ Folder map, one line each:
 - Reorder takes the whole ordered id list and rejects anything else: a partial list is ambiguous, and a foreign id is a client bug that must not write.
 - Language is a hand-rolled dictionary rather than an i18n library: two languages, no pluralisation, no runtime loading, and it keeps the bundle free of a dependency.
 - One exercise name renders at a time; the other language stays in the data and the API.
-- The back-to-top control lifts by the footer's overlap instead of hiding when the footer appears: it stays reachable at the page bottom and never covers footer text.
+- The back-to-top control lifts by the footer's overlap instead of hiding when the footer appears: it stays reachable at the page bottom and never covers footer text. The lift is written straight to the node, rises instantly and eases when it falls, so scrolling to the footer never clips it and appending a batch does not snap it.
 - Workouts are date-only and one per day: the app logs today, not a timestamped event stream.
 - No authentication and no per-user data: it is a demo with a single owner.
 - `global.css` is one file with tokens at the top: the app has five screens, and this keeps the cascade obvious at the cost of a long file.
-- `lint-ui.mjs` enforces the 4px grid, token colours and a class inventory, because spacing drift was the largest source of rework.
+- `lint-ui.mjs` enforces the 4px grid, token colours and a class inventory, because spacing drift was the largest source of rework. It grew focus rings, motion durations, shadow tokens and breakpoints once each drifted with nothing to catch it; the type scale stays review only because the small end is a band of fourteen sizes and freezing it would lock the mess in place.
 
 ## Rejected and why
 
@@ -109,8 +109,8 @@ Folder map, one line each:
 
 ## Open risks
 
-- No front-end tests. Every JSX rule above the lint gate is protected by review alone.
-- Motion durations are inconsistent: 130, 140, 150, 160, 180 and 500 ms all appear. `lint-ui` does not check them yet.
+- No front-end tests. Every JSX rule above the lint gate is protected by review alone. The gate now covers the four rules that had drifted (focus rings, motion durations, shadow tokens, breakpoints), but layout, the states matrix and the type scale still have no check.
+- The 375px pass shows the back-to-top control over body text on the guide page. A full-width mobile column and a floating control cannot both satisfy "never covers text". Not fixed; the rule needs a 375 case or the control needs a mobile behaviour.
 - 148 baselined `lint-ui` violations are recorded debt. The gate stops it growing; it does not shrink it.
 - `Program.cs` has no `MapFallbackToFile("index.html")`, so a deep link into a deployed preview would 404 even though Vite handles it in development.
 - SQLite is ephemeral on App Service, so a preview would re-seed on every restart. The preview is not deployed.

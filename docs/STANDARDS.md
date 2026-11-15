@@ -19,21 +19,23 @@ Dark theme only. No hex outside `:root`. Check: `npm run lint:ui`.
 Spacing is a 4px grid: any multiple of 4 from 0 to 96. The values in use are 4, 8, 12, 16, 20,
 24, 32, 40, 48, 64, and `--space-1` to `--space-7` cover the small end. Check: `npm run lint:ui`.
 
-Type scale, in rem: `0.68` micro label, `0.8` small, `0.9` data and secondary, `1` body,
-`1.15` lead, `1.4` h3, `1.75` h2, `2.2` h1. Display headings may use `clamp()` on that scale.
-Reading text never below `0.875rem` (14px); only tags, pills and micro labels may go smaller.
-The history log uses `0.9rem` or larger with tabular figures. Check: `review only` until a lint
-case covers font sizes.
+Type scale: display headings use `clamp()` between `1.6rem` and `2.95rem`. Body and secondary
+text run `0.9` to `1.02rem`, leads `1.1` to `1.14`. Reading text never below `0.875rem` (14px);
+only tags, pills, captions and micro labels go smaller. The history log uses `0.9rem` or larger
+with tabular figures. Known debt: labels and captions use fourteen sizes between `0.56` and
+`0.84`, and the body band six between `0.9` and `1.02`, so neither end is a real scale. Check:
+`review only`; the 14px floor is checked by eye at 1440 and 375.
 
-Radii: `12` cards and panels, `8` controls, `6` chips. Shadows: `--shadow-pop` only.
-Check: `review only`.
+Radii: `12` cards and panels, `8` controls, `6` chips. Shadows come from the `:root` tokens
+`--shadow-pop`, `--shadow-bubble`, `--shadow-fab`, `--shadow-arrow` and `--shadow-sheet`, and a
+`box-shadow` never carries a raw colour. Check: `npm run lint:ui`.
 
 ## Layout shell
 
 - Content is capped at `--max` (1180px) with the section padding used by `.section`.
   Check: `review only`.
-- Breakpoints in use: 1440, 1280, 960, 860, 640, 375. Verify the two ends, 1440 and 375.
-  Check: `review only`.
+- Breakpoints in use: 960, 860, 800, 760, 640, 480 and 420. A `max-width` sits one pixel under
+  its `min-width` twin. Verify the two ends, 1440 and 375. Check: `npm run lint:ui`.
 - Every screen is single column under 800px. Check: `review only`.
 - Never place variable-length content beside other content. Stack it instead.
   Check: `review only`.
@@ -90,12 +92,13 @@ Check: `review only`, every cell asserted by hand at 1440 and 375 in both langua
 ## Motion
 
 - `140ms ease` for colour, background and opacity on controls.
-- `180ms ease` for layout shifts, reorder slides and the drag settle.
+- `180ms ease` for transform, layout shifts, reorder slides and the drag settle.
 - `500ms` for the photo crossfade only.
-- Nothing else animates. No animation on load except the photo crossfade and the sheet.
-- Every animation honours `prefers-reduced-motion`. Check: `review only`.
-- Known debt: 130, 150 and 160 ms values exist and are not linted yet.
-- Check: `review only`; no test covers motion.
+- Nothing else animates, and only `0` may be instant. No animation on load except the photo
+  crossfade and the sheet.
+- Every animation honours `prefers-reduced-motion`. Check: `review only`; nothing covers the
+  reduced-motion path.
+- Check: `npm run lint:ui` for every duration in `global.css`.
 
 ## Interaction rules
 
@@ -107,7 +110,7 @@ Check: `review only`, every cell asserted by hand at 1440 and 375 in both langua
   on the focused handle. Check: `Sets_can_be_reordered_and_the_order_survives_a_reload`,
   `Workout_exercises_can_be_reordered_and_the_order_survives_a_reload`.
 - `:focus-visible` for focus rings, never `:focus`. A mouse click does not pin a control open.
-  Check: `review only`.
+  Check: `npm run lint:ui` for the ring, `review only` for the pinning.
 - Error text never moves the control it belongs to. The slot is reserved. Check: `review only`.
 - A floating control never covers text or a column. Check: `review only`.
 

@@ -41,6 +41,10 @@
   --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --max: 1180px;
   --shadow-pop: 0 18px 40px -28px rgba(0, 0, 0, 0.85);
+  --shadow-bubble: 0 10px 28px rgba(0, 0, 0, 0.4);
+  --shadow-fab: 0 10px 24px rgba(0, 0, 0, 0.45);
+  --shadow-arrow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  --shadow-sheet: -24px 0 64px rgba(0, 0, 0, 0.5);
 }
 
 *,
@@ -160,7 +164,7 @@ select {
   font-weight: 600;
 }
 
-.skip-link:focus {
+.skip-link:focus-visible {
   top: 12px;
 }
 
@@ -503,7 +507,7 @@ select {
   appearance: none;
 }
 
-.search input:focus {
+.search input:focus-visible {
   outline: none;
   border-color: var(--accent-line);
   box-shadow: 0 0 0 3px var(--accent-soft);
@@ -555,7 +559,7 @@ select {
   cursor: pointer;
 }
 
-.select select:focus {
+.select select:focus-visible {
   outline: none;
   border-color: var(--accent-line);
 }
@@ -638,7 +642,7 @@ select {
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--surface);
-  transition: background 160ms ease, transform 160ms ease;
+  transition: background 140ms ease, transform 180ms ease;
 }
 
 .card:hover {
@@ -769,7 +773,7 @@ select {
 .state__text {
   max-width: 44ch;
   color: var(--text-muted);
-  font-size: 0.86rem;
+  font-size: 0.9rem;
 }
 
 .state--error {
@@ -855,7 +859,7 @@ select {
 
 .detail__meta-value {
   color: var(--text);
-  font-size: 0.86rem;
+  font-size: 0.9rem;
   line-height: 1.4;
 }
 
@@ -937,7 +941,7 @@ select {
   opacity: 0;
   pointer-events: none;
   transform: translateY(-50%);
-  transition: opacity 160ms ease, background 140ms ease;
+  transition: opacity 140ms ease, background 140ms ease;
 }
 
 .stage__arrow--prev {
@@ -1110,7 +1114,7 @@ select {
 .sets-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
 }
 
 .sets-table th {
@@ -1239,7 +1243,7 @@ select {
   margin-top: 8px;
   max-width: 58ch;
   color: var(--text-dim);
-  font-size: 0.84rem;
+  font-size: 0.9rem;
 }
 
 .tracker-actions,
@@ -1323,7 +1327,7 @@ select {
   font-weight: 600;
 }
 
-.name-edit__input:focus {
+.name-edit__input:focus-visible {
   outline: none;
   border-color: var(--accent-line);
   box-shadow: 0 0 0 3px var(--accent-soft);
@@ -1399,7 +1403,7 @@ select {
   z-index: 5;
   overflow: visible;
   transition: none;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow-pop);
 }
 
 .workout-item:hover {
@@ -1479,7 +1483,7 @@ select {
   width: 14px;
   height: 14px;
   color: var(--text-dim);
-  transition: transform 160ms ease;
+  transition: transform 180ms ease;
 }
 
 .workout-item.is-open .workout-item__chevron {
@@ -1562,7 +1566,7 @@ select {
   color: var(--text-dim);
 }
 
-.set-form__field input:focus {
+.set-form__field input:focus-visible {
   outline: none;
   border-color: var(--accent-line);
   box-shadow: 0 0 0 3px var(--accent-soft);
@@ -1622,7 +1626,7 @@ select {
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: var(--surface-3);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-bubble);
   color: var(--text);
   font-size: 0.78rem;
   font-weight: 400;
@@ -1633,7 +1637,7 @@ select {
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, 4px);
-  transition: opacity 150ms ease, transform 150ms ease;
+  transition: opacity 140ms ease, transform 180ms ease;
 }
 
 .info-tip:hover .info-tip__bubble,
@@ -1735,7 +1739,7 @@ select {
 
 .calendar__title {
   flex: 1;
-  font-size: 0.86rem;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   text-align: center;
@@ -1796,7 +1800,7 @@ select {
   font-size: 0.76rem;
   font-variant-numeric: tabular-nums;
   cursor: pointer;
-  transition: background 130ms ease, color 130ms ease;
+  transition: background 140ms ease, color 140ms ease;
 }
 
 .calendar__day:hover {
@@ -1893,7 +1897,7 @@ select {
   border-radius: 50%;
   background: var(--surface-3);
   color: var(--accent);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-arrow);
   cursor: pointer;
   transform: translateX(-50%);
   transition:
@@ -1940,7 +1944,8 @@ select {
 .back-to-top {
   position: fixed;
   right: clamp(24px, 2.4vw, 36px);
-  bottom: calc(24px + var(--lift, 0px));
+  bottom: 24px;
+  translate: 0 calc(-1 * var(--lift, 0px));
   z-index: 20;
   display: grid;
   place-items: center;
@@ -1951,24 +1956,28 @@ select {
   border-radius: 50%;
   background: var(--surface-3);
   color: var(--accent);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-fab);
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(8px);
+  --lift-duration: 0ms;
   transition:
     opacity 140ms ease,
-    transform 180ms ease,
+    translate var(--lift-duration) ease,
     visibility 140ms ease,
     background 140ms ease,
     border-color 140ms ease,
     color 140ms ease;
 }
 
+/* Only a falling lift eases. A rising lift must land at once or it clips the footer. */
+.back-to-top.is-dropping {
+  --lift-duration: 180ms;
+}
+
 .back-to-top.is-visible {
   opacity: 1;
   visibility: visible;
-  transform: none;
 }
 
 .back-to-top:hover {
@@ -1990,7 +1999,6 @@ select {
 
 @media (prefers-reduced-motion: reduce) {
   .back-to-top {
-    transform: none;
     transition: none;
   }
 
@@ -2009,7 +2017,7 @@ select {
   gap: 8px;
   padding: 8px 0;
   color: var(--text-dim);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
 }
 
 .month-list {
@@ -2036,7 +2044,7 @@ select {
   color: var(--text);
   text-align: left;
   cursor: pointer;
-  transition: background 130ms ease;
+  transition: background 140ms ease;
 }
 
 .month-row:hover {
@@ -2169,7 +2177,7 @@ select {
 .history-workout__empty {
   margin-top: 12px;
   color: var(--text-dim);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
 }
 
 .history-toggle-all {
@@ -2322,7 +2330,7 @@ select {
   width: 16px;
   height: 16px;
   color: var(--text-dim);
-  transition: transform 160ms ease;
+  transition: transform 180ms ease;
 }
 
 .history-exercise__summary[aria-expanded="true"] .history-exercise__chevron {
@@ -2348,7 +2356,7 @@ select {
 .history-exercise__empty {
   margin: 2px 0 4px;
   color: var(--text-dim);
-  font-size: 0.84rem;
+  font-size: 0.9rem;
 }
 
 .history-sets {
@@ -2365,7 +2373,7 @@ select {
   color: var(--text);
   font-size: 0.9rem;
   font-variant-numeric: tabular-nums;
-  transition: background 130ms ease;
+  transition: background 140ms ease;
 }
 
 .history-set:hover {
@@ -2449,7 +2457,7 @@ select {
   width: min(520px, 100%);
   height: 100%;
   background: var(--bg);
-  box-shadow: -24px 0 64px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-sheet);
 }
 
 .sheet__head {
@@ -2606,7 +2614,7 @@ select {
 .picker-row__title {
   display: -webkit-box;
   overflow: hidden;
-  font-size: 0.84rem;
+  font-size: 0.9rem;
   font-weight: 600;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -2717,7 +2725,7 @@ select {
 .guide-section__lede {
   grid-column: 2;
   color: var(--text-muted);
-  font-size: 0.86rem;
+  font-size: 0.9rem;
   line-height: 1.45;
 }
 
@@ -2727,7 +2735,7 @@ select {
   width: 18px;
   height: 18px;
   color: var(--text-dim);
-  transition: transform 160ms ease;
+  transition: transform 180ms ease;
 }
 
 .guide-section[open] .guide-section__chevron {
@@ -2862,7 +2870,7 @@ select {
 
 .guide-section__sources a {
   color: var(--accent);
-  font-size: 0.86rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -2921,7 +2929,7 @@ select {
   }
 }
 
-@media (max-width: 759px) {
+@media (max-width: 760px) {
   .site-header__inner {
     flex-wrap: wrap;
     gap: 8px 16px;
@@ -3041,13 +3049,26 @@ select {
   }
 }
 
-@media (max-width: 479px) {
+@media (max-width: 480px) {
   .picker-row__tags .tag--accent {
     display: none;
   }
+
+  /* The RPE tip sits at the right edge of the log, so a centred bubble hangs 46px
+     past the viewport and scrolls the page sideways. Anchor it to the trigger. */
+  .history-log__rpe-head .info-tip__bubble {
+    left: auto;
+    right: 0;
+    transform: translate(0, 4px);
+  }
+
+  .history-log__rpe-head .info-tip:hover .info-tip__bubble,
+  .history-log__rpe-head .info-tip:focus-within .info-tip__bubble {
+    transform: translate(0, 0);
+  }
 }
 
-@media (max-width: 419px) {
+@media (max-width: 420px) {
   .site-nav a {
     font-size: 0.76rem;
     padding: 5px 8px;

@@ -1,17 +1,23 @@
-import { useEffect, useState } from "react";
-import type { CSSProperties } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../i18n/useLanguage";
 
 const SHOW_AFTER = 400;
 
 /**
  * One floating way back to the top. The footer is the floor: the button lifts
- * as the footer scrolls in, so it never sits on top of the footer text.
+ * as the footer scrolls in, so it never sits on top of the footer text. Rising
+ * is instant, because a lagging lift would overlap the footer; falling eases,
+ * because a lifted button dropping to its base must not snap.
+ *
+ * The lift is written straight to the node inside the scroll handler. A React
+ * state round trip lands a frame late, which paints the button inside the
+ * footer for one frame while scrolling.
  */
 export function BackToTop() {
   const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
-  const [lift, setLift] = useState(0);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const previousLift = useRef(0);
 
   useEffect(() => {
     const footer = document.querySelector<HTMLElement>(".site-footer");
@@ -19,14 +25,20 @@ export function BackToTop() {
     const update = () => {
       setVisible(window.scrollY > SHOW_AFTER);
 
-      if (!footer) {
+      const button = buttonRef.current;
+
+      if (!footer || !button) {
         return;
       }
 
       // The button stays on screen even if a very tall footer scrolls in.
       const limit = Math.max(0, window.innerHeight - 88);
       const overlap = window.innerHeight - footer.getBoundingClientRect().top;
-      setLift(Math.max(0, Math.min(overlap, limit)));
+      const next = Math.max(0, Math.min(overlap, limit));
+
+      button.style.setProperty("--lift", `${next}px`);
+      button.classList.toggle("is-dropping", next < previousLift.current);
+      previousLift.current = next;
     };
 
     update();
@@ -47,13 +59,13 @@ export function BackToTop() {
 
   return (
     <button
+      ref={buttonRef}
       className={visible ? "back-to-top is-visible" : "back-to-top"}
       type="button"
       aria-label={t.backToTop}
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
       title={t.backToTop}
-      style={{ "--lift": `${lift}px` } as CSSProperties}
       onClick={() => {
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });

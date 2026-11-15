@@ -1,4 +1,4 @@
-// UI lint: spacing rhythm, token colours, class inventory.
+// UI lint: spacing rhythm, token colours, class inventory, focus rings, motion, shadows, breakpoints.
 // Baseline mode lets the current debt stay while the gate blocks new debt.
 //   node scripts/lint-ui.mjs           check
 //   node scripts/lint-ui.mjs --update  rewrite the baseline and the inventory
@@ -18,6 +18,16 @@ const SPACING_STEP = 4
 const SPACING_MAX = 96
 const HEX = /#[0-9a-fA-F]{3,8}\b/
 const CLASS = /\.(-?[a-zA-Z_][\w-]*)/g
+
+// Focus rings come from :focus-visible; :focus-within opens a panel, so it is allowed.
+const FOCUS = /:focus(?!-visible|-within)/
+const MOTION_PROPS = /^(transition|animation)(-duration)?$/
+// 140 for colour, background and opacity, 180 for transform and layout, 500 for the photo crossfade.
+// 0 is an instant switch, 0.01 is the reduced-motion kill switch.
+const MOTION_MS = new Set(["0", "0.01", "140", "180", "500"])
+// The documented breakpoints. A max-width sits one pixel under its min-width twin.
+const BREAKPOINTS = new Set([960, 860, 800, 760, 640, 480, 420])
+const RAW_COLOUR = /rgba?\(|hsla?\(|#[0-9a-fA-F]{3,8}\b/
 
 const update = process.argv.includes("--update")
 
@@ -82,13 +92,60 @@ const classes = new Set()
 
 for (const rule of rules) {
   if (!rule.prop) {
-    if (rule.selector) {
+    if (rule.selector && !rule.close) {
       for (const m of rule.selector.matchAll(CLASS)) classes.add(m[1])
+      if (!rule.isAt && FOCUS.test(rule.selector)) {
+        violations.push({
+          rule: "focus",
+          selector: rule.selector,
+          detail: rule.selector.match(FOCUS)[0],
+          line: rule.line,
+          message: "a focus ring belongs on :focus-visible, never :focus",
+        })
+      }
+      if (rule.selector.startsWith("@media")) {
+        for (const m of rule.selector.matchAll(/\((min|max)-width:\s*(\d+)px\)/g)) {
+          const n = Number(m[2])
+          if (!BREAKPOINTS.has(n) && !BREAKPOINTS.has(n + 1)) {
+            violations.push({
+              rule: "breakpoint",
+              selector: rule.selector,
+              detail: `${m[1]}-width: ${n}px`,
+              line: rule.line,
+              message: `${n}px is not a documented breakpoint (${[...BREAKPOINTS].join(", ")})`,
+            })
+          }
+        }
+      }
     }
     continue
   }
   const value = rule.value.replace(/!important/gi, "").trim()
   const inRoot = rule.selector.includes(":root")
+
+  if (MOTION_PROPS.test(rule.prop)) {
+    for (const m of value.matchAll(/(\d+(?:\.\d+)?)ms/g)) {
+      if (!MOTION_MS.has(m[1])) {
+        violations.push({
+          rule: "motion",
+          selector: rule.selector,
+          detail: `${rule.prop}: ${m[1]}ms`,
+          line: rule.line,
+          message: `${m[1]}ms is off the motion scale (0, 140, 180, 500)`,
+        })
+      }
+    }
+  }
+
+  if (rule.prop === "box-shadow" && RAW_COLOUR.test(value)) {
+    violations.push({
+      rule: "shadow",
+      selector: rule.selector,
+      detail: `box-shadow: ${value}`,
+      line: rule.line,
+      message: "a shadow takes a :root token, never a raw colour",
+    })
+  }
 
   if (SPACING_PROPS.test(rule.prop)) {
     for (const m of value.matchAll(/(-?\d+(?:\.\d+)?)px/g)) {
@@ -121,7 +178,7 @@ for (const rule of rules) {
 
 const previous = existsSync(baselinePath)
   ? JSON.parse(readFileSync(baselinePath, "utf8"))
-  : { spacing: [], color: [] }
+  : {}
 const previousInventory = existsSync(inventoryPath)
   ? JSON.parse(readFileSync(inventoryPath, "utf8"))
   : { classes: [] }
@@ -129,8 +186,8 @@ const previousInventory = existsSync(inventoryPath)
 const key = (v) => `${v.selector}\u0000${v.detail}`
 
 if (update) {
-  const baseline = { spacing: [], color: [] }
-  for (const v of violations) baseline[v.rule].push(key(v))
+  const baseline = {}
+  for (const v of violations) (baseline[v.rule] ??= []).push(key(v))
   for (const k of Object.keys(baseline)) baseline[k] = [...new Set(baseline[k])].sort()
   writeFileSync(baselinePath, JSON.stringify(baseline, null, 2) + "\n")
   writeFileSync(
@@ -143,13 +200,11 @@ if (update) {
   process.exit(0)
 }
 
-const known = {
-  spacing: new Set(previous.spacing ?? []),
-  color: new Set(previous.color ?? []),
-}
+const known = {}
+for (const [rule, list] of Object.entries(previous)) known[rule] = new Set(list)
 const fresh = violations.filter((v) => !known[v.rule]?.has(key(v)))
 const fixed = []
-for (const rule of ["spacing", "color"]) {
+for (const rule of Object.keys(known)) {
   const live = new Set(violations.filter((v) => v.rule === rule).map(key))
   for (const k of known[rule] ?? []) if (!live.has(k)) fixed.push({ rule, key: k })
 }

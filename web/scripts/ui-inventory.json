@@ -122,6 +122,7 @@
     "info-tip__button",
     "is-dragging",
     "is-drop-target",
+    "is-dropping",
     "is-open",
     "is-visible",
     "lang-toggle",
