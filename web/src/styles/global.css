@@ -5804,3 +5804,76 @@ svg {
   position: relative;
   top: 1px;
 }
+
+/* 104: the Dnes cue floats over the list's fade, so the next movement stays
+   half-visible behind it instead of a blank strip being reserved. */
+.session__scroll {
+  max-height: 247px;
+}
+
+.session__scroll.is-overflow .session {
+  -webkit-mask-image: linear-gradient(180deg, black calc(100% - 46px), transparent);
+  mask-image: linear-gradient(180deg, black calc(100% - 46px), transparent);
+}
+
+.monthcue--float {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-2);
+  margin-top: 0;
+  transform: translateX(-50%);
+  opacity: 0.55;
+  backdrop-filter: blur(2px);
+}
+
+.monthcue--float:not([disabled]):hover,
+.monthcue--float:not([disabled]):focus-visible {
+  opacity: 1;
+}
+
+/* 106: the dashboard figure centres on the row's whole text block, label and
+   note together, so it no longer rides high on the label alone. */
+.statrow li {
+  grid-template-rows: auto auto;
+}
+
+.statrow__value {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  position: static;
+  top: 0;
+}
+
+.statrow__note {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+@media (max-width: 767px) {
+  .statrow__value {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+}
+
+/* 108: the delta reads as one figure, sign to percent, and names the average it
+   is measured against. */
+.dash__delta {
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.dash__avg {
+  color: var(--fg-muted);
+}
+
+.dash__volume-note {
+  display: grid;
+  gap: 0;
+}
+
+.dash__avg {
+  color: var(--fg-muted);
+}

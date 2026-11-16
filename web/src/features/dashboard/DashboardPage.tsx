@@ -39,7 +39,7 @@ function useScrollCue<T extends HTMLElement>(dependency: unknown) {
 
 export function DashboardPage() {
   const { lang, tx } = useLanguage();
-  const { dashboard, dashboardPhase, dashboardError, today, todayPhase, demoState, openSheet, refreshToday } =
+  const { dashboard, dashboardPhase, dashboardError, today, todayPhase, demoState, openSheet, refreshToday, openTip, closeTip } =
     useApp();
   const { ref: sessionRef, visible: sessionCue, overflowing: sessionOverflow } = useScrollCue<HTMLUListElement>(today);
 
@@ -77,11 +77,13 @@ export function DashboardPage() {
   const maxWeek = Math.max(...week.map((day) => day.volume), 1);
   const weeks = dashboard?.weeklyVolume ?? [];
   const maxVolume = Math.max(...weeks.map((row) => row.volume), 1);
+  const weekTotal = weeks.reduce((sum, row) => sum + row.volume, 0);
   const lastWeek = weeks[weeks.length - 1];
   const previousAverage =
     weeks.length > 1
       ? weeks.slice(0, -1).reduce((sum, row) => sum + row.volume, 0) / (weeks.length - 1)
       : 0;
+  const weekAverage = previousAverage;
   const volumeDelta =
     previousAverage > 0 && lastWeek ? ((lastWeek.volume - previousAverage) / previousAverage) * 100 : null;
   const delta =
@@ -220,7 +222,7 @@ export function DashboardPage() {
               </span>
             </span>
           </div>
-          <div className="session__scroll">
+          <div className={`session__scroll${sessionOverflow ? " is-overflow" : ""}`}>
             <ul className="session" ref={sessionRef}>
               {exercises.map((item, index) => {
                 const name = lang === "cs" ? item.nameCs ?? item.nameEn : item.nameEn;
@@ -257,22 +259,22 @@ export function DashboardPage() {
                 );
               })}
             </ul>
+            <button
+              className="monthcue monthcue--float"
+              type="button"
+              aria-label={tx("Zobrazit další cviky", "Show more exercises")}
+              hidden={!sessionOverflow}
+              disabled={!sessionCue}
+              onClick={() =>
+                sessionRef.current?.scrollBy({
+                  top: Math.round(sessionRef.current.clientHeight * 0.82),
+                  behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+                })
+              }
+            >
+              <Icon name="i-chevron" className="ico ico--sm" />
+            </button>
           </div>
-          <button
-            className="monthcue"
-            type="button"
-            aria-label={tx("Zobrazit další cviky", "Show more exercises")}
-            hidden={!sessionOverflow}
-            disabled={!sessionCue}
-            onClick={() =>
-              sessionRef.current?.scrollBy({
-                top: Math.round(sessionRef.current.clientHeight * 0.82),
-                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-              })
-            }
-          >
-            <Icon name="i-chevron" className="ico ico--sm" />
-          </button>
           <div className="dash__foot">
             <div
               className="progress"
@@ -290,7 +292,9 @@ export function DashboardPage() {
             <Link className="btn btn--primary" to="/tracker">
               {totals.total > 0 && totals.done >= totals.total
                 ? tx("Upravit", "Edit")
-                : tx("Pokračovat", "Continue")}
+                : totals.done > 0
+                  ? tx("Pokračovat", "Continue")
+                  : tx("Začít", "Start")}
             </Link>
           </div>
         </section>
@@ -378,7 +382,19 @@ export function DashboardPage() {
                   : ["MO", "TU", "WE", "TH", "FR", "SA", "SU"];
               const isToday = day.date === isoDate(new Date());
               return (
-                <li className={`week__day${day.hasSession ? " is-done" : ""}${isToday ? " is-today" : ""}`} key={day.date}>
+                <li
+                  className={`week__day${day.hasSession ? " is-done" : ""}${isToday ? " is-today" : ""}`}
+                  key={day.date}
+                  onMouseEnter={(event) =>
+                    openTip(
+                      event.currentTarget,
+                      day.hasSession
+                        ? `${longDate(date, lang)}: ${fmt(day.volume, lang)} kg`
+                        : `${longDate(date, lang)}: ${tx("žádný trénink", "no session")}`,
+                    )
+                  }
+                  onMouseLeave={closeTip}
+                >
                   <span className="week__label">{labels[index]}</span>
                   <span className="week__track">
                     <span className="week__bar" style={{ "--h": Math.round((day.volume / maxWeek) * 100) } as CSSProperties} />
@@ -404,7 +420,18 @@ export function DashboardPage() {
                     ? record.bestWeightKg - record.previousBestWeightKg
                     : null;
                 return (
-                  <li key={record.exerciseId}>
+                  <li
+                    key={record.exerciseId}
+                    onMouseEnter={(event) =>
+                      openTip(
+                        event.currentTarget,
+                        gain !== null && gain > 0
+                          ? `${name}: +${fmt(gain, lang)} kg ${tx("proti minulému rekordu", "over the previous record")}`
+                          : tx("První zapsaný rekord, nic staršího k porovnání", "The first record on file, nothing older to compare"),
+                      )
+                    }
+                    onMouseLeave={closeTip}
+                  >
                     <span className="ledger__name">{name}</span>
                     <span className="ledger__val num">{fmt(record.bestWeightKg, lang)} kg</span>
                     <span className="ledger__delta">
@@ -424,11 +451,25 @@ export function DashboardPage() {
         <section className="panel" style={{ "--i": 4 } as CSSProperties}>
           <div className="panel__head">
             <span className="micro">{tx("Objem po týdnech", "Volume by week")}</span>
-            <span className="panel__note num">{fmt(lastWeek?.volume ?? 0, lang)} kg</span>
+            <span className="panel__note num" title={tx("Součet za posledních sedm týdnů", "The total over the last seven weeks")}>
+              {fmt(weekTotal, lang)} kg
+            </span>
           </div>
           <div className="spark" role="img" aria-label={tx("Objem za posledních sedm týdnů", "Volume over the last seven weeks")}>
             {weeks.map((row) => (
-              <span className="spark__col" key={row.start}>
+              <span
+                className="spark__col"
+                key={row.start}
+                onMouseEnter={(event) =>
+                  openTip(
+                    event.currentTarget,
+                    row.volume > 0
+                      ? `${row.label}: ${fmt(row.volume, lang)} kg`
+                      : `${row.label}: ${tx("žádný objem", "no volume")}`,
+                  )
+                }
+                onMouseLeave={closeTip}
+              >
                 <span className="spark__plot">
                   <span className="spark__bar" style={{ "--h": Math.round((row.volume / maxVolume) * 100) } as CSSProperties} />
                 </span>
@@ -437,11 +478,17 @@ export function DashboardPage() {
             ))}
           </div>
           <p className="dash__volume-note" style={{ marginTop: "var(--space-3)" }}>
-            {tx("Posledních 7 týdnů", "Last 7 weeks")} ·{" "}
-            <span className="num" style={{ color: "var(--accent)" }}>
-              {volumeDelta === null ? "—" : `${volumeDelta >= 0 ? "+" : "−"}${fmt(Math.abs(volumeDelta), lang)} %`}
-            </span>{" "}
-            {tx("proti průměru", "vs. average")}
+            <span>
+              {tx("Posledních 7 týdnů", "Last 7 weeks")} ·{" "}
+              <span className="num dash__delta">
+                {volumeDelta === null
+                  ? "—"
+                  : `${volumeDelta >= 0 ? "+" : "−"}${fmt(Math.abs(volumeDelta), lang)}\u00a0%`}
+              </span>
+            </span>
+            <span className="dash__avg">
+              {tx("proti průměru", "vs. average")} <span className="num">{fmt(weekAverage, lang)} kg</span>
+            </span>
           </p>
         </section>
       </div>
