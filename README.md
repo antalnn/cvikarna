@@ -51,7 +51,7 @@ The session bar carries volume, sets and time on the first tier and the progress
 
 ### History
 
-The calendar marks only days that have exercises, and carries the way back to today inside its own header, beside the month arrows. The month panel lists those workouts, newest or oldest first, with exercise count, set count and volume. When the list runs past the panel, a small down arrow scrolls it; at the oldest session the arrow dims and stops bobbing, keeping its slot so the panel never resizes. A selected workout opens as a read-only log with stat blocks and collapsible exercise cards whose sets are chips, each with its RPE numeral. Deleting it is the red trash in that card's corner, and it asks first in a small popover anchored to the control.
+The calendar marks only days that have exercises, and carries the way back to today inside its own header, beside the month arrows. The month panel lists those workouts, newest or oldest first, with exercise count, set count and volume. When the list runs past the panel, a small down arrow scrolls it; at the oldest session the arrow leaves and its slot holds the space, so the panel keeps its height. A selected workout opens as a read-only log with stat blocks and collapsible exercise cards whose sets are chips, each with its RPE numeral. Deleting it is the red trash in that card's corner, and it asks first in a small popover anchored to the control.
 
 ![Cvikárna history with a read-only log and set chips](docs/images/history.png)
 

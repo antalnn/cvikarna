@@ -3023,8 +3023,9 @@ svg {
   animation: cue-bob 2.4s var(--ease-in-out) infinite;
 }
 
-/* At the end of the list the cue keeps its place but stops asking to be
-   pressed: no bob, dimmed, and no hover lift. */
+/* A cue that is still on screen but has nowhere to send you stops asking to be
+   pressed: no bob, no hover lift. Only Dnes keeps its cue at the end; Historie
+   takes it away entirely and holds its slot. */
 .monthcue[disabled] svg,
 .monthcue[disabled]:hover svg,
 .monthcue[disabled]:focus-visible svg {
@@ -3264,13 +3265,6 @@ svg {
   align-content: start;
   gap: var(--space-4);
   min-width: 0;
-}
-
-/* Right column: the figure rides the top, the sources take the bottom, so the
-   column is read as one block against the copy. With no figure, the sources
-   simply start at the top. */
-.acc__aside {
-  align-content: space-between;
 }
 
 .acc__sources {
@@ -5521,11 +5515,6 @@ svg {
   align-content: stretch;
 }
 
-.acc__aside > .acc__sources {
-  align-self: end;
-  margin-top: auto;
-}
-
 .acc__sources {
   max-width: 52ch;
 }
@@ -5585,37 +5574,6 @@ svg {
 
 .dash__stats .statrow {
   flex: 0 0 auto;
-}
-
-/* 87: the guide reads down the right column. With a figure, the column is one
-   block: the picture first, its caption, then the sources directly beneath.
-   With no figure, the sources sit at the foot of the card, level with the end
-   of the copy, so they never float halfway down. */
-@media (min-width: 900px) {
-  .acc__grid {
-    align-items: start;
-  }
-
-  .acc__main {
-    grid-column: 1;
-    grid-row: 1;
-    align-self: stretch;
-  }
-
-  .acc__aside {
-    grid-column: 2;
-    grid-row: 1;
-    align-self: stretch;
-    align-content: start;
-  }
-
-  .acc__aside:not(:has(.figure)) {
-    align-content: end;
-  }
-}
-
-.acc__aside {
-  align-content: start;
 }
 
 /* The layered surfaces above a sheet: the sheet sits at 115, so a confirm, a
@@ -5751,8 +5709,9 @@ svg {
   }
 }
 
-/* The cue keeps its slot for as long as the list overflows: at the end it dims
-   and stops taking clicks, so scrolling never resizes the card above it. */
+/* Dnes keeps its floating cue in place at the end of the list and dims it, so
+   scrolling never resizes the card above it; Historie removes its cue and holds
+   the slot instead. */
 .monthcue[disabled] {
   opacity: 0.35;
   cursor: default;
@@ -5935,17 +5894,26 @@ svg {
   pointer-events: none;
 }
 
-/* 117: the copy column sets the card's height; the right column fills it from
-   the top with the figure and pins the sources to its foot, so every section
-   ends its sources on the copy's last line. The figure gives way when the
-   column is short, keeping its own aspect ratio while it shrinks. */
+/* 117: the copy column sets the card's height; the right column fills it, the
+   figure at its top and the sources pinned to its foot, so every section ends
+   its sources on the copy's last line. The figure takes the room left above the
+   sources and steps aside when that room is too small to read. */
 @media (min-width: 900px) {
   .acc__grid {
     align-items: stretch;
   }
 
+  .acc__main {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: stretch;
+  }
+
   .acc__aside {
     position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: stretch;
     min-height: 0;
   }
 
@@ -5958,26 +5926,6 @@ svg {
     min-height: 0;
   }
 
-  .acc__aside__inner > .figure {
-    flex: 0 1 auto;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  .acc__aside__inner > .figure svg {
-    height: auto;
-    max-height: 100%;
-  }
-
-  .acc__aside__inner > .acc__sources {
-    flex: 0 0 auto;
-    margin-top: auto;
-  }
-}
-
-/* The figure and its caption are one block that yields to the sources: it takes
-   whatever height is left in the column, and the sources keep their own. */
-@media (min-width: 900px) {
   .acc__aside__inner > .acc__figure {
     display: flex;
     flex: 1 1 auto;
@@ -5991,6 +5939,16 @@ svg {
     flex: 0 1 auto;
     min-height: 0;
     overflow: hidden;
+  }
+
+  .acc__aside__inner > .acc__figure > .figure svg {
+    height: auto;
+    max-height: 100%;
+  }
+
+  .acc__aside__inner > .acc__sources {
+    flex: 0 0 auto;
+    margin-top: auto;
   }
 }
 
@@ -6006,4 +5964,10 @@ svg {
 
 .monthcue-slot .monthcue {
   margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  .monthcue-slot {
+    height: calc(var(--tap) + var(--space-2));
+  }
 }
