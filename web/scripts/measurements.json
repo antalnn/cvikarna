@@ -93,6 +93,38 @@
           { "selector": ".session__row", "min": 2 }
         ]
       }
+    },
+    {
+      "id": "guide-figure-foot",
+      "kind": "same-line",
+      "sentence": "Every guide section carries its figure. The copy sets the card's floor, never its ceiling, and the sources end the column beneath the figure.",
+      "source": {
+        "date": "2026-11-16",
+        "session": "Iron Ledger, library and guide batch",
+        "file": "docs/STANDARDS.md",
+        "line": 139
+      },
+      "route": "/guide",
+      "state": "Průvodce, Czech, the Trénink section open on its two-column layout",
+      "widths": [
+        { "width": 1440, "height": 900, "tolerance": 1 },
+        { "width": 1100, "height": 900, "tolerance": 1 }
+      ],
+      "boxes": {
+        "left": ".acc__main",
+        "sources": ".acc__sources"
+      },
+      "anchor": "box",
+      "relation": "abs(bottom(.acc__sources) - bottom(.acc__main)) <= tolerance, and the open section's .acc__figure svg is at least 150px tall",
+      "tolerance": 1,
+      "fingerprint": {
+        "selector": ".acc__title",
+        "text": "Trénink: kolik, jak těžko a kdy přidat",
+        "match": "exact",
+        "require": [
+          { "selector": ".acc__figure svg", "min": 1, "minHeight": 150 }
+        ]
+      }
     }
   ]
 }

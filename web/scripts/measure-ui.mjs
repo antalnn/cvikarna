@@ -280,10 +280,83 @@ async function measureScrollHeight(page, check, width) {
   }
 }
 
+async function measureSameLine(page, check, width) {
+  const data = await page.evaluate(
+    ({ boxes, fingerprint }) => {
+      const clean = (text) => (text ?? "").replace(/\s+/g, " ").trim()
+      const title = [...document.querySelectorAll(fingerprint.selector)].find(
+        (node) => clean(node.textContent) === fingerprint.text,
+      )
+      if (!title) {
+        throw new Error(`fingerprint "${fingerprint.text}" is not on the page under "${fingerprint.selector}"`)
+      }
+      for (const item of fingerprint.require) {
+        const nodes = [...document.querySelectorAll(item.selector)]
+        if (nodes.length < item.min) {
+          throw new Error(
+            `state mismatch: "${item.selector}" has ${nodes.length} match(es), the check needs at least ${item.min}`,
+          )
+        }
+        if (item.minHeight) {
+          const tallest = Math.max(...nodes.map((node) => node.getBoundingClientRect().height))
+          if (tallest < item.minHeight) {
+            throw new Error(
+              `state mismatch: "${item.selector}" is ${Math.round(tallest)}px tall, the check needs at least ${item.minHeight}px`,
+            )
+          }
+        }
+      }
+      const section = title.closest(".acc")
+      if (!section) throw new Error(`"${fingerprint.selector}" is not inside a section`)
+      const left = section.querySelector(boxes.left)
+      const sources = section.querySelector(boxes.sources)
+      if (!left) throw new Error(`left box "${boxes.left}" is missing the fingerprinted section`)
+      if (!sources) throw new Error(`sources box "${boxes.sources}" is missing inside the fingerprinted section`)
+      const box = left.getBoundingClientRect()
+      if (box.height === 0) {
+        throw new Error(`state mismatch: "${boxes.left}" has no height, so its section is closed`)
+      }
+      const range = document.createRange()
+      range.selectNodeContents(left)
+      const lines = [...range.getClientRects()].filter((rect) => rect.height > 0)
+      const lastLineBottom = lines.reduce((bottom, rect) => Math.max(bottom, rect.bottom), box.bottom)
+      const sourcesBox = sources.getBoundingClientRect()
+      return {
+        lastLineBottom,
+        leftBottom: box.bottom,
+        sourcesBottom: sourcesBox.bottom,
+        sourcesHeight: sourcesBox.height,
+      }
+    },
+    { boxes: check.boxes, fingerprint: assertFingerprintArgs(check.fingerprint) },
+  )
+
+  const tolerance = width.tolerance ?? check.tolerance
+  const delta = check.anchor === "box" ? data.sourcesBottom - data.leftBottom : data.sourcesBottom - data.lastLineBottom
+  return {
+    pairs: [
+      {
+        name: "sources-bottom-vs-left-box",
+        value: delta,
+        enforced: true,
+        pass: Math.abs(delta) <= tolerance,
+      },
+    ],
+    meta: {
+      leftBottom: round(data.leftBottom),
+      sourcesBottom: round(data.sourcesBottom),
+      leftBoxBottom: round(data.leftBottom),
+      sourcesHeight: round(data.sourcesHeight),
+      tolerance: `${tolerance}px`,
+    },
+  }
+}
+
 const kindRunner = {
   centre: measureCentre,
   "no-h-scroll": measureNoHScroll,
   "scroll-height": measureScrollHeight,
+  "same-line": measureSameLine,
 }
 
 const browser = await chromium.launch()
