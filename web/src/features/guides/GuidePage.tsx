@@ -44,6 +44,11 @@ function GuideAside({ section, label }: { section: GuideSection; label: string }
       if (!figure || !sources) {
         return;
       }
+      // A closed section reports no height; deciding from it would hide the
+      // figure and flash it back while the panel opens.
+      if (inner.clientHeight === 0) {
+        return;
+      }
       if (!window.matchMedia("(min-width: 900px)").matches) {
         figure.style.removeProperty("display");
         figure.style.removeProperty("max-height");
