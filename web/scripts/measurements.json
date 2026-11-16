@@ -1,0 +1,98 @@
+{
+  "baseUrl": "http://localhost:5173",
+  "apiUrl": "http://localhost:5073/api/dashboard",
+  "checks": [
+    {
+      "id": "statrow-value-centre",
+      "kind": "centre",
+      "sentence": "the numbers are not centered with the text that describes the number, what the number is supposed to represent.",
+      "source": {
+        "date": "2026-11-16",
+        "session": "Cvikárna measurement milestone, build session",
+        "file": null,
+        "line": null
+      },
+      "route": "/",
+      "state": "the statrow row whose note is two lines: label Objem proti minulému týdnu, value over the comparison bars",
+      "widths": [
+        { "width": 1440, "height": 900, "expect": "centre-on-block", "tolerance": 1 },
+        { "width": 390, "height": 844, "expect": "stacked", "tolerance": 1 }
+      ],
+      "boxes": {
+        "row": ".statrow li",
+        "value": ".statrow__value",
+        "label": ".statrow__label",
+        "note": ".statrow__note"
+      },
+      "relation": "abs(centreY(.statrow__value) - centreY(union(.statrow__label, .statrow__note))) <= tolerance",
+      "tolerance": 1,
+      "fingerprint": {
+        "selector": ".statrow li",
+        "labelSelector": ".statrow__label",
+        "text": "Objem proti minulému týdnu",
+        "match": "exact",
+        "minNoteLines": 2
+      }
+    },
+    {
+      "id": "no-h-scroll",
+      "kind": "no-h-scroll",
+      "sentence": "No horizontal scroll at 390, 820 or 1440 on any view.",
+      "source": {
+        "date": "2026-11-16",
+        "session": "Cvikárna measurement milestone, build session",
+        "file": "docs/STANDARDS.md",
+        "line": 36
+      },
+      "route": "/",
+      "state": "Dnes, Czech, populated from the API",
+      "widths": [
+        { "width": 390, "height": 844, "tolerance": 0 },
+        { "width": 820, "height": 1100, "tolerance": 0 },
+        { "width": 1440, "height": 900, "tolerance": 0 }
+      ],
+      "boxes": {
+        "viewport": "documentElement"
+      },
+      "relation": "documentElement.scrollWidth === documentElement.clientWidth",
+      "tolerance": 0,
+      "fingerprint": {
+        "selector": ".statrow__label",
+        "text": "Tréninky",
+        "match": "exact"
+      }
+    },
+    {
+      "id": "card-height-stable",
+      "kind": "scroll-height",
+      "sentence": "A scroll cue either sits under its list in the flow or floats over the list's own fade, and neither form changes the list's height.",
+      "source": {
+        "date": "2026-11-16",
+        "session": "Cvikárna measurement milestone, build session",
+        "file": "docs/STANDARDS.md",
+        "line": 37
+      },
+      "route": "/",
+      "state": "Dnes session card with 7 rows of 69px inside a 247px list, so the list overflows and its cue shows",
+      "widths": [
+        { "width": 1440, "height": 900, "tolerance": 0 },
+        { "width": 390, "height": 844, "tolerance": 0 }
+      ],
+      "boxes": {
+        "card": ".session",
+        "cue": ".monthcue--float"
+      },
+      "relation": "card.clientHeight at scrollTop 0 === card.clientHeight at scrollTop max",
+      "tolerance": 0,
+      "fingerprint": {
+        "selector": ".panel__head .micro",
+        "text": "Rozpracovaný trénink",
+        "match": "exact",
+        "require": [
+          { "selector": ".session__scroll.is-overflow", "min": 1 },
+          { "selector": ".session__row", "min": 2 }
+        ]
+      }
+    }
+  ]
+}

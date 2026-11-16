@@ -33,9 +33,10 @@ colour. Check: `npm run lint:ui`.
 
 - The rail is 236px, 84px under 1200, hidden under 1024 where the tab bar takes over.
 - Content is capped at `--max` (1280px) and centred; the topbar hairline spans the whole main column while its contents stay inside the cap.
-- No horizontal scroll at 390, 820 or 1440 on any view. Check: Playwright `documentElement.scrollWidth === clientWidth` at all three widths.
+- No horizontal scroll at 390, 820 or 1440 on any view. Check: `npm run measure:ui no-h-scroll` (`documentElement.scrollWidth === clientWidth` at all three widths).
 - A list that scrolls inside a card shows a down-arrow cue while rows remain, and never scrolls sideways. On Dnes the cue floats over the list's own fade, translucent at rest and solid on hover; in Historie it sits under the list in the flow. Neither one changes the list's height. Check: `review only`.
 - Every interactive element has a visible `:focus-visible` treatment and a 44px target on touch.
+- A visible alignment item names the two boxes it relates, the relation and a tolerance, and the verifier runs that check itself instead of accepting a reported number. Check: `review only`.
 
 ## Component inventory
 
@@ -113,7 +114,8 @@ Check: `review only`, every cell asserted by hand at 1440 and 390 in both langua
   the numerals beside it rather than their baseline.
 - The dashboard's `Podle deníku` values sit under their own label below 768px, and above it each
   number is vertically centred on the row's whole text block, label and note together; a number is
-  never alone at the far right edge away from the text that describes it.
+  never alone at the far right edge away from the text that describes it. Check:
+  `npm run measure:ui statrow-value-centre`.
 - Saving is one control per card or row, and its shape states the click. A saved card is a small
   red cross in a circle; a saved catalogue row is a red cross, an unsaved one a lime plus.
 - The add-exercise sheet's Katalog tab hides what the library already holds, so it only answers

@@ -23,8 +23,8 @@ belong here. Record what the code cannot tell a newcomer: wiring, decisions, rea
 | Server entry | `api/Program.cs` → `api/Endpoints/*.cs` → `api/Data/AppDbContext.cs` |
 | Run | `dotnet run --project api --launch-profile http` on 5073, `cd web && npm run dev` on 5173 |
 | Proxy | Vite forwards `/api` to 5073, so the client never hard-codes a host |
-| Build and test | `dotnet build -warnaserror`, `dotnet format --verify-no-changes`, `dotnet test`, `npm run typecheck`, `npm run lint`, `npm run build`, `npm run lint:ui` |
-| Test count | 56 server tests, 0 front-end tests |
+| Build and test | `dotnet build -warnaserror`, `dotnet format --verify-no-changes`, `dotnet test`, `npm run typecheck`, `npm run lint`, `npm run build`, `npm run lint:ui`, `npm run measure:ui` |
+| Test count | 56 server tests, no front-end unit tests; `npm run measure:ui` measures 12 DOM pairs per run |
 | Static photos | `api/wwwroot/exercises/<slug>/0.jpg` and `1.jpg` for curated rows; catalogue rows use the free-exercise-db URL pair |
 | Knowledge home | this file, `STANDARDS.md`, `docs/sources.md`, `docs/name-sources.md` |
 
@@ -50,6 +50,8 @@ Folder map, one line each:
 - `web/src/state` — the one app provider and its hook, which every page reads.
 - `web/src/styles/global.css` — Iron Ledger tokens and every component style, one file by design.
 - `web/scripts/lint-ui.mjs` — spacing, token colour, class inventory, focus, motion, shadow and breakpoint gate.
+- `web/scripts/measure-ui.mjs` — runtime geometry check: launches Chromium, reads the boxes named in `measurements.json`, exits 1 on a breach, 2 when the app is down.
+- `web/scripts/measurements.json` — the check registry: id, the sentence a check protects, route, state, widths, selectors, relation and tolerance.
 
 ## How it is built
 
@@ -90,6 +92,7 @@ Folder map, one line each:
 - One shared card serves the tracker and history: header, set dots, compact total, one menu; the body changes from rows to chips.
 - The card's link is an overlay, not a wrapper. The frame and save controls sit above it, so a tap on a control never opens the movement.
 - A catalogue row has no curated instructions, so its detail page shows the empty state instead of an empty list.
+- UI geometry is measured, not eyeballed: `web/scripts/measurements.json` carries the sentence each check protects and the boxes it read, and `npm run measure:ui` fails on a breach. On 2026-11-16 at 1440 the statrow label anchor sat 11.1 to 21.0px off the value's block centre and the row box up to 6.5px off, so a 1px check on the wrong anchor passes while the words stay unmet.
 
 ## Rejected and why
 
@@ -116,11 +119,14 @@ Folder map, one line each:
 | Search folds diacritics and one typo | `Library_search_ignores_diacritics_and_one_typo` |
 | The catalogue holds 876 rows | `Catalogue_pages_20_rows_with_the_common_movements_first` |
 | Spacing, colours and class inventory | `npm run lint:ui` |
-| Every other UI rule | review only, no front-end tests exist |
+| The statrow value centre, horizontal scroll and the Dnes card height | `npm run measure:ui`, registry in `web/scripts/measurements.json` |
+| Every other UI rule | review only, no check covers it |
 
 ## Open risks
 
-- No front-end tests. Every JSX rule above the lint gate is protected by review alone.
+- No front-end unit tests. `npm run measure:ui` reads live geometry for the boxes in
+  `web/scripts/measurements.json`; every JSX rule outside that registry is protected by review alone.
+- The registry covers three checks on the Czech Dnes page in its populated state. A regression in English, in a loading or error state, or in a box no entry names still passes unseen.
 - The catalogue's photos are remote free-exercise-db URLs, so an offline browser shows the framed block without a photo.
 - 63 baselined `lint-ui` violations are recorded debt. The gate stops it growing; it does not shrink it.
 - `Program.cs` has no `MapFallbackToFile("index.html")`, so a deep link into a deployed preview would 404 even though Vite handles it in development.
