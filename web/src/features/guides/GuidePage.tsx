@@ -56,7 +56,10 @@ function GuideAside({ section, label }: { section: GuideSection; label: string }
       }
       const gap = Number.parseFloat(getComputedStyle(inner).rowGap) || 24;
       const room = inner.clientHeight - sources.offsetHeight - gap;
-      if (room < 96) {
+      // A chart needs about 210px of column: the block's padding and title, the
+      // caption under it, and 90px of drawing. Below that it would scale into an
+      // unreadable strip, so it steps aside and the sources take the column.
+      if (room < 210) {
         figure.style.display = "none";
         figure.style.removeProperty("max-height");
         return;
