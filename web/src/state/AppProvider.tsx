@@ -174,6 +174,10 @@ export interface AppValue {
 }
 
 const CLOCK_KEY = "cvikarna.clock";
+// The rest alarm: three rising strikes, then the figure again. The strike
+// offsets and the repeat are read by the Playwright alarm check.
+const ALARM_STRIKES = [0, 0.62, 1.24];
+const ALARM_REPEATS = [0, 1.9];
 const DEFAULT_REST: RestSettings = {
   uniform: false,
   uniformValue: 90,
@@ -744,23 +748,28 @@ export function AppProvider({ children }: { children: ReactNode }) {
       if (!ctx) {
         return;
       }
-      const level = Math.max(0, Math.min(1, Number(current.volume))) * 0.25;
+      const level = Math.max(0, Math.min(1, Number(current.volume))) * 0.5;
       if (level <= 0) {
         return;
       }
+      // A rest alarm is three rising strikes, then the same figure once more:
+      // six starts over 3.1 s. Anything shorter reads as a notification.
       const now = ctx.currentTime;
-      [0, 0.24].forEach((offset, index) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.value = index ? 880 : 660;
-        gain.gain.setValueAtTime(0.0001, now + offset);
-        gain.gain.exponentialRampToValueAtTime(level, now + offset + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.24);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now + offset);
-        osc.stop(now + offset + 0.26);
+      ALARM_REPEATS.forEach((repeat) => {
+        ALARM_STRIKES.forEach((offset, index) => {
+          const at = now + repeat + offset;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = "square";
+          osc.frequency.setValueAtTime(index === ALARM_STRIKES.length - 1 ? 1046 : 784, at);
+          gain.gain.setValueAtTime(0.0001, at);
+          gain.gain.exponentialRampToValueAtTime(level, at + 0.012);
+          gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.46);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(at);
+          osc.stop(at + 0.5);
+        });
       });
     },
     [soundContext],

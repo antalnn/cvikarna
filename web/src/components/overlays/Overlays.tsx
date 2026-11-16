@@ -361,6 +361,19 @@ export function RestPopover({
   const { tx } = useLanguage();
   const { rest, restValue, setRestValue, updateRest, playChime, buzz, today, catalogue } = useApp();
   const [tab, setTab] = useState<"time" | "alerts">("time");
+  // The typed custom value stays as text until it is committed, so clearing
+  // the field leaves it editable instead of snapping back to the minimum.
+  const [draft, setDraft] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!open) {
+      setDraft(null);
+    }
+  }, [open]);
+
+  useEffect(() => {
+    setDraft(null);
+  }, [exerciseId]);
 
   const item = exerciseId ? today?.exercises.find((row) => row.exerciseId === exerciseId) : undefined;
   const cat = exerciseId ? catalogue.find((row) => row.id === exerciseId) : undefined;
@@ -370,6 +383,15 @@ export function RestPopover({
       ? tx(cat.nameCs ?? cat.nameEn, cat.nameEn)
       : tx("Všechny cviky", "All movements");
   const current = restValue(exerciseId);
+
+  const commitCustom = () => {
+    if (draft === null) {
+      return;
+    }
+    const parsed = Math.round(Number(draft));
+    setRestValue(exerciseId, Number.isFinite(parsed) && parsed >= 5 ? parsed : 5);
+    setDraft(null);
+  };
 
   return (
     <Popover
@@ -415,7 +437,10 @@ export function RestPopover({
                 className="chip chip--sm"
                 type="button"
                 aria-pressed={current === seconds}
-                onClick={() => setRestValue(exerciseId, seconds)}
+                onClick={() => {
+                  setDraft(null);
+                  setRestValue(exerciseId, seconds);
+                }}
               >
                 {seconds} s
               </button>
@@ -429,8 +454,24 @@ export function RestPopover({
               max={900}
               step={5}
               inputMode="numeric"
-              value={current}
-              onChange={(event) => setRestValue(exerciseId, Number(event.target.value))}
+              value={draft ?? String(current)}
+              onChange={(event) => {
+                const raw = event.target.value;
+                const parsed = Math.round(Number(raw));
+                if (raw.trim() !== "" && Number.isFinite(parsed) && parsed >= 5 && parsed <= 900) {
+                  setRestValue(exerciseId, parsed);
+                  setDraft(null);
+                } else {
+                  setDraft(raw);
+                }
+              }}
+              onBlur={commitCustom}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                  commitCustom();
+                }
+              }}
             />
           </label>
           <label className="restpop__uniform">

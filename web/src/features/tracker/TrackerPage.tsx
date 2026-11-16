@@ -212,11 +212,7 @@ export function TrackerPage() {
     openEx === undefined ? activeExercise?.exerciseId : openEx;
   const date = today ? parseIso(today.performedOn) : new Date();
 
-  const finish = async () => {
-    if (!totals.done) {
-      toast(tx("Nejdřív zapiš alespoň jednu sérii.", "Log at least one set first."), "danger");
-      return;
-    }
+  const fileSession = async () => {
     // A movement with no completed set is not work that happened; the filed
     // session keeps only what was actually lifted.
     const empty = items.filter((item) => !item.sets.some((set) => set.completed));
@@ -228,6 +224,35 @@ export function TrackerPage() {
     finishSession();
     toast(tx("Trénink uložen do historie. Dobrá práce.", "Session filed in history. Good work."));
     navigate(`/history?date=${today?.performedOn ?? ""}`);
+  };
+
+  const finish = (anchor: HTMLElement | null) => {
+    if (!totals.done) {
+      toast(tx("Nejdřív zapiš alespoň jednu sérii.", "Log at least one set first."), "danger");
+      return;
+    }
+    const empty = items.filter((item) => !item.sets.some((set) => set.completed));
+    if (!empty.length) {
+      void fileSession();
+      return;
+    }
+    // Ending the session drops those movements, so the question names them
+    // before anything is removed.
+    const names = empty
+      .map((item) => (lang === "cs" ? item.nameCs ?? item.nameEn : item.nameEn))
+      .join(", ");
+    askConfirm(
+      {
+        title: tx("Ukončit trénink?", "Finish the session?"),
+        text: tx(
+          `Bez dokončené série: ${names}. Ukončením se z tréninku odeberou.`,
+          `No completed set: ${names}. Finishing removes them from the session.`,
+        ),
+        label: tx("Ukončit", "Finish"),
+        run: () => void fileSession(),
+      },
+      anchor,
+    );
   };
 
   const removeItem = (item: WorkoutExercise, anchor: HTMLElement | null) => {
@@ -440,7 +465,7 @@ export function TrackerPage() {
         </div>
         <div className="sessionbar__actions">
           {clock.startedAt ? (
-            <button className="btn sessionbar__finish" type="button" onClick={finish}>
+            <button className="btn sessionbar__finish" type="button" onClick={(event) => finish(event.currentTarget)}>
               {tx("Ukončit trénink", "Finish session")}
             </button>
           ) : (
