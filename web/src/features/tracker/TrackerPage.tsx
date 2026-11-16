@@ -1,5 +1,5 @@
 import { useRef, useState, type CSSProperties, type FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ExerciseCard } from "../../components/ExerciseCard";
 import { Icon } from "../../components/Icon";
 import { RestPopover } from "../../components/overlays/Overlays";
@@ -630,9 +630,9 @@ export function TrackerPage() {
 
       {exercises.length > 0 ? (
         <div className="more">
-          <Link className="linkbtn" to="/library">
-            {tx("Přidat další cvik z knihovny", "Add another movement from the library")}
-          </Link>
+          <button className="linkbtn" type="button" onClick={() => openSheet({ kind: "add" })}>
+            {tx("Přidat další cvik", "Add another movement")}
+          </button>
         </div>
       ) : null}
     </div>
