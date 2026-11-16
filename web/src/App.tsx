@@ -23,6 +23,15 @@ import { useLanguage } from "./i18n/useLanguage";
 import { AppProvider } from "./state/AppProvider";
 import { useApp } from "./state/useApp";
 
+function SkipLink() {
+  const { tx } = useLanguage();
+  return (
+    <a className="skip-link" href="#view">
+      {tx("Přeskočit na obsah", "Skip to content")}
+    </a>
+  );
+}
+
 function NotFound() {
   const { tx } = useLanguage();
   return (
@@ -88,9 +97,7 @@ export default function App() {
     <LanguageProvider>
       <AppProvider>
         <BrowserRouter>
-          <a className="skip-link" href="#view">
-            Přeskočit na obsah
-          </a>
+          <SkipLink />
           <Sprite />
           <Boot />
           <Routed />

@@ -5,6 +5,7 @@
     ".bp__frames, .stage__frames\u0000padding: 3px",
     ".bp__tag\u0000padding: 2px",
     ".bp__tag\u0000padding: 6px",
+    ".calendar__grid\u0000gap: 1px",
     ".calendar__grid\u0000gap: 2px",
     ".chip\u0000gap: 6px",
     ".chips\u0000gap: 6px",

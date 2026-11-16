@@ -353,7 +353,7 @@ function CopySheet() {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const perPage = 10;
-  const list = summaries.filter((row) => row.id !== today?.id);
+  const list = summaries.filter((row) => row.id !== today?.id && row.setCount > 0);
   const pages = Math.max(1, Math.ceil(list.length / perPage));
   const current = Math.min(page, pages - 1);
   const slice = list.slice(current * perPage, current * perPage + perPage);

@@ -134,8 +134,17 @@ Check: `review only`, every cell asserted by hand at 1440 and 390 in both langua
   asks in the confirm popover, and Escape closes the question before the sheet.
 - Dnes names the session's action by what is left to do: `Pokračovat` while sets remain, `Upravit`
   once every set is complete.
-- In the guide, the figure opens the right column and the sources close it, aligned with the end of
-  the copy in the other column.
+- In the guide, a section with a figure puts it at the top of the right column and the sources
+  directly beneath it, so the column reads as one block; a section with no figure puts the sources
+  at the foot of the card, level with the end of the copy.
+- A scroll cue sits outside its list, under it in the flow, never over the rows it scrolls.
+- A session reaches the log and the calendar only once a set in it is ticked; a draft with nothing
+  lifted is not a past session, and the finish action drops the movements that never got a tick.
+- While a rest runs, the view reserves the floating timer's height, so the last row's controls can
+  be scrolled clear of it.
+- At 390 every control a thumb lands on reaches a 44px target, even when its drawn glyph is
+  smaller; the seat grows around the drawing, never the drawing itself.
+- The skip link speaks the chosen language like every other string.
 - A detail page's similar movements fill one horizontal track with every saved movement in the
   same muscle group; the previous and next buttons scroll the track, never the page.
 - A floating control appears only after a screenful, stays inside the viewport, sits clear of the

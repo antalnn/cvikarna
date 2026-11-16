@@ -255,7 +255,7 @@ export function TrackerPage() {
             <h1 className="display display--md">{today?.name ?? tx("Dnešní trénink", "Today's session")}</h1>
           </div>
         </header>
-        <div className="excgrid">
+        <div className="excgrid" aria-busy="true" aria-label={tx("Načítání tréninku", "Loading the session")}>
           {Array.from({ length: 3 }).map((_, index) => (
             <div className="excard" key={index}>
               <div className="skeleton__body">

@@ -3014,13 +3014,13 @@ svg {
 }
 
 .monthcue {
-  position: absolute;
-  right: 50%;
-  bottom: var(--space-2);
+  position: static;
+  align-self: center;
   display: grid;
   place-items: center;
   width: 34px;
   height: 34px;
+  margin-top: var(--space-2);
   padding: 0;
   border: 1px solid var(--line);
   border-radius: 50%;
@@ -3028,7 +3028,6 @@ svg {
   color: var(--accent);
   box-shadow: var(--shadow-pop);
   cursor: pointer;
-  transform: translateX(50%);
   transition: background var(--dur-1) ease, border-color var(--dur-1) ease, color var(--dur-1) ease;
 }
 
@@ -3377,8 +3376,8 @@ svg {
 .sources {
   display: grid;
   gap: var(--space-2);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--line-soft);
+  padding-top: 0;
+  border-top: 0;
 }
 
 .sources li {
@@ -5614,9 +5613,10 @@ svg {
   max-height: 264px;
 }
 
-/* 87: the guide reads down the right column: the figure at the top, then the
-   sources, which begin where the copy on the left ends. A section with no
-   figure puts them on that same line instead of halfway down. */
+/* 87: the guide reads down the right column. With a figure, the column is one
+   block: the picture first, its caption, then the sources directly beneath.
+   With no figure, the sources sit at the foot of the card, level with the end
+   of the copy, so they never float halfway down. */
 @media (min-width: 900px) {
   .acc__grid {
     align-items: start;
@@ -5625,16 +5625,18 @@ svg {
   .acc__main {
     grid-column: 1;
     grid-row: 1;
+    align-self: stretch;
   }
 
   .acc__aside {
     grid-column: 2;
     grid-row: 1;
+    align-self: stretch;
+    align-content: start;
   }
 
-  .acc__sources {
-    grid-column: 2;
-    grid-row: 2;
+  .acc__aside:not(:has(.figure)) {
+    align-content: end;
   }
 }
 
@@ -5648,4 +5650,137 @@ svg {
 .session__scroll {
   height: auto;
   max-height: 207px;
+}
+
+/* The layered surfaces above a sheet: the sheet sits at 115, so a confirm, a
+   menu or a tip that opens from inside it must sit above that, or the click
+   lands on the row underneath. */
+.confirmpop {
+  z-index: 140;
+}
+
+.menu {
+  z-index: 130;
+}
+
+.tip {
+  z-index: 130;
+}
+
+/* The running-rest chip floats over the page's end. While it is up, the view
+   reserves its height, so the last card's controls can be scrolled clear of
+   it instead of sitting underneath. */
+.app:has(.rest) .view {
+  padding-bottom: calc(var(--tap) * 2);
+}
+
+/* Touch sizing at 390: every control a thumb lands on gets a 44px seat. The
+   small glyphs keep their drawn size; the seat around them grows. */
+@media (max-width: 767px) {
+  .mcard__save {
+    width: 34px;
+    height: 34px;
+  }
+
+  .mcard__save::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+  }
+
+  .bp__frame-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .calendar__today {
+    height: 40px;
+    padding: 0 var(--space-3);
+  }
+
+  .calendar__grid {
+    gap: 1px;
+  }
+
+  .calendar__day {
+    min-height: 44px;
+  }
+
+  .infotip {
+    width: 24px;
+    height: 24px;
+  }
+
+  .infotip::after {
+    content: "";
+    position: absolute;
+    inset: -10px;
+  }
+
+  .infotip {
+    position: relative;
+  }
+
+  .iconbtn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .sessionbar .btn,
+  .sessionbar__finish {
+    min-height: 40px;
+  }
+
+  .libtabs button,
+  .sheet__tabs button {
+    min-height: 44px;
+  }
+
+  .lang {
+    min-height: 44px;
+  }
+}
+
+/* The seats, measured at 390: each control below reaches a 44px touch target
+   while its drawn size stays as designed. */
+@media (max-width: 767px) {
+  .mcard__save::after {
+    inset: -8px;
+  }
+
+  .bp__frame-btn {
+    position: relative;
+  }
+
+  .bp__frame-btn::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+  }
+
+  .calendar__today {
+    position: relative;
+    height: 40px;
+  }
+
+  .calendar__today::after {
+    content: "";
+    position: absolute;
+    inset: -2px 0;
+  }
+
+  .restctl__start {
+    position: relative;
+  }
+
+  .restctl__start::after {
+    content: "";
+    position: absolute;
+    inset: 0 -2px;
+  }
+
+  .sessionbar .btn,
+  .sessionbar__finish {
+    min-height: 44px;
+  }
 }

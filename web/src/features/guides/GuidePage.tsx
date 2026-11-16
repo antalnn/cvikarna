@@ -94,19 +94,19 @@ export function GuidePage() {
                         ) : null}
                       </>
                     ) : null}
-                  </div>
-                  <div className="acc__sources">
-                    <p className="micro acc__label">{content.sourcesLabel}</p>
-                    <ul className="sources">
-                      {section.sources.map((source) => (
-                        <li key={source.url}>
-                          <a href={source.url} target="_blank" rel="noopener noreferrer">
-                            {source.label}
-                          </a>
-                          <span className="sources__claim">{source.supports}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="acc__sources">
+                      <p className="micro acc__label">{content.sourcesLabel}</p>
+                      <ul className="sources">
+                        {section.sources.map((source) => (
+                          <li key={source.url}>
+                            <a href={source.url} target="_blank" rel="noopener noreferrer">
+                              {source.label}
+                            </a>
+                            <span className="sources__claim">{source.supports}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -320,6 +320,7 @@
     "session__sets",
     "sessionbar",
     "sessionbar__actions",
+    "sessionbar__finish",
     "sessionbar__meter",
     "sessionbar__pct",
     "sessionbar__stat",

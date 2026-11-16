@@ -116,6 +116,8 @@ export function LibraryPage() {
     catalogueError,
     savedIds,
     toggleSaved,
+    refreshLibrary,
+    refreshCatalogue,
     demoState,
   } = useApp();
   const [tab, setTab] = useState<Tab>("lib");
@@ -340,9 +342,11 @@ export function LibraryPage() {
       </div>
 
       <div className="results">
-        <span>
-          <strong>{displayRows.length}</strong> {tx("z", "of")} {baseRows.length} {tx("cviků", "movements")}
-        </span>
+        {demoState === "empty" ? null : (
+          <span>
+            <strong>{displayRows.length}</strong> {tx("z", "of")} {baseRows.length} {tx("cviků", "movements")}
+          </span>
+        )}
         {filteredActive && displayRows.length ? (
           <button className="linkbtn" type="button" onClick={clearFilters}>
             {tx("Zrušit filtry", "Clear filters")}
@@ -373,6 +377,15 @@ export function LibraryPage() {
               : tx("Katalog se nenačetl", "The catalogue did not load")}
           </p>
           <p className="stateview__text">{error ?? tx("Server neodpověděl. Zkus to znovu.", "The server did not answer. Try again.")}</p>
+          <div className="stateview__actions">
+            <button
+              className="btn btn--primary"
+              type="button"
+              onClick={() => void (tab === "lib" ? refreshLibrary() : refreshCatalogue())}
+            >
+              {tx("Zkusit znovu", "Try again")}
+            </button>
+          </div>
         </div>
       ) : demoState === "empty" || isBlank || !displayRows.length ? (
         <div className="stateview">
@@ -394,7 +407,7 @@ export function LibraryPage() {
                 )}
           </p>
           <div className="stateview__actions">
-            {isBlank ? (
+            {isBlank || demoState === "empty" ? (
               <button className="btn btn--primary" type="button" onClick={() => setTab("cat")}>
                 {tx("Otevřít katalog", "Open the catalogue")}
               </button>

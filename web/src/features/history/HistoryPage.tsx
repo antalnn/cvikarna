@@ -47,13 +47,16 @@ export function HistoryPage() {
   const [monthCue, setMonthCue] = useState(false);
 
   const prefix = `${year}-${String(month + 1).padStart(2, "0")}-`;
-  const monthSessions = summaries
+  // A session reaches the log once a set in it is ticked: a draft with nothing
+  // lifted is not a past session, and it must not mark the calendar either.
+  const filed = summaries.filter((row) => row.setCount > 0);
+  const monthSessions = filed
     .filter((row) => row.performedOn.startsWith(prefix))
     .sort((left, right) => (sort === "desc" ? right.performedOn.localeCompare(left.performedOn) : left.performedOn.localeCompare(right.performedOn)));
   const todayIso = isoDate(today);
   const fallback = monthSessions[0]?.performedOn ?? null;
   const activeIso =
-    selectedIso && (summaries.some((row) => row.performedOn === selectedIso) || selectedIso === todayIso)
+    selectedIso && (filed.some((row) => row.performedOn === selectedIso) || selectedIso === todayIso)
       ? selectedIso
       : fallback;
 
@@ -71,7 +74,7 @@ export function HistoryPage() {
     }
     let cancelled = false;
     setWorkoutPhase("loading");
-    const summary = summaries.find((row) => row.performedOn === activeIso);
+    const summary = filed.find((row) => row.performedOn === activeIso);
     if (!summary) {
       setWorkout(null);
       setWorkoutPhase("idle");
@@ -116,7 +119,7 @@ export function HistoryPage() {
   const firstDow = (new Date(year, month, 1).getDay() + 6) % 7;
   const withWork = new Set(monthSessions.map((row) => Number(row.performedOn.slice(8, 10))));
   const selectedDay = activeIso ? Number(activeIso.slice(8, 10)) : 0;
-  const activeSummary = summaries.find((row) => row.performedOn === activeIso);
+  const activeSummary = filed.find((row) => row.performedOn === activeIso);
   const allOpen =
     workout !== null &&
     workout.exercises.length > 0 &&
@@ -191,7 +194,7 @@ export function HistoryPage() {
     );
   }
 
-  if (demoState === "empty" || (!summaries.length && monthSessions.length === 0)) {
+  if (demoState === "empty" || (!filed.length && monthSessions.length === 0)) {
     return (
       <div className="page">
         <header className="page-head">

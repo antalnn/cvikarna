@@ -25,6 +25,7 @@ interface PopoverProps {
   align?: Align;
   gap?: number;
   side?: "below" | "above";
+  restoreFocus?: boolean;
   closeOnScroll?: boolean;
 }
 
@@ -44,6 +45,7 @@ export function Popover({
   align = "start",
   gap = 8,
   side = "below",
+  restoreFocus = true,
   closeOnScroll = true,
 }: PopoverProps) {
   const panelRef = useRef<HTMLDivElement>(null);
@@ -133,13 +135,16 @@ export function Popover({
       panel?.querySelector<HTMLElement>("[data-autofocus]") ??
       panel?.querySelector<HTMLElement>("button, input, select, a[href]");
     first?.focus({ preventScroll: true });
+    if (!restoreFocus) {
+      return;
+    }
     const restore = anchor;
     return () => {
       if (restore && document.contains(restore)) {
         restore.focus({ preventScroll: true });
       }
     };
-  }, [anchor, open]);
+  }, [anchor, open, restoreFocus]);
 
   if (!open || !anchor) {
     return null;
@@ -242,6 +247,7 @@ export function TipPopover() {
       align="center"
       side="above"
       gap={8}
+      restoreFocus={false}
     >
       {tip?.text}
     </Popover>

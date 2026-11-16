@@ -251,21 +251,21 @@ export function DashboardPage() {
                 );
               })}
             </ul>
-            <button
-              className="monthcue"
-              type="button"
-              aria-label={tx("Zobrazit další cviky", "Show more exercises")}
-              hidden={!sessionCue}
-              onClick={() =>
-                sessionRef.current?.scrollBy({
-                  top: Math.round(sessionRef.current.clientHeight * 0.82),
-                  behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-                })
-              }
-            >
-              <Icon name="i-chevron" className="ico ico--sm" />
-            </button>
           </div>
+          <button
+            className="monthcue"
+            type="button"
+            aria-label={tx("Zobrazit další cviky", "Show more exercises")}
+            hidden={!sessionCue}
+            onClick={() =>
+              sessionRef.current?.scrollBy({
+                top: Math.round(sessionRef.current.clientHeight * 0.82),
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+              })
+            }
+          >
+            <Icon name="i-chevron" className="ico ico--sm" />
+          </button>
           <div className="dash__foot">
             <div
               className="progress"
