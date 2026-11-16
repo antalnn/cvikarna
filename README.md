@@ -57,7 +57,7 @@ The calendar marks only days that have exercises, and carries the way back to to
 
 ### Guide
 
-The guide covers training, protein, calories, sleep and recovery in five collapsible sections. Each section has key points, bold facts inside the copy and its own sources at the foot of the right column, with the claim each paper supports. Three of the five sections carry a diagram: the rep-range spread, the protein dose plateau and the sleep band. The figure opens that column and the sources close it, so a section without a diagram lines its sources up with the end of the copy instead of letting them sit halfway down. The sourcing is beginner-level guidance, not medical advice.
+The guide covers training, protein, calories, sleep and recovery in five collapsible sections. Each section has key points, bold facts inside the copy and its own sources at the foot of the right column, with the claim each paper supports. Three of the five sections carry a diagram: the rep-range spread, the protein dose plateau and the sleep band. Every section ends its sources on the same line as the copy, and the diagram takes whatever room is left above them; where that room would leave the chart too small to read, it steps aside so the sources still land on the copy's last line. The sourcing is beginner-level guidance, not medical advice.
 
 ![Cvikárna beginner guide with key points, sources and a diagram](docs/images/guide.png)
 

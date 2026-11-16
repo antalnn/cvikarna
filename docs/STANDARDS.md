@@ -134,9 +134,9 @@ Check: `review only`, every cell asserted by hand at 1440 and 390 in both langua
   asks in the confirm popover, and Escape closes the question before the sheet.
 - Dnes names the session's action by where it stands: `Začít` while no set is done,
   `Pokračovat` once some are, `Upravit` when all are.
-- In the guide, a section with a figure puts it at the top of the right column and the sources
-  directly beneath it, so the column reads as one block; a section with no figure puts the sources
-  at the foot of the card, level with the end of the copy.
+- In the guide, every section ends its sources on the same line as the copy in the left column. The
+  figure takes the room above them and steps aside when that room falls under a readable height,
+  rather than shrinking to a stub or pushing the sources past the copy.
 - A scroll cue either sits under its list in the flow or floats over the list's own fade, and neither form changes the list's height.
 - A session reaches the log and the calendar only once a set in it is ticked; a draft with nothing
   lifted is not a past session, and the finish action drops the movements that never got a tick.

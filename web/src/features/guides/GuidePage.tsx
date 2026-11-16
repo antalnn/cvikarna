@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Icon } from "../../components/Icon";
 import { useLanguage } from "../../i18n/useLanguage";
 import { guideContent } from "./guideContent";
@@ -20,6 +20,80 @@ function inline(text: string): ReactNode[] {
     }
     return <span key={index}>{part}</span>;
   });
+}
+
+type GuideSection = (typeof guideContent)["cs"]["sections"][number];
+
+/**
+ * The right column of a guide section. The copy on the left sets the card's
+ * height, so the sources are pinned to the column's foot and the figure takes
+ * whatever room is left; below a readable minimum it steps aside entirely
+ * rather than shrinking to a stub.
+ */
+function GuideAside({ section, label }: { section: GuideSection; label: string }) {
+  const innerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const inner = innerRef.current;
+    if (!inner) {
+      return;
+    }
+    const fit = () => {
+      const figure = inner.querySelector<HTMLElement>(".acc__figure");
+      const sources = inner.querySelector<HTMLElement>(".acc__sources");
+      if (!figure || !sources) {
+        return;
+      }
+      if (!window.matchMedia("(min-width: 900px)").matches) {
+        figure.style.removeProperty("display");
+        figure.style.removeProperty("max-height");
+        return;
+      }
+      const gap = Number.parseFloat(getComputedStyle(inner).rowGap) || 24;
+      const room = inner.clientHeight - sources.offsetHeight - gap;
+      if (room < 96) {
+        figure.style.display = "none";
+        figure.style.removeProperty("max-height");
+        return;
+      }
+      figure.style.removeProperty("display");
+      figure.style.maxHeight = `${Math.floor(room)}px`;
+    };
+    fit();
+    const observer = new ResizeObserver(fit);
+    observer.observe(inner);
+    const sources = inner.querySelector(".acc__sources");
+    if (sources) {
+      observer.observe(sources);
+    }
+    return () => observer.disconnect();
+  }, [section.id]);
+
+  return (
+    <div className="acc__aside">
+      <div className="acc__aside__inner" ref={innerRef}>
+        {section.diagram ? (
+          <div className="acc__figure">
+            <GuideFigure kind={section.diagram} />
+            {section.diagramCaption ? <p className="figure__caption">{section.diagramCaption}</p> : null}
+          </div>
+        ) : null}
+        <div className="acc__sources">
+          <p className="micro acc__label">{label}</p>
+          <ul className="sources">
+            {section.sources.map((source) => (
+              <li key={source.url}>
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.label}
+                </a>
+                <span className="sources__claim">{source.supports}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function GuidePage() {
@@ -85,29 +159,7 @@ export function GuidePage() {
                       </ul>
                     ) : null}
                   </div>
-                  <div className="acc__aside">
-                    {section.diagram ? (
-                      <>
-                        <GuideFigure kind={section.diagram} />
-                        {section.diagramCaption ? (
-                          <p className="figure__caption">{section.diagramCaption}</p>
-                        ) : null}
-                      </>
-                    ) : null}
-                    <div className="acc__sources">
-                      <p className="micro acc__label">{content.sourcesLabel}</p>
-                      <ul className="sources">
-                        {section.sources.map((source) => (
-                          <li key={source.url}>
-                            <a href={source.url} target="_blank" rel="noopener noreferrer">
-                              {source.label}
-                            </a>
-                            <span className="sources__claim">{source.supports}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+                  <GuideAside section={section} label={content.sourcesLabel} />
                 </div>
               </div>
             </article>

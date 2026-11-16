@@ -348,21 +348,25 @@ export function HistoryPage() {
               </div>
             )}
           </div>
-          <button
-            className="monthcue"
-            type="button"
-            aria-label={tx("Zobrazit starší tréninky", "Show older sessions")}
-            hidden={!monthScroll.overflowing}
-            disabled={!monthScroll.visible}
-            onClick={() =>
-              listRef.current?.scrollBy({
-                top: Math.round(listRef.current.clientHeight * 0.82),
-                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-              })
-            }
-          >
-            <Icon name="i-chevron" className="ico ico--sm" />
-          </button>
+          {monthScroll.overflowing ? (
+            <div className="monthcue-slot">
+              {monthScroll.visible ? (
+                <button
+                  className="monthcue"
+                  type="button"
+                  aria-label={tx("Zobrazit starší tréninky", "Show older sessions")}
+                  onClick={() =>
+                    listRef.current?.scrollBy({
+                      top: Math.round(listRef.current.clientHeight * 0.82),
+                      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+                    })
+                  }
+                >
+                  <Icon name="i-chevron" className="ico ico--sm" />
+                </button>
+              ) : null}
+            </div>
+          ) : null}
         </section>
       </div>
 

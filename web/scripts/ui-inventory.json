@@ -2,8 +2,10 @@
   "classes": [
     "acc",
     "acc__aside",
+    "acc__aside__inner",
     "acc__bullets",
     "acc__copy",
+    "acc__figure",
     "acc__grid",
     "acc__head",
     "acc__hint",
@@ -225,6 +227,7 @@
     "micro",
     "monthcue",
     "monthcue--float",
+    "monthcue-slot",
     "monthlist",
     "monthpanel",
     "more",
