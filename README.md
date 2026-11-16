@@ -27,7 +27,7 @@ Cvikárna is a Czech-first gym app for building muscle with the equipment you ha
 
 ### Today
 
-Dnes opens with today's session: its exercises scroll inside the card with a down-arrow cue, and the footer carries the completed-set meter and the one action that matters. While sets remain it reads `Pokračovat`; once every set is done the same slot reads `Upravit`, because there is nothing left to continue. Beside it sit the week's session count, the volume against last week, the days since the last workout, the week strip, recent personal records and a seven-week volume spark. Every figure comes from the API, and each number sits centred on the label that names it.
+Dnes opens with today's session: its exercises scroll inside the card with a down-arrow cue that keeps its place at the end of the list and dims there, so scrolling never changes the card's height. The footer carries the completed-set meter and the one action that matters. While sets remain it reads `Pokračovat`; once every set is done the same slot reads `Upravit`, because there is nothing left to continue. Beside it sit the week's session count, the volume against last week, the days since the last workout, the week strip, recent personal records and a seven-week volume spark. Every figure comes from the API, and each number sits on the optical line of the label that names it.
 
 ![Cvikárna dashboard with the session card and the week's log](docs/images/dnes.png)
 
@@ -51,7 +51,7 @@ The session bar carries volume, sets and time on the first tier and the progress
 
 ### History
 
-The calendar marks only days that have exercises, and carries the way back to today inside its own header, beside the month arrows. The month panel lists those workouts, newest or oldest first, with exercise count, set count and volume. When the list runs past the panel, a small down arrow scrolls it, and the arrow disappears at the bottom. A selected workout opens as a read-only log with stat blocks and collapsible exercise cards whose sets are chips, each with its RPE numeral. Deleting it is the red trash in that card's corner, and it asks first in a small popover anchored to the control.
+The calendar marks only days that have exercises, and carries the way back to today inside its own header, beside the month arrows. The month panel lists those workouts, newest or oldest first, with exercise count, set count and volume. When the list runs past the panel, a small down arrow scrolls it; at the oldest session the arrow dims and stops bobbing, keeping its slot so the panel never resizes. A selected workout opens as a read-only log with stat blocks and collapsible exercise cards whose sets are chips, each with its RPE numeral. Deleting it is the red trash in that card's corner, and it asks first in a small popover anchored to the control.
 
 ![Cvikárna history with a read-only log and set chips](docs/images/history.png)
 

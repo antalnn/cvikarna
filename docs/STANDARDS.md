@@ -34,7 +34,7 @@ colour. Check: `npm run lint:ui`.
 - The rail is 236px, 84px under 1200, hidden under 1024 where the tab bar takes over.
 - Content is capped at `--max` (1280px) and centred; the topbar hairline spans the whole main column while its contents stay inside the cap.
 - No horizontal scroll at 390, 820 or 1440 on any view. Check: Playwright `documentElement.scrollWidth === clientWidth` at all three widths.
-- A list that scrolls inside a card shows the down-arrow cue while rows remain, and never scrolls sideways.
+- A list that scrolls inside a card shows the down-arrow cue while rows remain, and never scrolls sideways. At the end the cue dims, stops bobbing and keeps its slot, so the card never changes height while scrolling. Check: `review only`.
 - Every interactive element has a visible `:focus-visible` treatment and a 44px target on touch.
 
 ## Component inventory

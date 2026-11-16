@@ -3044,6 +3044,14 @@ svg {
   animation: cue-bob 2.4s var(--ease-in-out) infinite;
 }
 
+/* At the end of the list the cue keeps its place but stops asking to be
+   pressed: no bob, dimmed, and no hover lift. */
+.monthcue[disabled] svg,
+.monthcue[disabled]:hover svg,
+.monthcue[disabled]:focus-visible svg {
+  animation: none;
+}
+
 .monthcue:hover svg,
 .monthcue:focus-visible svg {
   animation-play-state: paused;
