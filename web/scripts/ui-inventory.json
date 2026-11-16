@@ -172,6 +172,7 @@
     "is-blank",
     "is-done",
     "is-down",
+    "is-end",
     "is-enter",
     "is-flat",
     "is-high",

@@ -416,7 +416,12 @@ function CopySheet() {
                         `Today's session is replaced by ${source}. Its logged sets cannot be recovered.`,
                       ),
                       label: tx("Nahradit", "Replace"),
-                      run: () => copy(row.id),
+                      run: () => {
+                        // The sheet's job is done the moment the user commits;
+                        // waiting inside it hides what the copy is doing.
+                        closeSheet();
+                        copy(row.id);
+                      },
                     },
                     event.currentTarget,
                   );

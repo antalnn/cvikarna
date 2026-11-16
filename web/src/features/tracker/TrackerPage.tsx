@@ -171,6 +171,7 @@ export function TrackerPage() {
     removeExercise,
     renameSession,
     finishSession,
+    copying,
     clock,
     startClock,
     resetClock,
@@ -320,8 +321,14 @@ export function TrackerPage() {
             <button className="btn btn--primary" type="button" onClick={() => openSheet({ kind: "add" })}>
               {tx("Přidat cvik", "Add exercise")}
             </button>
-            <button className="btn btn--quiet" type="button" onClick={() => openSheet({ kind: "copy" })}>
-              {tx("Zkopírovat trénink", "Copy workout")}
+            <button
+              className="btn btn--quiet"
+              type="button"
+              onClick={() => openSheet({ kind: "copy" })}
+              disabled={copying}
+              aria-busy={copying}
+            >
+              {copying ? tx("Kopíruje se…", "Copying…") : tx("Zkopírovat trénink", "Copy workout")}
             </button>
           </div>
         </div>
@@ -393,9 +400,15 @@ export function TrackerPage() {
           )}
         </div>
         <div className="page-head__actions">
-          <button className="btn btn--quiet" type="button" onClick={() => openSheet({ kind: "copy" })}>
+          <button
+            className="btn btn--quiet"
+            type="button"
+            onClick={() => openSheet({ kind: "copy" })}
+            disabled={copying}
+            aria-busy={copying}
+          >
             <Icon name="i-copy" className="ico ico--sm" />
-            {tx("Zkopírovat trénink", "Copy workout")}
+            {copying ? tx("Kopíruje se…", "Copying…") : tx("Zkopírovat trénink", "Copy workout")}
           </button>
           <button className="btn btn--primary" type="button" onClick={() => openSheet({ kind: "add" })}>
             <Icon name="i-plus" className="ico ico--sm" />

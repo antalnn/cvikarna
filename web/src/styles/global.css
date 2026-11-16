@@ -5902,3 +5902,35 @@ svg {
   align-items: center;
   line-height: 1;
 }
+
+/* 115: a toast is read at a glance, above the tab bar and clear of the rest
+   chip, never pinned to the viewport's edge. */
+.toasts {
+  bottom: calc(var(--tap) * 2 + var(--space-4));
+  width: min(480px, calc(100vw - 2 * var(--space-4)));
+}
+
+.toast {
+  padding: var(--space-3) var(--space-5);
+  border-color: var(--line-strong);
+  font-size: var(--step-0);
+  line-height: 1.35;
+}
+
+/* 116: at the end of the session list there is nothing left to hint at, so
+   the fade and the cue both go; the rows keep their hairlines and the card its
+   height. */
+.session__scroll.is-overflow:not(.is-end) .session {
+  -webkit-mask-image: linear-gradient(180deg, black calc(100% - 46px), transparent);
+  mask-image: linear-gradient(180deg, black calc(100% - 46px), transparent);
+}
+
+.session__scroll.is-overflow.is-end .session {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.session__scroll.is-end .monthcue--float {
+  opacity: 0;
+  pointer-events: none;
+}

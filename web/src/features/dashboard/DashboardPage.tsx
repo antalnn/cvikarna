@@ -39,7 +39,7 @@ function useScrollCue<T extends HTMLElement>(dependency: unknown) {
 
 export function DashboardPage() {
   const { lang, tx } = useLanguage();
-  const { dashboard, dashboardPhase, dashboardError, today, todayPhase, demoState, openSheet, refreshToday, openTip, closeTip } =
+  const { dashboard, dashboardPhase, dashboardError, today, todayPhase, demoState, openSheet, refreshToday, openTip, closeTip, copying } =
     useApp();
   const { ref: sessionRef, visible: sessionCue, overflowing: sessionOverflow } = useScrollCue<HTMLUListElement>(today);
 
@@ -205,9 +205,15 @@ export function DashboardPage() {
           <h1 className="display">{today?.name ?? tx("Dnešní trénink", "Today's session")}</h1>
         </div>
         <div className="page-head__actions">
-          <button className="btn btn--quiet" type="button" onClick={() => openSheet({ kind: "copy" })}>
+          <button
+            className="btn btn--quiet"
+            type="button"
+            onClick={() => openSheet({ kind: "copy" })}
+            disabled={copying}
+            aria-busy={copying}
+          >
             <Icon name="i-copy" className="ico ico--sm" />
-            {tx("Zkopírovat trénink", "Copy workout")}
+            {copying ? tx("Kopíruje se…", "Copying…") : tx("Zkopírovat trénink", "Copy workout")}
           </button>
           <button className="btn btn--primary" type="button" onClick={() => openSheet({ kind: "add" })}>
             <Icon name="i-plus" className="ico ico--sm" />
@@ -231,7 +237,9 @@ export function DashboardPage() {
               </span>
             </span>
           </div>
-          <div className={`session__scroll${sessionOverflow ? " is-overflow" : ""}`}>
+          <div
+            className={`session__scroll${sessionOverflow ? " is-overflow" : ""}${sessionOverflow && !sessionCue ? " is-end" : ""}`}
+          >
             <ul className="session" ref={sessionRef}>
               {exercises.map((item, index) => {
                 const name = lang === "cs" ? item.nameCs ?? item.nameEn : item.nameEn;

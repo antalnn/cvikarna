@@ -127,6 +127,7 @@ export interface AppValue {
   deleteSet: (setId: number) => Promise<void>;
   renameSession: (name: string) => Promise<void>;
   copyFrom: (sourceWorkoutId: number) => Promise<boolean>;
+  copying: boolean;
   deleteWorkout: (workoutId: number) => Promise<boolean>;
   finishSession: () => void;
 
@@ -261,6 +262,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const liveTimer = useRef<number | null>(null);
 
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [copying, setCopying] = useState(false);
   const [sheet, setSheet] = useState<SheetState>(null);
   const [confirm, setConfirm] = useState<ConfirmRequest | null>(null);
   const [menu, setMenu] = useState<MenuRequest | null>(null);
@@ -659,6 +661,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       if (!today) {
         return false;
       }
+      setCopying(true);
       try {
         const copied = await copyWorkout(today.id, sourceWorkoutId);
         setToday(copied);
@@ -668,6 +671,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       } catch (error) {
         toast(errorText(error), "danger");
         return false;
+      } finally {
+        setCopying(false);
       }
     },
     [refreshDashboard, today, toast, tx],
@@ -924,6 +929,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     deleteSet,
     renameSession,
     copyFrom,
+    copying,
     deleteWorkout,
     finishSession,
     clock,
