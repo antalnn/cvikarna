@@ -55,10 +55,9 @@ export function HistoryPage() {
     .sort((left, right) => (sort === "desc" ? right.performedOn.localeCompare(left.performedOn) : left.performedOn.localeCompare(right.performedOn)));
   const todayIso = isoDate(today);
   const fallback = monthSessions[0]?.performedOn ?? null;
-  const activeIso =
-    selectedIso && (filed.some((row) => row.performedOn === selectedIso) || selectedIso === todayIso)
-      ? selectedIso
-      : fallback;
+  // Any day can be picked, not only the ones with a session: the log then says
+  // that this particular day holds nothing.
+  const activeIso = selectedIso ?? fallback;
 
   useEffect(() => {
     if (!selectedIso && fallback) {
@@ -294,9 +293,8 @@ export function HistoryPage() {
                   className={`calendar__day${has ? " has-workout" : ""}${isToday ? " is-today" : ""}`}
                   type="button"
                   key={iso}
-                  disabled={!has}
                   aria-pressed={selectedDay === day && activeIso?.startsWith(prefix)}
-                  aria-label={`${day}. ${monthGenitive[month]}${has && summary ? `, ${exerciseCount(summary.exerciseCount, lang)}` : ""}`}
+                  aria-label={`${day}. ${monthGenitive[month]}${has && summary ? `, ${exerciseCount(summary.exerciseCount, lang)}` : `, ${tx("žádný trénink", "no session")}`}`}
                   onClick={() => pickDate(iso)}
                 >
                   {day}
@@ -482,9 +480,14 @@ export function HistoryPage() {
               <p className="stateview__text">
                 {workoutPhase === "error"
                   ? tx("Zkus vybrat den znovu, nebo načti historii znovu.", "Pick the day again, or reload the history.")
-                  : activeIso === todayIso
-                    ? tx("Dnešní trénink ještě není uložený. Ukonči ho a objeví se tady i v kalendáři.", "Today's session is not filed yet. Finish it and it appears here and in the calendar.")
-                    : tx("Tento den nemá uložený trénink. Vyber den s tečkou v kalendáři, nebo dokonči dnešní trénink.", "This day has no saved session. Pick a day with a dot in the calendar, or finish today's session.")}
+                  : !activeIso
+                    ? tx("Vyber den v kalendáři.", "Pick a day in the calendar.")
+                    : activeIso === todayIso
+                      ? tx("Dnešní trénink ještě není uložený. Ukonči ho a objeví se tady i v kalendáři.", "Today's session is not filed yet. Finish it and it appears here and in the calendar.")
+                      : tx(
+                          `${longDate(parseIso(activeIso), lang)}: žádný uložený trénink.`,
+                          `${longDate(parseIso(activeIso), lang)}: no saved session.`,
+                        )}
               </p>
             </div>
           </>
