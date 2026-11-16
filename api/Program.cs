@@ -11,6 +11,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddProblemDetails();
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddScoped<StatsService>();
+builder.Services.AddScoped<DashboardService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -31,6 +32,8 @@ app.MapExerciseEndpoints();
 app.MapCatalogueEndpoints();
 app.MapWorkoutEndpoints();
 app.MapStatsEndpoints();
+app.MapDashboardEndpoints();
+app.MapSettingsEndpoints();
 
 await using (var scope = app.Services.CreateAsyncScope())
 {

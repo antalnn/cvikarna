@@ -56,17 +56,58 @@ public static class ExerciseEndpoints
             {
                 var exercise = await db.Exercises
                     .AsNoTracking()
-                    .FirstOrDefaultAsync(row => row.Id == id && row.IsLibrary, cancellationToken);
+                    .FirstOrDefaultAsync(row => row.Id == id, cancellationToken);
 
                 return exercise is null
                     ? Results.Problem(
                         statusCode: StatusCodes.Status404NotFound,
                         title: "Exercise not found",
-                        detail: $"No library exercise has id {id}.")
+                        detail: $"No exercise has id {id}.")
                     : Results.Ok(ExerciseDetailDto.From(exercise));
             })
             .WithName("GetLibraryExercise")
             .Produces<ExerciseDetailDto>()
+            .ProducesProblem(StatusCodes.Status404NotFound);
+
+        // Membership is the user's own list. The 120 curated rows start saved;
+        // any catalogue row can join, and any saved row can leave. The row stays
+        // in the table either way, so a logged set never loses its movement.
+        group.MapPut("/library/{id:int}", async (int id, AppDbContext db, CancellationToken cancellationToken) =>
+            {
+                var exercise = await db.Exercises.FirstOrDefaultAsync(row => row.Id == id, cancellationToken);
+                if (exercise is null)
+                {
+                    return Results.Problem(
+                        statusCode: StatusCodes.Status404NotFound,
+                        title: "Exercise not found",
+                        detail: $"No exercise has id {id}.");
+                }
+
+                exercise.IsLibrary = true;
+                await db.SaveChangesAsync(cancellationToken);
+                return Results.NoContent();
+            })
+            .WithName("SaveLibraryExercise")
+            .Produces(StatusCodes.Status204NoContent)
+            .ProducesProblem(StatusCodes.Status404NotFound);
+
+        group.MapDelete("/library/{id:int}", async (int id, AppDbContext db, CancellationToken cancellationToken) =>
+            {
+                var exercise = await db.Exercises.FirstOrDefaultAsync(row => row.Id == id, cancellationToken);
+                if (exercise is null)
+                {
+                    return Results.Problem(
+                        statusCode: StatusCodes.Status404NotFound,
+                        title: "Exercise not found",
+                        detail: $"No exercise has id {id}.");
+                }
+
+                exercise.IsLibrary = false;
+                await db.SaveChangesAsync(cancellationToken);
+                return Results.NoContent();
+            })
+            .WithName("RemoveLibraryExercise")
+            .Produces(StatusCodes.Status204NoContent)
             .ProducesProblem(StatusCodes.Status404NotFound);
 
         group.MapGet("/muscles", async (AppDbContext db, CancellationToken cancellationToken) =>

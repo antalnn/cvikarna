@@ -107,6 +107,9 @@ namespace Cvikarna.Api.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("Completed")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Notes")
                         .HasColumnType("TEXT");
 
@@ -130,6 +133,40 @@ namespace Cvikarna.Api.Data.Migrations
                     b.HasIndex("WorkoutExerciseId", "Position");
 
                     b.ToTable("LoggedSets");
+                });
+
+            modelBuilder.Entity("Cvikarna.Api.Models.RestSettings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("AutoStart")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Sound")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Uniform")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UniformValue")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ValuesJson")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Vibrate")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Volume")
+                        .HasPrecision(3, 2)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RestSettings");
                 });
 
             modelBuilder.Entity("Cvikarna.Api.Models.Workout", b =>

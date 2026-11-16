@@ -1,542 +1,631 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
-import {
-  openTodayWorkout,
-  removeWorkoutExercise,
-  renameWorkout,
-  reorderWorkoutExercises,
-} from "../../api/workout";
-import type { Workout, WorkoutExercise } from "../../api/types";
-import { WorkoutNameEditor } from "../../components/WorkoutNameEditor";
+import { useRef, useState, type CSSProperties, type FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ExerciseCard } from "../../components/ExerciseCard";
+import { Icon } from "../../components/Icon";
+import { RestPopover } from "../../components/overlays/Overlays";
 import { useLanguage } from "../../i18n/useLanguage";
-import { formatNumber } from "../../lib/dates";
-import { CopySheet } from "./CopySheet";
-import { PickerSheet } from "./PickerSheet";
-import { WorkoutItem } from "./WorkoutItem";
+import { useApp } from "../../state/useApp";
+import type { LoggedSet, WorkoutExercise } from "../../api/types";
+import { MUSCLE_LABEL, equipmentLabel, pairText } from "../../lib/labels";
+import { fmt, formatClock, longDate, parseIso } from "../../lib/format";
+import { useClockElapsed } from "../../lib/useClockElapsed";
 
-interface DragState {
-  itemId: number;
-  fromIndex: number;
-  toIndex: number;
-  startY: number;
-  offsetY: number;
-  listTop: number;
-  heights: number[];
-  starts: number[];
+interface SetInput {
+  weightKg: number;
+  reps: number;
+  rpe: number | null;
+  notes: string | null;
 }
 
-interface SettleState {
-  /** Extra translate per item, in px, so the reorder starts where the drop ended. */
-  deltas: Map<number, number>;
-}
+function SetForm({ item, onLog }: { item: WorkoutExercise; onLog: (input: SetInput) => Promise<boolean> }) {
+  const { lang, tx } = useLanguage();
+  const { openTip, closeTip } = useApp();
+  const rpeText = tx(
+    "RPE říká, jak těžká série byla. 1 je velmi lehká, 10 znamená, že už bys nedal další opakování. Většina pracovních sérií je 7 až 9.",
+    "RPE says how hard a set was. 1 is very easy, 10 means no more reps were possible. Most working sets land at 7 to 9.",
+  );
+  const last = item.sets[item.sets.length - 1];
+  const [noteOpen, setNoteOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
-/** Where a row at index lands once the row at from moves to to. */
-function slotAfterMove(index: number, from: number, to: number): number {
-  if (index === from) {
-    return to;
-  }
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = formRef.current;
+    if (!form || busy) {
+      return;
+    }
+    const data = new FormData(form);
+    const rawWeight = String(data.get("kg") ?? "").trim();
+    const weight = rawWeight === "" ? 0 : Number(rawWeight.replace(",", "."));
+    const reps = Number.parseInt(String(data.get("reps") ?? ""), 10);
+    const rawRpe = String(data.get("rpe") ?? "").trim();
+    const rpe = rawRpe === "" ? null : Number.parseInt(rawRpe, 10);
+    const notes = String(data.get("note") ?? "").trim();
 
-  if (from < to && index > from && index <= to) {
-    return index - 1;
-  }
+    const bad: string[] = [];
+    if (!Number.isFinite(weight) || weight < 0 || weight > 600) {
+      bad.push("kg");
+    }
+    if (!Number.isFinite(reps) || reps < 1 || reps > 100) {
+      bad.push("reps");
+    }
+    if (rawRpe !== "" && (!Number.isFinite(rpe) || (rpe ?? 0) < 1 || (rpe ?? 0) > 10)) {
+      bad.push("rpe");
+    }
 
-  if (to < from && index >= to && index < from) {
-    return index + 1;
-  }
+    if (bad.length) {
+      bad.forEach((field) => {
+        const input = form.querySelector<HTMLInputElement>(`[name="${field}"]`);
+        if (input) {
+          input.setAttribute("aria-invalid", "true");
+          input.addEventListener("input", () => input.removeAttribute("aria-invalid"), { once: true });
+        }
+      });
+      form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
+      return;
+    }
 
-  return index;
+    setBusy(true);
+    const ok = await onLog({
+      weightKg: weight,
+      reps,
+      rpe,
+      notes: notes === "" ? null : notes,
+    });
+    setBusy(false);
+    if (ok) {
+      form.reset();
+      setNoteOpen(false);
+    }
+  };
+
+  return (
+    <form className="setline setline--input" ref={formRef} onSubmit={(event) => void submit(event)}>
+      <span className="setline__n">{item.sets.length + 1}</span>
+      <span className="setline__form">
+        <label className="setline__field">
+          {tx("Kg", "Kg")}
+          <input
+            name="kg"
+            inputMode="decimal"
+            maxLength={6}
+            defaultValue={last ? String(last.weightKg).replace(".", lang === "cs" ? "," : ".") : ""}
+            placeholder="20"
+            aria-label={tx("Váha v kilogramech", "Weight in kilograms")}
+          />
+        </label>
+        <label className="setline__field">
+          {tx("Opak.", "Reps")}
+          <input
+            name="reps"
+            inputMode="numeric"
+            maxLength={3}
+            defaultValue={last ? String(last.reps) : ""}
+            placeholder="8"
+            aria-label={tx("Počet opakování", "Reps")}
+          />
+        </label>
+        <span className="setline__field">
+          <span className="setline__label">
+            RPE{" "}
+            <button
+              className="infotip"
+              type="button"
+              aria-label={tx("Co je RPE?", "What is RPE?")}
+              aria-describedby="rpeTipText"
+              onMouseEnter={(event) => openTip(event.currentTarget, rpeText)}
+              onMouseLeave={closeTip}
+              onFocus={(event) => openTip(event.currentTarget, rpeText)}
+              onBlur={closeTip}
+            >
+              ?
+            </button>
+          </span>
+          <input
+            name="rpe"
+            inputMode="numeric"
+            maxLength={2}
+            defaultValue={last?.rpe !== null && last?.rpe !== undefined ? String(last.rpe) : ""}
+            placeholder="8"
+            aria-label={`RPE 1 ${tx("až", "to")} 10`}
+          />
+        </span>
+        <label className="setline__field setline__note-field" hidden={!noteOpen}>
+          {tx("Poznámka", "Note")}
+          <input name="note" placeholder={tx("nepovinné", "optional")} aria-label={tx("Poznámka k sérii", "Set note")} />
+        </label>
+        <button className="btn btn--primary btn--sm" type="submit" disabled={busy}>
+          {tx("Zapsat sérii", "Log set")}
+        </button>
+        <button
+          className="iconbtn setline__notebtn"
+          type="button"
+          aria-label={tx("Poznámka k sérii", "Set note")}
+          aria-expanded={noteOpen}
+          onClick={() => setNoteOpen((current) => !current)}
+        >
+          <Icon name="i-pencil" className="ico ico--sm" />
+        </button>
+      </span>
+    </form>
+  );
 }
 
 export function TrackerPage() {
-  const { language, t } = useLanguage();
-  const [workout, setWorkout] = useState<Workout | null>(null);
-  const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
-  const [pickerOpen, setPickerOpen] = useState(false);
-  const [copyOpen, setCopyOpen] = useState(false);
-  const [ordering, setOrdering] = useState(false);
-  const [drag, setDrag] = useState<DragState | null>(null);
-  const dragRef = useRef<DragState | null>(null);
-  const listRef = useRef<HTMLOListElement>(null);
-  const [settle, setSettle] = useState<SettleState | null>(null);
-  const settleTops = useRef<Map<number, number> | null>(null);
-  const [actionError, setActionError] = useState<string | null>(null);
+  const { lang, tx } = useLanguage();
+  const {
+    today,
+    todayPhase,
+    todayError,
+    demoState,
+    refreshToday,
+    refreshSummaries,
+    openSheet,
+    openMenu,
+    askConfirm,
+    toast,
+    logSet,
+    toggleSet,
+    deleteSet,
+    removeExercise,
+    renameSession,
+    finishSession,
+    clock,
+    startClock,
+    resetClock,
+    ensureClock,
+    rest,
+    restValue,
+    startRest,
+    restTimer,
+    pauseRest,
+    resumeRest,
+  } = useApp();
+  const navigate = useNavigate();
+  const clockElapsed = useClockElapsed(clock.startedAt);
+  const [openEx, setOpenEx] = useState<number | null | undefined>(undefined);
+  const [renaming, setRenaming] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [restAnchor, setRestAnchor] = useState<HTMLElement | null>(null);
+  const [restOpen, setRestOpen] = useState(false);
 
-  const load = useCallback(async () => {
-    setStatus("loading");
-    try {
-      setWorkout(await openTodayWorkout());
-      setStatus("ready");
-    } catch {
-      setStatus("error");
-    }
-  }, []);
-
-  useEffect(() => {
-    void load();
-  }, [load]);
-
-  const reload = useCallback(async () => {
-    try {
-      setWorkout(await openTodayWorkout());
-      setActionError(null);
-    } catch {
-      setActionError(t.saveError);
-    }
-  }, [t.saveError]);
-
-  const handleRemoveExercise = useCallback(
-    async (itemId: number) => {
-      if (!workout) {
-        return;
-      }
-
-      try {
-        await removeWorkoutExercise(workout.id, itemId);
-        await reload();
-      } catch {
-        setActionError(t.saveError);
-      }
-    },
-    [reload, t.saveError, workout],
-  );
-
-  const captureRowTops = useCallback(() => {
-    const list = listRef.current;
-
-    if (!list || !workout) {
-      return null;
-    }
-
-    const rows = Array.from(list.querySelectorAll<HTMLElement>(".workout-item"));
-
-    if (rows.length !== workout.exercises.length) {
-      return null;
-    }
-
-    const tops = new Map<number, number>();
-    rows.forEach((row, index) => {
-      const item = workout.exercises[index];
-
-      if (item) {
-        // getBoundingClientRect includes the drag transforms, so this is the
-        // position the user currently sees, not the resting layout position.
-        tops.set(item.id, row.getBoundingClientRect().top);
-      }
-    });
-
-    return tops;
-  }, [workout]);
-
-  const commitOrder = useCallback(
-    async (ids: number[], tops?: Map<number, number>) => {
-      if (!workout) {
-        return;
-      }
-
-      const byId = new Map(workout.exercises.map((item) => [item.id, item]));
-      const next = ids
-        .map((id) => byId.get(id))
-        .filter((item): item is WorkoutExercise => Boolean(item));
-
-      if (next.length !== workout.exercises.length) {
-        return;
-      }
-
-      settleTops.current = tops ?? captureRowTops();
-      setSettle(null);
-      setWorkout({ ...workout, exercises: next });
-      setOrdering(true);
-      setActionError(null);
-
-      try {
-        await reorderWorkoutExercises(workout.id, ids);
-        await reload();
-      } catch {
-        setActionError(t.saveError);
-        await reload();
-      } finally {
-        setOrdering(false);
-      }
-    },
-    [workout, reload, captureRowTops, t.saveError],
-  );
-
-  // FLIP settle: after the order changes, offset every row by the distance its
-  // resting position moved, so it stays where the user saw it. The next frame
-  // releases the offset and the existing 180 ms transform transition glides the
-  // row the last few pixels into its slot instead of snapping.
-  useLayoutEffect(() => {
-    const tops = settleTops.current;
-    settleTops.current = null;
-
-    if (!tops || !workout) {
-      return;
-    }
-
-    const list = listRef.current;
-
-    if (!list) {
-      return;
-    }
-
-    const rows = Array.from(list.querySelectorAll<HTMLElement>(".workout-item"));
-    const deltas = new Map<number, number>();
-
-    // Every row gets an entry, including the displaced rows that end at delta 0.
-    // Their drag transform is removed in this same commit, and the instant
-    // transition-none frame stops that removal from animating the wrong way.
-    workout.exercises.forEach((item) => deltas.set(item.id, 0));
-
-    // Removing the drag styles starts a transform transition. Cancel it before
-    // measuring, or the rect still reads the mid-flight drag offset and the
-    // settle offsets the row a second time.
-    rows.forEach((row) => {
-      row.style.transition = "none";
-    });
-
-    const newTops = rows.map((row) => row.getBoundingClientRect().top);
-
-    rows.forEach((row) => {
-      row.style.transition = "";
-    });
-
-    rows.forEach((_, index) => {
-      const item = workout.exercises[index];
-      const previous = item ? tops.get(item.id) : undefined;
-      const nextTop = newTops[index];
-
-      if (item === undefined || previous === undefined || nextTop === undefined) {
-        return;
-      }
-
-      deltas.set(item.id, previous - nextTop);
-    });
-
-    setSettle({ deltas });
-  }, [workout]);
-
-  useEffect(() => {
-    if (!settle) {
-      return;
-    }
-
-    // The instant frame is on screen. Removing the offset now lets the existing
-    // 180 ms transition animate from the release position to the slot.
-    const frame = requestAnimationFrame(() => setSettle(null));
-    const timer = window.setTimeout(() => setSettle(null), 250);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      window.clearTimeout(timer);
-    };
-  }, [settle]);
-
-  const handleReorder = useCallback(
-    (itemId: number, targetId: number) => {
-      if (!workout || ordering || itemId === targetId) {
-        return;
-      }
-
-      const ids = workout.exercises.map((item) => item.id);
-      const from = ids.indexOf(itemId);
-      const to = ids.indexOf(targetId);
-
-      if (from < 0 || to < 0) {
-        return;
-      }
-
-      ids.splice(from, 1);
-      ids.splice(to, 0, itemId);
-      void commitOrder(ids);
-    },
-    [workout, ordering, commitOrder],
-  );
-
-  const beginDrag = useCallback(
-    (itemId: number, clientY: number) => {
-      if (!workout || ordering) {
-        return;
-      }
-
-      const list = listRef.current;
-      const fromIndex = workout.exercises.findIndex((item) => item.id === itemId);
-
-      if (!list || fromIndex < 0) {
-        return;
-      }
-
-      // A new grab wins over a settle that is still gliding.
-      settleTops.current = null;
-      setSettle(null);
-
-      const rows = Array.from(list.querySelectorAll<HTMLElement>(".workout-item"));
-
-      if (rows.length !== workout.exercises.length) {
-        return;
-      }
-
-      const listTop = list.getBoundingClientRect().top;
-      const starts = rows.map((row) => row.getBoundingClientRect().top - listTop);
-      const heights = rows.map((row) => row.getBoundingClientRect().height);
-      const state: DragState = {
-        itemId,
-        fromIndex,
-        toIndex: fromIndex,
-        startY: clientY,
-        offsetY: 0,
-        listTop,
-        heights,
-        starts,
-      };
-
-      dragRef.current = state;
-      setDrag(state);
-    },
-    [workout, ordering],
-  );
-
-  const dragging = drag !== null;
-
-  useEffect(() => {
-    if (!dragging) {
-      return;
-    }
-
-    const move = (event: PointerEvent) => {
-      const current = dragRef.current;
-      if (!current) {
-        return;
-      }
-
-      const offsetY = event.clientY - current.startY;
-      const pointerY = event.clientY - current.listTop;
-      let toIndex = current.fromIndex;
-      let best = Number.POSITIVE_INFINITY;
-
-      current.starts.forEach((start, index) => {
-        const height = current.heights[index];
-
-        if (height === undefined) {
-          return;
-        }
-
-        const distance = Math.abs(pointerY - (start + height / 2));
-        if (distance < best) {
-          best = distance;
-          toIndex = index;
+  const exercises = today?.exercises ?? [];
+  const items = demoState === "edge" ? exercises.slice(0, 1) : exercises;
+  const totals = items.reduce(
+    (acc, item) => {
+      item.sets.forEach((set) => {
+        acc.total += 1;
+        if (set.completed) {
+          acc.done += 1;
+          acc.volume += Number(set.weightKg) * Number(set.reps);
         }
       });
+      return acc;
+    },
+    { volume: 0, done: 0, total: 0 },
+  );
+  const pct = totals.total ? Math.round((totals.done / totals.total) * 100) : 0;
+  const activeExercise = items[0];
+  const openExerciseId =
+    openEx === undefined ? activeExercise?.exerciseId : openEx;
+  const date = today ? parseIso(today.performedOn) : new Date();
 
-      const next = { ...current, offsetY, toIndex };
-      dragRef.current = next;
-      setDrag(next);
-    };
-
-    const drop = () => {
-      const current = dragRef.current;
-
-      // Measure before the drag styles come off: getBoundingClientRect then
-      // includes the transforms, so the settle starts from what the user sees.
-      const tops = current && workout && current.fromIndex !== current.toIndex ? captureRowTops() : null;
-      dragRef.current = null;
-      setDrag(null);
-
-      if (!current || !workout || current.fromIndex === current.toIndex) {
-        return;
-      }
-
-      const ids = workout.exercises.map((item) => item.id);
-      const [moved] = ids.splice(current.fromIndex, 1);
-
-      if (moved === undefined) {
-        return;
-      }
-
-      ids.splice(current.toIndex, 0, moved);
-      void commitOrder(ids, tops ?? undefined);
-    };
-
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerup", drop);
-    window.addEventListener("pointercancel", drop);
-
-    return () => {
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", drop);
-      window.removeEventListener("pointercancel", drop);
-    };
-  }, [dragging, workout, commitOrder]);
-
-  const dragVisual = (index: number): { style?: CSSProperties; className: string } => {
-    if (!drag) {
-      return { className: "" };
+  const finish = async () => {
+    if (!totals.done) {
+      toast(tx("Nejdřív zapiš alespoň jednu sérii.", "Log at least one set first."), "danger");
+      return;
     }
-
-    const start = drag.starts[index];
-
-    if (start === undefined) {
-      return { className: "" };
+    // A movement with no completed set is not work that happened; the filed
+    // session keeps only what was actually lifted.
+    const empty = items.filter((item) => !item.sets.some((set) => set.completed));
+    if (empty.length) {
+      await Promise.all(empty.map((item) => removeExercise(item.id)));
+      await refreshToday();
     }
-
-    if (index === drag.fromIndex) {
-      return {
-        style: { transform: `translateY(${drag.offsetY}px)`, zIndex: 5 },
-        className: "is-dragging",
-      };
-    }
-
-    // Shift by the real distance between this row's old and new slot. Using the
-    // measured starts keeps the 8 px list gap and multi-slot crossings exact.
-    const slot = slotAfterMove(index, drag.fromIndex, drag.toIndex);
-    const target = drag.starts[slot];
-
-    if (slot === index || target === undefined) {
-      return { className: "" };
-    }
-
-    return {
-      style: { transform: `translateY(${target - start}px)` },
-      className: "is-shifted",
-    };
+    await refreshSummaries();
+    finishSession();
+    toast(tx("Trénink uložen do historie. Dobrá práce.", "Session filed in history. Good work."));
+    navigate(`/history?date=${today?.performedOn ?? ""}`);
   };
 
-  const previewIndex = (index: number) =>
-    drag ? slotAfterMove(index, drag.fromIndex, drag.toIndex) : index;
+  const removeItem = (item: WorkoutExercise, anchor: HTMLElement | null) => {
+    const name = lang === "cs" ? item.nameCs ?? item.nameEn : item.nameEn;
+    const setWord = item.sets.length === 1 ? "sérii" : item.sets.length < 5 ? "série" : "sérií";
+    askConfirm(
+      {
+        title: tx("Odebrat cvik?", "Remove this exercise?"),
+        text: tx(
+          `Odebere ${name} · ${item.sets.length} ${setWord} z dnešního tréninku.`,
+          `Removes ${name} · ${item.sets.length} sets from today's session.`,
+        ),
+        label: tx("Odebrat", "Remove"),
+        run: () => void removeExercise(item.id),
+      },
+      anchor,
+    );
+  };
 
-  if (status === "loading") {
+  if (demoState === "loading" || todayPhase === "loading") {
     return (
-      <div className="state">
-        <p className="state__text" role="status">
-          {t.loading}
-        </p>
+      <div className="page">
+        <header className="page-head">
+          <div>
+            <p className="eyebrow">{longDate(date, lang)}</p>
+            <h1 className="display display--md">{today?.name ?? tx("Dnešní trénink", "Today's session")}</h1>
+          </div>
+        </header>
+        <div className="excgrid">
+          {Array.from({ length: 3 }).map((_, index) => (
+            <div className="excard" key={index}>
+              <div className="skeleton__body">
+                <div className="sk sk--title" />
+                <div className="sk sk--line" />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
 
-  if (status === "error" || !workout) {
+  if (demoState === "error" || todayPhase === "error") {
     return (
-      <div className="state state--error" role="alert">
-        <p className="state__title">{t.trackerErrorTitle}</p>
-        <p className="state__text">{t.errorText}</p>
-        <button className="button button--accent" type="button" onClick={() => void load()}>
-          {t.retry}
-        </button>
-      </div>
-    );
-  }
-
-  const dateLabel = new Intl.DateTimeFormat(language === "cs" ? "cs-CZ" : "en-GB", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  }).format(new Date(`${workout.performedOn}T12:00:00`));
-
-  const totalSets = workout.exercises.reduce((sum, item) => sum + item.sets.length, 0);
-  const totalVolume = workout.exercises.reduce(
-    (sum, item) => sum + item.sets.reduce((volume, set) => volume + set.weightKg * set.reps, 0),
-    0,
-  );
-
-  return (
-    <>
-      <section className="tracker-head">
-        <div>
-          <p className="eyebrow">{t.trackerEyebrow}</p>
-          <WorkoutNameEditor
-            key={workout.id}
-            name={workout.name}
-            fallback={t.trackerTitle}
-            level={1}
-            titleClassName="tracker-title"
-            onSave={(name) => renameWorkout(workout.id, name)}
-            onSaved={setWorkout}
-          />
-          <p className="tracker-meta">
-            <span className="tracker-date">{dateLabel}</span>
-            <span>{t.exerciseCount(workout.exercises.length)}</span>
-            <span>{t.setCount(totalSets)}</span>
-            <span>
-              {formatNumber(totalVolume, language)} kg
-            </span>
+      <div className="page">
+        <header className="page-head">
+          <div>
+            <p className="eyebrow">{longDate(date, lang)}</p>
+            <h1 className="display display--md">{tx("Trénink se nenačetl", "The session did not load")}</h1>
+          </div>
+        </header>
+        <div className="stateview stateview--error">
+          <span className="stateview__icon">
+            <Icon name="i-info" />
+          </span>
+          <p className="stateview__title">{tx("Série se neuložily", "The sets were not saved")}</p>
+          <p className="stateview__text">
+            {todayError ?? tx("Server neodpověděl. Zkus to znovu, nic se neztratilo.", "The server did not answer. Try again, nothing was lost.")}
           </p>
-          <p className="tracker-lede">{t.trackerLede}</p>
-        </div>
-        <div className="tracker-actions">
-          <button className="button" type="button" onClick={() => setCopyOpen(true)}>
-            {t.copyWorkout}
-          </button>
-          <button className="button button--accent" type="button" onClick={() => setPickerOpen(true)}>
-            {t.addExercise}
-          </button>
-        </div>
-      </section>
-
-      {actionError ? (
-        <p className="form-error" role="alert">
-          {actionError}
-        </p>
-      ) : null}
-
-      {workout.exercises.length === 0 ? (
-        <div className="state">
-          <p className="state__title">{t.noExercisesTitle}</p>
-          <p className="state__text">{t.noExercisesText}</p>
-          <div className="state__actions">
-            <button className="button" type="button" onClick={() => setCopyOpen(true)}>
-              {t.copyWorkout}
-            </button>
-            <button className="button button--accent" type="button" onClick={() => setPickerOpen(true)}>
-              {t.addExercise}
+          <div className="stateview__actions">
+            <button className="btn btn--primary" type="button" onClick={() => void refreshToday()}>
+              {tx("Zkusit znovu", "Try again")}
             </button>
           </div>
         </div>
-      ) : (
-        <ol className="workout-list" ref={listRef}>
-          {workout.exercises.map((item, index) => {
-            const visual = dragVisual(index);
-            const settleDelta = settle?.deltas.get(item.id);
-            const settleStyle: CSSProperties | undefined =
-              settleDelta === undefined
-                ? undefined
-                : {
-                    transform: `translateY(${settleDelta}px)`,
-                    transition: "none",
-                  };
+      </div>
+    );
+  }
 
-            return (
-              <WorkoutItem
-                key={item.id}
-                workoutId={workout.id}
-                item={item}
-                index={previewIndex(index)}
-                orderedIds={workout.exercises.map((row) => row.id)}
-                onReorder={handleReorder}
-                onDragStart={beginDrag}
-                dragStyle={visual.style ?? settleStyle}
-                dragClass={visual.className}
-                onChanged={reload}
-                onRemove={handleRemoveExercise}
+  if (demoState === "empty" || !today || !items.length) {
+    return (
+      <div className="page">
+        <header className="page-head">
+          <div>
+            <p className="eyebrow">{longDate(date, lang)}</p>
+            <h1 className="display display--md">{tx("Trénink je prázdný", "The session is empty")}</h1>
+          </div>
+        </header>
+        <div className="stateview">
+          <span className="stateview__icon">
+            <Icon name="i-bar" />
+          </span>
+          <p className="stateview__title">{tx("Zatím žádný cvik", "No movement yet")}</p>
+          <p className="stateview__text">
+            {tx(
+              "Přidej první cvik a zapiš sérii. Objem, počet sérií a čas se začnou počítat samy.",
+              "Add the first movement and log a set. Volume, set count and time start counting on their own.",
+            )}
+          </p>
+          <div className="stateview__actions">
+            <button className="btn btn--primary" type="button" onClick={() => openSheet({ kind: "add" })}>
+              {tx("Přidat cvik", "Add exercise")}
+            </button>
+            <button className="btn btn--quiet" type="button" onClick={() => openSheet({ kind: "copy" })}>
+              {tx("Zkopírovat trénink", "Copy workout")}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="page">
+      <header className="page-head">
+        <div>
+          <p className="eyebrow">{longDate(date, lang)}</p>
+          {renaming ? (
+            <form
+              className="nameform"
+              onSubmit={(event) => {
+                event.preventDefault();
+                const data = new FormData(event.currentTarget);
+                const value = String(data.get("name") ?? "").trim();
+                const input = event.currentTarget.querySelector("input");
+                if (!value) {
+                  setNameError(true);
+                  input?.focus();
+                  return;
+                }
+                setNameError(false);
+                setRenaming(false);
+                void renameSession(value);
+              }}
+            >
+              <label className="visually-hidden" htmlFor="wname">
+                {tx("Název tréninku", "Session name")}
+              </label>
+              <input
+                id="wname"
+                name="name"
+                defaultValue={today.name ?? ""}
+                maxLength={80}
+                autoComplete="off"
+                aria-invalid={nameError}
+                autoFocus
               />
-            );
-          })}
-        </ol>
-      )}
+              <button className="btn btn--primary btn--sm" type="submit">
+                {tx("Uložit", "Save")}
+              </button>
+              <button
+                className="btn btn--quiet btn--sm"
+                type="button"
+                onClick={() => {
+                  setNameError(false);
+                  setRenaming(false);
+                }}
+              >
+                {tx("Zrušit", "Cancel")}
+              </button>
+            </form>
+          ) : (
+            <div className="title-edit">
+              <h1 className="display display--md">{today.name ?? tx("Dnešní trénink", "Today's session")}</h1>
+              <button
+                className="iconbtn"
+                type="button"
+                aria-label={tx("Přejmenovat trénink", "Rename session")}
+                onClick={() => setRenaming(true)}
+              >
+                <Icon name="i-pencil" className="ico ico--sm" />
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="page-head__actions">
+          <button className="btn btn--quiet" type="button" onClick={() => openSheet({ kind: "copy" })}>
+            <Icon name="i-copy" className="ico ico--sm" />
+            {tx("Zkopírovat trénink", "Copy workout")}
+          </button>
+          <button className="btn btn--primary" type="button" onClick={() => openSheet({ kind: "add" })}>
+            <Icon name="i-plus" className="ico ico--sm" />
+            {tx("Přidat cvik", "Add exercise")}
+          </button>
+        </div>
+      </header>
 
-      {pickerOpen ? (
-        <PickerSheet
-          workoutId={workout.id}
-          onClose={() => setPickerOpen(false)}
-          onAdded={reload}
-        />
-      ) : null}
+      <div className="sessionbar">
+        <div className="sessionbar__stats">
+          <div className="sessionbar__stat">
+            <span className="micro">{tx("Objem", "Volume")}</span>
+            <span className="sessionbar__value num">
+              {fmt(totals.volume, lang)} <small>kg</small>
+            </span>
+          </div>
+          <div className="sessionbar__stat">
+            <span className="micro">{tx("Série", "Sets")}</span>
+            <span className="sessionbar__value num">
+              {totals.done}/{totals.total}
+            </span>
+          </div>
+          <div className="sessionbar__stat">
+            <span className="micro">{tx("Čas", "Time")}</span>
+            <span className="sessionbar__value num">
+              {formatClock(clockElapsed)}
+            </span>
+          </div>
+        </div>
+        <div className="sessionbar__actions">
+          {clock.startedAt ? (
+            <button className="btn sessionbar__finish" type="button" onClick={finish}>
+              {tx("Ukončit trénink", "Finish session")}
+            </button>
+          ) : (
+            <button
+              className="clockstart"
+              type="button"
+              onClick={() => {
+                if (!items.length) {
+                  toast(tx("Nejdřív přidej alespoň jeden cvik.", "Add at least one exercise first."), "danger");
+                  return;
+                }
+                startClock();
+              }}
+            >
+              {tx("Spustit", "Start")}
+            </button>
+          )}
+          <button
+            className="iconbtn clockreset"
+            type="button"
+            aria-label={tx("Vynulovat čas", "Reset the clock")}
+            disabled={!clock.startedAt}
+            onClick={(event) =>
+              askConfirm(
+                {
+                  title: tx("Vynulovat čas?", "Reset the clock?"),
+                  text: tx(
+                    "Čas se vynuluje a zastaví. Spustíš ho znovu tlačítkem Spustit, zapsané série zůstanou nedotčené.",
+                    "The clock resets to zero and stops. Start it again with the start control; logged sets stay untouched.",
+                  ),
+                  label: tx("Vynulovat", "Reset"),
+                  run: () => {
+                    resetClock();
+                    toast(tx("Čas vynulován a zastaven", "Clock reset and stopped"));
+                  },
+                },
+                event.currentTarget,
+              )
+            }
+          >
+            <Icon name="i-reset" className="ico ico--sm" />
+          </button>
+          <div className={`restctl${restTimer.running ? " is-running" : restTimer.done || !restTimer.visible ? "" : " is-paused"}`}>
+            <button
+              className="restctl__start"
+              type="button"
+              aria-label={
+                restTimer.running
+                  ? tx("Pozastavit pauzu", "Pause the rest")
+                  : restTimer.visible && !restTimer.done
+                    ? tx("Pokračovat v pauze", "Resume the rest")
+                    : tx("Spustit pauzu pro otevřený cvik", "Start a rest for the open movement")
+              }
+              onClick={() => {
+                if (restTimer.running) {
+                  pauseRest();
+                  return;
+                }
+                if (restTimer.visible && !restTimer.done) {
+                  resumeRest();
+                  return;
+                }
+                const target = items.find((item) => item.exerciseId === openExerciseId) ?? activeExercise;
+                if (target) {
+                  startRest(restValue(target.exerciseId), target.exerciseId);
+                }
+              }}
+            >
+              <Icon name={restTimer.running ? "i-pause" : "i-play"} className="ico ico--sm" />
+            </button>
+            <button
+              className="restctl__value"
+              type="button"
+              aria-haspopup="dialog"
+              aria-expanded={restOpen}
+              onClick={(event) => {
+                setRestAnchor(event.currentTarget);
+                setRestOpen((open) => !open);
+              }}
+            >
+              <span className="restctl__state">
+                {restTimer.running
+                  ? tx("Pauza běží", "Rest running")
+                  : restTimer.visible && !restTimer.done
+                    ? tx("Pauza pozastavena", "Rest paused")
+                    : tx("Pauza", "Rest")}
+              </span>
+              <span className="num restctl__clock">
+                {restTimer.visible && !restTimer.done
+                  ? `${Math.floor(restTimer.left / 60)}:${String(restTimer.left % 60).padStart(2, "0")}`
+                  : `${restValue(openExerciseId ?? activeExercise?.exerciseId ?? null)} s`}
+              </span>
+            </button>
+          </div>
+        </div>
+        <div className="sessionbar__meter">
+          <span className="micro">{tx("Průběh tréninku", "Session progress")}</span>
+          <div
+            className="progress"
+            role="progressbar"
+            aria-valuenow={pct}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={`${tx("Průběh tréninku", "Session progress")}: ${totals.done} ${tx("z", "of")} ${totals.total} ${tx("sérií hotovo", "sets done")}, ${pct} %`}
+          >
+            <span className="progress__fill" style={{ "--p": pct } as CSSProperties} />
+          </div>
+          <span className="sessionbar__pct num">{pct} %</span>
+        </div>
+      </div>
 
-      {copyOpen ? (
-        <CopySheet
-          workoutId={workout.id}
-          onClose={() => setCopyOpen(false)}
-          onCopied={reload}
-        />
+      <span className="visually-hidden" id="rpeTipText">
+        {tx(
+          "RPE říká, jak těžká série byla. 1 je velmi lehká, 10 znamená, že už bys nedal další opakování. Většina pracovních sérií je 7 až 9.",
+          "RPE says how hard a set was. 1 is very easy, 10 means no more reps were possible. Most working sets land at 7 to 9.",
+        )}
+      </span>
+
+      <ul className="excgrid">
+        {items.map((item, index) => {
+          const open =
+            openEx === undefined ? index === 0 : openExerciseId === item.exerciseId;
+          const name = lang === "cs" ? item.nameCs ?? item.nameEn : item.nameEn;
+          return (
+            <ExerciseCard
+              key={item.id}
+              index={index}
+              name={name}
+              subtitle={`${pairText(MUSCLE_LABEL[item.primaryMuscle], lang)} · ${equipmentLabel(item.equipment, lang)}`}
+              sets={item.sets}
+              open={open}
+              mode="tracker"
+              onToggle={() => setOpenEx(open ? null : item.exerciseId)}
+              onSetToggle={(set: LoggedSet) => {
+                const nextDone = !set.completed;
+                void toggleSet(set.id, nextDone).then((ok) => {
+                  if (ok && nextDone) {
+                    ensureClock();
+                    if (rest.auto) {
+                      startRest(restValue(item.exerciseId), item.exerciseId);
+                    }
+                  }
+                });
+              }}
+              onDeleteSet={(set: LoggedSet) => void deleteSet(set.id)}
+              onMenu={(anchor) =>
+                openMenu(anchor, [
+                  {
+                    label: tx("Detail cviku", "Exercise detail"),
+                    run: () => openSheet({ kind: "ex", exerciseId: item.exerciseId }),
+                  },
+                  {
+                    label: tx("Odebrat cvik", "Remove exercise"),
+                    run: () => removeItem(item, anchor),
+                  },
+                ])
+              }
+            >
+              <SetForm
+                key={`${item.id}-${item.sets.length}`}
+                item={item}
+                onLog={async (input) => {
+                  const created = await logSet(item.id, { ...input, completed: false });
+                  if (created) {
+                    ensureClock();
+                    return true;
+                  }
+                  return false;
+                }}
+              />
+            </ExerciseCard>
+          );
+        })}
+      </ul>
+
+      <RestPopover
+        anchor={restAnchor}
+        open={restOpen}
+        onClose={() => setRestOpen(false)}
+        exerciseId={openExerciseId ?? activeExercise?.exerciseId ?? null}
+      />
+
+
+      <p className="visually-hidden" aria-live="polite">
+        {today?.name ?? ""}
+      </p>
+
+      {exercises.length > 0 ? (
+        <div className="more">
+          <Link className="linkbtn" to="/library">
+            {tx("Přidat další cvik z knihovny", "Add another movement from the library")}
+          </Link>
+        </div>
       ) : null}
-    </>
+    </div>
   );
 }
+
+
+
+

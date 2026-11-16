@@ -104,6 +104,7 @@ public static class WorkoutEndpoints
                         ExerciseCount = workout.Exercises.Count,
                         Sets = workout.Exercises
                             .SelectMany(item => item.Sets)
+                            .Where(set => set.Completed)
                             .Select(set => new { set.WeightKg, set.Reps })
                             .ToList(),
                     })
@@ -201,6 +202,22 @@ public static class WorkoutEndpoints
             .ProducesValidationProblem()
             .ProducesProblem(StatusCodes.Status404NotFound);
 
+        group.MapDelete("/workouts/{id:int}", async (int id, AppDbContext db, CancellationToken cancellationToken) =>
+            {
+                var workout = await db.Workouts.FirstOrDefaultAsync(row => row.Id == id, cancellationToken);
+                if (workout is null)
+                {
+                    return NotFound("Workout not found", $"No workout has id {id}.");
+                }
+
+                db.Workouts.Remove(workout);
+                await db.SaveChangesAsync(cancellationToken);
+                return Results.NoContent();
+            })
+            .WithName("DeleteWorkout")
+            .Produces(StatusCodes.Status204NoContent)
+            .ProducesProblem(StatusCodes.Status404NotFound);
+
         group.MapPost("/workouts/{id:int}/copy", async (
                 int id,
                 CopyWorkoutRequest request,
@@ -283,6 +300,9 @@ public static class WorkoutEndpoints
                             Reps = sourceSet.Reps,
                             Rpe = sourceSet.Rpe,
                             Notes = sourceSet.Notes,
+                            // A copy is a plan to work through, so it adds no
+                            // volume to the target until each set is checked.
+                            Completed = false,
                         });
                     }
 
@@ -451,6 +471,7 @@ public static class WorkoutEndpoints
                     Reps = request.Reps,
                     Rpe = request.Rpe,
                     Notes = string.IsNullOrWhiteSpace(request.Notes) ? null : request.Notes.Trim(),
+                    Completed = request.Completed,
                 };
 
                 db.LoggedSets.Add(set);
@@ -548,13 +569,34 @@ public static class WorkoutEndpoints
                         row.Set.WeightKg,
                         row.Set.Reps,
                         row.Set.Rpe,
-                        row.Set.Notes))
+                        row.Set.Notes,
+                        row.Set.Completed))
                     .ToList();
 
                 return Results.Ok(sets);
             })
             .WithName("ListRecentSets")
             .Produces<IReadOnlyList<RecentSetDto>>();
+
+        group.MapPatch("/sets/{id:int}", async (
+                int id,
+                UpdateSetRequest request,
+                AppDbContext db,
+                CancellationToken cancellationToken) =>
+            {
+                var set = await db.LoggedSets.FirstOrDefaultAsync(row => row.Id == id, cancellationToken);
+                if (set is null)
+                {
+                    return NotFound("Set not found", $"No set has id {id}.");
+                }
+
+                set.Completed = request.Completed;
+                await db.SaveChangesAsync(cancellationToken);
+                return Results.Ok(LoggedSetDto.From(set));
+            })
+            .WithName("UpdateSet")
+            .Produces<LoggedSetDto>()
+            .ProducesProblem(StatusCodes.Status404NotFound);
 
         group.MapDelete("/sets/{id:int}", async (int id, AppDbContext db, CancellationToken cancellationToken) =>
             {

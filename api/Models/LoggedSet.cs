@@ -13,4 +13,11 @@ public class LoggedSet
     public int Reps { get; set; }
     public decimal? Rpe { get; set; }
     public string? Notes { get; set; }
+
+    /// <summary>
+    /// A set counts toward volume and the session meter only once it is checked
+    /// off. A set logged from the tracker starts completed; a copied set starts
+    /// uncompleted, so the copy adds no volume until it is worked through.
+    /// </summary>
+    public bool Completed { get; set; } = true;
 }

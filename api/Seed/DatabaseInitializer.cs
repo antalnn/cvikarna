@@ -38,9 +38,15 @@ public static class DatabaseInitializer
                 db.Exercises.Add(entity);
                 bySourceId[row.SourceId] = entity;
                 usedIds.Add(entity.Id);
+                ApplyLibraryRow(row, entity);
+                // A curated row starts in the library. It is not forced back in
+                // on a later start: membership is the user's own list.
+                entity.IsLibrary = true;
             }
-
-            ApplyLibraryRow(row, entity);
+            else
+            {
+                ApplyLibraryRow(row, entity);
+            }
         }
 
         await db.SaveChangesAsync(cancellationToken);
@@ -104,7 +110,6 @@ public static class DatabaseInitializer
     private static void ApplyLibraryRow(LibrarySeedRow row, Exercise entity)
     {
         entity.Slug = row.Slug;
-        entity.IsLibrary = true;
         entity.CoverIndex = row.CoverIndex;
         entity.NameEn = row.NameEn;
         entity.NameCs = row.NameCs;

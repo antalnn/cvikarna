@@ -1,5 +1,12 @@
 import { deleteJson, getJson, patchJson, postJson, putJson } from "./client";
-import type { ExerciseStats, LoggedSet, RecentSet, Workout, WorkoutExercise, WorkoutSummary } from "./types";
+import type {
+  ExerciseStats,
+  LoggedSet,
+  RecentSet,
+  Workout,
+  WorkoutExercise,
+  WorkoutSummary,
+} from "./types";
 
 export function openTodayWorkout(): Promise<Workout> {
   return postJson<Workout>("/api/workouts");
@@ -32,6 +39,15 @@ export function copyWorkout(targetId: number, sourceWorkoutId: number): Promise<
   return postJson<Workout>(`/api/workouts/${targetId}/copy`, { sourceWorkoutId });
 }
 
+export function fetchWorkout(id: number): Promise<Workout> {
+  return getJson<Workout>(`/api/workouts/${id}`);
+}
+
+/** Removes the session and its sets through the cascade. */
+export function removeWorkout(id: number): Promise<void> {
+  return deleteJson(`/api/workouts/${id}`);
+}
+
 /** Throws NotFoundError when no workout was logged on that day. */
 export function fetchWorkoutByDate(date: string): Promise<Workout> {
   return getJson<Workout>(`/api/workouts/by-date/${encodeURIComponent(date)}`);
@@ -55,10 +71,16 @@ export interface NewSet {
   reps: number;
   rpe: number | null;
   notes: string | null;
+  /** The tracker logs an unticked row; the tick completes it. */
+  completed?: boolean;
 }
 
 export function addSet(workoutId: number, itemId: number, input: NewSet): Promise<LoggedSet> {
   return postJson<LoggedSet>(`/api/workouts/${workoutId}/exercises/${itemId}/sets`, input);
+}
+
+export function setCompleted(id: number, completed: boolean): Promise<LoggedSet> {
+  return patchJson<LoggedSet>(`/api/sets/${id}`, { completed });
 }
 
 export function removeSet(id: number): Promise<void> {

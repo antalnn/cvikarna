@@ -155,3 +155,7 @@ No Czech source page carries a name for these movements, so the app shows the En
 | 95 | Floor Press | cviky.cz site search for 'floor' returns 'nebyly nalezeny žádné příspěvky'; fitcviky.cz catalogue has no floor press. Only translated/auto-generated pages surfaced ('Floor press'), none from a Czech-authored exercise database. |
 | 96 | Smith Machine Squat | cviky.cz site search for 'smith' returns no posts at all. fitcviky.cz uses 'multipress' for the Smith machine and has only 'Bulharský dřep na multipressu' and 'Výpady vzad na multipressu' - no plain Smith squat page under either term. |
 | 120 | Plate Pinch | The movement exists in Czech catalogues but keeps an English name: 'Plate pinch' here, 'Úchop Kotouče (Plate Pinch)' on fitwill.app/cs. 'Pinch kotoučů' itself not found as a name. |
+
+## Catalogue names
+
+The 756 catalogue-only rows carry `nameCs: null` in `api/Seed/catalogue.json`, so the app prints their English name in Czech. No Czech name is generated for the catalogue. A later session in the Iron Ledger plan may add a Czech name to a catalogue row only after recording the page that names it here, in the same table shape as the curated rows. Until then, the fallback is English.

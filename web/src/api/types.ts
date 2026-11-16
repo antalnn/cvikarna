@@ -1,4 +1,4 @@
-/** The shapes returned by the exercise, catalogue, workout and stats endpoints. */
+/** The shapes returned by the exercise, catalogue, workout, dashboard and settings endpoints. */
 
 export type Muscle =
   | "chest"
@@ -30,7 +30,7 @@ export type Level = "beginner" | "intermediate" | "expert";
 export interface Exercise {
   id: number;
   slug: string;
-  /** Which photo the card shows: 1 when the first frame is the setup, not the working position. */
+  /** Which photo a card shows first: 1 when the first frame is the setup. */
   coverIndex?: 0 | 1;
   nameEn: string;
   nameCs: string;
@@ -38,12 +38,13 @@ export interface Exercise {
   aliasesCs: string[];
   primaryMuscle: Muscle;
   secondaryMuscles: Muscle[];
-  equipment: Equipment;
+  equipment: Equipment | "";
   level: Level;
   instructionsEn: string[];
   instructionsCs: string[];
   cuesEn: string[];
   cuesCs: string[];
+  /** The free-exercise-db pair, start then end. Never empty for a real row. */
   images: string[];
 }
 
@@ -54,7 +55,7 @@ export interface ExerciseFilters {
   q: string;
 }
 
-/** A thin catalogue row: enough to pick a movement, no photos or instructions. */
+/** A catalogue row: enough to list, filter and save the movement. */
 export interface CatalogueRow {
   id: number;
   sourceId: string;
@@ -64,6 +65,7 @@ export interface CatalogueRow {
   primaryMuscle: Muscle;
   equipment: Equipment | null;
   level: Level;
+  images: string[];
 }
 
 export interface CataloguePage {
@@ -82,13 +84,14 @@ export interface CatalogueFilters {
   pageSize?: number;
 }
 
-/** One logged set. Weight 0 means bodyweight. */
+/** One logged set. Weight 0 means bodyweight; a set counts once completed. */
 export interface LoggedSet {
   id: number;
   weightKg: number;
   reps: number;
   rpe: number | null;
   notes: string | null;
+  completed: boolean;
 }
 
 export interface WorkoutExercise {
@@ -144,6 +147,49 @@ export interface ExerciseStats {
   bestSetVolumeKg: number | null;
   isoWeek: string;
   weeklySets: WeeklySets[];
+}
+
+export interface DashboardDay {
+  date: string;
+  hasSession: boolean;
+  volume: number;
+}
+
+export interface PersonalRecord {
+  exerciseId: number;
+  nameEn: string;
+  nameCs: string | null;
+  bestWeightKg: number;
+  previousBestWeightKg: number | null;
+  achievedOn: string;
+}
+
+export interface WeeklyVolume {
+  label: string;
+  start: string;
+  volume: number;
+}
+
+export interface Dashboard {
+  today: Workout | null;
+  week: DashboardDay[];
+  currentWeekVolume: number;
+  previousWeekVolume: number;
+  weekSessions: number;
+  lastSessionOn: string | null;
+  daysSinceLast: number | null;
+  personalRecords: PersonalRecord[];
+  weeklyVolume: WeeklyVolume[];
+}
+
+export interface RestSettings {
+  uniform: boolean;
+  uniformValue: number;
+  auto: boolean;
+  sound: boolean;
+  volume: number;
+  vibrate: boolean;
+  values: Record<string, number>;
 }
 
 export const MUSCLE_GROUPS: readonly MuscleGroup[] = [

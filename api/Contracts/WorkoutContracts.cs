@@ -55,14 +55,21 @@ public sealed record WorkoutExerciseDto(
         item.Sets.OrderBy(set => set.Position).ThenBy(set => set.Id).Select(LoggedSetDto.From).ToList());
 }
 
-public sealed record LoggedSetDto(int Id, decimal WeightKg, int Reps, decimal? Rpe, string? Notes)
+public sealed record LoggedSetDto(
+    int Id,
+    decimal WeightKg,
+    int Reps,
+    decimal? Rpe,
+    string? Notes,
+    bool Completed)
 {
     public static LoggedSetDto From(LoggedSet set) => new(
         set.Id,
         set.WeightKg,
         set.Reps,
         set.Rpe,
-        set.Notes);
+        set.Notes,
+        set.Completed);
 }
 
 public sealed record RecentSetDto(
@@ -74,11 +81,20 @@ public sealed record RecentSetDto(
     decimal WeightKg,
     int Reps,
     decimal? Rpe,
-    string? Notes);
+    string? Notes,
+    bool Completed);
 
 public sealed record AddExerciseRequest(int ExerciseId);
 
-public sealed record AddSetRequest(decimal WeightKg, int Reps, decimal? Rpe, string? Notes);
+public sealed record AddSetRequest(
+    decimal WeightKg,
+    int Reps,
+    decimal? Rpe,
+    string? Notes,
+    bool Completed = true);
+
+/// <summary>Checks or unchecks one logged set. Only the flag changes.</summary>
+public sealed record UpdateSetRequest(bool Completed);
 
 /// <summary>Ordered ids of every set in one workout exercise, first to last.</summary>
 public sealed record ReorderSetsRequest(IReadOnlyList<int> SetIds);

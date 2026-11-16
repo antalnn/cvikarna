@@ -1,333 +1,483 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { NotFoundError } from "../../api/client";
-import type { Workout, WorkoutSummary } from "../../api/types";
-import { fetchWorkoutByDate, fetchWorkoutSummaries } from "../../api/workout";
+import { useEffect, useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { ExerciseCard } from "../../components/ExerciseCard";
+import { Icon } from "../../components/Icon";
 import { useLanguage } from "../../i18n/useLanguage";
-import { formatNumber, formatShortDate, monthKey, monthStart, shiftMonth, toDateKey } from "../../lib/dates";
-import { useAsync } from "../../lib/useAsync";
-import { MonthCalendar } from "./MonthCalendar";
-import { WorkoutPreview } from "./WorkoutPreview";
+import { useApp } from "../../state/useApp";
+import { fetchWorkout } from "../../api/workout";
+import type { Workout } from "../../api/types";
+import {
+  CZ_MONTHS,
+  CZ_MONTHS_NOM,
+  EN_MONTHS,
+  exerciseCount,
+  fmt,
+  isoDate,
+  longDate,
+  parseIso,
+  setsLabel,
+} from "../../lib/format";
+import { MUSCLE_LABEL, equipmentLabel, pairText } from "../../lib/labels";
 
-type PreviewState =
-  | { status: "idle" }
-  | { status: "loading" }
-  | { status: "empty" }
-  | { status: "error" }
-  | { status: "ready"; workout: Workout };
-
-/**
- * The history view: a month calendar with markers, the month's workouts as a
- * list, and the clicked day as a read-only workout. Editing stays in the
- * tracker, which is the today view.
- */
 export function HistoryPage() {
-  const { language, t } = useLanguage();
-  const navigate = useNavigate();
+  const { lang, tx } = useLanguage();
+  const {
+    summaries,
+    summariesPhase,
+    summariesError,
+    refreshSummaries,
+    demoState,
+    askConfirm,
+    deleteWorkout,
+  } = useApp();
+  const [searchParams] = useSearchParams();
+  const dateParam = searchParams.get("date");
+  const today = new Date();
+  const initial = dateParam && /^\d{4}-\d{2}-\d{2}$/.test(dateParam) ? parseIso(dateParam) : today;
+  const [year, setYear] = useState(initial.getFullYear());
+  const [month, setMonth] = useState(initial.getMonth());
+  const [selectedIso, setSelectedIso] = useState<string | null>(
+    dateParam && /^\d{4}-\d{2}-\d{2}$/.test(dateParam) ? dateParam : null,
+  );
+  const [sort, setSort] = useState<"desc" | "asc">("desc");
+  const [workout, setWorkout] = useState<Workout | null>(null);
+  const [workoutPhase, setWorkoutPhase] = useState<"idle" | "loading" | "ready" | "error">("idle");
+  const [openGroups, setOpenGroups] = useState<Record<number, boolean>>({});
+  const listRef = useRef<HTMLDivElement>(null);
+  const [monthCue, setMonthCue] = useState(false);
 
-  const today = useMemo(() => new Date(), []);
-  const todayKey = toDateKey(today);
-  const currentMonth = useMemo(() => monthStart(today), [today]);
-
-  const [month, setMonth] = useState(currentMonth);
-  const [selected, setSelected] = useState<string | null>(todayKey);
-  const [newestFirst, setNewestFirst] = useState(true);
-  const [preview, setPreview] = useState<PreviewState>({ status: "loading" });
-  const [previewAttempt, setPreviewAttempt] = useState(0);
-  const [canScrollMonths, setCanScrollMonths] = useState(false);
-  const monthScrollRef = useRef<HTMLDivElement>(null);
-  // The Today button is the one action that opens the tracker when the day is
-  // empty; clicking an empty calendar day only shows the empty state.
-  const todayRequested = useRef(false);
-
-  const loadMonth = useCallback(() => fetchWorkoutSummaries(monthKey(month)), [month]);
-  const monthState = useAsync(loadMonth);
-
-  const summariesByDate = useMemo(() => {
-    const map = new Map<string, WorkoutSummary>();
-    if (monthState.status === "success") {
-      for (const summary of monthState.data) {
-        map.set(summary.performedOn, summary);
-      }
-    }
-    return map;
-  }, [monthState]);
-
-  const monthRows = monthState.status === "success" ? monthState.data : null;
-
-  const monthSummaries = useMemo(() => {
-    if (monthRows === null) {
-      return [];
-    }
-
-    return [...monthRows].sort((left, right) =>
-      newestFirst
-        ? right.performedOn.localeCompare(left.performedOn)
-        : left.performedOn.localeCompare(right.performedOn),
-    );
-  }, [monthRows, newestFirst]);
-
-  const updateScrollCue = useCallback(() => {
-    const panel = monthScrollRef.current;
-
-    // Eight pixels of tolerance keeps sub-pixel rounding from showing the cue
-    // when the list is already at the bottom.
-    setCanScrollMonths(panel ? panel.scrollHeight - panel.scrollTop - panel.clientHeight > 8 : false);
-  }, []);
+  const prefix = `${year}-${String(month + 1).padStart(2, "0")}-`;
+  const monthSessions = summaries
+    .filter((row) => row.performedOn.startsWith(prefix))
+    .sort((left, right) => (sort === "desc" ? right.performedOn.localeCompare(left.performedOn) : left.performedOn.localeCompare(right.performedOn)));
+  const todayIso = isoDate(today);
+  const fallback = monthSessions[0]?.performedOn ?? null;
+  const activeIso =
+    selectedIso && (summaries.some((row) => row.performedOn === selectedIso) || selectedIso === todayIso)
+      ? selectedIso
+      : fallback;
 
   useEffect(() => {
-    const panel = monthScrollRef.current;
+    if (!selectedIso && fallback) {
+      setSelectedIso(fallback);
+    }
+  }, [fallback, selectedIso]);
 
-    if (!panel) {
+  useEffect(() => {
+    if (!activeIso) {
+      setWorkout(null);
+      setWorkoutPhase("idle");
       return;
     }
-
-    const observer = new ResizeObserver(updateScrollCue);
-    observer.observe(panel);
-    panel.addEventListener("scroll", updateScrollCue, { passive: true });
-    const frame = requestAnimationFrame(updateScrollCue);
-
+    let cancelled = false;
+    setWorkoutPhase("loading");
+    const summary = summaries.find((row) => row.performedOn === activeIso);
+    if (!summary) {
+      setWorkout(null);
+      setWorkoutPhase("idle");
+      return;
+    }
+    void fetchWorkout(summary.id).then(
+      (row) => {
+        if (!cancelled) {
+          setWorkout(row);
+          setWorkoutPhase("ready");
+        }
+      },
+      () => {
+        if (!cancelled) {
+          setWorkout(null);
+          setWorkoutPhase("error");
+        }
+      },
+    );
     return () => {
+      cancelled = true;
+    };
+  }, [activeIso, summaries]);
+
+  useEffect(() => {
+    const node = listRef.current;
+    if (!node) {
+      return;
+    }
+    const sync = () => setMonthCue(node.scrollHeight - node.scrollTop - node.clientHeight > 4);
+    sync();
+    node.addEventListener("scroll", sync);
+    const observer = new ResizeObserver(sync);
+    observer.observe(node);
+    return () => {
+      node.removeEventListener("scroll", sync);
       observer.disconnect();
-      panel.removeEventListener("scroll", updateScrollCue);
-      cancelAnimationFrame(frame);
     };
-  }, [updateScrollCue, monthSummaries]);
+  }, [monthSessions.length, month]);
 
-  useEffect(() => {
-    if (!selected) {
-      setPreview({ status: "idle" });
-      return;
-    }
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDow = (new Date(year, month, 1).getDay() + 6) % 7;
+  const withWork = new Set(monthSessions.map((row) => Number(row.performedOn.slice(8, 10))));
+  const selectedDay = activeIso ? Number(activeIso.slice(8, 10)) : 0;
+  const activeSummary = summaries.find((row) => row.performedOn === activeIso);
+  const allOpen =
+    workout !== null &&
+    workout.exercises.length > 0 &&
+    workout.exercises.every((item) => openGroups[item.exerciseId] === true);
 
-    let live = true;
-    setPreview({ status: "loading" });
+  const goMonth = (direction: number) => {
+    const next = new Date(year, month + direction, 1);
+    setYear(next.getFullYear());
+    setMonth(next.getMonth());
+    setSelectedIso(null);
+  };
 
-    fetchWorkoutByDate(selected).then(
-      (workout) => {
-        if (!live) {
-          return;
-        }
-        todayRequested.current = false;
-        setPreview({ status: "ready", workout });
-      },
-      (error: unknown) => {
-        if (!live) {
-          return;
-        }
-        if (error instanceof NotFoundError) {
-          if (todayRequested.current) {
-            todayRequested.current = false;
-            navigate("/tracker");
-            return;
-          }
-          setPreview({ status: "empty" });
-          return;
-        }
-        setPreview({ status: "error" });
-      },
-    );
+  const pickDate = (iso: string) => {
+    setSelectedIso(iso);
+    const picked = parseIso(iso);
+    setYear(picked.getFullYear());
+    setMonth(picked.getMonth());
+  };
 
-    return () => {
-      live = false;
-    };
-  }, [selected, previewAttempt, navigate]);
-
-  const selectDay = useCallback((dateKey: string) => {
-    todayRequested.current = false;
-    setSelected(dateKey);
-  }, []);
-
-  const goToMonth = useCallback((next: Date) => {
-    todayRequested.current = false;
-    setMonth(next);
-    setSelected(null);
-  }, []);
-
-  const goToday = useCallback(() => {
-    const now = new Date();
-    todayRequested.current = true;
-    setMonth(monthStart(now));
-    setSelected(toDateKey(now));
-    setPreviewAttempt((value) => value + 1);
-  }, []);
-
-  return (
-    <>
-      <section className="history-head">
-        <div>
-          <p className="eyebrow">{t.historyEyebrow}</p>
-          <h1 className="history-title">{t.historyTitle}</h1>
-          <p className="history-lede">{t.historyLede}</p>
-        </div>
-        <button className="button" type="button" onClick={goToday}>
-          {t.today}
-        </button>
-      </section>
-
-      <div className="history-layout">
-        <MonthCalendar
-          month={month}
-          summariesByDate={summariesByDate}
-          selected={selected}
-          todayKey={todayKey}
-          onPrev={() => goToMonth(shiftMonth(month, -1))}
-          onNext={() => goToMonth(shiftMonth(month, 1))}
-          onSelect={selectDay}
-        />
-
-        <div className="month-panel-slot">
-          <section className="month-panel" aria-labelledby="month-workouts-title">
-            <div className="month-panel__head">
-              <h2 className="panel-heading" id="month-workouts-title">
-                {t.monthWorkoutsTitle}
-              </h2>
-
-              {monthSummaries.length > 1 ? (
-                <button
-                  className="month-sort"
-                  type="button"
-                  aria-label={t.sortOrderLabel}
-                  onClick={() => setNewestFirst((value) => !value)}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    aria-hidden="true"
-                  >
-                    {newestFirst ? (
-                      <path d="M12 5v14m0 0 5-5m-5 5-5-5" strokeLinecap="round" strokeLinejoin="round" />
-                    ) : (
-                      <path d="M12 19V5m0 0 5 5m-5-5-5 5" strokeLinecap="round" strokeLinejoin="round" />
-                    )}
-                  </svg>
-                  {newestFirst ? t.sortNewest : t.sortOldest}
-                </button>
-              ) : null}
+  if (demoState === "loading" || summariesPhase === "loading") {
+    return (
+      <div className="page">
+        <header className="page-head">
+          <div>
+            <p className="eyebrow">{tx("Deník", "Logbook")}</p>
+            <h1 className="display display--md">{tx("Historie tréninků", "Training history")}</h1>
+          </div>
+        </header>
+        <div className="history">
+          <section className="panel" aria-busy="true">
+            <div className="skeleton__body">
+              <div className="sk sk--line" />
+              <div className="sk" style={{ height: 260 }} />
             </div>
-
-            <div className="month-panel__scroll" ref={monthScrollRef}>
-              {monthState.status === "loading" ? (
-                <p className="month-panel__state" role="status">
-                  {t.historyLoading}
-                </p>
-              ) : null}
-
-              {monthState.status === "error" ? (
-                <div className="month-panel__state" role="alert">
-                  <p>{t.historyErrorTitle}</p>
-                  <button className="button button--small" type="button" onClick={monthState.retry}>
-                    {t.retry}
-                  </button>
-                </div>
-              ) : null}
-
-              {monthState.status === "success" && monthSummaries.length === 0 ? (
-                <div className="month-empty">
-                  <p className="month-empty__title">{t.monthEmptyTitle}</p>
-                  <p>{t.monthEmptyText}</p>
-                </div>
-              ) : null}
-
-              {monthState.status === "success" && monthSummaries.length > 0 ? (
-                <ol className="month-list">
-                  {monthSummaries.map((summary) => (
-                    <li key={summary.id}>
-                      <button
-                        className="month-row"
-                        type="button"
-                        aria-pressed={selected === summary.performedOn}
-                        onClick={() => selectDay(summary.performedOn)}
-                      >
-                        {summary.name ? <span className="month-row__name">{summary.name}</span> : null}
-                        <span className="month-row__date">{formatShortDate(summary.performedOn, language)}</span>
-                        <span className="month-row__meta">
-                          {t.exerciseCount(summary.exerciseCount)} · {t.setCount(summary.setCount)}
-                        </span>
-                        <span className="month-row__volume">
-                          {formatNumber(summary.totalVolumeKg, language)} kg
-                        </span>
-                      </button>
-                    </li>
-                  ))}
-                </ol>
-              ) : null}
+          </section>
+          <section className="panel" aria-busy="true">
+            <div className="skeleton__body">
+              <div className="sk sk--line" />
+              <div className="sk sk--title" />
+              <div className="sk sk--line" />
             </div>
-
-            {canScrollMonths ? (
-              <button
-                className="month-scroll-cue"
-                type="button"
-                aria-label={t.monthScrollCue}
-                title={t.monthScrollCue}
-                onClick={() => {
-                  const panel = monthScrollRef.current;
-
-                  if (!panel) {
-                    return;
-                  }
-
-                  panel.scrollBy(0, Math.max(120, panel.clientHeight * 0.75));
-                }}
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  aria-hidden="true"
-                >
-                  <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            ) : null}
           </section>
         </div>
       </div>
+    );
+  }
 
-      <section className="history-preview">
-        {preview.status === "loading" ? (
-          <p className="history-note" role="status">
-            {t.historyLoading}
-          </p>
-        ) : null}
-
-        {preview.status === "idle" ? <p className="history-note">{t.pickDay}</p> : null}
-
-        {preview.status === "empty" ? (
-          <div className="history-note">
-            <p>{t.noWorkoutOnDay}</p>
-            <Link className="button button--small" to="/tracker">
-              {t.openToday}
-            </Link>
+  if (demoState === "error" || summariesPhase === "error") {
+    return (
+      <div className="page">
+        <header className="page-head">
+          <div>
+            <p className="eyebrow">{tx("Deník", "Logbook")}</p>
+            <h1 className="display display--md">{tx("Historie se nenačetla", "History did not load")}</h1>
           </div>
-        ) : null}
-
-        {preview.status === "error" ? (
-          <div className="history-note history-note--error" role="alert">
-            <p>{t.errorText}</p>
-            <button
-              className="button button--small"
-              type="button"
-              onClick={() => setPreviewAttempt((value) => value + 1)}
-            >
-              {t.retry}
+        </header>
+        <div className="stateview stateview--error">
+          <span className="stateview__icon">
+            <Icon name="i-info" />
+          </span>
+          <p className="stateview__title">{tx("Deník neodpověděl", "The logbook did not answer")}</p>
+          <p className="stateview__text">
+            {summariesError ?? tx("Tréninky jsou v pořádku, jen se nepodařilo načíst měsíc. Zkus to znovu.", "The sessions are fine, the month just failed to load. Try again.")}
+          </p>
+          <div className="stateview__actions">
+            <button className="btn btn--primary" type="button" onClick={() => void refreshSummaries()}>
+              {tx("Zkusit znovu", "Try again")}
             </button>
           </div>
-        ) : null}
+        </div>
+      </div>
+    );
+  }
 
-        {preview.status === "ready" ? (
-          <WorkoutPreview
-            workout={preview.workout}
-            onRenamed={(workout) => {
-              setPreview({ status: "ready", workout });
-              monthState.retry();
-            }}
-          />
-        ) : null}
+  if (demoState === "empty" || (!summaries.length && monthSessions.length === 0)) {
+    return (
+      <div className="page">
+        <header className="page-head">
+          <div>
+            <p className="eyebrow">{tx("Deník", "Logbook")}</p>
+            <h1 className="display display--md">{tx("Historie je prázdná", "The logbook is empty")}</h1>
+          </div>
+        </header>
+        <div className="stateview">
+          <span className="stateview__icon">
+            <Icon name="i-cal" />
+          </span>
+          <p className="stateview__title">{tx("Žádný uložený trénink", "No saved session")}</p>
+          <p className="stateview__text">
+            {tx(
+              "Dokončený trénink se sem uloží sám. Kalendář pak označí den, kdy jsi zvedal.",
+              "A finished session lands here on its own. The calendar then marks the day you lifted.",
+            )}
+          </p>
+          <div className="stateview__actions">
+            <Link className="btn btn--primary" to="/tracker">
+              {tx("Otevřít trénink", "Open the session")}
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const monthNames = lang === "cs" ? CZ_MONTHS_NOM : EN_MONTHS;
+  const monthGenitive = lang === "cs" ? CZ_MONTHS : EN_MONTHS;
+  const weekdays = lang === "cs" ? ["PO", "ÚT", "ST", "ČT", "PÁ", "SO", "NE"] : ["MO", "TU", "WE", "TH", "FR", "SA", "SU"];
+
+  return (
+    <div className="page">
+      <header className="page-head">
+        <div>
+          <p className="eyebrow">{tx("Deník", "Logbook")}</p>
+          <h1 className="display display--md">{tx("Historie tréninků", "Training history")}</h1>
+          <p className="lede">
+            {tx(
+              "Prohlédni si, co jsi zvedl v každém týdnu. Minulé tréninky jsou jen ke čtení.",
+              "Look back at what you lifted each week. Past sessions are read-only.",
+            )}
+          </p>
+        </div>
+        <div className="page-head__actions" />
+      </header>
+
+      <div className="history">
+        <section className="panel" aria-label={tx("Kalendář", "Calendar")}>
+          <div className="calendar__head">
+            <button className="iconbtn" type="button" onClick={() => goMonth(-1)} aria-label={tx("Předchozí měsíc", "Previous month")}>
+              <Icon name="i-arrow" className="ico ico--sm" style={{ transform: "rotate(180deg)" }} />
+            </button>
+            <span className="calendar__title">
+              {monthNames[month]} {year}
+            </span>
+            <button
+              className="calendar__today"
+              type="button"
+              onClick={() => {
+                setYear(today.getFullYear());
+                setMonth(today.getMonth());
+                setSelectedIso(todayIso);
+              }}
+            >
+              {tx("Dnes", "Today")}
+            </button>
+            <button className="iconbtn" type="button" onClick={() => goMonth(1)} aria-label={tx("Další měsíc", "Next month")}>
+              <Icon name="i-arrow" className="ico ico--sm" />
+            </button>
+          </div>
+          <div className="calendar__grid">
+            {weekdays.map((day) => (
+              <span className="calendar__wk" key={day}>
+                {day}
+              </span>
+            ))}
+            {Array.from({ length: firstDow }).map((_, index) => (
+              <span className="calendar__day is-blank" key={`blank-${index}`} aria-hidden="true" />
+            ))}
+            {Array.from({ length: daysInMonth }).map((_, index) => {
+              const day = index + 1;
+              const iso = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+              const has = withWork.has(day);
+              const isToday = iso === todayIso;
+              const summary = monthSessions.find((row) => row.performedOn === iso);
+              return (
+                <button
+                  className={`calendar__day${has ? " has-workout" : ""}${isToday ? " is-today" : ""}`}
+                  type="button"
+                  key={iso}
+                  disabled={!has}
+                  aria-pressed={selectedDay === day && activeIso?.startsWith(prefix)}
+                  aria-label={`${day}. ${monthGenitive[month]}${has && summary ? `, ${exerciseCount(summary.exerciseCount, lang)}` : ""}`}
+                  onClick={() => pickDate(iso)}
+                >
+                  {day}
+                  {has ? <span className="calendar__dot" aria-hidden="true" /> : null}
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="panel monthpanel" aria-label={tx("Tréninky v měsíci", "Sessions this month")}>
+          <div className="panel__head">
+            <span className="micro">{tx("Tréninky v měsíci", "Sessions this month")}</span>
+            <button
+              className="sortbtn"
+              type="button"
+              aria-label={sort === "desc" ? tx("Nejnovější první", "Newest first") : tx("Nejstarší první", "Oldest first")}
+              title={sort === "desc" ? tx("Nejnovější první", "Newest first") : tx("Nejstarší první", "Oldest first")}
+              onClick={() => setSort((current) => (current === "desc" ? "asc" : "desc"))}
+            >
+              <Icon name="i-chevron" className={`ico sortbtn__ico${sort === "asc" ? " is-asc" : ""}`} />
+            </button>
+          </div>
+          <div className="monthlist" ref={listRef} tabIndex={0} role="group" aria-label={tx("Seznam tréninků v měsíci", "Sessions in this month")}>
+            {monthSessions.length ? (
+              monthSessions.map((row) => (
+                <button
+                  className="mrow"
+                  type="button"
+                  key={row.id}
+                  aria-pressed={row.performedOn === activeIso}
+                  onClick={() => pickDate(row.performedOn)}
+                >
+                  <span>
+                    <span className="mrow__title">{row.name ?? tx("Trénink", "Session")}</span>
+                    <span className="mrow__meta">
+                      {Number(row.performedOn.slice(8, 10))}. {Number(row.performedOn.slice(5, 7))}. ·{" "}
+                      {exerciseCount(row.exerciseCount, lang)} · {row.setCount} {setsLabel(row.setCount, lang)}
+                    </span>
+                  </span>
+                  <span className="mrow__vol">{row.totalVolumeKg ? `${fmt(row.totalVolumeKg, lang)} kg` : "—"}</span>
+                </button>
+              ))
+            ) : (
+              <div className="stateview stateview--inline">
+                <p className="stateview__text">
+                  {tx("V tomto měsíci nejsou žádné tréninky. Přepni měsíc nebo začni dnešní trénink.", "No sessions in this month. Switch months or start today's session.")}
+                </p>
+              </div>
+            )}
+          </div>
+          <button
+            className="monthcue"
+            type="button"
+            aria-label={tx("Zobrazit starší tréninky", "Show older sessions")}
+            hidden={!monthCue}
+            onClick={() =>
+              listRef.current?.scrollBy({
+                top: Math.round(listRef.current.clientHeight * 0.82),
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+              })
+            }
+          >
+            <Icon name="i-chevron" className="ico ico--sm" />
+          </button>
+        </section>
+      </div>
+
+      <section className="panel" style={{ marginTop: "var(--space-4)" }} aria-labelledby="logTitle">
+        {workoutPhase === "loading" ? (
+          <div className="skeleton__body" aria-busy="true">
+            <div className="sk sk--title" />
+            <div className="sk sk--line" />
+            <div className="sk sk--line" style={{ width: "50%" }} />
+          </div>
+        ) : workout && activeSummary ? (
+          <>
+            <div className="log__head">
+              <div>
+                <span className="micro">{tx("Vybraný trénink", "Selected session")}</span>
+                <h2 className="log__title" id="logTitle">
+                  {workout.name ?? tx("Trénink", "Session")}
+                </h2>
+                <div className="statmini">
+                  <span>
+                    <span className="micro">{tx("Datum", "Date")}</span>
+                    <span className="statmini__v">{longDate(parseIso(workout.performedOn), lang)}</span>
+                  </span>
+                  <span>
+                    <span className="micro">{tx("Série", "Sets")}</span>
+                    <span className="statmini__v">{activeSummary.setCount}</span>
+                  </span>
+                  <span>
+                    <span className="micro">{tx("Objem", "Volume")}</span>
+                    <span className="statmini__v">{fmt(activeSummary.totalVolumeKg, lang)} kg</span>
+                  </span>
+                </div>
+              </div>
+              <div className="log__tools">
+                <button
+                  className="btn btn--quiet btn--sm"
+                  type="button"
+                  onClick={() =>
+                    setOpenGroups(
+                      Object.fromEntries(workout.exercises.map((item) => [item.exerciseId, !allOpen])),
+                    )
+                  }
+                >
+                  {allOpen ? tx("Sbalit vše", "Collapse all") : tx("Rozbalit vše", "Expand all")}
+                </button>
+                <button
+                  className="iconbtn delsession"
+                  type="button"
+                  aria-label={tx("Smazat trénink", "Delete session")}
+                  title={tx("Smazat trénink", "Delete session")}
+                  onClick={(event) => {
+                    askConfirm(
+                      {
+                        title: tx("Smazat trénink?", "Delete this session?"),
+                        text: tx(
+                          "Trénink zmizí z kalendáře i z historie. Zapsané série se nedají vrátit.",
+                          "The session disappears from the calendar and the log. Logged sets cannot be recovered.",
+                        ),
+                        label: tx("Smazat", "Delete"),
+                        run: () => {
+                          void deleteWorkout(workout.id).then((ok) => {
+                            if (ok) {
+                              setSelectedIso(null);
+                              setWorkout(null);
+                              setWorkoutPhase("idle");
+                              void refreshSummaries();
+                            }
+                          });
+                        },
+                      },
+                      event.currentTarget,
+                    );
+                  }}
+                >
+                  <Icon name="i-trash" className="ico" />
+                </button>
+              </div>
+            </div>
+            <ul className="excgrid log__groups">
+              {workout.exercises.filter((item) => item.sets.some((set) => set.completed)).map((item, index) => {
+                const name = lang === "cs" ? item.nameCs ?? item.nameEn : item.nameEn;
+                return (
+                  <ExerciseCard
+                    key={item.id}
+                    index={index}
+                    name={name}
+                    subtitle={`${pairText(MUSCLE_LABEL[item.primaryMuscle], lang)} · ${equipmentLabel(item.equipment, lang)}`}
+                    sets={item.sets}
+                    open={openGroups[item.exerciseId] === true}
+                    mode="history"
+                    onToggle={() =>
+                      setOpenGroups((current) => ({
+                        ...current,
+                        [item.exerciseId]: current[item.exerciseId] !== true,
+                      }))
+                    }
+                  />
+                );
+              })}
+            </ul>
+          </>
+        ) : (
+          <>
+            <div className="log__head">
+              <div>
+                <span className="micro">{tx("Vybraný trénink", "Selected session")}</span>
+                <h2 className="log__title" id="logTitle">
+                  {workoutPhase === "error" ? tx("Trénink se nenačetl", "The session did not load") : tx("Žádný trénink", "No session")}
+                </h2>
+              </div>
+            </div>
+            <div className="stateview stateview--inline">
+              <p className="stateview__text">
+                {workoutPhase === "error"
+                  ? tx("Zkus vybrat den znovu, nebo načti historii znovu.", "Pick the day again, or reload the history.")
+                  : activeIso === todayIso
+                    ? tx("Dnešní trénink ještě není uložený. Ukonči ho a objeví se tady i v kalendáři.", "Today's session is not filed yet. Finish it and it appears here and in the calendar.")
+                    : tx("Tento den nemá uložený trénink. Vyber den s tečkou v kalendáři, nebo dokonči dnešní trénink.", "This day has no saved session. Pick a day with a dot in the calendar, or finish today's session.")}
+              </p>
+            </div>
+          </>
+        )}
       </section>
-    </>
+    </div>
   );
 }
+
+

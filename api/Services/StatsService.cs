@@ -29,7 +29,7 @@ public class StatsService(AppDbContext db)
 
         var sets = await db.LoggedSets
             .AsNoTracking()
-            .Where(set => set.WorkoutExercise.ExerciseId == exerciseId)
+            .Where(set => set.WorkoutExercise.ExerciseId == exerciseId && set.Completed)
             .Select(set => new { set.WeightKg, set.Reps })
             .ToListAsync(cancellationToken);
 
@@ -48,6 +48,7 @@ public class StatsService(AppDbContext db)
         var weekMuscles = await db.LoggedSets
             .AsNoTracking()
             .Where(set =>
+                set.Completed &&
                 set.WorkoutExercise.Workout.PerformedOn >= weekStart &&
                 set.WorkoutExercise.Workout.PerformedOn < weekEnd)
             .Select(set => set.WorkoutExercise.Exercise.PrimaryMuscle)

@@ -37,7 +37,7 @@ public sealed record ExerciseDetailDto(
         exercise.InstructionsCs,
         exercise.CuesEn,
         exercise.CuesCs,
-        exercise.Images);
+        Domain.ExerciseImages.For(exercise));
 }
 
 /// <summary>A thin catalogue row: enough to pick an exercise, nothing more.</summary>
@@ -49,7 +49,8 @@ public sealed record CatalogueRowDto(
     string? NameCs,
     string PrimaryMuscle,
     string? Equipment,
-    string Level)
+    string Level,
+    IReadOnlyList<string> Images)
 {
     public static CatalogueRowDto From(Exercise exercise) => new(
         exercise.Id,
@@ -59,7 +60,8 @@ public sealed record CatalogueRowDto(
         exercise.NameCs,
         exercise.PrimaryMuscle,
         exercise.Equipment,
-        exercise.Level);
+        exercise.Level,
+        Domain.ExerciseImages.For(exercise));
 }
 
 public sealed record CataloguePageDto(

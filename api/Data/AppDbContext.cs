@@ -13,6 +13,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Workout> Workouts => Set<Workout>();
     public DbSet<WorkoutExercise> WorkoutExercises => Set<WorkoutExercise>();
     public DbSet<LoggedSet> LoggedSets => Set<LoggedSet>();
+    public DbSet<RestSettings> RestSettings => Set<RestSettings>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -72,6 +73,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
                 .WithMany(e => e.Sets)
                 .HasForeignKey(s => s.WorkoutExerciseId)
                 .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<RestSettings>(entity =>
+        {
+            entity.Property(s => s.Volume).HasPrecision(3, 2);
         });
     }
 
