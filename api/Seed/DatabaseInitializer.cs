@@ -39,9 +39,10 @@ public static class DatabaseInitializer
                 bySourceId[row.SourceId] = entity;
                 usedIds.Add(entity.Id);
                 ApplyLibraryRow(row, entity);
-                // A curated row starts in the library. It is not forced back in
-                // on a later start: membership is the user's own list.
-                entity.IsLibrary = true;
+                // A curated row is rich data, not a saved membership. The
+                // library starts empty; every movement is added from the
+                // catalogue, and a removed row is never forced back in.
+                entity.IsLibrary = false;
             }
             else
             {
@@ -79,7 +80,7 @@ public static class DatabaseInitializer
         await db.SaveChangesAsync(cancellationToken);
 
         logger.LogInformation(
-            "Seed ready: {Library} library rows and {Catalogue} catalogue rows",
+            "Seed ready: {Curated} curated rows, {Catalogue} catalogue rows, library empty",
             library.Count,
             catalogue.Count);
     }

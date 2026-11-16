@@ -17,6 +17,7 @@ import {
   muscleSearchText,
   pairText,
 } from "../../lib/labels";
+import { MuscleMap } from "./MuscleMap";
 
 type Tab = "lib" | "cat";
 
@@ -204,11 +205,13 @@ export function LibraryPage() {
       <header className="page-head library-head">
         <div>
           <p className="eyebrow">{tx("Od prvního tréninku dál", "From the first session onward")}</p>
-          <h1 className="display display--xl">
-            {tx(
-              "Všechny cviky, které ti pomůžou nabrat svaly a sílu",
-              "Every movement that helps you build muscle and strength",
-            )}
+          <h1 key={tab} className="display display--xl headswap">
+            {tab === "lib"
+              ? tx("Sbírka cviků, které si vybereš", "A collection of the movements you pick")
+              : tx(
+                  "Všechny cviky, které ti pomůžou nabrat svaly a sílu",
+                  "Every movement that helps you build muscle and strength",
+                )}
           </h1>
           <p className="lede">
             {tx(
@@ -354,6 +357,8 @@ export function LibraryPage() {
         ) : null}
       </div>
 
+      <div className="liblayout">
+        <div className="liblayout__results">
       {phase === "loading" || demoState === "loading" ? (
         <ul className="grid" aria-busy="true" aria-label={tx("Načítání", "Loading")}>
           {Array.from({ length: 8 }).map((_, index) => (
@@ -393,13 +398,13 @@ export function LibraryPage() {
             <Icon name={isBlank ? "i-book" : "i-search"} />
           </span>
           <p className="stateview__title">
-            {isBlank ? tx("Knihovna je prázdná", "The library is empty") : tx("Nic tu není", "Nothing here")}
+            {isBlank ? tx("V knihovně zatím nic nemáš", "You have no exercises in your library yet") : tx("Nic tu není", "Nothing here")}
           </p>
           <p className="stateview__text">
             {isBlank
               ? tx(
-                  "Do knihovny patří cviky, které skutečně cvičíš. Ulož si je z katalogu nebo z detailu cviku a objeví se tady.",
-                  "The library holds the movements you actually train. Save them from the catalogue or a movement page and they appear here.",
+                  "Všechny cviky najdeš v katalogu. Ulož si ty, které chceš cvičit, a objeví se tady.",
+                  "Every movement lives in the catalogue. Save the ones you want to train and they appear here.",
                 )
               : tx(
                   "Žádný cvik neodpovídá hledání a filtrům. Zkus jiný název svalu, nebo filtry zruš.",
@@ -409,7 +414,7 @@ export function LibraryPage() {
           <div className="stateview__actions">
             {isBlank || demoState === "empty" ? (
               <button className="btn btn--primary" type="button" onClick={() => setTab("cat")}>
-                {tx("Otevřít katalog", "Open the catalogue")}
+                {tx("Přejít do katalogu", "Go to the catalogue")}
               </button>
             ) : (
               <button className="btn" type="button" onClick={clearFilters}>
@@ -472,6 +477,9 @@ export function LibraryPage() {
           ))}
         </div>
       )}
+        </div>
+        <MuscleMap muscle={muscle} level={level} />
+      </div>
       <BackToTop />
     </div>
   );

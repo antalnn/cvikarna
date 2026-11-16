@@ -7,15 +7,46 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cvikarna.Api.Tests;
 
-public class ReadApiTests : IClassFixture<ApiFactory>
+public class ReadApiTests : IClassFixture<ApiFactory>, IAsyncLifetime
 {
     private static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web);
+    private static Task? librarySeeded;
 
     private readonly HttpClient _client;
 
     public ReadApiTests(ApiFactory factory)
     {
         _client = factory.CreateClient();
+    }
+
+    // The library starts empty, so the tests that read it save the curated rows
+    // first. The class fixture shares one database, so this runs once.
+    public Task InitializeAsync() => librarySeeded ??= SeedLibraryAsync();
+
+    public Task DisposeAsync() => Task.CompletedTask;
+
+    private async Task SeedLibraryAsync()
+    {
+        for (var id = 1; id <= 120; id++)
+        {
+            var response = await _client.PutAsync($"/api/library/{id}", null);
+            response.EnsureSuccessStatusCode();
+        }
+    }
+
+    [Fact]
+    public async Task A_fresh_library_starts_empty_and_the_catalogue_holds_every_row()
+    {
+        await using var factory = new ApiFactory();
+        using var client = factory.CreateClient();
+
+        var library = await client.GetFromJsonAsync<List<ExerciseDetailDto>>("/api/exercises", Json);
+        Assert.NotNull(library);
+        Assert.Empty(library);
+
+        var catalogue = await client.GetFromJsonAsync<CataloguePageDto>("/api/catalogue?page=1&pageSize=1", Json);
+        Assert.NotNull(catalogue);
+        Assert.Equal(876, catalogue.Total);
     }
 
     [Fact]
@@ -194,7 +225,7 @@ public class ReadApiTests : IClassFixture<ApiFactory>
             $"/api/catalogue?q={Uri.EscapeDataString("box squat")}",
             Json);
         Assert.NotNull(thin);
-        var thinRow = thin.Items.First(row => !row.IsLibrary);
+        var thinRow = thin.Items.First(row => !row.IsLibrary && row.Id >= 1000);
         Assert.Null(thinRow.NameCs);
 
         var thinDetail = await _client.GetFromJsonAsync<CatalogueRowDto>($"/api/catalogue/{thinRow.Id}", Json);

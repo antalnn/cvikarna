@@ -1481,6 +1481,21 @@ svg {
   padding-bottom: var(--space-5);
 }
 
+.headswap {
+  animation: headswap 180ms ease-out both;
+}
+
+@keyframes headswap {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-1));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -4355,7 +4370,7 @@ svg {
   }
 
   .acc__grid {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     gap: var(--space-6);
   }
 }
@@ -4955,6 +4970,143 @@ svg {
 /* The library's two tabs reuse the sheet's tab row. */
 .libtabs {
   margin-bottom: var(--space-4);
+}
+
+/* Results beside the muscle map. The map is a rail from 960 up and a compact
+   strip above the results below it. */
+.liblayout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.liblayout__results {
+  min-width: 0;
+}
+
+@media (min-width: 960px) {
+  .liblayout {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    align-items: start;
+  }
+
+  .musclemap {
+    position: sticky;
+    top: var(--space-4);
+  }
+}
+
+.musclemap {
+  --muscle-hue: var(--accent);
+  display: grid;
+  gap: var(--space-3);
+  justify-items: center;
+  padding: var(--space-4);
+  border-radius: var(--radius);
+  background: var(--surface-1);
+  text-align: center;
+}
+
+.musclemap[data-level="beginner"] {
+  --muscle-hue: var(--info);
+}
+
+.musclemap[data-level="intermediate"] {
+  --muscle-hue: var(--warn);
+}
+
+.musclemap[data-level="expert"] {
+  --muscle-hue: var(--danger);
+}
+
+.musclemap__fig {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+}
+
+.musclemap__sil {
+  fill: var(--surface-2);
+  stroke: var(--line);
+  stroke-width: 1.2;
+}
+
+.musclemap [data-g] {
+  fill: color-mix(in srgb, var(--fg) 12%, transparent);
+  stroke: color-mix(in srgb, var(--fg) 10%, transparent);
+  stroke-width: 0.8;
+  transition: fill 180ms ease, stroke 180ms ease;
+}
+
+.musclemap[data-muscle="all"] [data-g] {
+  fill: color-mix(in srgb, var(--muscle-hue) 46%, transparent);
+  stroke: color-mix(in srgb, var(--muscle-hue) 58%, transparent);
+}
+
+.musclemap[data-muscle="chest"] [data-g="chest"],
+.musclemap[data-muscle="back"] [data-g="back"],
+.musclemap[data-muscle="shoulders"] [data-g="shoulders"],
+.musclemap[data-muscle="biceps"] [data-g="biceps"],
+.musclemap[data-muscle="triceps"] [data-g="triceps"],
+.musclemap[data-muscle="legs"] [data-g="legs"],
+.musclemap[data-muscle="core"] [data-g="core"] {
+  fill: var(--muscle-hue);
+  stroke: color-mix(in srgb, var(--muscle-hue) 72%, var(--fg));
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--muscle-hue) 45%, transparent));
+}
+
+.musclemap__caption {
+  display: grid;
+  gap: var(--space-1);
+  font-size: var(--step--1);
+}
+
+.musclemap__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.musclemap__level {
+  color: var(--muscle-hue);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.musclemap__caption strong {
+  color: var(--fg);
+}
+
+.musclemap__caption span {
+  color: var(--fg-dim);
+}
+
+@media (max-width: 959px) {
+  .musclemap {
+    grid-template-columns: 96px minmax(0, 1fr);
+    justify-items: start;
+    align-items: center;
+    order: -1;
+    text-align: left;
+  }
+
+  .musclemap > .micro {
+    grid-column: 2;
+  }
+
+  .musclemap__fig {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .musclemap__caption {
+    grid-column: 2;
+  }
+
+  .musclemap__title {
+    justify-content: flex-start;
+  }
 }
 
 .catalogue-list {
@@ -5906,7 +6058,9 @@ svg {
   .acc__main {
     grid-column: 1;
     grid-row: 1;
-    align-self: stretch;
+    /* The copy's box ends at its last line, so the sources-foot check can
+       compare the two boxes and mean what it says. */
+    align-self: start;
   }
 
   .acc__aside {
@@ -5914,44 +6068,39 @@ svg {
     grid-column: 2;
     grid-row: 1;
     align-self: stretch;
-    min-height: 0;
   }
 
   .acc__aside__inner {
-    position: absolute;
-    inset: 0;
     display: flex;
+    height: 100%;
     flex-direction: column;
     gap: var(--space-5);
-    min-height: 0;
   }
 
+  /* The copy sets a floor for the card, never a ceiling: the chart keeps a
+     readable height and the row grows to hold it. */
   .acc__aside__inner > .acc__figure {
     display: flex;
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     flex-direction: column;
     gap: var(--space-3);
-    min-height: 0;
-    overflow: hidden;
   }
 
   .acc__aside__inner > .acc__figure > .figure {
     display: flex;
     flex-direction: column;
-    flex: 0 1 auto;
-    min-height: 0;
-    overflow: hidden;
   }
 
-  /* The drawing scales inside the room the block is given rather than being
-     clipped by it: the viewBox keeps the whole chart and its aspect ratio. */
+  /* The chart keeps its own aspect ratio; the box no longer reserves height it
+     cannot draw into, so the sources stay on the copy's last line. */
   .acc__aside__inner > .acc__figure > .figure svg {
-    flex: 1 1 auto;
+    display: block;
     width: 100%;
-    height: 100%;
-    min-height: 0;
+    height: auto;
+    min-height: 150px;
   }
 
+  /* When the copy is the taller column the sources land on its last line. */
   .acc__aside__inner > .acc__sources {
     flex: 0 0 auto;
     margin-top: auto;

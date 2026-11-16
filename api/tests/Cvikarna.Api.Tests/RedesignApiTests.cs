@@ -23,7 +23,7 @@ public class RedesignApiTests
             $"/api/catalogue?q={Uri.EscapeDataString("box squat")}",
             Json);
         Assert.NotNull(catalogue);
-        var thin = catalogue.Items.First(row => !row.IsLibrary);
+        var thin = catalogue.Items.First(row => !row.IsLibrary && row.Id >= 1000);
         Assert.Equal(2, thin.Images.Count);
         Assert.EndsWith("/0.jpg", thin.Images[0]);
 
@@ -32,7 +32,7 @@ public class RedesignApiTests
 
         var library = await client.GetFromJsonAsync<List<ExerciseDetailDto>>("/api/exercises", Json);
         Assert.NotNull(library);
-        Assert.Equal(121, library.Count);
+        Assert.Single(library);
         var promoted = Assert.Single(library, row => row.Id == thin.Id);
         Assert.Equal(2, promoted.Images.Count);
         Assert.Empty(promoted.InstructionsEn);
@@ -42,7 +42,7 @@ public class RedesignApiTests
 
         var after = await client.GetFromJsonAsync<List<ExerciseDetailDto>>("/api/exercises", Json);
         Assert.NotNull(after);
-        Assert.Equal(120, after.Count);
+        Assert.Empty(after);
         Assert.DoesNotContain(after, row => row.Id == thin.Id);
 
         var missing = await client.PutAsync("/api/library/999999", null);
@@ -212,7 +212,7 @@ public class RedesignApiTests
             $"/api/catalogue?q={Uri.EscapeDataString("box squat")}",
             Json);
         Assert.NotNull(catalogue);
-        var thin = catalogue.Items.First(row => !row.IsLibrary);
+        var thin = catalogue.Items.First(row => !row.IsLibrary && row.Id >= 1000);
         await client.PutAsync($"/api/library/{thin.Id}", null);
 
         using var scope = factory.Services.CreateScope();

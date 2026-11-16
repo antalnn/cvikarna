@@ -46,13 +46,15 @@ public class WorkoutApiTests
         var fly = await AddExerciseAsync(client, workout.Id, 6);
         Assert.Equal(1, bench.Position);
         Assert.Equal(2, fly.Position);
-        Assert.True(bench.IsLibrary);
+        // The library starts empty, so a curated movement added to a session is
+        // not saved until the user saves it.
+        Assert.False(bench.IsLibrary);
 
         var catalogue = await client.GetFromJsonAsync<CataloguePageDto>(
             $"/api/catalogue?q={Uri.EscapeDataString("box squat")}",
             Json);
         Assert.NotNull(catalogue);
-        var thin = catalogue.Items.First(row => !row.IsLibrary);
+        var thin = catalogue.Items.First(row => !row.IsLibrary && row.Id >= 1000);
         var thinItem = await AddExerciseAsync(client, workout.Id, thin.Id);
         Assert.False(thinItem.IsLibrary);
 

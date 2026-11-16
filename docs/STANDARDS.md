@@ -136,12 +136,24 @@ Check: `review only`, every cell asserted by hand at 1440 and 390 in both langua
   asks in the confirm popover, and Escape closes the question before the sheet.
 - Dnes names the session's action by where it stands: `Začít` while no set is done,
   `Pokračovat` once some are, `Upravit` when all are.
-- In the guide, every section ends its sources on the same line as the copy in the left column. The
-  figure takes the room above them and steps aside when that room falls under a readable height,
-  rather than shrinking to a stub or pushing the sources past the copy.
+- Every guide section carries its figure, at least 150px tall at 1440 and 1100 and at the column's
+  natural scale on a phone, and the sources end the column beneath it. The copy sets the card's
+  floor, never a ceiling: a section with a short copy grows to hold the chart instead of hiding it.
+  Check: `npm run measure:ui guide-figure-foot`.
 - A scroll cue either sits under its list in the flow or floats over the list's own fade, and neither form changes the list's height.
+- The library starts empty. Every movement is saved from the catalogue, and the empty library says
+  so and links there. Check: `review only`; the API test `A_fresh_library_starts_empty_and_the_catalogue_holds_every_row`.
+- Each library tab carries its own heading: Knihovna names the collection, Katalog names every
+  movement, and the heading swaps with a short fade. Check: `review only`.
+- The library carries a muscle map: the chosen group lights on a flat anatomy figure, the whole body
+  lights when no group is chosen, the level filter colours the lit muscle, blue, orange or red, lime
+  with no level, and the caption names the level beside the group. Check: `review only`.
 - A session reaches the log and the calendar only once a set in it is ticked; a draft with nothing
-  lifted is not a past session, and the finish action drops the movements that never got a tick.
+  lifted is not a past session, and the finish action asks first in the confirm popover, names the
+  movements it will drop, and removes them only when the question is answered. Check: `review only`.
+- The rest alarm is three rising strikes repeated once over at least 1.8 s, and the sound switch
+  silences it. Check: `review only`; the session that set the figure measured it with a stubbed
+  `AudioContext`.
 - While a rest runs, the view reserves the floating timer's height, so the last row's controls can
   be scrolled clear of it.
 - At 390 every control a thumb lands on reaches a 44px target, even when its drawn glyph is

@@ -24,7 +24,7 @@ belong here. Record what the code cannot tell a newcomer: wiring, decisions, rea
 | Run | `dotnet run --project api --launch-profile http` on 5073, `cd web && npm run dev` on 5173 |
 | Proxy | Vite forwards `/api` to 5073, so the client never hard-codes a host |
 | Build and test | `dotnet build -warnaserror`, `dotnet format --verify-no-changes`, `dotnet test`, `npm run typecheck`, `npm run lint`, `npm run build`, `npm run lint:ui`, `npm run measure:ui` |
-| Test count | 56 server tests, no front-end unit tests; `npm run measure:ui` measures 12 DOM pairs per run |
+| Test count | 57 server tests, no front-end unit tests; `npm run measure:ui` measures 14 DOM pairs per run |
 | Static photos | `api/wwwroot/exercises/<slug>/0.jpg` and `1.jpg` for curated rows; catalogue rows use the free-exercise-db URL pair |
 | Knowledge home | this file, `STANDARDS.md`, `docs/sources.md`, `docs/name-sources.md` |
 
@@ -41,7 +41,7 @@ Folder map, one line each:
 - `web/src/api` — typed fetch wrappers, one file per endpoint group.
 - `web/src/components` — shell, palette, sheet, overlays, shared exercise card, art block, back-to-top, icons.
 - `web/src/features/dashboard` — Dnes: session card, log stats, week strip, records, volume spark.
-- `web/src/features/library` — Knihovna and Katalog tabs, hide-saved filter, detail page, similar track, save controls.
+- `web/src/features/library` — Knihovna and Katalog tabs, per-tab headings, muscle map, hide-saved filter, detail page, similar track, save controls.
 - `web/src/features/tracker` — Trénink: session bar, next-set row, menus, clock, rest control.
 - `web/src/features/history` — calendar, month list, selected session with chips, delete confirm.
 - `web/src/features/guides` — guide copy, three SVG figures, sources under the figure.
@@ -69,7 +69,11 @@ Folder map, one line each:
 - `Workout` has one row per date, `DateOnly PerformedOn`, optional `Name` up to 80 characters.
 - `WorkoutExercise` and `LoggedSet` carry `Position`; reads order by `Position` then `Id`. Reorder endpoints rewrite 1..n in one transaction.
 - `LoggedSet.Completed` gates volume and the session meter. A set logged from the tracker is uncompleted until ticked; a copied set starts uncompleted.
-- `Exercise` is one table with `IsLibrary` acting as saved membership. The 120 curated rows start saved; any catalogue row can be saved or removed through `PUT/DELETE /api/library/{id}`, and the initializer never forces a removed row back in.
+- `Exercise` is one table with `IsLibrary` acting as saved membership. The library starts empty: the 120 curated rows are seeded as rich data with `IsLibrary = false`, and every catalogue row can be saved or removed through `PUT/DELETE /api/library/{id}`. The initializer never forces a removed row back in.
+- A rest time belongs to a movement, not to a session. `RestSettings.ValuesJson` keys seconds by exercise id, so a copied session reads the same rest for every movement it brings and the copy endpoint never touches the settings.
+- Each library tab owns its h1 and swaps it with a 180 ms fade keyed on the tab (`key={tab}`, `.headswap`). The level filter does not tint the head: a glow was tried and removed on 2026-11-16, and the colour went to the muscle map.
+- The muscle map is flat SVG in the app's tokens, one or more paths per group, lit by the muscle chip and coloured by the level chip through `--muscle-hue`; the caption names the level beside the group (`MuscleMap.tsx`). It is a sticky 300 px rail from 960 up, and below that a full-width strip with a 96 px figure column beside the caption.
+- Guide charts keep their own aspect ratio with a 150 px floor, and the copy sets the card's floor, never its ceiling. Sections two to five were expanded to the first one's length on 2026-11-16 so the sources land on the copy's last line at 1440 and 1100 (`GuidePage.tsx`, `npm run measure:ui guide-figure-foot`).
 - Library order is fine muscle group, then Czech name. A promoted catalogue row keeps its hash-derived id because its `SourceId` is reused.
 - `RestSettings` is one row: a uniform value, per-movement seconds in JSON, auto-start, sound, volume and vibration.
 - `ExerciseImages` returns the local pair for a curated row and `free-exercise-db/exercises/<SourceId>/0.jpg` plus `1.jpg` for every other row.
@@ -93,6 +97,10 @@ Folder map, one line each:
 - The card's link is an overlay, not a wrapper. The frame and save controls sit above it, so a tap on a control never opens the movement.
 - A catalogue row has no curated instructions, so its detail page shows the empty state instead of an empty list.
 - UI geometry is measured, not eyeballed: `web/scripts/measurements.json` carries the sentence each check protects and the boxes it read, and `npm run measure:ui` fails on a breach. On 2026-11-16 at 1440 the statrow label anchor sat 11.1 to 21.0px off the value's block centre and the row box up to 6.5px off, so a 1px check on the wrong anchor passes while the words stay unmet.
+- The rest alarm is three rising square strikes repeated once, six starts over 3.14 s, scheduled as one audio figure in `playChime` (`web/src/state/AppProvider.tsx`). The sound switch and the volume guard every strike; the vibration toggle guards the buzz.
+- The custom rest field holds the typed text in local state and writes a value only when the entry is valid or committed (`RestPopover` in `web/src/components/overlays/Overlays.tsx`). An empty or under-minimum entry commits as 5 s, so clearing the field never snaps it back.
+- Finishing a session that holds movements with no completed set opens the confirm popover first and names them (`finish` in `web/src/features/tracker/TrackerPage.tsx`). The removal runs in the confirmed handler, so `Zrušit` changes nothing.
+- The project's runner adds a `same-line` kind to the three shipped kinds, so the guide's sources-to-copy rule is measured rather than eyeballed (`web/scripts/measure-ui.mjs`, registry in `web/scripts/measurements.json`).
 
 ## Rejected and why
 
@@ -119,16 +127,16 @@ Folder map, one line each:
 | Search folds diacritics and one typo | `Library_search_ignores_diacritics_and_one_typo` |
 | The catalogue holds 876 rows | `Catalogue_pages_20_rows_with_the_common_movements_first` |
 | Spacing, colours and class inventory | `npm run lint:ui` |
-| The statrow value centre, horizontal scroll and the Dnes card height | `npm run measure:ui`, registry in `web/scripts/measurements.json` |
+| The statrow value centre, horizontal scroll, the Dnes card height and the guide sources line | `npm run measure:ui`, registry in `web/scripts/measurements.json` |
 | Every other UI rule | review only, no check covers it |
 
 ## Open risks
 
 - No front-end unit tests. `npm run measure:ui` reads live geometry for the boxes in
   `web/scripts/measurements.json`; every JSX rule outside that registry is protected by review alone.
-- The registry covers three checks on the Czech Dnes page in its populated state. A regression in English, in a loading or error state, or in a box no entry names still passes unseen.
+- The registry covers four checks: three on the Czech Dnes page in its populated state, and one on the guide's first open section. A regression in English, in a loading or error state, in another guide section, or in a box no entry names still passes unseen.
 - The catalogue's photos are remote free-exercise-db URLs, so an offline browser shows the framed block without a photo.
-- 63 baselined `lint-ui` violations are recorded debt. The gate stops it growing; it does not shrink it.
+- 69 baselined `lint-ui` violations are recorded debt. The gate stops it growing; it does not shrink it.
 - `Program.cs` has no `MapFallbackToFile("index.html")`, so a deep link into a deployed preview would 404 even though Vite handles it in development.
 - SQLite is ephemeral on App Service, so a preview would re-seed on every restart. The preview is not deployed.
 - 756 catalogue rows are thin compared with the 120 curated ones. That is deliberate, and the movement sheet says so.

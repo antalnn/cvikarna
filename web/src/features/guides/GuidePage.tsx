@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { Icon } from "../../components/Icon";
 import { useLanguage } from "../../i18n/useLanguage";
 import { guideContent } from "./guideContent";
@@ -25,61 +25,15 @@ function inline(text: string): ReactNode[] {
 type GuideSection = (typeof guideContent)["cs"]["sections"][number];
 
 /**
- * The right column of a guide section. The copy on the left sets the card's
- * height, so the sources are pinned to the column's foot and the figure takes
- * whatever room is left; below a readable minimum it steps aside entirely
- * rather than shrinking to a stub.
+ * The right column of a guide section: the figure, then the sources at its
+ * foot. The copy on the left sets the card's minimum height, so on a long
+ * section the sources still land on the copy's last line. When the figure
+ * needs more room the card grows instead of hiding the chart.
  */
 function GuideAside({ section, label }: { section: GuideSection; label: string }) {
-  const innerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const inner = innerRef.current;
-    if (!inner) {
-      return;
-    }
-    const fit = () => {
-      const figure = inner.querySelector<HTMLElement>(".acc__figure");
-      const sources = inner.querySelector<HTMLElement>(".acc__sources");
-      if (!figure || !sources) {
-        return;
-      }
-      // A closed section reports no height; deciding from it would hide the
-      // figure and flash it back while the panel opens.
-      if (inner.clientHeight === 0) {
-        return;
-      }
-      if (!window.matchMedia("(min-width: 900px)").matches) {
-        figure.style.removeProperty("display");
-        figure.style.removeProperty("max-height");
-        return;
-      }
-      const gap = Number.parseFloat(getComputedStyle(inner).rowGap) || 24;
-      const room = inner.clientHeight - sources.offsetHeight - gap;
-      // A chart needs about 210px of column: the block's padding and title, the
-      // caption under it, and 90px of drawing. Below that it would scale into an
-      // unreadable strip, so it steps aside and the sources take the column.
-      if (room < 210) {
-        figure.style.display = "none";
-        figure.style.removeProperty("max-height");
-        return;
-      }
-      figure.style.removeProperty("display");
-      figure.style.maxHeight = `${Math.floor(room)}px`;
-    };
-    fit();
-    const observer = new ResizeObserver(fit);
-    observer.observe(inner);
-    const sources = inner.querySelector(".acc__sources");
-    if (sources) {
-      observer.observe(sources);
-    }
-    return () => observer.disconnect();
-  }, [section.id]);
-
   return (
     <div className="acc__aside">
-      <div className="acc__aside__inner" ref={innerRef}>
+      <div className="acc__aside__inner">
         {section.diagram ? (
           <div className="acc__figure">
             <GuideFigure kind={section.diagram} />

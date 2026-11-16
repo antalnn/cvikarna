@@ -1,6 +1,6 @@
 import type { Language } from "../../i18n/dictionary";
 
-export type GuideDiagram = "reps" | "protein" | "sleep";
+export type GuideDiagram = "reps" | "protein" | "calories" | "sleep" | "recovery";
 
 export interface GuideSource {
   label: string;
@@ -103,6 +103,13 @@ const cs: GuideContent = {
         "Křivka se zplošťuje kolem **1,6 g** na kilogram tělesné hmotnosti denně. Interval spolehlivosti sahal do **2,2 g**, takže bezpečné pásmo je zhruba mezi tím. Pro osmdesátikilového člověka to je přibližně **130 až 175 g** denně.",
         "Zbytek je jídlo, ne prášek. Kuře, ryby, vejce, mléčné výrobky, luštěniny a tofu fungují stejně dobře, když sečteš celkový příjem za den.",
         "Co studie neukazují: že by víc proteinu poškozovalo ledviny zdravého člověka, že by rozhodovalo načasování kolem tréninku, nebo že by prášek byl lepší než jídlo.",
+        "Metanalýza zahrnula **49 randomizovaných studií** s 1863 lidmi a s tréninkem dlouhým aspoň šest týdnů. Proto se čísla dají brát vážněji než výsledek jednoho pokusu.",
+        "Dva detaily z té samé práce: u starších lidí byl přínos doplňku menší, u lidí, kteří už trénovali, větší. Věk ani zkušenost ale nemění základ, kterým je celkový denní příjem a tvrdý trénink.",
+      ],
+      bullets: [
+        "**1,6 g/kg** je bod, kde se křivka láme. **2,2 g/kg** je horní hranice odhadu, ne cíl.",
+        "Pro 80 kg to je přibližně **130 až 175 g** denně, rozložených do běžných jídel.",
+        "Trénovaní lidé měli z vyššího příjmu větší užitek. Začátečník neudělá chybu, když začne na 1,6 g/kg.",
       ],
       diagram: "protein",
       diagramCaption:
@@ -112,7 +119,7 @@ const cs: GuideContent = {
           label: "Morton a kol., 2018, British Journal of Sports Medicine",
           url: "https://doi.org/10.1136/bjsports-2017-097608",
           supports:
-            "Doplněk bílkovin zvyšuje růst svalů a síly; přínos se zplošťuje kolem 1,6 g/kg denně, horní hranice intervalu 2,2 g/kg.",
+            "Doplněk bílkovin zvyšuje růst svalů a síly; 49 studií a 1863 lidí; přínos se zplošťuje kolem 1,6 g/kg denně, horní hranice intervalu 2,2 g/kg, menší u starších a větší u trénovaných.",
         },
       ],
     },
@@ -129,13 +136,23 @@ const cs: GuideContent = {
         "Když dlouhodobě jíš málo, tělo nemá z čeho stavět a regenerace se zpomalí. Když jíš výrazně víc, než vydáš, přebytek se ukládá jako tuk a růst svalů to nezrychlí.",
         "Praktické pravidlo pro začátek: jez tolik, aby váha šla pomalu nahoru, zhruba o **0,25 až 0,5 %** tělesné hmotnosti za měsíc. Když tři týdny stojíš a trénink drží, přidej **200 až 300 kcal** denně.",
         "Kalorie nejsou morálka. Jsou to čísla, která se dají měřit, upravovat a zahodit, když přestanou dávat smysl.",
+        "Přesnou velikost přebytku nikdo nezměřil. Přehled z roku 2019 říká, že žádná studie ji neověřila u lidí, kteří posilují, a doporučení vycházejí z odhadu, kolik energie si nový sval vezme.",
+        "Proto se přebytek nastavuje podle výsledku, ne podle tabulky: dva až tři týdny stejného příjmu, pak váha a obvod pasu, a podle toho přidat nebo ubrat.",
       ],
+      bullets: [
+        "Při 80 kg je **0,25 až 0,5 %** hmotnosti za měsíc zhruba **200 až 400 g**.",
+        "Když váha tři týdny stojí a trénink drží, přidej **200 až 300 kcal** denně.",
+        "Vydatné jídlo se dodržuje líp než tekuté kalorie. Sytost je součást plánu, ne detail.",
+      ],
+      diagram: "calories",
+      diagramCaption:
+        "Přibližný tvar, ne měření. Malý přebytek stačí na růst; velký už jen přidává tuk.",
       sources: [
         {
           label: "Slater a kol., 2019, Frontiers in Nutrition",
           url: "https://doi.org/10.3389/fnut.2019.00131",
           supports:
-            "Kalorický přebytek není podmínkou růstu svalů; velký přebytek nepřináší úměrně víc růstu.",
+            "Kalorický přebytek není podmínkou růstu svalů; velký přebytek nepřináší úměrně víc růstu; velikost přebytku není u posilujících ověřená a rozhoduje i sytost.",
         },
       ],
     },
@@ -152,6 +169,13 @@ const cs: GuideContent = {
         "Dlouhodobě krátký spánek je spojený s nižší svalovou silou a pomalejší regenerací. Přesný mechanismus není dořešený a žádná studie nedokáže říct, kolik hodin potřebuješ právě ty.",
         "Národní spánková nadace doporučuje dospělým ve věku 18 až 64 let **7 až 9 hodin**. Není to univerzální recept, ale rozumné pásmo, od kterého se dá odečítat.",
         "Co pomáhá: pravidelný čas, tma, chladno a žádný kofein po obědě. Co nepomáhá: dohánět celý týden v jedné noci.",
+        "Rozdíl je v tom, jak spánek ztratíš. Jedna probdělá noc sílu příliš nesníží, ale několik zkrácených nocí po sobě sníží výkon ve složených cvicích, jako je dřep nebo mrtvý tah.",
+        "Metaanalýza **69 studií** a 227 měření našla průměrný pokles výkonu o **7,6 %**. Nejvíc škodila úplná deprivace a pozdní usínání a každá hodina bdění navíc před tréninkem ubrala zhruba **0,4 %**.",
+      ],
+      bullets: [
+        "Po špatné noci jdi trénovat ráno, ne večer. Ranní výkon zůstal téměř nedotčený.",
+        "Chronické zkracování škodí víc než jedna špatná noc.",
+        "Kofein a parta pomůžou výkon dohnat. Spánek nenahradí.",
       ],
       diagram: "sleep",
       diagramCaption:
@@ -166,13 +190,13 @@ const cs: GuideContent = {
           label: "Craven a kol., 2022, Sports Medicine",
           url: "https://doi.org/10.1007/s40279-022-01706-y",
           supports:
-            "Akutní ztráta spánku zhoršuje fyzický výkon; efekt je menší u silových než u vytrvalostních testů.",
+            "Akutní ztráta spánku zhoršuje fyzický výkon; efekt je menší u silových než u vytrvalostních testů; 69 studií, průměrný pokles 7,6 %; nejvíc škodí deprivace a pozdní usnutí, 0,4 % za hodinu bdění, ranní výkon zůstává téměř nedotčený.",
         },
         {
           label: "Knowles a kol., 2018, Journal of Science and Medicine in Sport",
           url: "https://doi.org/10.1016/j.jsams.2018.01.012",
           supports:
-            "Nedostatečný spánek je spojený s nižší svalovou silou; příčinný vztah ale není prokázaný.",
+            "Nedostatečný spánek je spojený s nižší svalovou silou; jedna probdělá noc sílu příliš nesníží, víc zkrácených nocí sníží výkon ve složených cvicích; příčinný vztah není prokázaný.",
         },
       ],
     },
@@ -189,18 +213,24 @@ const cs: GuideContent = {
         "Přetrénování je diagnóza, ne nálada. Konsenzus odborných společností ho popisuje jako stav z dlouhodobého přetížení a nedostatečné regenerace, který se nedá vyřešit jedním volným dnem.",
         "Prakticky: **střídej tvrdé a lehké dny**. Po těžkém tréninku nohou neplánuj druhý těžký den. Spánek a jídlo řeš dřív než doplňky. Bolest, která neustupuje, patří odborníkovi.",
         "Co studie neříkají: že existuje jedna správná délka regenerace pro každého, nebo že konkrétní doplněk prokazatelně zkracuje regeneraci.",
+        "Sportovní medicína rozlišuje tři stupně: funkční přetížení, ze kterého se po několika dnech vrátíš silnější; nefunkční přetížení, kdy výkon klesá týdny; a syndrom přetrénování, tedy dlouhodobé špatné přizpůsobení.",
+        "Syndrom se pozná vylučováním. Nejdřív se musí vyloučit nemoc, málo jídla, málo sacharidů nebo bílkovin, nedostatek železa či hořčíku a alergie. Žádný krevní marker ho sám nepotvrdí.",
       ],
       bullets: [
         "Tvrdý den, lehký den. Ne dva tvrdé dny po sobě na stejnou část těla.",
         "Když se výkon propadne o víc než **deset procent** na tři tréninky, uber sérii nebo váhu.",
         "Když se přidá bolest kloubu nebo nespecifická únava, řeš to dřív, než se to zhorší.",
+        "Když se výkon nevrátí po dvou lehkých týdnech, řeš to s lékařem, ne dalším tréninkem.",
       ],
+      diagram: "recovery",
+      diagramCaption:
+        "Jedna svalová skupina se po tvrdém tréninku vrací zhruba dva dny. Lehké dny ji nezastaví.",
       sources: [
         {
           label: "Meeusen a kol., 2013, Medicine & Science in Sports & Exercise",
           url: "https://doi.org/10.1249/MSS.0b013e318279a10a",
           supports:
-            "Přetrénování vzniká z dlouhodobého přetížení a nedostatečné regenerace a řeší se úpravou zátěže.",
+            "Přetrénování vzniká z dlouhodobého přetížení a nedostatečné regenerace; rozlišuje funkční a nefunkční přetížení a syndrom přetrénování a diagnostikuje se vylučováním.",
         },
         {
           label: "Kreher a Schwartz, 2012, Sports Health",
@@ -284,6 +314,13 @@ const en: GuideContent = {
         "The curve flattens around **1.6 g** per kilogram of bodyweight per day. The confidence interval reached **2.2 g**, so the safe band sits roughly between them. For an 80 kg person that is about **130 to 175 g** per day.",
         "The rest is food, not powder. Chicken, fish, eggs, dairy, legumes and tofu work just as well once you add up the daily total.",
         "What the studies do not show: that more protein harms healthy kidneys, that timing around training decides the result, or that powder beats food.",
+        "The meta-analysis pooled **49 randomised trials** with 1863 people and at least six weeks of training, so its numbers carry more weight than one study.",
+        "Two details from the same paper: the supplement helped older people less and people who already trained more. Age and experience do not change the base, which is total daily intake and hard training.",
+      ],
+      bullets: [
+        "**1.6 g/kg** is where the curve breaks. **2.2 g/kg** is the top of the estimate, not a target.",
+        "For 80 kg that is roughly **130 to 175 g** a day, spread across normal meals.",
+        "Trained people got more from a higher intake. A beginner does no harm starting at 1.6 g/kg.",
       ],
       diagram: "protein",
       diagramCaption:
@@ -293,7 +330,7 @@ const en: GuideContent = {
           label: "Morton et al., 2018, British Journal of Sports Medicine",
           url: "https://doi.org/10.1136/bjsports-2017-097608",
           supports:
-            "Protein supplementation increases muscle and strength gains; the benefit plateaus around 1.6 g/kg per day, with an upper interval bound of 2.2 g/kg.",
+            "Protein supplementation increases muscle and strength gains; 49 trials and 1863 people; the benefit plateaus around 1.6 g/kg per day, with an upper interval bound of 2.2 g/kg, smaller in older people and larger in trained ones.",
         },
       ],
     },
@@ -310,13 +347,23 @@ const en: GuideContent = {
         "If you eat too little for a long time, the body has nothing to build with and recovery slows. If you eat far more than you burn, the extra is stored as fat and does not speed muscle growth.",
         "A practical starting rule: eat enough for weight to drift up slowly, about **0.25 to 0.5%** of bodyweight per month. If weight is flat for three weeks while training holds, add **200 to 300 kcal** per day.",
         "Calories are not morality. They are numbers you can measure, adjust, and drop when they stop making sense.",
+        "Nobody has measured the exact size of the surplus. The 2019 review says no study has validated one in people who lift, and recommendations come from estimates of the energy a new muscle costs.",
+        "So set the surplus from the result, not from a table: two or three weeks at the same intake, then weight and waist, then add or cut.",
       ],
+      bullets: [
+        "At 80 kg, **0.25 to 0.5%** of bodyweight a month is about **200 to 400 g**.",
+        "If weight is flat for three weeks while training holds, add **200 to 300 kcal** a day.",
+        "Filling food is easier to keep than liquid calories. Satiety is part of the plan, not a detail.",
+      ],
+      diagram: "calories",
+      diagramCaption:
+        "The shape, not a measurement. A small surplus is enough for growth; a large one only adds fat.",
       sources: [
         {
           label: "Slater et al., 2019, Frontiers in Nutrition",
           url: "https://doi.org/10.3389/fnut.2019.00131",
           supports:
-            "An energy surplus is not a prerequisite for muscle growth; a large surplus does not produce proportionally more growth.",
+            "An energy surplus is not a prerequisite for muscle growth; a large surplus does not produce proportionally more growth; the size of the surplus is not validated in people who lift, and satiety matters.",
         },
       ],
     },
@@ -333,6 +380,13 @@ const en: GuideContent = {
         "Chronically short sleep is associated with lower muscle strength and slower recovery. The exact mechanism is unresolved, and no study can tell you how many hours you personally need.",
         "The National Sleep Foundation recommends **7 to 9 hours** for adults aged 18 to 64. It is not a universal prescription, but it is a sensible band to work from.",
         "What helps: a regular time, darkness, a cool room and no caffeine after lunch. What does not: repaying a whole week in one night.",
+        "The difference is how you lose the sleep. One night without it barely touches strength, but several shortened nights in a row cut force output in compound lifts such as the squat or the deadlift.",
+        "A meta-analysis of **69 studies** and 227 measures found an average **7.6%** drop in performance. Full deprivation and late bedtimes hurt most, and every extra hour awake before training cost about **0.4%**.",
+      ],
+      bullets: [
+        "After a poor night, train in the morning, not the evening. Morning performance stayed almost untouched.",
+        "Chronic short sleep costs more than one bad night.",
+        "Caffeine and a training partner help you make up the performance. They do not replace sleep.",
       ],
       diagram: "sleep",
       diagramCaption:
@@ -347,13 +401,13 @@ const en: GuideContent = {
           label: "Craven et al., 2022, Sports Medicine",
           url: "https://doi.org/10.1007/s40279-022-01706-y",
           supports:
-            "Acute sleep loss impairs physical performance; the effect is smaller in strength than in endurance tests.",
+            "Acute sleep loss impairs physical performance; the effect is smaller in strength than in endurance tests; 69 studies, a 7.6% average drop; deprivation and late bedtimes hurt most, 0.4% per hour awake, and morning performance stays almost untouched.",
         },
         {
           label: "Knowles et al., 2018, Journal of Science and Medicine in Sport",
           url: "https://doi.org/10.1016/j.jsams.2018.01.012",
           supports:
-            "Inadequate sleep is associated with lower muscle strength; a causal link has not been proven.",
+            "Inadequate sleep is associated with lower muscle strength; one night without sleep barely touches strength, while several shortened nights cut force output in compound lifts; a causal link has not been proven.",
         },
       ],
     },
@@ -370,18 +424,24 @@ const en: GuideContent = {
         "Overtraining is a diagnosis, not a mood. A consensus statement describes it as a state caused by long-term overload and inadequate recovery that one day off cannot fix.",
         "In practice: **alternate hard and easy days**. Do not plan a second heavy leg day right after the first. Fix sleep and food before supplements. Pain that does not settle belongs to a professional.",
         "What the studies do not say: that one recovery length fits everyone, or that a specific supplement reliably shortens recovery.",
+        "Sports medicine separates three levels: functional overreaching, where a few days of weaker performance lead back to a stronger one; non-functional overreaching, where performance falls for weeks; and overtraining syndrome, a long maladaptation.",
+        "The syndrome is diagnosed by exclusion. First rule out illness, too little food, too few carbohydrates or protein, low iron or magnesium, and allergies. No blood marker confirms it on its own.",
       ],
       bullets: [
         "Hard day, easy day. Not two hard days in a row for the same body part.",
         "If performance drops by more than **ten percent** for three sessions, cut a set or the weight.",
         "If joint pain or unexplained fatigue appears, deal with it before it gets worse.",
+        "If performance is still down after two easy weeks, take it to a doctor, not to another session.",
       ],
+      diagram: "recovery",
+      diagramCaption:
+        "One muscle group takes about two days after a hard session. Easy days do not stop it.",
       sources: [
         {
           label: "Meeusen et al., 2013, Medicine & Science in Sports & Exercise",
           url: "https://doi.org/10.1249/MSS.0b013e318279a10a",
           supports:
-            "Overtraining arises from long-term overload and inadequate recovery and is managed by adjusting the load.",
+            "Overtraining arises from long-term overload and inadequate recovery; the consensus separates functional and non-functional overreaching from overtraining syndrome and diagnoses it by exclusion.",
         },
         {
           label: "Kreher and Schwartz, 2012, Sports Health",

@@ -139,6 +139,134 @@ export function GuideFigure({ kind }: { kind: GuideDiagram }) {
     );
   }
 
+  if (kind === "calories") {
+    const x = (kcal: number) => 56 + (kcal / 1000) * 484;
+    const y = (gain: number) => 150 - (gain / 1.6) * 126;
+    const points: Array<[number, number]> = [
+      [0, 0.08],
+      [100, 0.2],
+      [200, 0.31],
+      [300, 0.44],
+      [400, 0.52],
+      [600, 0.72],
+      [800, 1.05],
+      [1000, 1.5],
+    ];
+    return (
+      <div className="figure">
+        <p className="figure__title">{tx("Přebytek a přírůstek", "Surplus and gain")}</p>
+        <svg
+          viewBox="0 0 560 196"
+          role="img"
+          aria-label={tx(
+            "Malý kalorický přebytek stačí na růst, velký už přidává tuk",
+            "A small calorie surplus is enough for growth; a large one only adds fat",
+          )}
+        >
+          <rect
+            x={x(200).toFixed(1)}
+            y={y(1.6)}
+            width={(x(300) - x(200)).toFixed(1)}
+            height={y(0) - y(1.6)}
+            fill="var(--accent)"
+            opacity={0.12}
+          />
+          <polyline
+            className="fig-line"
+            strokeWidth={3}
+            points={points.map(([kcal, gain]) => `${x(kcal).toFixed(1)},${y(gain).toFixed(1)}`).join(" ")}
+          />
+          {[200, 300].map((kcal) => (
+            <line
+              className="fig-guide"
+              key={kcal}
+              x1={x(kcal).toFixed(1)}
+              y1={y(1.5)}
+              x2={x(kcal).toFixed(1)}
+              y2={y(0)}
+            />
+          ))}
+          <text className="fig-num" x={x(250).toFixed(1)} y={y(1.5) - 8} textAnchor="middle">
+            {tx("200–300", "200–300")}
+          </text>
+          <line className="fig-axis" x1={56} y1={150} x2={540} y2={150} />
+          {[0, 200, 400, 600, 800, 1000].map((kcal) => (
+            <g key={kcal}>
+              <line className="fig-axis" x1={x(kcal).toFixed(1)} y1={150} x2={x(kcal).toFixed(1)} y2={155} />
+              <text className="fig-num" x={x(kcal).toFixed(1)} y={170} textAnchor="middle">
+                {kcal}
+              </text>
+            </g>
+          ))}
+          <text className="fig-num" x={56} y={188}>
+            {tx("přebytek kcal za den", "kcal surplus per day")}
+          </text>
+          <text className="fig-num" x={56} y={14}>
+            {tx("přírůstek hmotnosti % za měsíc", "weight gain % per month")}
+          </text>
+        </svg>
+      </div>
+    );
+  }
+
+  if (kind === "recovery") {
+    const sx = (hour: number) => 56 + (hour / 72) * 484;
+    return (
+      <div className="figure">
+        <p className="figure__title">{tx("Návrat jedné svalové skupiny", "One muscle group coming back")}</p>
+        <svg
+          viewBox="0 0 560 150"
+          role="img"
+          aria-label={tx(
+            "Po tvrdém tréninku potřebuje svalová skupina zhruba 48 hodin",
+            "After a hard session a muscle group needs about 48 hours",
+          )}
+        >
+          <rect
+            className="fig-band fig-band--solid"
+            x={sx(0).toFixed(1)}
+            y={44}
+            width={(sx(2) - sx(0)).toFixed(1)}
+            height={30}
+          />
+          <rect
+            className="fig-band"
+            x={sx(2).toFixed(1)}
+            y={44}
+            width={(sx(50) - sx(2)).toFixed(1)}
+            height={30}
+            opacity={0.5}
+          />
+          <text className="fig-label" x={sx(2) + 10} y={36}>
+            {tx("trénink", "session")}
+          </text>
+          <text className="fig-label" x={sx(26).toFixed(1)} y={36} textAnchor="middle">
+            {tx("regenerace", "recovery")}
+          </text>
+          <line className="fig-guide" x1={sx(48).toFixed(1)} y1={36} x2={sx(48).toFixed(1)} y2={82} />
+          <text className="fig-num" x={sx(48).toFixed(1)} y={100} textAnchor="middle">
+            {tx("48 h", "48 h")}
+          </text>
+          <text className="fig-num" x={sx(60).toFixed(1)} y={100} textAnchor="middle">
+            {tx("připraveno", "ready")}
+          </text>
+          <line className="fig-axis" x1={56} y1={82} x2={540} y2={82} />
+          {[0, 12, 24, 36, 48, 60, 72].map((hour) => (
+            <g key={hour}>
+              <line className="fig-axis" x1={sx(hour).toFixed(1)} y1={82} x2={sx(hour).toFixed(1)} y2={87} />
+              <text className="fig-num" x={sx(hour).toFixed(1)} y={124} textAnchor="middle">
+                {hour}
+              </text>
+            </g>
+          ))}
+          <text className="fig-num" x={540} y={140} textAnchor="end">
+            {tx("hodiny po tréninku", "hours after the session")}
+          </text>
+        </svg>
+      </div>
+    );
+  }
+
   const sx = (hour: number) => 56 + ((hour - 4) / 7) * 484;
   const segments: Array<[number, number, string]> = [
     [4, 6, "fig-band"],
