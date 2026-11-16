@@ -1436,27 +1436,6 @@ svg {
   color: var(--accent);
 }
 
-.dash__volume-figure {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-2);
-  margin-top: var(--space-4);
-}
-
-.dash__volume-value {
-  font-family: var(--font-display);
-  font-size: var(--step-3);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-
-.dash__volume-delta {
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-}
-
 .dash__volume-note {
   color: var(--fg-dim);
   font-size: var(--step--1);
@@ -5608,14 +5587,6 @@ svg {
   flex: 0 0 auto;
 }
 
-/* The session list takes the height of three rows at most. A short session
-   keeps a compact card; a long one scrolls instead of stretching the panels
-   beside it. */
-.session__scroll {
-  height: auto;
-  max-height: 207px;
-}
-
 /* 87: the guide reads down the right column. With a figure, the column is one
    block: the picture first, its caption, then the sources directly beneath.
    With no figure, the sources sit at the foot of the card, level with the end
@@ -5787,7 +5758,7 @@ svg {
   cursor: default;
 }
 
-.monthcue[disabled]:hover {
+.monthcue[disabled]:not(.monthcue--float):hover {
   border-color: var(--line);
   background: var(--surface-3);
 }
@@ -5796,13 +5767,6 @@ svg {
    rows and no sliver of a fourth shows at rest. */
 .session__row {
   height: 69px;
-}
-
-/* 103: a numeral in a larger size reads high when it is only box-centred on
-   smaller lowercase text, so it drops a pixel to sit on the same optical line. */
-.statrow__value {
-  position: relative;
-  top: 1px;
 }
 
 /* 104: the Dnes cue floats over the list's fade, so the next movement stays
@@ -5851,22 +5815,27 @@ svg {
 }
 
 @media (max-width: 767px) {
+  .statrow li {
+    grid-template-rows: auto auto auto;
+  }
+
   .statrow__value {
     grid-column: 1;
-    grid-row: auto;
+    grid-row: 2;
     justify-self: start;
+  }
+
+  .statrow__note {
+    grid-row: 3;
   }
 }
 
-/* 108: the delta reads as one figure, sign to percent, and names the average it
-   is measured against. */
+/* 108: the note is two quiet lines; the delta keeps its sign, number and
+   percent together in one accent token, and the line names what it measures
+   against. */
 .dash__delta {
   color: var(--accent);
   white-space: nowrap;
-}
-
-.dash__avg {
-  color: var(--fg-muted);
 }
 
 .dash__volume-note {
@@ -5876,4 +5845,60 @@ svg {
 
 .dash__avg {
   color: var(--fg-muted);
+}
+
+/* 111: the month list paints nothing of its own, so an empty month, one
+   session and a full one all read on the panel's surface. The separators are
+   the rows' own hairlines, not a background showing through gaps. */
+.monthlist {
+  gap: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.monthlist .mrow {
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.monthlist .mrow:last-child {
+  border-bottom: 0;
+}
+
+/* 112: the week-over-week value is tinted by how far it moved. Up is the
+   accent, zero is plain ink, and a fall warms from amber toward danger as it
+   deepens; the printed sign carries the meaning on its own. */
+.statrow__value.is-up {
+  color: var(--accent);
+}
+
+.statrow__value.is-flat {
+  color: var(--fg);
+}
+
+.statrow__value.is-none {
+  color: var(--fg-muted);
+}
+
+.statrow__value.is-warn {
+  color: var(--warn);
+}
+
+.statrow__value.is-mid {
+  color: color-mix(in srgb, var(--warn) 45%, var(--danger));
+}
+
+.statrow__value.is-down {
+  color: var(--danger);
+}
+
+/* 113: the session head's volume pill sits on the label's line, not on a
+   shared baseline that lifts a 24px pill above a 12px word. */
+.panel__head {
+  align-items: center;
+}
+
+.dash__pill {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }

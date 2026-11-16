@@ -27,7 +27,7 @@ Cvikárna is a Czech-first gym app for building muscle with the equipment you ha
 
 ### Today
 
-Dnes opens with today's session: its exercises scroll inside the card with a down-arrow cue that keeps its place at the end of the list and dims there, so scrolling never changes the card's height. The footer carries the completed-set meter and the one action that matters. While sets remain it reads `Pokračovat`; once every set is done the same slot reads `Upravit`, because there is nothing left to continue. Beside it sit the week's session count, the volume against last week, the days since the last workout, the week strip, recent personal records and a seven-week volume spark. Every figure comes from the API, and each number sits on the optical line of the label that names it.
+Dnes opens with today's session: its exercises scroll inside the card under a down-arrow cue that floats over the list's own fade, translucent at rest and solid on hover, so the next movement stays half-visible behind it and the card never changes height. The footer carries the completed-set meter and the one action that matters: `Začít` while no set is done, `Pokračovat` once some are, `Upravit` when all are. Beside it sit the week's session count, the volume against last week tinted from accent to danger as it falls, the days since the last workout, the week strip, recent personal records and a seven-week volume spark whose head holds the total and whose note holds the average week. Hovering a day, a record or a bar names its number. Every figure comes from the API, and each number is centred on the text block that describes it.
 
 ![Cvikárna dashboard with the session card and the week's log](docs/images/dnes.png)
 

@@ -34,7 +34,7 @@ colour. Check: `npm run lint:ui`.
 - The rail is 236px, 84px under 1200, hidden under 1024 where the tab bar takes over.
 - Content is capped at `--max` (1280px) and centred; the topbar hairline spans the whole main column while its contents stay inside the cap.
 - No horizontal scroll at 390, 820 or 1440 on any view. Check: Playwright `documentElement.scrollWidth === clientWidth` at all three widths.
-- A list that scrolls inside a card shows the down-arrow cue while rows remain, and never scrolls sideways. At the end the cue dims, stops bobbing and keeps its slot, so the card never changes height while scrolling. Check: `review only`.
+- A list that scrolls inside a card shows a down-arrow cue while rows remain, and never scrolls sideways. On Dnes the cue floats over the list's own fade, translucent at rest and solid on hover; in Historie it sits under the list in the flow. Neither one changes the list's height. Check: `review only`.
 - Every interactive element has a visible `:focus-visible` treatment and a 44px target on touch.
 
 ## Component inventory
@@ -59,7 +59,7 @@ The full class list and the gate live in `web/scripts/ui-inventory.json` and `np
 | `RestPopover` | time, sound tabs | open, saved | Trénink |
 | `ConfirmPopover` | small anchored | open, cancelled, run | Trénink, Historie, sheet |
 | `MenuPopover` | panel rows | open, closed by its trigger | Trénink |
-| `TipPopover` | one-line panel above its control | open, hover, focus | Trénink |
+| `TipPopover` | one-line panel above its control | open, hover, focus | Trénink, Dnes |
 | `Toast` | one bar | default, danger | all |
 | `StateViews` | loading, empty, error | the three states | every async area |
 | `MonthCalendar` | month grid | today, workout dot, selected | Historie |
@@ -112,8 +112,8 @@ Check: `review only`, every cell asserted by hand at 1440 and 390 in both langua
   10. It is never a dot scale and never a repeated text label, and its centre rides the centre of
   the numerals beside it rather than their baseline.
 - The dashboard's `Podle deníku` values sit under their own label below 768px, and above it each
-  number is vertically centred on the label that names it; a number is never alone at the far
-  right edge away from the text that describes it.
+  number is vertically centred on the row's whole text block, label and note together; a number is
+  never alone at the far right edge away from the text that describes it.
 - Saving is one control per card or row, and its shape states the click. A saved card is a small
   red cross in a circle; a saved catalogue row is a red cross, an unsaved one a lime plus.
 - The add-exercise sheet's Katalog tab hides what the library already holds, so it only answers
@@ -132,12 +132,12 @@ Check: `review only`, every cell asserted by hand at 1440 and 390 in both langua
   danger colour.
 - Copying a past session replaces today's without a question only when today is empty; otherwise it
   asks in the confirm popover, and Escape closes the question before the sheet.
-- Dnes names the session's action by what is left to do: `Pokračovat` while sets remain, `Upravit`
-  once every set is complete.
+- Dnes names the session's action by where it stands: `Začít` while no set is done,
+  `Pokračovat` once some are, `Upravit` when all are.
 - In the guide, a section with a figure puts it at the top of the right column and the sources
   directly beneath it, so the column reads as one block; a section with no figure puts the sources
   at the foot of the card, level with the end of the copy.
-- A scroll cue sits outside its list, under it in the flow, never over the rows it scrolls.
+- A scroll cue either sits under its list in the flow or floats over the list's own fade, and neither form changes the list's height.
 - A session reaches the log and the calendar only once a set in it is ticked; a draft with nothing
   lifted is not a past session, and the finish action drops the movements that never got a tick.
 - While a rest runs, the view reserves the floating timer's height, so the last row's controls can

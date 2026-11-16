@@ -78,20 +78,29 @@ export function DashboardPage() {
   const weeks = dashboard?.weeklyVolume ?? [];
   const maxVolume = Math.max(...weeks.map((row) => row.volume), 1);
   const weekTotal = weeks.reduce((sum, row) => sum + row.volume, 0);
-  const lastWeek = weeks[weeks.length - 1];
-  const previousAverage =
-    weeks.length > 1
-      ? weeks.slice(0, -1).reduce((sum, row) => sum + row.volume, 0) / (weeks.length - 1)
-      : 0;
-  const weekAverage = previousAverage;
-  const volumeDelta =
-    previousAverage > 0 && lastWeek ? ((lastWeek.volume - previousAverage) / previousAverage) * 100 : null;
   const delta =
     dashboard && dashboard.previousWeekVolume > 0
       ? ((dashboard.currentWeekVolume - dashboard.previousWeekVolume) / dashboard.previousWeekVolume) * 100
       : null;
+  // A rise reads in the accent, zero in plain ink, and a fall warms from amber
+  // to danger as it deepens. The sign and the number always carry the meaning.
+  const deltaTone =
+    delta === null
+      ? "is-none"
+      : delta > 0.5
+        ? "is-up"
+        : Math.abs(delta) <= 0.5
+          ? "is-flat"
+          : delta > -15
+            ? "is-warn"
+            : delta > -40
+              ? "is-mid"
+              : "is-down";
   const todayDate = new Date();
   const isTodayEmpty = !exercises.length;
+
+  // A tip anchored to a dashboard cell must not outlive the page it belongs to.
+  useEffect(() => () => closeTip(), [closeTip]);
 
   if (demoState === "loading" || todayPhase === "loading" || dashboardPhase === "loading") {
     return (
@@ -215,7 +224,7 @@ export function DashboardPage() {
                 {tx("Rozpracovaný trénink", "Session in progress")}
               </h2>
             </div>
-            <span className="tag">
+            <span className="tag dash__pill">
               <Icon name="i-clock" />
               <span>
                 {tx("dnes", "today")} · {fmt(totals.volume, lang)} kg
@@ -314,7 +323,7 @@ export function DashboardPage() {
             </li>
             <li>
               <span className="statrow__label">{tx("Objem proti minulému týdnu", "Volume vs. last week")}</span>
-              <span className={`statrow__value num ${delta !== null && delta >= 0 ? "is-up" : "is-down"}`}>
+              <span className={`statrow__value num ${deltaTone}`}>
                 {delta === null ? "—" : `${delta >= 0 ? "+" : "−"}${fmt(Math.abs(delta), lang)} %`}
               </span>
               <span className="statrow__note">
@@ -381,19 +390,19 @@ export function DashboardPage() {
                   ? ["PO", "ÚT", "ST", "ČT", "PÁ", "SO", "NE"]
                   : ["MO", "TU", "WE", "TH", "FR", "SA", "SU"];
               const isToday = day.date === isoDate(new Date());
+              const dayTip = day.hasSession
+                ? `${longDate(date, lang)}: ${fmt(day.volume, lang)} kg`
+                : `${longDate(date, lang)}: ${tx("žádný trénink", "no session")}`;
               return (
                 <li
                   className={`week__day${day.hasSession ? " is-done" : ""}${isToday ? " is-today" : ""}`}
                   key={day.date}
-                  onMouseEnter={(event) =>
-                    openTip(
-                      event.currentTarget,
-                      day.hasSession
-                        ? `${longDate(date, lang)}: ${fmt(day.volume, lang)} kg`
-                        : `${longDate(date, lang)}: ${tx("žádný trénink", "no session")}`,
-                    )
-                  }
+                  tabIndex={0}
+                  aria-label={dayTip}
+                  onMouseEnter={(event) => openTip(event.currentTarget, dayTip)}
                   onMouseLeave={closeTip}
+                  onFocus={(event) => openTip(event.currentTarget, dayTip)}
+                  onBlur={closeTip}
                 >
                   <span className="week__label">{labels[index]}</span>
                   <span className="week__track">
@@ -419,18 +428,19 @@ export function DashboardPage() {
                   record.previousBestWeightKg !== null
                     ? record.bestWeightKg - record.previousBestWeightKg
                     : null;
+                const recordTip =
+                  gain !== null && gain > 0
+                    ? `${name}: +${fmt(gain, lang)} kg ${tx("proti minulému rekordu", "over the previous record")}`
+                    : tx("První zapsaný rekord, nic staršího k porovnání", "The first record on file, nothing older to compare");
                 return (
                   <li
                     key={record.exerciseId}
-                    onMouseEnter={(event) =>
-                      openTip(
-                        event.currentTarget,
-                        gain !== null && gain > 0
-                          ? `${name}: +${fmt(gain, lang)} kg ${tx("proti minulému rekordu", "over the previous record")}`
-                          : tx("První zapsaný rekord, nic staršího k porovnání", "The first record on file, nothing older to compare"),
-                      )
-                    }
+                    tabIndex={0}
+                    aria-label={recordTip}
+                    onMouseEnter={(event) => openTip(event.currentTarget, recordTip)}
                     onMouseLeave={closeTip}
+                    onFocus={(event) => openTip(event.currentTarget, recordTip)}
+                    onBlur={closeTip}
                   >
                     <span className="ledger__name">{name}</span>
                     <span className="ledger__val num">{fmt(record.bestWeightKg, lang)} kg</span>
@@ -456,38 +466,35 @@ export function DashboardPage() {
             </span>
           </div>
           <div className="spark" role="img" aria-label={tx("Objem za posledních sedm týdnů", "Volume over the last seven weeks")}>
-            {weeks.map((row) => (
-              <span
-                className="spark__col"
-                key={row.start}
-                onMouseEnter={(event) =>
-                  openTip(
-                    event.currentTarget,
-                    row.volume > 0
-                      ? `${row.label}: ${fmt(row.volume, lang)} kg`
-                      : `${row.label}: ${tx("žádný objem", "no volume")}`,
-                  )
-                }
-                onMouseLeave={closeTip}
-              >
-                <span className="spark__plot">
-                  <span className="spark__bar" style={{ "--h": Math.round((row.volume / maxVolume) * 100) } as CSSProperties} />
+            {weeks.map((row) => {
+              const weekTip =
+                row.volume > 0
+                  ? `${row.label}: ${fmt(row.volume, lang)} kg`
+                  : `${row.label}: ${tx("žádný objem", "no volume")}`;
+              return (
+                <span
+                  className="spark__col"
+                  key={row.start}
+                  tabIndex={0}
+                  aria-label={weekTip}
+                  onMouseEnter={(event) => openTip(event.currentTarget, weekTip)}
+                  onMouseLeave={closeTip}
+                  onFocus={(event) => openTip(event.currentTarget, weekTip)}
+                  onBlur={closeTip}
+                >
+                  <span className="spark__plot">
+                    <span className="spark__bar" style={{ "--h": Math.round((row.volume / maxVolume) * 100) } as CSSProperties} />
+                  </span>
+                  <span className="spark__label">{row.label}</span>
                 </span>
-                <span className="spark__label">{row.label}</span>
-              </span>
-            ))}
+              );
+            })}
           </div>
           <p className="dash__volume-note" style={{ marginTop: "var(--space-3)" }}>
-            <span>
-              {tx("Posledních 7 týdnů", "Last 7 weeks")} ·{" "}
-              <span className="num dash__delta">
-                {volumeDelta === null
-                  ? "—"
-                  : `${volumeDelta >= 0 ? "+" : "−"}${fmt(Math.abs(volumeDelta), lang)}\u00a0%`}
-              </span>
-            </span>
+            <span>{tx("Posledních 7 týdnů", "Last 7 weeks")}</span>
             <span className="dash__avg">
-              {tx("proti průměru", "vs. average")} <span className="num">{fmt(weekAverage, lang)} kg</span>
+              {tx("Ø na týden", "Ø per week")}{" "}
+              <span className="num">{fmt(weekTotal / 7, lang)} kg</span>
             </span>
           </p>
         </section>
