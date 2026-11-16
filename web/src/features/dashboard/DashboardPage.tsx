@@ -8,14 +8,20 @@ import { daysLabel, fmt, isoDate, longDate, parseIso, sessionCount } from "../..
 
 function useScrollCue<T extends HTMLElement>(dependency: unknown) {
   const ref = useRef<T>(null);
-  const [visible, setVisible] = useState(false);
+  const [state, setState] = useState({ visible: false, overflowing: false });
 
   useEffect(() => {
     const node = ref.current;
     if (!node) {
       return;
     }
-    const sync = () => setVisible(node.scrollHeight - node.scrollTop - node.clientHeight > 4);
+    const sync = () => {
+      const overflow = node.scrollHeight - node.clientHeight;
+      setState({
+        visible: overflow - node.scrollTop > 4,
+        overflowing: overflow > 4,
+      });
+    };
     sync();
     node.addEventListener("scroll", sync);
     const observer = new ResizeObserver(sync);
@@ -28,14 +34,14 @@ function useScrollCue<T extends HTMLElement>(dependency: unknown) {
     };
   }, [dependency]);
 
-  return { ref, visible };
+  return { ref, visible: state.visible, overflowing: state.overflowing };
 }
 
 export function DashboardPage() {
   const { lang, tx } = useLanguage();
   const { dashboard, dashboardPhase, dashboardError, today, todayPhase, demoState, openSheet, refreshToday } =
     useApp();
-  const { ref: sessionRef, visible: sessionCue } = useScrollCue<HTMLUListElement>(today);
+  const { ref: sessionRef, visible: sessionCue, overflowing: sessionOverflow } = useScrollCue<HTMLUListElement>(today);
 
   const exercises = useMemo(() => {
     const list = today?.exercises ?? [];
@@ -256,7 +262,8 @@ export function DashboardPage() {
             className="monthcue"
             type="button"
             aria-label={tx("Zobrazit další cviky", "Show more exercises")}
-            hidden={!sessionCue}
+            hidden={!sessionOverflow}
+            disabled={!sessionCue}
             onClick={() =>
               sessionRef.current?.scrollBy({
                 top: Math.round(sessionRef.current.clientHeight * 0.82),

@@ -44,7 +44,7 @@ export function HistoryPage() {
   const [workoutPhase, setWorkoutPhase] = useState<"idle" | "loading" | "ready" | "error">("idle");
   const [openGroups, setOpenGroups] = useState<Record<number, boolean>>({});
   const listRef = useRef<HTMLDivElement>(null);
-  const [monthCue, setMonthCue] = useState(false);
+  const [monthScroll, setMonthScroll] = useState({ visible: false, overflowing: false });
 
   const prefix = `${year}-${String(month + 1).padStart(2, "0")}-`;
   // A session reaches the log once a set in it is ticked: a draft with nothing
@@ -104,7 +104,13 @@ export function HistoryPage() {
     if (!node) {
       return;
     }
-    const sync = () => setMonthCue(node.scrollHeight - node.scrollTop - node.clientHeight > 4);
+    const sync = () => {
+      const overflow = node.scrollHeight - node.clientHeight;
+      setMonthScroll({
+        visible: overflow - node.scrollTop > 4,
+        overflowing: overflow > 4,
+      });
+    };
     sync();
     node.addEventListener("scroll", sync);
     const observer = new ResizeObserver(sync);
@@ -346,7 +352,8 @@ export function HistoryPage() {
             className="monthcue"
             type="button"
             aria-label={tx("Zobrazit starší tréninky", "Show older sessions")}
-            hidden={!monthCue}
+            hidden={!monthScroll.overflowing}
+            disabled={!monthScroll.visible}
             onClick={() =>
               listRef.current?.scrollBy({
                 top: Math.round(listRef.current.clientHeight * 0.82),

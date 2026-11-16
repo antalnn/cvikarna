@@ -5771,3 +5771,28 @@ svg {
     min-height: 44px;
   }
 }
+
+/* The cue keeps its slot for as long as the list overflows: at the end it dims
+   and stops taking clicks, so scrolling never resizes the card above it. */
+.monthcue[disabled] {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.monthcue[disabled]:hover {
+  border-color: var(--line);
+  background: var(--surface-3);
+}
+
+/* A session row is exactly 69px, so the three-row list is a whole number of
+   rows and no sliver of a fourth shows at rest. */
+.session__row {
+  height: 69px;
+}
+
+/* 103: a numeral in a larger size reads high when it is only box-centred on
+   smaller lowercase text, so it drops a pixel to sit on the same optical line. */
+.statrow__value {
+  position: relative;
+  top: 1px;
+}
