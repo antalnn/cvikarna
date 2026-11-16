@@ -2454,7 +2454,7 @@ svg {
   color: var(--fg-dim);
 }
 
-/* One compact set line: the tick, the numbers, the RPE dots, actions on hover. */
+/* One compact set line: the tick, the numbers, the RPE chip, actions on hover. */
 .setline {
   display: grid;
   grid-template-columns: 26px minmax(0, 1fr) auto auto;
@@ -5592,12 +5592,6 @@ svg {
   border-radius: var(--radius-pill);
 }
 
-/* 98: the session card keeps one size. Its list scrolls, the cue says so, and
-   the panel beside it never inherits the height of a long session. */
-.session__scroll {
-  max-height: 264px;
-}
-
 .dash__stats {
   align-content: start;
 }
@@ -5606,11 +5600,12 @@ svg {
   flex: 0 0 auto;
 }
 
-/* The session list holds one fixed height, not a range: three rows and the cue,
-   so adding a movement never moves the panels beside it. */
+/* The session list takes the height of three rows at most. A short session
+   keeps a compact card; a long one scrolls instead of stretching the panels
+   beside it. */
 .session__scroll {
-  height: 264px;
-  max-height: 264px;
+  height: auto;
+  max-height: 207px;
 }
 
 /* 87: the guide reads down the right column. With a figure, the column is one
@@ -5642,14 +5637,6 @@ svg {
 
 .acc__aside {
   align-content: start;
-}
-
-/* The session list takes the height of three rows at most. A short session
-   keeps a compact card; a long one scrolls instead of stretching the panels
-   beside it. */
-.session__scroll {
-  height: auto;
-  max-height: 207px;
 }
 
 /* The layered surfaces above a sheet: the sheet sits at 115, so a confirm, a
